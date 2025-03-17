@@ -24,13 +24,13 @@ const MainPageBuy = () => {
 
 
   return (
-    <div>
+    <div className="font-dmsans">
       <motion.div
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0"
+        className="opacity-0 -my-1"
       >
         <FeaureListing />
       </motion.div>
@@ -66,7 +66,7 @@ const MainPageBuy = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0"
+        className="opacity-0 -my-1"
       >
         <ClientSuccess />
       </motion.div>
@@ -75,7 +75,7 @@ const MainPageBuy = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0"
+        className="opacity-0 -my-1"
       >
         <QuestionAnswer />
       </motion.div>
@@ -84,7 +84,7 @@ const MainPageBuy = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0"
+        className="opacity-0 -my-1"
       >
         <Talk />
         <Footer />

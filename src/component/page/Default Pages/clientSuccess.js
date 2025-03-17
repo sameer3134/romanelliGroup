@@ -16,7 +16,7 @@ const ClientSuccess = () => {
         <div className='bg-backgroundColor text-white'>
             <div className="container px-5 pt-12 mx-auto ">
                 <div className="flex flex-col text-center w-full">
-                    <h1 className="sm:text-4xl text-2xl font-bold title-font mb-4 ">
+                    <h1 className="sm:text-5xl text-2xl font-bold title-font mb-4 ">
                         Celebrating Our Clients  <span className="italic font-playfair">Success Stories</span>
                     </h1>
                     <p className="lg:w-2/3 mx-auto leading-relaxed text-xl">

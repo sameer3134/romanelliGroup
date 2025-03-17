@@ -59,10 +59,10 @@ const images = [
   
     return (
       <>
-        <div className="container px-5 py-12 mx-auto text-gray-900">
+        <div className="container px-5 mx-auto text-gray-900">
           <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="sm:text-4xl text-2xl font-bold title-font mb-4 text-gray-900">
-              Families We’ve <span className="italic font-playfair">Served</span>
+            <h1 className="sm:text-5xl text-2xl font-playfair font-bold title-font mb-4 text-gray-900">
+              Families We’ve <span className="italic ">Served</span>
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-xl">
               When you work with us, you are a part of a bigger picture that values local communities, fostering meaningful relationships with everyone involved.

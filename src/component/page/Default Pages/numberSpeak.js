@@ -103,10 +103,10 @@ const NumberSpeak = () => {
       <div className="container px-5 mx-auto">
         <div className="flex flex-wrap w-full mb-8">
           <div className="lg:w-1/2 w-full text-left ml-4 lg:ml-8">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-white">
-              The Numbers <span className="font-playfair italic">Speak</span>
+            <h1 className="sm:text-5xl text-2xl font-semibold font-playfair title-font mb-2 text-white">
+              The Numbers <span className=" italic">Speak</span>
             </h1>
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-white">
+            <h1 className="sm:text-5xl text-2xl font-semibold title-font mb-2 text-white">
               for Themselves
             </h1>
           </div>

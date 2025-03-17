@@ -7,7 +7,7 @@ const FirstPageBuy = () => {
             <div className="container px-4 sm:px-5 py-12 md:py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-6">
                     <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-4xl px-4">
-                        Let's find the perfect home for you!
+                        Let's find the<span className='italic'>{" "}perfect</span>  home for you!
                     </h1>
                     <p className="mx-auto leading-relaxed font-medium md:font-bold text-base sm:text-lg max-w-2xl mt-4">
                         Whether you're looking for a cozy family home or a lucrative investment property, we're here to make it happen.

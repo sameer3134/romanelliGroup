@@ -22,14 +22,14 @@ const fadeInUp = {
 
 const MainPage = () => {
   return (
-    <div className="">
+    <div className="font-dmsans">
       {/* Each section fades in as it comes into view */}
       <motion.div
         variants={fadeInUp}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0"
+        className="opacity-0 -my-1"
       >
         <NumberSpeak />
       </motion.div>
@@ -54,11 +54,11 @@ const MainPage = () => {
         <ClientSuccess />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
         <QuestionAnswer />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
         <Talk />
       </motion.div>
 

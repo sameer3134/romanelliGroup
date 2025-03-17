@@ -41,7 +41,7 @@ const Navbar = () => {
   initial={{ opacity: 0, y: -70 }} // Start higher for a more noticeable effect
   animate={{ opacity: 1, y: 0 }} // Smooth slide-down
   transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }} // Smooth and natural
-  className="bg-backgroundColor border-gray-200 fixed top-0 left-0 w-full z-50 shadow-md"
+  className="bg-backgroundColor font-inter border-gray-200 fixed top-0 left-0 w-full z-50 shadow-md"
 >
 
         <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4 md:px-6">
@@ -49,7 +49,7 @@ const Navbar = () => {
           <ul className="hidden md:flex space-x-6">
             {navLinksLeft.map((link, index) => (
               <li key={index}>
-                <Link to={link.href} className="text-white hover:text-blue-300">
+                <Link to={link.href} className={`text-white hover:text-gray-300 ${activeLink === link.title ? "underline underline-offset-4":""}`}>
                   {link.title}
                 </Link>
               </li>
@@ -64,7 +64,7 @@ const Navbar = () => {
           {/* Right Nav Links + CTA */}
           <div className="hidden md:flex items-center space-x-6">
             {navLinksRight.map((link, index) => (
-              <Link key={index} to={link.href} className="text-white hover:text-blue-300">
+              <Link key={index} to={link.href} className={`text-white hover:text-gray-300 ${activeLink === link.title ? "underline underline-offset-4"  :''}`}>
                 {link.title}
               </Link>
             ))}
@@ -115,7 +115,7 @@ const Navbar = () => {
                     <Link
                       to={link.href}
                       onClick={() => setIsMenuOpen(false)}
-                      className="block text-white hover:text-blue-300"
+                      className={`block text-white hover:text-blue-300  ${activeLink === link.title ? "underline underline-offset-4"  :''}`}
                     >
                       {link.title}
                     </Link>

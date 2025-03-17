@@ -20,17 +20,20 @@ const TestimonialCard = ({ testimonial }) => {
         </div>
         <div className="border border-gray-300 mt-2"></div>
       </div>
-      <p className="leading-relaxed text-base text-left">
-        {truncatedText}
-        {testimonial.comment.length > maxLength && (
-          <button
-            onClick={() => window.open(testimonial.url, "_blank")}
-            className="text-blue-600 text-sm ml-2"
-          >
-            Read More
-          </button>
-        )}
-      </p>
+      <p
+  className="leading-relaxed text-base text-left h-[250px] overflow-hidden text-ellipsis"
+>
+  {truncatedText}
+  {testimonial.comment.length > maxLength && (
+    <button
+      onClick={() => window.open(testimonial.url, "_blank")}
+      className="text-blue-600 text-sm ml-2"
+    >
+      Read More
+    </button>
+  )}
+</p>
+
       <div className="border border-gray-300 mt-2"></div>
       <div className="h-full flex items-start border-gray-200 border p-2 mt-2 rounded-lg">
         <img
@@ -156,8 +159,8 @@ const ClientSay = () => {
     <div>
       <div className="container px-5 pt-12 mx-auto text-gray-900">
         <div className="flex flex-col text-center w-full mb-20">
-          <h1 className="sm:text-4xl text-2xl font-bold title-font mb-4 text-gray-900">
-            What Our <span className="italic font-playfair">Clients Say</span>
+          <h1 className="sm:text-5xl text-2xl font-playfair font-bold title-font mb-4 text-gray-900">
+            What Our <span className="italic ">Clients Say</span>
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-xl">
             Hear from our satisfied clients and explore their experiences with us.
@@ -195,13 +198,13 @@ const ClientSay = () => {
             <svg width="16" height="14" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2 9H20M2 9L9.5 1.5M2 9L9.5 16.5" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span>Prev</span>
+            <span></span>
           </button>
           <button
             className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white text-black px-3 py-2 flex items-center space-x-2"
             onClick={nextSlide}
           >
-            <span>Next</span>
+            <span></span>
             <svg width="16" height="14" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M27 18H9M27 18L19.5 25.5M27 18L19.5 10.5" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

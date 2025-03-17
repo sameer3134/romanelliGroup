@@ -20,6 +20,8 @@ module.exports = {
       },
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
+        dmsans: ["DM Sans", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
     },
   },

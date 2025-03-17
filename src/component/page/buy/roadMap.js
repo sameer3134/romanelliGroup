@@ -40,9 +40,9 @@ const RoadMap = () => {
     <div className="container mx-auto px-5 py-16 relative">
       {/* Header */}
       <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 text-gray-900">
+        <h1 className="md:text-5xl text-2xl font-playfair font-bold mb-4 text-gray-900">
           Your RoadMap to{" "}
-          <span className="italic font-playfair">Perfect Property</span>
+          <span className="italic ">Perfect Property</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           We’ve simplified the homebuying process into four easy steps. Let’s get you closer to your dream home with confidence!

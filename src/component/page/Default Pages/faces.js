@@ -9,18 +9,18 @@ const Faces = () => {
   return (
     <>
       {/* Heading */}
-      <div className="bg-backgroundColor pt-10">
+      <div className="bg-backgroundColor ">
         <div className="flex flex-col items-center text-center">
-          <h1 className="sm:text-5xl text-2xl font-medium text-white">
-            Meet the <span className="italic font-playfair">Faces</span> behind the
+          <h1 className="sm:text-5xl text-2xl font-playfair mb-2 font-semibold text-white">
+            Meet the <span className="italic ">Faces</span> behind the
           </h1>
-          <h1 className="sm:text-5xl text-2xl font-medium text-white">Romanelli Group</h1>
+          <h1 className="sm:text-5xl text-2xl font-semibold text-white">Romanelli Group</h1>
         </div>
       </div>
 
       {/* Section with Split Background */}
       <section className="relative">
-  <div className="absolute inset-0 bg-backgroundColor h-1/3"></div> {/* 1/4 background color */}
+  <div className="absolute inset-0 bg-white md:bg-backgroundColor h-1/3"></div> {/* 1/4 background color */}
   <div className="absolute inset-0 bg-white h-2/3 top-1/3"></div> {/* 3/4 white background */}
 
   <div className="container px-5 py-12 mx-auto relative z-10">

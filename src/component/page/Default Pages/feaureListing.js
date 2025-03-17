@@ -46,8 +46,8 @@ const FeaureListing = () => {
           <div className="container px-5 pt-8 mx-auto">
             <div className="flex flex-wrap w-full mb-8">
               <div className="lg:w-1/2 w-full lg:mb-0 text-left ml-4 lg:ml-8">
-                <h1 className="sm:text-3xl text-2xl font-medium heading-font mb-2 text-white">
-                  <span className="font-playfair italic">Featured</span> Listings
+                <h1 className="sm:text-5xl font-playfair text-2xl font-semibold heading-font mb-2 text-white">
+                  <span className=" italic">Featured</span> Listings
                 </h1>
               </div>
             </div>
@@ -71,7 +71,7 @@ const FeaureListing = () => {
                     <div className="absolute top-0 left-0 w-full h-1/2 bg-transparent"></div>
       
                     {/* Solid White Lower Half (Responsive Text Sizes) */}
-                    <div className="text-black absolute bottom-0 left-0 w-full h-1/2 bg-white flex flex-col items-start justify-start p-3 sm:p-4">
+                    <div className="text-black absolute bottom-0 left-0 w-full h-2/3 lg:h-1/3 bg-white flex flex-col items-start justify-start p-3 sm:p-4">
                       <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold">{item.amount}</h3>
                       <p className="text-base sm:text-lg mt-1 font-bold">{item.heading}</p>
                       <h3 className="text-sm sm:text-lg mt-1">{item.detail}</h3>
