@@ -3,42 +3,94 @@ import FeaureListing from "../Default Pages/feaureListing";
 import NumberSpeak from "../Default Pages/numberSpeak";
 import ClientSay from "../Default Pages/clientSay";
 import RoadMap from "./roadMap";
+import ClientSuccess from "../Default Pages/clientSuccess";
+import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
+import Footer from "../Default Pages/footer";
+import Talk from "../Default Pages/talk";
+import { motion } from "framer-motion";
+
+
+// Animation Variants (Slide-up & Fade-in)
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const MainPageBuy = () => {
 
 
   return (
     <div>
-      <FeaureListing />
-      <NumberSpeak />
-      <ClientSay />
-      <RoadMap />
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+        <FeaureListing />
+      </motion.div>
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+        <NumberSpeak />
+      </motion.div>
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+        <ClientSay />
+      </motion.div>
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+        <RoadMap />
+      </motion.div>
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+        <ClientSuccess />
+      </motion.div>
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+        <QuestionAnswer />
+      </motion.div>
+      <motion.div
+        variants={fadeInUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+        <Talk />
+        <Footer />
+      </motion.div>
     </div>
   );
 };
 
 export default MainPageBuy;
-
-// style.innerHTML = `
-// .__hblgw--button-container-light-mode-theme {
-//     box-sizing: inherit;
-//     position: absolute;
-//     z-index: 102;
-//     right: 0px;
-//     top: 0px;
-//     bottom: 0px;
-//     height: 5px;
-//     cursor: pointer;
-//     color: rgb(255, 255, 255);
-//     background-color: rgb(46, 44, 50);
-//     border: none;
-//     font-size: 0.75rem;
-//     font-weight: 700;
-//     text-transform: uppercase;
-//     margin: 5px 5px 5px 5px;
-//     width: 84px;
-//     border-radius: 0px 0px -10px 0px;
-//     appearance: none;
-//     transition: 0.2s cubic-bezier(0.05, 0.69, 0.14, 1);
-// }
-// `;

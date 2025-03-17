@@ -15,12 +15,12 @@ const FirstPageBuy = () => {
                 </div>
 
                 {/* Input & Button Section */}
-                <button className="flex mx-auto mt-8 text-black bg-white border-0 py-2 px-8 focus:outline-none rounded text-lg">
+                <button className="flex mx-auto mt-8 text-black bg-white hover:bg-gray-300 border-0 py-2 px-8 focus:outline-none rounded text-lg">
                     Get Started
                 </button>
 
                 {/* Scrollable Image in Bottom-Right */}
-                <div className="absolute bottom-0 right-4 sm:right-6 md:right-10 lg:right-12 xl:right-16 w-60 hidden md:block">
+                <div className="absolute -bottom-2 right-4 sm:right-6 md:right-10 lg:right-12 xl:right-16 w-60 hidden md:block">
                     <img src={group125} alt="Floating Icon" className="w-full h-auto object-contain" />
                 </div>
             </div>

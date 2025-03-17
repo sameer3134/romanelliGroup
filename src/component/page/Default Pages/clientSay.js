@@ -3,13 +3,15 @@ import React, { useEffect, useRef, useState } from "react";
 
 // Testimonial card component
 const TestimonialCard = ({ testimonial }) => {
+
   const maxLength = 300; // Character limit for truncated text
 
   const truncatedText =
     testimonial.comment.length > maxLength
       ? testimonial.comment.substring(0, maxLength) + "..."
       : testimonial.comment;
-
+      const proxyUrl = "https://api.allorigins.win/raw?url=";
+      const imageUrl = proxyUrl + encodeURIComponent(testimonial.image);
   return (
     <article className="bg-gray-200 p-6 rounded-lg">
       <div className="pb-2">
@@ -34,7 +36,8 @@ const TestimonialCard = ({ testimonial }) => {
         <img
           alt={testimonial.name}
           className="w-8 h-8 bg-gray-100 object-cover object-center flex-shrink-0 rounded-lg mr-4"
-          src={testimonial.image}
+          src={imageUrl}
+           loading="lazy"
         />
         <div className="flex-grow items-start text-xs">
           <h2 className="text-gray-900 title-font font-medium text-left">
@@ -91,7 +94,6 @@ const ClientSay = () => {
         `https://service-reviews-ultimate.elfsight.com/data/reviews?uris%5B%5D=ChIJRy_MPSX1OIgRCxDRvAZS524&with_text_only=1&min_rating=5&page_length=100&order=date`
       );
 
-      console.log("Google Reviews:", response.data.result.data);
 
       // Map API response to match testimonial structure
       const formattedReviews = response.data.result.data.map((review) => ({
@@ -100,7 +102,7 @@ const ClientSay = () => {
         role: review.title || "Customer", // If title is null, use 'Customer'
         rating: review.rating,
         comment: review.text || "No comment provided",
-        image: review.reviewer_picture_url || "https://via.placeholder.com/50",
+        image: review.reviewer_picture_url,
         url: review.url
       }));
 

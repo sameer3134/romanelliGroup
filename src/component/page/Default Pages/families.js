@@ -18,7 +18,7 @@ const images = [
     name: "The Patel Family",
   },
   {
-    url: "https://media-hosting.imagekit.io//21b477256c034cc5/image%20(1).png?Expires=1834844633&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=VLcvYAsr3RjVFh9iNFYUfkWUtlSGpfjI1K4Z9tl7YMaRF0kU-DM~ukwIn64zbe6h27eSGmR2ma0lHCd6aU01uyXDGLZQLJriwOucH2uQBkLUIyPY3-KiLonhuJc6lwfvGQEjDXlrLDCLlnU946FjdC7sjb-f09n6ePC-ThkPvIUOVnype~GBVnYG0H6o6j8EFgCaU~hxUf63YXRFr~70F9nws2Xz21c6W~bAj4AU9H91fCaRqc~HdU81-L4AvKcgDQxG8QtZKu2o7dYF1JqiJXCcacvYWzmuT3ZTYtCY~~WnfuF42UBFr9L7wjPo4A7lRWxecSZ0M6CJlRo7ammf1w__",
+    url: "https://media-hosting.imagekit.io//8d78116cd7894265/image%20(3).png?Expires=1836735975&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pB5zQAp4uoxDtAozpT0g7wGqYUBLlqjNHRULcMFoexmrXPssOYBSYKUQS24N6UQNqRdP~04TB1TKIQpOaP6Q4H6nKwNLpf4BX6EY0HjoJjsloubUyVrW6GO9pwpzzI-vtEiPu1Lv3UwuWbb5ZSqoWMivKvTZsUTu2irbPikhEwQi4P4QvzZYDPseqS4EcDIE9M7nmzR2rLlODDXqmAt35vAf-NGgfSeM52euaAVicTBEZhaFdsPL61aAmoK4QJBkLRV3j1AiNmXVaf0OUdXz6DggnbVsw-yCmG3H8FIlZ-xVjpO0-rXcG8pnFgoruKvAXJ9oqZC94RhE2Jt0Gx9hFg__",
     title: "Finding our forever home was a dream come true, thanks to The Romanelli Group. Highly recommend their team!",
     name: "The Thompson Family",
   },
@@ -142,55 +142,3 @@ const images = [
   };
   
   export default Families;
-
-  // import React from 'react';
-  
-  // const stats = [
-  //   { number: "#2", title: "In the Tri-state Area", description: "Ranked among the top for unmatched real estate expertise and community impact." },
-  //   { number: "320+", title: "Deals Closed", description: "Every transaction reflects trust, precision, and client-first focus." },
-  //   { number: "80+", title: "Clients Served in 2023", description: "Dedicated to making dreams come true, one client at a time." },
-  //   { number: "9+", title: "Years in Business", description: "Delivering results backed by nearly a decade of experience." }
-  // ];
-  
-  // const NumberSpeak = () => {
-  //   return (
-  //     <section className="text-white body-font bg-backgroundColor">
-  //       <div className="container px-5 pt-8 mx-auto">
-  //         <div className="flex flex-wrap w-full mb-8">
-  //           <div className="lg:w-1/2 w-full lg:mb-0 text-left ml-4 lg:ml-8">
-  //             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-white">
-  //               The Numbers <span className="font-playfair italic">Speak</span>
-  //             </h1>
-  //             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-white">
-  //               for Themselves
-  //             </h1>
-  //           </div>
-  //         </div>
-  //       </div>
-  
-  //       {/* Stats Section */}
-  //       {stats.map((stat, index) => (
-  //         <section key={index} className="text-gray-900 body-font mx-6">
-  //           <div className="px-5 pb-6 mx-auto">
-  //             <div className="flex flex-wrap w-full bg-white mx-3 py-2">
-  //               <div className="w-2/3 mb-6 lg:mb-0">
-  //                 <h1 className="sm:text-5xl text-2xl title-font mb-2 text-gray-900 text-left px-3 font-bold">
-  //                   {stat.number}
-  //                 </h1>
-  //                 <h4 className="sm:text-lg text-md font-medium title-font mb-2 text-gray-900 text-left px-3">
-  //                   {stat.title}
-  //                 </h4>
-  //               </div>
-  //               <p className="w-1/3 xl:text-xl text-right text-xs p-2 leading-relaxed text-gray-900 xl:mt-5 font-semibold">
-  //                 {stat.description}
-  //               </p>
-  //             </div>
-  //           </div>
-  //         </section>
-  //       ))}
-  //     </section>
-  //   );
-  // };
-  
-  // export default NumberSpeak;
-  

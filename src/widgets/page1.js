@@ -3,6 +3,9 @@ import LoadingScreen from "../loading/loadingScreen";
 
 import Pag2 from "../component/page/home/pag2";
 import FirstPageBuy from "../component/page/buy/firstPageBuy";
+import FirstPageSell from "../component/page/sell/firstPageSell";
+import FirstPageContact from "../component/page/contactUs/firstPageContact";
+import FirstPageProperties from "../component/page/properties/firstPageProperties";
 
 const Page1 = ({ page }) => {
   const video_url =
@@ -48,8 +51,8 @@ const Page1 = ({ page }) => {
       {/* Loading Screen */}
       {loading && <LoadingScreen progress={progress} />}
       {/* Always render video in background */}
-      <div style={{ visibility: loading ? "hidden" : "visible" }}>
-        <section className="relative w-full min-h-screen flex items-center justify-center text-white body-font overflow-hidden">
+      <div  style={{ visibility: loading ? "hidden" : "visible" }}>
+        <section id="mainVideo" className="relative w-full min-h-screen flex items-center justify-center text-white body-font overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <video
               ref={videoRef}
@@ -72,6 +75,12 @@ const Page1 = ({ page }) => {
           }
           {page == "Buy" &&
           <FirstPageBuy/>}
+            {/* {page == "Sell" &&
+          <FirstPageSell/>}
+           {page == "Contact Us" &&
+          <FirstPageContact/>}
+          {page == "Properties" &&
+          <FirstPageProperties/>} */}
         </section>
       </div>
     </>

@@ -1,22 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 import Page1 from "./page1";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
+
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const navLinksLeft = [
     { title: "Home", href: "/" },
     { title: "Buy", href: "/buy" },
-    { title: "Sell", href: "/sell" },
-    { title: "Contact Us", href: "/contactUs" },
+    { title: "Sell", href: "/sells" },
+    { title: "Contact Us", href: "/contactUss" },
   ];
 
   const navLinksRight = [
-    { title: "Properties", href: "/properties" },
-    { title: "Blog", href: "/blog" },
+    { title: "Properties", href: "/propertiess" },
+    { title: "Resources", href: "/resourcess" },
   ];
 
   const location = useLocation();
@@ -34,7 +36,14 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="bg-backgroundColor border-gray-200">
+      {/* Navbar Animation */}
+      <motion.nav
+  initial={{ opacity: 0, y: -70 }} // Start higher for a more noticeable effect
+  animate={{ opacity: 1, y: 0 }} // Smooth slide-down
+  transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }} // Smooth and natural
+  className="bg-backgroundColor border-gray-200 fixed top-0 left-0 w-full z-50 shadow-md"
+>
+
         <div className="max-w-screen-xl mx-auto flex items-center justify-between p-4 md:px-6">
           {/* Left Nav Links */}
           <ul className="hidden md:flex space-x-6">
@@ -59,7 +68,7 @@ const Navbar = () => {
                 {link.title}
               </Link>
             ))}
-            <button className="text-black bg-white hover:bg-gray-200 font-medium rounded-sm text-sm px-4 py-2">
+            <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2">
               Schedule a Call
             </button>
           </div>
@@ -67,7 +76,7 @@ const Navbar = () => {
           {/* Mobile CTA + Hamburger Menu */}
           <div className="flex items-center md:hidden space-x-2">
             {/* Schedule a Call - Left of Hamburger */}
-            <button className="text-black bg-white hover:bg-gray-200 font-medium rounded-sm text-sm px-4 py-2">
+            <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2">
               Schedule a Call
             </button>
 
@@ -90,22 +99,38 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`${isMenuOpen ? "block" : "hidden"} md:hidden bg-backgroundColor`}>
-          <ul className="font-medium p-4 space-y-4">
-            {[...navLinksLeft, ...navLinksRight].map((link, index) => (
-              <li key={index}>
-                <Link to={link.href} className="block text-white hover:text-blue-300">
-                  {link.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </nav>
+        {/* Mobile Menu with Animation */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -30 }} // Start hidden & above
+              animate={{ opacity: 1, y: 0 }} // Slide down smoothly
+              exit={{ opacity: 0, y: -30 }} // Slide up on exit
+              transition={{ duration: 0.3, ease: "easeOut" }} // Smooth transition
+              className="md:hidden bg-backgroundColor absolute w-full left-0 top-16 shadow-lg"
+            >
+              <ul className="font-medium p-4 space-y-4">
+                {[...navLinksLeft, ...navLinksRight].map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      to={link.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block text-white hover:text-blue-300"
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
 
       {/* Page Content */}
-      <Page1 page={activeLink} />
+      <div className="pt-16">
+  <Page1 page={activeLink} />
+</div>
     </>
   );
 };

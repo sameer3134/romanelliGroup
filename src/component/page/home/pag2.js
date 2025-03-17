@@ -8,31 +8,119 @@ const Pag2 = () => {
     const handleVideoPopUp = () => {
         setVideoPopUp(true)
     }
+    const [isLoaded, setIsLoaded] = useState(false);
+
     useEffect(() => {
+        const scriptId = "homebot-script";
+        const styleId = "homebot-style";
+    
+        // Check if script already exists
+        if (document.getElementById(scriptId)) {
+            waitForHomebot();
+            return;
+        }
+    
         const script = document.createElement("script");
         script.src = "https://embed.homebotapp.com/lgw/v1/widget.js";
+        script.id = scriptId;
         script.async = true;
     
-        script.onload = () => {
-          if (window.Homebot) {
-            window.Homebot("#homebot_homeowner", "df5f3d04dde9ce0dccc0f12c06ac8d7cfd911b11ea7f4bfd", {
-              size: "compact",
-              theme: "light-mode-theme",
-            });
-          }
-        };
-    
+        script.onload = waitForHomebot;
         document.body.appendChild(script);
-         // Inject Custom CSS for Homebot Widget
-         const style = document.createElement("style");
-       
-         document.head.appendChild(style);
     
         return () => {
-          document.body.removeChild(script);
-            document.head.removeChild(style);
+            const existingScript = document.getElementById(scriptId);
+            if (existingScript && existingScript.parentNode) {
+                existingScript.parentNode.removeChild(existingScript);
+            }
+    
+            const existingStyle = document.getElementById(styleId);
+            if (existingStyle) {
+                existingStyle.remove();
+            }
         };
-      }, []);
+    }, []);
+    
+    const waitForHomebot = () => {
+        let attempts = 0;
+        const interval = setInterval(() => {
+            if (window.Homebot) {
+                clearInterval(interval);
+                console.log("✅ Homebot loaded!");
+                setIsLoaded(true);
+                window.Homebot("#homebot_homeowner", "df5f3d04dde9ce0dccc0f12c06ac8d7cfd911b11ea7f4bfd", {
+                    size: "compact",
+                    theme: "light-mode-theme",
+                });
+    
+                // Inject CSS inside Shadow DOM
+                setTimeout(() => {
+                    const homebotShadow = document.querySelector("#homebot_homeowner")?.shadowRoot;
+                    if (homebotShadow) {
+                        const style = document.createElement("style");
+                        style.textContent = `
+                            .__hblgw--button-container-light-mode-theme {
+                                position: absolute !important;
+                                z-index: 102 !important;
+                                right: 5px !important;
+                                top: 0px !important;
+                                bottom: 0px !important;
+                                cursor: pointer;
+                                color: rgb(255, 255, 255);
+                                background-color: rgb(0,0,0);
+                                border: none;
+                                height:30px;
+                                font-size: 0.75rem;
+                                font-weight: 700;
+                                text-transform: uppercase;
+                                margin-top: 5px;
+                                width: 84px;
+                                border-radius: 0px 0px 0px 0px;
+                                transition: 0.2s cubic-bezier(0.05, 0.69, 0.14, 1);
+                            }
+    
+                            .__hblgw--logo-message_small {
+                                display: none !important;
+                                height: 16px;
+                                line-height: 16px;
+                                white-space: nowrap;
+                                text-align: left;
+                                margin-top: 6px;
+                            }
+    
+                            .__hblgw--input-input-light-mode-theme {
+                                position: relative;
+                                z-index: 101;
+                                color: rgba(0, 0, 0, 0.7);
+                                font-size: 16px;
+                                width: 100%;
+                                min-width: 84px;
+                                padding: 5px;
+                                border: 1px solid transparent;
+                                border-radius: 0px;
+                                height: 42px !important;
+                            }
+                        `;
+                        homebotShadow.appendChild(style);
+                        console.log("🎨 Custom styles applied inside Shadow DOM.");
+                    }
+                }, 100);
+            } else {
+                console.log("⏳ Waiting for Homebot...");
+                attempts++;
+                if (attempts > 10) {
+                    clearInterval(interval);
+                    console.log("❌ Homebot failed to load.");
+                }
+            }
+        }, 500);
+    };
+    
+    
+    
+
+
+
     return (
         <div>
             <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto">
@@ -46,8 +134,8 @@ const Pag2 = () => {
                 </div>
 
                 {/* Input & Button Section */}
-                <div id="homebot_homeowner"></div>;
-              
+                <div id="homebot_homeowner"></div>
+
                 <div className={`fixed bottom-4 ${closeCorner == false ? "md:hidden" : "md:flex"}  right-2 sm:right-4 md:right-10 border-2 border-black md:border-4 h-24 w-20 sm:h-32 sm:w-24 md:h-40 md:w-28 rounded-lg  hidden flex-col items-end justify-end p-1 sm:p-2 shadow-lg z-20`}>
 
                     {/* Close Button */}

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Faces = () => {
   const image1_url =
-    'https://media-hosting.imagekit.io//138a723274a94c98/Group 71.png?Expires=1834844083&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=wplxuTfwDyQlAfTq41Xsjmr1iGMMFTZdVjOqw8ZxD~J7rojoZo0yPDNa7TEvytej8pup4LAcIRF9jU7BnMwS8cQV~5HlsIMQmcXnXsc~ncEdQwbqLr8OuxIKP9ZneIUa8Lr1nb8g3zu3pNAIsMcD3iBcDtQ8pBTbsH1yD25tZWgrfJzdVA04EGCOoWr10T5Si1mULKe0JfjmrPS~b38-Qif8R8R-jP0hSq-1aXiR4DtoyKytDlDWJKAbdA9O6yGP7Pnm39ftQDyhci-r29aFmdeU5UWa3h1BmfmXgRXeVvSaVInpzKouA6Fky9IAiz92wBICypZ0GyQ6FQCe0PHp6g__';
+    'https://media-hosting.imagekit.io//7e9679f120bb4dcc/image%20(4).png?Expires=1836772144&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=j1Pepq4bFiKjG6hJ40R844ODW7EpSOxQ8XdbTYR-FHuEvBPlR~6DqNj4BR0RX7Sztlx1lRURAFMzwBYpgj8zKg2EJJCq00Hfoj5~nDrqReNcAd7yiuTyg~1SYT21C7IaeHE6MKQ5~lzP9o7L3J0F~uEPXQ5vZYyrbZyuTcX10Qykop8jfAxNw3E4Wmfk6J95oNBYMRGVJ3zWr7wSgMsHB1yNqgAX9AvId9IXa3cOfaRTawvRa9tAbY~djTDimu8ldZnssEOdzcbo3pbRzvHeD51E48XOL9SOnwPguZgh6DR1FlAV8CjiGjoT5okhc70Pn~cXIHeVUo8jZp~OYZja7A__';
   const image2_url =
     'https://media-hosting.imagekit.io//ed7776bcc5d447ff/screenshot_1740236218214.png?Expires=1834844219&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DVCdW4C6t97Jaqlw1y6Y~Tf8hoX61JuAek2zpjHjlBNewXF79JF1UNtmYsrPxpSaF8d23rQisWjJiv2N3AdNcmfd2ISLW7M~JauaW1hIM9cNROcxTW8iHH7spT6ON07BBvEXQppAMecNoPpd-0tsF0PsInTIsxfmddUDox74H8DOkQAnuctgXyaLwqTDCrB-W3fZMSHOZU8SHyjFgBQOtXzxx5PnIRXlMOIQ02Id94nH6cOncBlpS7w0A41F7lH9hVQsSGITa6LqMsMS7qDUWC23SBzVRd~yFRt-o~riBnGh7Sh3enIht5A0gbYQ5oGcmLCMzEpmp7ny0k0UdgytAQ__';
 
