@@ -44,7 +44,7 @@ const Faces = () => {
 </div>
 
 
-        <p className="leading-relaxed text-base text-black mt-4 max-w-xl">
+        <p className="leading-relaxed text-base text-black mt-4 max-w-xl ">
         In 2021, I was honored to be named among the Top 500 (out of 10,000) in Central Ohio by Real Producers Magazine. That same year, I joined the elite ranks of the $10 Million Dollar Club at the Columbus Board of Realtors. As a proud Ohio University alumnus, I bring the dedication and teamwork I learned as a Bobcat to every deal we close. My mission? To help you achieve your dreams with unmatched expertise and personalized service
         </p>
       </div>
