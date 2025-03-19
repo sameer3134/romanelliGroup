@@ -20,7 +20,7 @@ const FirstPageBuy = () => {
                 </button>
 
                 {/* Scrollable Image in Bottom-Right */}
-                <div className="absolute -bottom-2 right-4 sm:right-6 md:right-10 lg:right-12 xl:right-16 w-60 hidden md:block">
+                <div className="absolute -bottom-2 right-4 sm:right-6 md:right-10 lg:right-24 xl:right-16 w-60 hidden md:block">
                     <img src={group125} alt="Floating Icon" className="w-full h-auto object-contain" />
                 </div>
             </div>

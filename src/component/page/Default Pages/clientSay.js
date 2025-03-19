@@ -13,7 +13,7 @@ const TestimonialCard = ({ testimonial }) => {
       const proxyUrl = "https://api.allorigins.win/raw?url=";
       const imageUrl = proxyUrl + encodeURIComponent(testimonial.image);
   return (
-    <article className="bg-gray-200 p-6 rounded-lg">
+    <article className="bg-gray-200 p-6 text-black rounded-lg">
       <div className="pb-2">
         <div className="flex justify-between items-center">
           <StarRating rating={testimonial.rating} />
@@ -46,7 +46,7 @@ const TestimonialCard = ({ testimonial }) => {
           <h2 className="text-gray-900 title-font font-medium text-left">
             {testimonial.name}
           </h2>
-          <p className="text-gray-500 text-left">{testimonial.role || "Customer"}</p>
+          <p className="text-gray-900 text-left">{testimonial.role || "Customer"}</p>
         </div>
       </div>
     </article>
@@ -83,8 +83,7 @@ const StarRating = ({ rating }) => {
         </svg>
       )}
     </div>
-    <span className="ml-2 text-xs text-gray-600">({rating} Star Rating)</span> </div>
-
+    <span className="ml-2 text-xs text-black">({rating} Star Rating)</span> </div>
   );
 };
 
@@ -124,7 +123,7 @@ const ClientSay = () => {
   useEffect(() => {
     const updateVisibleImages = () => {
       if (window.innerWidth < 640) {
-        setVisibleImages(1); // Mobile: 1 image
+        setVisibleImages(1.2); // Mobile: 1 image
       } else if (window.innerWidth < 1024) {
         setVisibleImages(2); // Tablet: 2 images
       } else {
@@ -151,7 +150,7 @@ const ClientSay = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 2000); // Auto-slide every 4 sec
+    const interval = setInterval(nextSlide, 10000); // Auto-slide every 4 sec
     return () => clearInterval(interval);
   }, []);
 
@@ -159,15 +158,15 @@ const ClientSay = () => {
     <div>
       <div className="container px-5 pt-12 mx-auto text-gray-900">
         <div className="flex flex-col text-center w-full mb-20">
-          <h1 className="sm:text-5xl text-2xl font-playfair font-bold title-font mb-4 text-gray-900">
-            What Our <span className="italic ">Clients Say</span>
+          <h1 className="sm:text-5xl text-2xl   font-bold title-font mb-4 text-gray-900">
+            What Our <span className="italic font-playfair">Clients Say</span>
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-xl">
             Hear from our satisfied clients and explore their experiences with us.
           </p>
         </div>
       </div>
-      <section className="text-gray-600 body-font mb-12">
+      <section className="text-gray-600 body-font mb-0 md:mb-12">
         <div className="container relative px-5 mx-auto">
           <div className="overflow-hidden">
             <div
@@ -179,7 +178,7 @@ const ClientSay = () => {
             >
               {reviews.length > 0 ? (
                 reviews.map((testimonial) => (
-                  <div key={testimonial.id} className="xl:w-1/4 md:w-1/2 p-4">
+                  <div key={testimonial.id} className="xl:w-1/4 md:w-1/2 p-1">
                     <TestimonialCard testimonial={testimonial} />
                   </div>
                 ))

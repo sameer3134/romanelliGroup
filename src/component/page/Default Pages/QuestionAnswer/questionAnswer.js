@@ -9,7 +9,7 @@ const QuestionAnswer = () => {
     <><section class="bg-backgroundColor text-white pb-10">
       <div class="container px-5 pt-8 mx-auto">
         <div class="flex flex-col text-center w-full mb-8">
-          <h1 class="sm:text-5xl text-2xl font-medium title-font mb-4">Your Questions, Our Answers</h1>
+          <h1 class="sm:text-5xl text-2xl font-medium title-font mb-4">Your Questions, Our  <span className="italic  font-playfair">Answers</span></h1>
           <p class="lg:w-2/3 mx-auto leading-relaxed text-xl">Got questions? We’ve got answers to help you navigate your real estate journey.</p>
         </div>
       </div>

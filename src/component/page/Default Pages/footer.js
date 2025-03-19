@@ -19,7 +19,7 @@ const Footer = () => {
     return (
         <>
         <header class="text-gray-600 body-font bg-backgroundColor pb-2">
-            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center px-5 lg:px-24">
                 <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
                     {socialLinks.map((link, index) => (
                         <a key={index} href={link.href} target="_blank" rel="noopener noreferrer">
@@ -31,7 +31,7 @@ const Footer = () => {
                 <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
                     <img className='w-24 h-auto' src={logoUrl} alt='logo' />
                 </a>
-                <div class="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
+                <div class="lg:w-2/5 inline-flex lg:justify-end">
                     <button onClick={() => document.getElementById("mainVideo")?.scrollIntoView({ behavior: "smooth" })}
                         class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Back To Top
 

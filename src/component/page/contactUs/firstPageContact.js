@@ -38,7 +38,7 @@ const FirstPageSell = () => {
                                 <div className="max-w-md mx-auto h-auto p-4 bg-white rounded-lg shadow-lg text-gray-800">
                                         <div>
                                             <h2 className="text-2xl font-bold mt-2 text-center">Connect with Us </h2>
-                                            <h2 className="text-2xl font-bold mb-4 text-center"> <span className="font-playfair italic">Directly</span></h2>
+                                            <h2 className="text-2xl font-bold mb-4 text-center"> <span className="  italic">Directly</span></h2>
                                             <p className='text-black font-semibold text-left text-md mb-1'>Full Name</p>
                                             <input
                                                 type="text"

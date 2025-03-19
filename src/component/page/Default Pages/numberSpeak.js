@@ -99,12 +99,12 @@ const NumberSpeak = () => {
   };
 
   return (
-    <section className="relative text-white body-font bg-backgroundColor py-10">
-      <div className="container px-5 mx-auto">
-        <div className="flex flex-wrap w-full mb-8">
-          <div className="lg:w-1/2 w-full text-left ml-4 lg:ml-8">
-            <h1 className="sm:text-5xl text-2xl font-semibold font-playfair title-font mb-2 text-white">
-              The Numbers <span className=" italic">Speak</span>
+    <section className="relative text-white body-font bg-backgroundColor py-10 font-dmsans">
+      <div className="container pr-5 lg:pr-auto px-0 lg:px-24 mx-auto">
+        <div className="flex flex-wrap w-full  mb-8">
+          <div className="lg:w-1/2 w-full text-left ml-4 md:ml-7 lg:ml-8">
+            <h1 className="sm:text-5xl text-2xl font-semibold  title-font mb-2 text-white">
+              The Numbers <span className="font-playfair italic">Speak</span>
             </h1>
             <h1 className="sm:text-5xl text-2xl font-semibold title-font mb-2 text-white">
               for Themselves
@@ -115,21 +115,21 @@ const NumberSpeak = () => {
           {stats.map((stat, index) => (
        <section
        key={index}
-       className="text-gray-900 body-font mx-6 transition-all duration-300"
+       className="text-gray-900 body-font transition-all duration-300"
        onMouseMove={(e) => handleMouseMove(e, index)}
        onMouseLeave={() => handleMouseLeave(index)}
      >
-       <div className="px-5 pb-6 mx-auto">
+       <div className="px-0 md:px-5 pb-6 mx-auto">
          <div className="flex flex-wrap w-full bg-white mx-3 py-2">
            <div className="w-full md:w-2/3 mb-6 lg:mb-0">
-             <h1 className="sm:text-5xl text-2xl title-font mb-2 text-gray-900 text-left px-3 font-bold">
+             <h1 className="sm:text-5xl text-2xl title-font mb-2 text-gray-900 text-left px-5 lg:px-8 font-bold">
                {stat.number}
              </h1>
-             <h4 className="sm:text-lg text-md font-medium title-font mb-2 text-gray-900 text-left px-3">
+             <h4 className="sm:text-xl text-md font-semibold md:font-medium title-font mb-2 text-gray-900 text-left px-5 lg:px-8">
                {stat.title}
              </h4>
            </div>
-           <p className="w-full md:w-1/3 xl:text-xl text-right text-xs p-2 leading-relaxed text-gray-900 xl:mt-5 font-semibold">
+           <p className="w-full md:w-1/3 xl:text-xl text-right text-md p-2 pr-5 lg:pr-8 leading-relaxed text-gray-900 xl:mt-5 md:font-medium font-semibold">
              {stat.description}
            </p>
          </div>

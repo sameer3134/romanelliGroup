@@ -10,9 +10,9 @@ const Faces = () => {
     <>
       {/* Heading */}
       <div className="bg-backgroundColor ">
-        <div className="flex flex-col items-center text-center">
-          <h1 className="sm:text-5xl text-2xl font-playfair mb-2 font-semibold text-white">
-            Meet the <span className="italic ">Faces</span> behind the
+        <div className="flex flex-col items-center text-center py-10 -mb-1">
+          <h1 className="sm:text-5xl text-2xl   mb-2 font-semibold text-white">
+            Meet the <span className="italic font-playfair">Faces</span> behind the
           </h1>
           <h1 className="sm:text-5xl text-2xl font-semibold text-white">Romanelli Group</h1>
         </div>
@@ -23,7 +23,7 @@ const Faces = () => {
   <div className="absolute inset-0 bg-white md:bg-backgroundColor h-1/3"></div> {/* 1/4 background color */}
   <div className="absolute inset-0 bg-white h-2/3 top-1/3"></div> {/* 3/4 white background */}
 
-  <div className="container px-5 py-12 mx-auto relative z-10">
+  <div className="container px-5 lg:px-24  py-12 mx-auto relative z-10">
     <div className="flex flex-wrap -mx-4 -mb-10 text-center justify-center">
       
       {/* First Profile */}

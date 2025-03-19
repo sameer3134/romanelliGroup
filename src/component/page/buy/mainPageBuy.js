@@ -27,7 +27,6 @@ const MainPageBuy = () => {
     <div className="font-dmsans">
       <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
@@ -36,7 +35,6 @@ const MainPageBuy = () => {
       </motion.div>
       <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0"
@@ -45,7 +43,6 @@ const MainPageBuy = () => {
       </motion.div>
       <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0"
@@ -54,25 +51,22 @@ const MainPageBuy = () => {
       </motion.div>
       <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0"
       >
         <RoadMap />
       </motion.div>
-      <motion.div
+      {/* <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
-      >
+      > */}
         <ClientSuccess />
-      </motion.div>
+      {/* </motion.div> */}
       <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
@@ -81,7 +75,6 @@ const MainPageBuy = () => {
       </motion.div>
       <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"

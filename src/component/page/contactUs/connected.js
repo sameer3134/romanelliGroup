@@ -55,7 +55,7 @@ const Connected = () => {
       <section className="text-gray-600 body-font overflow-hidden bg-backgroundColor">
         <div className="flex flex-col text-center w-full mt-10 mb-10 text-white">
           <h1 className="sm:text-4xl text-2xl font-bold title-font">
-            Let’s Stay <span className="italic font-playfair">Connected</span>
+            Let’s Stay <span className="italic  ">Connected</span>
           </h1>
           <p className="lg:w-2/3 mx-auto leading-relaxed text-xl mt-5">
             Whether you’re ready to buy, sell, or simply have questions, we’re here to help every step of the way.

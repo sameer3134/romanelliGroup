@@ -14,17 +14,17 @@ const ClientSuccess = () => {
     const imageAuction_url = "https://media-hosting.imagekit.io//7ee4727ffab9462c/reshot-icon-auction-A9X3SD6PQ2%201.png?Expires=1834944757&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=vTd2ey2hL9eQETCB94hVx9AiUsf3ikIqCwT4uBGV2899EkAJR58gyKkmhHMA2hVYp1lC-ZnGS74RovGf2jCFfHETuS1m~ThhJhuoYfTuYaPL-93pPkY66zwSrY7vsYUmM2oMKzKqHByWNwgR-rXvSuYBCORt3IVFL5vWA6vTD7MIQbiYw2rEYMvbVCfB9NpA7TypHkwdC6xAgHXbs4J6GvWE59u~AcT1Gv~eK6TizCW-jph5izgR7rDjkPVksfHJO595iaPHZDayRX-e8OmEV1HqyL6Vxk5J2O2knnj4yDPj1NqXojPT~SqqBe7Mz8tYgf95jb6ix5RBtWZW3tJPcQ__"
     return (
         <div className='bg-backgroundColor text-white'>
-            <div className="container px-5 pt-12 mx-auto ">
+            <div className="container px-5 lg:px-24 pt-12 mx-auto ">
                 <div className="flex flex-col text-center w-full">
                     <h1 className="sm:text-5xl text-2xl font-bold title-font mb-4 ">
-                        Celebrating Our Clients  <span className="italic font-playfair">Success Stories</span>
+                        Celebrating Our Clients  <span className="italic  font-playfair">Success Stories</span>
                     </h1>
                     <p className="lg:w-2/3 mx-auto leading-relaxed text-xl">
                         Explore our proudest moments—because every sold home is a success story we’re honored to be part of.s just a quick sneak peak into some of the smiling faces of my happy past clients.
                     </p>
                 </div>
             </div>
-            <section class="text-gray-600 body-font">
+            <section class="text-gray-600 px-5 lg:px-24 body-font">
                 <div class="container px-5 py-6 mx-auto">
                     <div class="flex flex-wrap -m-4">
                         <div class="md:w-1/3 p-1 w-full">

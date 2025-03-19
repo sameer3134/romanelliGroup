@@ -62,18 +62,18 @@ const Pag2 = () => {
                             .__hblgw--button-container-light-mode-theme {
                                 position: absolute !important;
                                 z-index: 102 !important;
-                                right: 5px !important;
+                                right: 4px !important;
                                 top: 0px !important;
                                 bottom: 0px !important;
                                 cursor: pointer;
                                 color: rgb(255, 255, 255);
                                 background-color: rgb(0,0,0);
                                 border: none;
-                                height:30px;
+                                height:36px;
                                 font-size: 0.75rem;
                                 font-weight: 700;
                                 text-transform: uppercase;
-                                margin-top: 5px;
+                                margin-top: 3px;
                                 width: 84px;
                                 border-radius: 0px 0px 0px 0px;
                                 transition: 0.2s cubic-bezier(0.05, 0.69, 0.14, 1);
@@ -100,6 +100,18 @@ const Pag2 = () => {
                                 border-radius: 0px;
                                 height: 42px !important;
                             }
+                                .__hblgw--input-input-light-mode-theme {
+    position: relative;
+    z-index: 101;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 16px;
+    width: 100%;
+    min-width: 84px;
+    padding: 5px 5px 5px 20px;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    height: 42px !important;
+}
                         `;
                         homebotShadow.appendChild(style);
                         console.log("🎨 Custom styles applied inside Shadow DOM.");
@@ -125,11 +137,11 @@ const Pag2 = () => {
         <div>
             <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-6">
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-4xl px-4">
-                        Do you know how much you'd walk away with if you sold your property today
+                    <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-5xl px-4">
+                        Do you know how much you'd walk away with if you sold your today?
                     </h1>
-                    <p className="mx-auto leading-relaxed font-medium md:font-bold text-base sm:text-lg max-w-2xl mt-4">
-                        Enter your address to get an instant report for selling, renting it out, or listing it on Airbnb:
+                    <p className="mx-auto leading-relaxed font-medium md:font-semibold text-base sm:text-xl max-w-4xl mt-4">
+                        Enter your address to get an instant report for selling, renting it out, or putting it on Airbnb:
                     </p>
                 </div>
 
@@ -139,9 +151,9 @@ const Pag2 = () => {
                 <div className={`fixed bottom-4 ${closeCorner == false ? "md:hidden" : "md:flex"}  right-2 sm:right-4 md:right-10 border-2 border-black md:border-4 h-24 w-20 sm:h-32 sm:w-24 md:h-40 md:w-28 rounded-lg  hidden flex-col items-end justify-end p-1 sm:p-2 shadow-lg z-20`}>
 
                     {/* Close Button */}
-                    <button className="absolute -top-2 -right-2 bg-gray-700 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[10px] sm:text-xs hover:bg-gray-900 z-10" onClick={() => { setCloseCorner(false); console.log(closeCorner) }}>
+                    {/* <button className="absolute -top-2 -right-2 bg-gray-700 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[10px] sm:text-xs hover:bg-gray-900 z-10" onClick={() => { setCloseCorner(false); console.log(closeCorner) }}>
                         ✕
-                    </button>
+                    </button> */}
 
                     {/* Video Background */}
                     <div className="absolute inset-0 w-full h-full">

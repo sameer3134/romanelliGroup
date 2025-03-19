@@ -43,11 +43,11 @@ const FeaureListing = () => {
     return (
         <div>
         <section className="text-white body-font bg-backgroundColor">
-          <div className="container px-5 pt-8 mx-auto">
+          <div className="container px-0 lg:px-24 pt-8 mx-auto">
             <div className="flex flex-wrap w-full mb-8">
               <div className="lg:w-1/2 w-full lg:mb-0 text-left ml-4 lg:ml-8">
-                <h1 className="sm:text-5xl font-playfair text-2xl font-semibold heading-font mb-2 text-white">
-                  <span className=" italic">Featured</span> Listings
+                <h1 className="sm:text-5xl   text-2xl font-semibold heading-font mb-2 text-white">
+                  <span className="font-playfair italic">Featured</span> Listings
                 </h1>
               </div>
             </div>

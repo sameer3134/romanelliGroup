@@ -9,14 +9,14 @@ const Succeed = () => {
      return (
     <div>
         <section class=" body-font text-backgroundColor">
-        <div class="container px-5 pt-8 mx-auto ">
+        <div class="container px-5 lg:px-24 pt-8 mx-auto ">
           <div class="flex flex-wrap w-full">
-            <div class="lg:w-1/2 w-full font-playfair font-bold lg:mb-0 text-left ml-4 lg:ml-8">
+            <div class="lg:w-1/2 w-full   font-bold lg:mb-0 text-left ml-4 lg:ml-8">
               <h1 class="sm:text-5xl text-2xl title-font mb-2">How We Can Help </h1>
-              <h1 class="sm:text-5xl text-2xl title-font mb-2">You <span className=' italic'>Succeed</span></h1>
+              <h1 class="sm:text-5xl text-2xl title-font mb-2">You <span className='font-playfair italic'>Succeed</span></h1>
             </div>
             </div></div></section>
-            <section class="text-gray-600 body-font">
+            <section class="text-gray-600 body-font  lg:px-24 px-5">
   <div class="container flex flex-wrap px-5 mx-auto ">
     <div class="md:w-1/2  md:py-8  mb-10 md:mb-0 pb-10">
       <p class="leading-relaxed xl:px-4 text-lg text-left xl:pr-6 pb-4">Whether you're buying, selling, or growing your career, we’re here to guide you every step of the way.</p>
@@ -29,8 +29,8 @@ const Succeed = () => {
     </div>
     <div class="flex flex-col md:w-1/2 md:pl-12">
     <section class="text-gray-600 body-font">
-  <div class="container px-5 mx-auto mb-4 xl:mb-0">
-    <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4 md:space-y-0 space-y-6 text-left">
+  <div class="container px-5 mx-auto md:mb-4 xl:mb-0">
+    <div class="flex flex-wrap sm:-m-4 -mx-4  -mt-4 md:space-y-0 space-y-6 text-left">
       <div class="p-4 flex bg-gray-100">
         <div class="w-12 h-12 inline-flex items-center justify-center  bg-red-800 text-indigo-500 mb-4 flex-shrink-0">
          <img src={icon1_url}/>
@@ -38,7 +38,7 @@ const Succeed = () => {
         <div class="flex-grow pl-6 ">
           <h2 class="text-gray-900 text-xl title-font font-semibold mb-2">Find Your Perfect Home</h2>
           <p class="leading-relaxed text-base text-black">On the hunt for your dream family home or the perfect investment property in Central Ohio? We've got the keys to your next big win!</p>
-          <button className='bg-black text-white px-5 py-1 my-1'>Buy A Property</button>
+          <button className='bg-black text-white px-5 py-1 md:py-2 my-1 rounded-md'>Buy a Property</button>
         </div>
       </div>
       <div class="p-4 flex bg-gray-100">
@@ -48,17 +48,17 @@ const Succeed = () => {
         <div class="flex-grow pl-6 ">
           <h2 class="text-gray-900 text-xl title-font font-semibold mb-2">Sell Your Home Faster</h2>
           <p class="leading-relaxed text-base text-black">In a market that's moving at warp speed, how do you crack the best deal? Let us help your property steal the spotlight and get you top dollar!</p>
-          <button className='bg-black text-white px-5 py-1 my-1'>Get a Free Valuation</button>
+          <button className='bg-black text-white px-5 py-1 md:py-2 my-1 rounded-md'>Get a Free Valuation</button>
         </div>
       </div>
       <div class="p-4 flex bg-gray-100">
         <div class="w-12 h-12 inline-flex items-center justify-center  bg-red-800 text-indigo-500 mb-4 flex-shrink-0">
          <img src={icon3_url}/>
         </div>
-        <div class="flex-grow pl-6 ">
+        <div class="flex-grow pl-6 mb-0">
           <h2 class="text-gray-900 text-xl title-font font-semibold mb-2">Grow Your Career</h2>
           <p class="leading-relaxed text-base text-black">After almost 10 years of selling real estate, I’ve figured out how to create extraordinary experiences for agents without running yourself ragged, having to sacrifice your family or struggle to grow your business.</p>
-          <button className='bg-black text-white px-5 py-1 my-1'>Join Our Team</button>
+          <button className='bg-black text-white px-5 py-1 md:py-2 my-1 rounded-md'>Join Our Team</button>
         </div>
       </div>
     </div>

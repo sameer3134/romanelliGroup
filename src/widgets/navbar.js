@@ -58,7 +58,7 @@ const Navbar = () => {
 
           {/* Centered Logo */}
           <Link to="/" className="flex">
-            <img src={logoUrl} className="h-12 lg:h-14" alt="Company Logo" />
+            <img src={logoUrl} className="h-12 lg:h-14 ml-4 md:ml-0" alt="Company Logo" />
           </Link>
 
           {/* Right Nav Links + CTA */}
@@ -68,7 +68,7 @@ const Navbar = () => {
                 {link.title}
               </Link>
             ))}
-            <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2">
+            <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2 rounded-md">
               Schedule a Call
             </button>
           </div>
@@ -76,7 +76,7 @@ const Navbar = () => {
           {/* Mobile CTA + Hamburger Menu */}
           <div className="flex items-center md:hidden space-x-2">
             {/* Schedule a Call - Left of Hamburger */}
-            <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2">
+            <button className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2">
               Schedule a Call
             </button>
 

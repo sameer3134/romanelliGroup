@@ -16,7 +16,7 @@ const fadeInUp = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.2, ease: "easeOut" },
   },
 };
 
@@ -26,7 +26,6 @@ const MainPage = () => {
       {/* Each section fades in as it comes into view */}
       <motion.div
         variants={fadeInUp}
-        initial="hidden"
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
@@ -34,35 +33,35 @@ const MainPage = () => {
         <NumberSpeak />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
         <Faces />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
         <Families />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
         <ClientSay />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
         <Succeed />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      {/* <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"> */}
         <ClientSuccess />
-      </motion.div>
+      {/* </motion.div> */}
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
+      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
         <QuestionAnswer />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
+      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
         <Talk />
       </motion.div>
 
-      <motion.div variants={fadeInUp} initial="hidden" whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
+      <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">
         <Footer />
       </motion.div>
     </div>
