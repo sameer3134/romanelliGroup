@@ -12,8 +12,8 @@ const Navbar = () => {
   const navLinksLeft = [
     { title: "Home", href: "/" },
     { title: "Buy", href: "/buy" },
-    { title: "Sell", href: "/sells" },
-    { title: "Contact Us", href: "/contactUss" },
+    { title: "Sell", href: "/sell" },
+    { title: "Contact Us", href: "/contactUs" },
   ];
 
   const navLinksRight = [

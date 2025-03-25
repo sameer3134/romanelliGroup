@@ -41,7 +41,7 @@ const Connected = () => {
       action: socialLinks.map((link, index) => (
         <a key={index} href={link.href} target="_blank" rel="noopener noreferrer">
           <img
-            className="w-6 h-auto hover:opacity-75 transition-opacity"
+            className="w-8 h-auto hover:opacity-75 transition-opacity"
             src={link.src}
             alt={link.alt}
           />
@@ -52,7 +52,7 @@ const Connected = () => {
 
   return (
     <div>
-      <section className="text-gray-600 body-font overflow-hidden bg-backgroundColor">
+      <section className="text-gray-600 px-5 lg:px-24 body-font overflow-hidden bg-backgroundColor">
         <div className="flex flex-col text-center w-full mt-10 mb-10 text-white">
           <h1 className="sm:text-4xl text-2xl font-bold title-font">
             Let’s Stay <span className="italic  ">Connected</span>
@@ -66,10 +66,10 @@ const Connected = () => {
             {contactDetails.map((detail, index) => (
               <div key={index} className="p-4 xl:w-1/4 md:w-1/2 w-full">
                 <div className="h-[440px] w-auto p-6 text-left border-2 bg-white flex flex-col relative overflow-hidden">
-                  <span className="bg-red-800 text-white px-3 py-3 tracking-widest text-xs absolute left-5 top-5 rounded-bl">
+                  <span className="bg-red-800 text-white px-3 py-3 tracking-widest text-xs absolute left-5 top-5 ">
                     <img src={detail.icon} alt={detail.title} />
                   </span>
-                  <p className="flex mt-auto text-gray-900 font-bold text-xl border-0 py-2 w-full focus:outline-none rounded">
+                  <p className="flex mt-auto text-gray-900 font-bold text-xl border-0 py-2 w-full focus:outline-none ">
                     {detail.title}
                   </p>
                   <p>{detail.description}</p>

@@ -41,9 +41,10 @@ const Footer = () => {
 
                     </button>
                 </div>
+                <hr className="bg-white h-[2px] w-full opacity-80 px-5 lg:px-24 mt-3" />
+            
             </div>
-            <hr className="bg-white h-[2px] w-full opacity-80 " />
-            <p className='text-center text-lg  text-white my-2'>© 2024 - The Romanelli Group</p>
+            <p className='text-center text-lg justify-between items-center text-white'>© 2024 - The Romanelli Group</p>
         </header>
         </>
     )

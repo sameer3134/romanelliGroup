@@ -23,7 +23,7 @@ const Faces = () => {
   <div className="absolute inset-0 bg-white md:bg-backgroundColor h-1/3"></div> {/* 1/4 background color */}
   <div className="absolute inset-0 bg-white h-2/3 top-1/3"></div> {/* 3/4 white background */}
 
-  <div className="container px-5 lg:px-24  py-12 mx-auto relative z-10">
+  <div className="container px-5 lg:px-24  py-12 mx-auto relative z-1">
     <div className="flex flex-wrap -mx-4 -mb-10 text-center justify-center">
       
       {/* First Profile */}

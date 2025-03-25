@@ -116,9 +116,11 @@ const images = [
   className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white text-black px-3 py-2 flex items-center space-x-2"
   onClick={prevSlide}
 >
-  <svg width="16" height="14" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M2 9H20M2 9L9.5 1.5M2 9L9.5 16.5" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
+  
+<svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 9H20M2 9L9.5 1.5M2 9L9.5 16.5" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
   <span>Prev</span>
 </button>
 
@@ -128,9 +130,11 @@ const images = [
         onClick={nextSlide}
       >
         <span>Next</span>
-        <svg width="16" height="14" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M27 18H9M27 18L19.5 25.5M27 18L19.5 10.5" stroke="black" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
+        
+<svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 9L2 9M20 9L12.5 16.5M20 9L12.5 1.5" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
       </button>
       
         </div>

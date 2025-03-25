@@ -13,34 +13,34 @@ const Pag2 = () => {
     useEffect(() => {
         const scriptId = "homebot-script";
         const styleId = "homebot-style";
-    
+
         // Check if script already exists
         if (document.getElementById(scriptId)) {
             waitForHomebot();
             return;
         }
-    
+
         const script = document.createElement("script");
         script.src = "https://embed.homebotapp.com/lgw/v1/widget.js";
         script.id = scriptId;
         script.async = true;
-    
+
         script.onload = waitForHomebot;
         document.body.appendChild(script);
-    
+
         return () => {
             const existingScript = document.getElementById(scriptId);
             if (existingScript && existingScript.parentNode) {
                 existingScript.parentNode.removeChild(existingScript);
             }
-    
+
             const existingStyle = document.getElementById(styleId);
             if (existingStyle) {
                 existingStyle.remove();
             }
         };
     }, []);
-    
+
     const waitForHomebot = () => {
         let attempts = 0;
         const interval = setInterval(() => {
@@ -52,7 +52,7 @@ const Pag2 = () => {
                     size: "compact",
                     theme: "light-mode-theme",
                 });
-    
+
                 // Inject CSS inside Shadow DOM
                 setTimeout(() => {
                     const homebotShadow = document.querySelector("#homebot_homeowner")?.shadowRoot;
@@ -127,16 +127,10 @@ const Pag2 = () => {
             }
         }, 500);
     };
-    
-    
-    
-
-
-
     return (
         <div>
             <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto">
-                <div className="flex flex-col text-center w-full mb-6">
+                <div className="flex flex-col text-center w-full md:mb-6">
                     <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-5xl px-4">
                         Do you know how much you'd walk away with if you sold your today?
                     </h1>
@@ -146,9 +140,10 @@ const Pag2 = () => {
                 </div>
 
                 {/* Input & Button Section */}
-                <div id="homebot_homeowner"></div>
+                <div id="homebot_homeowner" className='mb-10 md:mb-0'></div>
 
-                <div className={`fixed bottom-4 ${closeCorner == false ? "md:hidden" : "md:flex"}  right-2 sm:right-4 md:right-10 border-2 border-black md:border-4 h-24 w-20 sm:h-32 sm:w-24 md:h-40 md:w-28 rounded-lg  hidden flex-col items-end justify-end p-1 sm:p-2 shadow-lg z-20`}>
+                <div className={`fixed bottom-1 md:bottom-4 flex  right-2 sm:right-4 md:right-10 border-2 border-black md:border-4 h-32 w-20 sm:h-32 sm:w-24 md:h-40 md:w-28 rounded-lg  flex-col items-end justify-end p-1 sm:p-2 shadow-lg z-2
+                    `}>
 
                     {/* Close Button */}
                     {/* <button className="absolute -top-2 -right-2 bg-gray-700 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[10px] sm:text-xs hover:bg-gray-900 z-10" onClick={() => { setCloseCorner(false); console.log(closeCorner) }}>
@@ -184,7 +179,7 @@ const Pag2 = () => {
                     </button>
 
                     {/* "Let Connect Now" Button */}
-                    <button type="button" onClick={handleVideoPopUp} className="absolute right-2 top-1/4 transform -translate-x-3/4 -translate-y-1/2 bg-red-800 text-[10px]  text-white px-2 py-2 border border-black rounded-l-lg rounded-tr-lg shadow-lg">
+                    <button type="button" onClick={handleVideoPopUp} className="absolute right-2 top-1/4 transform -translate-x-3/4 -translate-y-1/2 bg-red-800 text-[7px]  md:text-[10px]  text-white px-1 py-1 md:px-2 md:py-2 border border-black rounded-l-lg rounded-tr-lg shadow-lg">
                         Let Connect Now
                     </button>
 

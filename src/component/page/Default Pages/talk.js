@@ -2,7 +2,7 @@ import React from 'react'
 
 const Talk = () => {
   return (
-    <><section class="text-white body-font bg-backgroundColor">
+    <><section class="text-white lg:px-24 px-0  body-font bg-backgroundColor">
     <div class="container  mx-auto">
       <div class="text-center py-20 bg-red-600">
         <h1 class="sm:text-xl text-lg font-medium text-center title-font mb-4">Let’s Talk!</h1>

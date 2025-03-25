@@ -12,8 +12,69 @@ const Page1 = ({ page }) => {
     "https://media-hosting.imagekit.io//1edf924c93774ee2/-58aa-4fa6-a769-b57f59b07b9e%20(1).mp4?Expires=1836286464&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cdhQOF7T2yeqNvP1W22d4agTUsCxzrsei~1nI8~A00-RMcS07gG5pxS0XbllgYS28-iBs5tRxsnjz6TYARH1lL0JV6pcpWyS2B~Zte-NFzmV5gLVGReAJkzM7Uen~DS43AZnVhvYPGCIDmQcj0nDle~R7eT3jPSqvHE1ZVwFU14ngfKaVPH-cOZpOVuE-qdOsWWM5qbKQqXQrHZh4UqZAIvdwQXs1C21Tj3A88FcY4RgKAWHwLdrLtfn4kPj1hKMKoqdJbhT~Oyx5QKa0m8KClWhmpETaBYWrhPKIxMiovZCzmuqrSguZIJG0DwPR5GzXj4I64ZsMHwekeXvY0ywew__";
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   let interval;
+  
+// Unified interaction handler
+const handleUserInteraction = () => {
+  if (videoRef.current && isMuted) {
+    videoRef.current.muted = false;
+    setIsMuted(false);
+    
+    // Attempt playback with sound
+    videoRef.current.play()
+      .then(() => {
+        console.log('Playing with sound');
+        removeAllListeners();
+      })
+      .catch(err => {
+        console.warn('Failed to play with sound:', err);
+        // Fallback to muted if unmuted play fails
+        videoRef.current.muted = true;
+        setIsMuted(true);
+      });
+  }
+};
+
+const removeAllListeners = () => {
+  const events = ['click', 'scroll', 'mousemove', 'keydown', 'touchstart'];
+  events.forEach(event => {
+    document.removeEventListener(event, handleUserInteraction);
+  });
+};
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video) return;
+
+  // Start with muted autoplay
+  video.muted = true;
+  
+  const playPromise = video.play();
+  
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        console.log('Muted autoplay started');
+      })
+      .catch(err => {
+        console.warn('Muted autoplay blocked:', err);
+      });
+  }
+
+  // Add interaction listeners
+  const events = ['click', 'scroll', 'keydown', 'touchstart'];
+  events.forEach(event => {
+    document.addEventListener(event, handleUserInteraction, { once: true });
+  });
+
+  return () => {
+    removeAllListeners();
+  };
+}, []);
+    
+
   useEffect(() => {
     interval = setInterval(() => {
       setProgress((oldProgress) => {
@@ -25,6 +86,10 @@ const Page1 = ({ page }) => {
     // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
+  
+
+
+  
 
   // 🔹 When the video starts loading (packets should be in Network tab)
   const handleVideoStart = () => {
@@ -75,12 +140,12 @@ const Page1 = ({ page }) => {
           }
           {page == "Buy" &&
           <FirstPageBuy/>}
-            {/* {page == "Sell" &&
+            {page == "Sell" &&
           <FirstPageSell/>}
            {page == "Contact Us" &&
           <FirstPageContact/>}
           {page == "Properties" &&
-          <FirstPageProperties/>} */}
+          <FirstPageProperties/>}
         </section>
       </div>
     </>

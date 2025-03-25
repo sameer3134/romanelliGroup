@@ -15,9 +15,9 @@ const VideoPopUp = ({ video_pop_url, close }) => {
     <div
       id="video-popup"
       tabIndex="-1"
-      className="fixed bottom-4 right-4 z-50  flex items-end sm:items-center justify-end"
+      className="fixed bottom-1 md:bottom-4 right-2 md:right-4 z-50  flex items-end sm:items-center justify-end"
     >
-      <div className="relative w-auto max-w-xs sm:max-w-sm border-8 border-black rounded-3xl bg-white flex flex-col items-center justify-between shadow-xl">
+      <div className="relative w-auto max-w-sm sm:max-w-sm border-8 border-black rounded-3xl bg-white flex flex-col items-center justify-between shadow-xl">
         {/* Close Button */}
       <button
           onClick={close}
@@ -35,7 +35,7 @@ const VideoPopUp = ({ video_pop_url, close }) => {
             ref={videoRef}
             muted={isMuted}
             preload="auto"
-            className="w-[220px] h-[300px] object-cover rounded-lg"
+            className="w-[180px] md:w-[220px] h-[300px] object-cover rounded-lg"
           >
             <source src={video_pop_url} type="video/mp4" />
           </video>

@@ -5,15 +5,26 @@ import Families from '../Default Pages/families'
 import ClientSay from '../Default Pages/clientSay'
 import QuestionAnswer from '../Default Pages/QuestionAnswer/questionAnswer'
 import Footer from '../Default Pages/footer'
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.2, ease: "easeOut" },
+  },
+};
 
 const MainPageContact = () => {
   return (
-    <div><Connected/>
-    <Faces/>
-    <Families/>
-    <ClientSay/>
-    <QuestionAnswer/>
-    <Footer/></div>
+    <div>
+         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"><Connected/></motion.div>
+         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"> <Faces/></motion.div>
+         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"><Families/></motion.div>
+         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"> <ClientSay/></motion.div>
+         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">   <QuestionAnswer/></motion.div>
+         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">  <Footer/></motion.div></div>
   )
 }
 

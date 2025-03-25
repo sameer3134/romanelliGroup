@@ -16,6 +16,7 @@ const FirstPageSell = () => {
     };
 
     const handleSubmit = () => {
+        setStep(step + 1)
         console.log(formData);
     };
 
@@ -27,7 +28,7 @@ const FirstPageSell = () => {
             <div className="container px-4 sm:px-5 py-12 md:py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-6">
                     <section className="text-white body-font">
-                        <div className="container flex flex-wrap px-5 py-12 md:py-24 mx-auto items-center">
+                        <div className="container mt-[-50px] flex flex-wrap px-5 py-12 md:py-24 mx-auto items-center">
                             {/* Left Section (Text) */}
                             <div className="w-full md:w-1/2 md:pr-12 md:py-8 mb-10 md:mb-0 pb-10 border-gray-200">
                                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
@@ -39,7 +40,7 @@ const FirstPageSell = () => {
                             </div>
 
                             {/* Right Section (Form) */}
-                            <div className="w-full md:w-1/2 md:pl-12">
+                            <div className="w-full  md:w-1/2 md:pl-12">
                                 <div className="max-w-md mx-auto h-auto p-4 bg-white rounded-lg shadow-lg text-gray-800">
                                     {/* Progress Indicator */}
                                     <div className="flex justify-between mb-2">
@@ -47,7 +48,7 @@ const FirstPageSell = () => {
                                             {["1. Basic Info", "2. Property Info", "3. Confirmation"].map((text, index) => (
                                                 <div key={index} className="flex flex-col items-center">
                                                     {/* Step Title with Spacing */}
-                                                    <div className={`text-sm md:text-lg pr-4 font-semibold mb-2 ${step > index ? 'text-black' : 'text-gray-500'}`}>
+                                                    <div className={`text-[11px] md:text-md lg:text-lg pr-4 md:pr-3 font-semibold mb-2 ${step > index ? 'text-black' : 'text-gray-500'}`}>
                                                         {text}
                                                     </div>
                                                     {/* Progress Bar */}
@@ -61,7 +62,7 @@ const FirstPageSell = () => {
                                     {step === 1 && (
                                         <div>
                                             <h2 className="text-2xl font-bold mt-6 text-center">Get a Free</h2>
-                                            <h2 className="text-2xl font-bold mb-4 text-center">Home <span className="font-playfair italic">Valuation</span></h2>
+                                            <h2 className="text-2xl font-bold mb-4 text-center">Home <span className="font-playfair  italic">Valuation</span></h2>
                                             <p className='text-black font-semibold text-left text-md mb-1'>Full Name</p>
                                             <input
                                                 type="text"
@@ -98,7 +99,7 @@ const FirstPageSell = () => {
                                     {step === 2 && (
                                         <div>
                                             <h2 className="text-2xl font-bold mt-4 text-center">Get a Free</h2>
-                                            <h2 className="text-2xl font-bold mb-4 text-center">Home <span className="font-playfair italic">Valuation</span></h2>
+                                            <h2 className="text-2xl font-bold mb-4 text-center">Home <span className="font-playfair   italic">Valuation</span></h2>
                                             <p className='text-black font-semibold text-left text-md mb-1'>Property Address</p>
                                             <input
                                                 type="text"
@@ -150,7 +151,7 @@ const FirstPageSell = () => {
                                     )}
 
                                     {step === 3 && (
-                                        <div className="flex flex-col items-center text-center">
+                                        <div className="">
                                             {/* Centered Image */}
                                             <img
                                                 className="w-32 md:w-40 lg:w-48 mx-auto mb-4"
@@ -159,20 +160,21 @@ const FirstPageSell = () => {
                                             />
 
                                             {/* Text Content */}
-                                            <p className="text-2xl px-4 italic font-bold">Thank You for Taking the <span className="font-playfair italic">First Step!</span></p>
-                                            <p className="text-gray-900 max-w-md mt-2">
+                                            <p className="text-2xl px-4 italic font-bold">Thank You for Taking the <span className="font-playfair   italic">First Step!</span></p>
+                                            <p className="text-gray-900 max-w-md my-2">
                                                 We’ve received your details and will contact you shortly to discuss your property’s valuation.
                                             </p>
 
                                             {/* Buttons in One Line */}
                                             <div className="flex flex-col sm:flex-row justify-center gap-1 mt-4">
-                                                <button className="text-gray-900 font-semibold bg-gray-200 px-4 py-2 text-md rounded w-full">
+                                                <button className="text-gray-900 font-semibold bg-gray-200 px-2 py-2 text-md rounded w-full">
                                                     View Sold Properties
                                                 </button>
                                                 <button className="bg-red-800 text-white px-4 py-2 text-md rounded w-full">
                                                     Contact Us Now
                                                 </button>
                                             </div>
+                                            
                                         </div>
                                     )}
                                 </div>

@@ -22,10 +22,10 @@ const FirstPageSell = () => {
             <div className="container px-4 sm:px-5 py-12 md:py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-6">
                     <section className="text-white body-font">
-                        <div className="container flex flex-wrap px-5 py-12 md:py-24 mx-auto items-center">
+                        <div className="container flex flex-wrap  px-5 py-12 md:py-24 mx-auto items-center">
                             {/* Left Section (Text) */}
                             <div className="w-full md:w-1/2 text-left md:pr-12 md:py-8 mb-10 md:mb-0 pb-10 border-gray-200">
-                                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+                                <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
                                 Your Next Move Starts Here
                                 </h1>
                                 <p className="leading-relaxed font-bold text-xl">
@@ -34,11 +34,11 @@ const FirstPageSell = () => {
                             </div>
 
                             {/* Right Section (Form) */}
-                            <div className="w-full md:w-1/2 md:pl-12">
+                            <div className="w-full  md:w-1/2 md:pl-12">
                                 <div className="max-w-md mx-auto h-auto p-4 bg-white rounded-lg shadow-lg text-gray-800">
                                         <div>
                                             <h2 className="text-2xl font-bold mt-2 text-center">Connect with Us </h2>
-                                            <h2 className="text-2xl font-bold mb-4 text-center"> <span className="  italic">Directly</span></h2>
+                                            <h2 className="text-2xl font-bold mb-4 text-center"> <span className="font-playfair  italic">Directly</span></h2>
                                             <p className='text-black font-semibold text-left text-md mb-1'>Full Name</p>
                                             <input
                                                 type="text"

@@ -6,7 +6,7 @@ const steps = [
     title: "Request a Free Valuation",
     description:
       "Start by understanding your home’s worth in today’s market. We’ll provide a detailed valuation tailored to your property.",
-    button: "SGet Your Valuation",
+    button: "Get Your Valuation",
     imgSrc: "https://media-hosting.imagekit.io//72e54c1284454907/undraw_term-sheet_70lo%201.png?Expires=1836601706&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=FwTQGguR5o3NppfKzarab9J0mCKuUdnxiUX9MNoAogMI-x7GTvKHKK22XQA4ksEfI84cy6egMqL621okamC9XgA5C7RWMnC5g-h5G26pzk5KNAqjq97BhD0JyblgaZxnNRbNgV5c~Qr-rGUvLEgfmG7y4RZYh7eEzrdeNDZpYcXkyRJt~iV629JcdwU6HySgI42zM1DPKuYezWUcfoa5PXUob4yCtXzT08r1TJq3IIjkUJF8jBhnfcqs0SlUDte3S4ek4hNlwXPALWk-WnyEVgZSR77pxUQl7tqD6TKoHGgZ1n3Ld1KJ-z6InYJonadq7FgR5ejexML86LVzgz1-jw__",
   },
   {
@@ -53,12 +53,13 @@ const steps = [
 
 const Simplified = () => {
   return (
-    <div className="container mx-auto px-5 py-16 relative bg-backgroundColor">
+    <div className="bg-backgroundColor">
+    <div className="container mx-auto lg:px-24 px-5  py-16 relative bg-backgroundColor">
       {/* Header */}
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4 text-white">
           Selling Your Home, 
-          <span className="italic font-playfair">Simplified</span>
+          <span className="italic  font-playfair ">{" "}Simplified</span>
         </h1>
         <p className="text-xl text-white max-w-2xl mx-auto">
         We make selling your property easy, efficient, and rewarding. Follow these simple steps to get started.
@@ -102,7 +103,7 @@ const Simplified = () => {
               <button className="text-lg bg-red-800 px-2 py-1 font-semibold text-white">
                 {step.step}
               </button>
-              <h2 className="text-2xl font-semibold text-white mt-2">
+              <h2 className="text-2xl lg:text-4xl font-semibold text-white mt-2">
                 {step.title}
               </h2>
               <p className="text-white mt-2">{step.description}</p>
@@ -113,7 +114,7 @@ const Simplified = () => {
           </div>
         ))}
       </div>
-    </div>
+    </div></div>
   );
 };
 
