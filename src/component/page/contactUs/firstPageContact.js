@@ -22,7 +22,7 @@ const FirstPageSell = () => {
             <div className="container px-4 sm:px-5 py-12 md:py-24 mx-auto">
                 <div className="flex flex-col text-center w-full mb-6">
                     <section className="text-white body-font">
-                        <div className="container flex flex-wrap  px-5 py-12 md:py-24 mx-auto items-center">
+                        <div className="container mt-0 lg:mt-[-110px] flex flex-wrap  px-5 py-12 md:py-24 mx-auto items-center">
                             {/* Left Section (Text) */}
                             <div className="w-full md:w-1/2 text-left md:pr-12 md:py-8 mb-10 md:mb-0 pb-10 border-gray-200">
                                 <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
