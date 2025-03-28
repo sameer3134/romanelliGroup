@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 // Testimonial card component
 const TestimonialCard = ({ testimonial }) => {
-
+  console.log(testimonial)
   const maxLength = 300; // Character limit for truncated text
 
   const truncatedText =
@@ -21,7 +21,7 @@ const TestimonialCard = ({ testimonial }) => {
         <div className="border border-gray-300 mt-2"></div>
       </div>
       <p
-  className="leading-relaxed text-base text-left h-[250px] overflow-hidden text-ellipsis"
+  className="leading-relaxed md:text-[14px] xl:text-base text-xs text-left h-[250px] overflow-hidden text-ellipsis"
 >
   {truncatedText}
   {testimonial.comment.length > maxLength && (
@@ -44,7 +44,9 @@ const TestimonialCard = ({ testimonial }) => {
         />
         <div className="flex-grow items-start text-xs">
           <h2 className="text-gray-900 title-font font-medium text-left">
-            {testimonial.name}
+          {testimonial.name.split(" ").length === 1
+    ? testimonial.name
+    : `${testimonial.name.split(" ")[0]} ${testimonial.name.split(" ")[1][0]}.`}
           </h2>
           <p className="text-gray-900 text-left">{testimonial.role || "Customer"}</p>
         </div>

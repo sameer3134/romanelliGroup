@@ -61,7 +61,7 @@ const Pag2 = () => {
                         style.textContent = `
                             .__hblgw--button-container-light-mode-theme {
                                 position: absolute !important;
-                                z-index: 102 !important;
+                                z-index: 12 !important;
                                 right: 4px !important;
                                 top: 0px !important;
                                 bottom: 0px !important;
@@ -90,7 +90,7 @@ const Pag2 = () => {
     
                             .__hblgw--input-input-light-mode-theme {
                                 position: relative;
-                                z-index: 101;
+                                z-index: 11;
                                 color: rgba(0, 0, 0, 0.7);
                                 font-size: 16px;
                                 width: 100%;
@@ -102,7 +102,7 @@ const Pag2 = () => {
                             }
                                 .__hblgw--input-input-light-mode-theme {
     position: relative;
-    z-index: 101;
+    z-index: 11;
     color: rgba(0, 0, 0, 0.7);
     font-size: 16px;
     width: 100%;
@@ -129,7 +129,7 @@ const Pag2 = () => {
     };
     return (
         <div>
-            <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto">
+            <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto overflow-visible">
                 <div className="flex flex-col text-center w-full md:mb-6">
                     <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-5xl px-4">
                         Do you know how much you'd walk away with if you sold your today?
@@ -142,14 +142,8 @@ const Pag2 = () => {
                 {/* Input & Button Section */}
                 <div id="homebot_homeowner" className='mb-10 md:mb-0'></div>
 
-                <div className={`fixed bottom-1 md:bottom-4 flex  right-2 sm:right-4 md:right-10 border-2 border-black md:border-4 h-32 w-20 sm:h-32 sm:w-24 md:h-40 md:w-28 rounded-lg  flex-col items-end justify-end p-1 sm:p-2 shadow-lg z-2
-                    `}>
-
-                    {/* Close Button */}
-                    {/* <button className="absolute -top-2 -right-2 bg-gray-700 text-white rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center text-[10px] sm:text-xs hover:bg-gray-900 z-10" onClick={() => { setCloseCorner(false); console.log(closeCorner) }}>
-                        ✕
-                    </button> */}
-
+                <div className={`fixed inset-auto bottom-1 md:bottom-4 flex  right-2 sm:right-4 md:right-10 border-2 border-black md:border-4 h-32 w-20 sm:h-32 sm:w-24 md:h-40 md:w-28 rounded-lg  flex-col items-end justify-end p-1
+                 sm:p-2 shadow-lg z-50`}>
                     {/* Video Background */}
                     <div className="absolute inset-0 w-full h-full">
                         <video
