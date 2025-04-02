@@ -10,6 +10,7 @@ import Mainsell from "../component/page/sell/mainsell";
 import MainPageContact from "../component/page/contactUs/mainPageContact";
 import MainPageProperties from "../component/page/properties/mainPageProperties";
 import ScrollToTop from "../component/scrollTop/scrollToTop";
+import MainPageResource from "../component/page/resources/mainPageResource";
 
 
 const AccessComponent = () => {
@@ -27,6 +28,7 @@ const AccessComponent = () => {
           <Route path="/sell" element={<Mainsell />} />
           <Route path="/contactus" element={<MainPageContact />} />
           <Route path="/properties" element={<MainPageProperties />} />
+          <Route path="/resources" element={<MainPageResource />} />
           </Route>
           {/* Private Route */}
           <Route path="/" element={<PrivateRoute />}>

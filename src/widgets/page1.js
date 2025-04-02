@@ -6,6 +6,7 @@ import FirstPageBuy from "../component/page/buy/firstPageBuy";
 import FirstPageSell from "../component/page/sell/firstPageSell";
 import FirstPageContact from "../component/page/contactUs/firstPageContact";
 import FirstPageProperties from "../component/page/properties/firstPageProperties";
+import FirstPageResource from "../component/page/resources/firstPageResource";
 
 const Page1 = ({ page }) => {
   const video_url =
@@ -146,7 +147,10 @@ useEffect(() => {
           <FirstPageContact/>}
           {page == "Properties" &&
           <FirstPageProperties/>}
+           {page == "Resources" &&
+          <FirstPageResource/>}
         </section>
+      
       </div>
     </>
   );

@@ -17,8 +17,8 @@ const Navbar = () => {
   ];
 
   const navLinksRight = [
-    { title: "Properties", href: "/propertiess" },
-    { title: "Resources", href: "/resourcess" },
+    { title: "Properties", href: "/properties" },
+    { title: "Resources", href: "/resources" },
   ];
 
   const location = useLocation();

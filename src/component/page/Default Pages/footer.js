@@ -4,11 +4,13 @@ import instagram from "../../../assets/Instagram.png"
 import youtube from "../../../assets/YouTube.png"
 import facebook from "../../../assets/Facebook.png"
 import tiktok from "../../../assets/TikTok.png"
+import { useLocation } from 'react-router-dom'
 
 const Footer = () => {
     const logoUrl =
         "https://media-hosting.imagekit.io//432a35325f694451/logo.png?Expires=1834842381&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=bUTNXPHieLXZkZ1TVU8c7c0Sp1tM0ss5CmY5i799UOCbkGbACfxakQJSUnvyWWoNnA7ctpJyYauHziza2ox1Mf8WYsagLmr1EGDozBz6RRgT2siO2Fb8UDiUL0xUAdWHOwbWGkx-w6frrC8jyVW0oL6AO8WTmOc~yoK4K3Fkq3RXAW8FxwW4RbBJApNfppfroRExs3FahGxzNYtY6dqHm8P~X6gE~kK4P1Kfa2375FdAQlXoR347dhtKEc6qKUgnsvrz7c76hraZ0Fi3C1Kxlg3G2vqUzvAOWc2G1LKmcND-2X31I4gUVsM~jSchIssyj86h-dal5Ve3fFhwGBE2Ww__";
-
+    const location =useLocation()
+    console.log(location.pathname)
     const socialLinks = [
         { src: youtube, href: "https://www.youtube.com/channel/UC6JTBB3S5QoOpknrvT16s7Q", alt: "YouTube" },
         { src: kw, href: "https://theromanelligroup.kw.com/", alt: "KW" },
@@ -18,8 +20,8 @@ const Footer = () => {
     ];
     return (
         <>
-        <header class="text-gray-600 body-font bg-backgroundColor pb-2">
-            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center px-5 lg:px-24">
+        <header class={`text-gray-600 body-font ${location?.pathname == '/resources' ? "bg-white": "bg-backgroundColor"}  `}>
+            <div class="container mx-auto flex  flex-wrap pt-5 flex-col md:flex-row items-center px-0 lg:px-24">
                 <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
                     {socialLinks.map((link, index) => (
                         <a key={index} href={link.href} target="_blank" rel="noopener noreferrer">
@@ -29,7 +31,7 @@ const Footer = () => {
                 </nav>
 
                 <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
-                    <img className='w-24 h-auto' src={logoUrl} alt='logo' />
+                    <img className={`w-24 h-auto ${location?.pathname == '/resources' ? "invert": ""}`} src={logoUrl} alt='logo' />
                 </a>
                 <div class="lg:w-2/5 inline-flex lg:justify-end">
                     <button onClick={() => document.getElementById("mainVideo")?.scrollIntoView({ behavior: "smooth" })}
@@ -41,10 +43,10 @@ const Footer = () => {
 
                     </button>
                 </div>
-                <hr className="bg-white h-[2px] w-full opacity-80 px-5 lg:px-24 mt-3" />
+                <hr className="bg-white h-[2px] w-full opacity-80 px-5 xl:px-24 mt-3" />
             
             </div>
-            <p className='text-center text-lg justify-between items-center text-white'>© 2024 - The Romanelli Group</p>
+            <p className='text-center text-lg pb-2 bg-backgroundColor  pt-3 justify-between items-center text-white'>© 2024 - The Romanelli Group</p>
         </header>
         </>
     )

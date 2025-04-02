@@ -15,6 +15,7 @@ const MainPageProperties = () => {
         <ClientSay/>
         <QuestionAnswer/>
         <Footer/>
+        
     </div>
   )
 }

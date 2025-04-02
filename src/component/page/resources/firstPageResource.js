@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react'
-import Filter from './filter';
-import PriceRangeSlider from './priceRange';
+import FilterResource from './filterResource'
 
-const FirstPageProperties = () => {
-    const [selectedOption, setSelectedOption] = useState("Buy");
+const FirstPageResource = () => {
 const [filterOpen, setFilterOpen] = useState(false)
 const [placeholder, setPlaceholder] = useState("Enter city");
 
   useEffect(() => {
     const updatePlaceholder = () => {
       if (window.innerWidth >= 640) {
-        setPlaceholder("Enter city, ZIP code, or neighborhood...");
+        setPlaceholder("Search by keyword, category, or topic...");
       } else {
-        setPlaceholder("Enter city");
+        setPlaceholder("Search by keyword");
       }
     };
 
@@ -21,44 +19,22 @@ const [placeholder, setPlaceholder] = useState("Enter city");
 
     return () => window.removeEventListener("resize", updatePlaceholder); // Cleanup
   }, []);
-
     return (
         <div>
         <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
           {/* Heading */}
           <div className="flex flex-col text-center w-full mb-6">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-4xl px-4">
-              Your{" "}
-              <span className="italic font-playfair">Dream Property</span> is Just a Click Away
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-4xl px-4">
+            Insights, Tips, and Stories to Empower Your 
+              <span className="italic font-playfair">Real Estate Journey</span>
             </h1>
             <p className="mx-auto leading-relaxed font-medium text-base sm:text-xl max-w-2xl mt-4">
-              From charming family homes to lucrative investment opportunities, your ideal property is just a search away.
+            Explore our collection of articles, videos, and expert advice curated just for you.
             </p>
           </div>
       
           {/* Toggle & Input Section */}
-          <div className="flex justify-start items-center mx-auto  max-w-2xl">
-            <div className='px-1 py-1 bg-white'>
-            <button
-              className={`p-2 px-4   ${
-                selectedOption === "Buy" ? "bg-gray-900 text-white" : "text-gray-900 bg-white"
-              }`}
-              onClick={() => setSelectedOption("Buy")}
-            >
-              Buy
-            </button>
-            </div>
-            <div className='py-1 pr-1 bg-white'>
-            <button
-              className={`p-2 px-4  ${
-                selectedOption === "Rent" ? "bg-gray-900 text-white" : "text-gray-900 bg-white"
-              }`}
-              onClick={() => setSelectedOption("Rent")}
-            >
-              Rent
-            </button>
-            </div>
-          </div>
+
       
           {/* Search Box */}
           <div className="relative w-full max-w-2xl mx-auto">
@@ -80,17 +56,17 @@ const [placeholder, setPlaceholder] = useState("Enter city");
   </span></div>
   </button>
     <button className=" bg-red-800 text-white text-xs sm:text-sm px-3 sm:px-4 py-2 ">
-      Check Now
+      Search Now
     </button>
     </div>
   </div>
         </div>
      
         
-        {filterOpen &&< Filter close={()=>{setFilterOpen(false)}}/>}
+        {filterOpen &&< FilterResource close={()=>{setFilterOpen(false)}}/>}
       </div>
       
     )
 }
 
-export default FirstPageProperties
+export default FirstPageResource
