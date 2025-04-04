@@ -38,7 +38,7 @@ const Succeed = () => {
         <div class="flex-grow pl-6 ">
           <h2 class="text-gray-900 text-xl title-font font-semibold mb-2">Find Your Perfect Home</h2>
           <p class="leading-relaxed text-base text-black">On the hunt for your dream family home or the perfect investment property in Central Ohio? We've got the keys to your next big win!</p>
-          <button className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Buy a Property</button>
+          <button onClick={() => window.location.href = "/buy"}  className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Buy a Property</button>
         </div>
       </div>
       <div class="p-4 flex bg-gray-100">
@@ -48,7 +48,7 @@ const Succeed = () => {
         <div class="flex-grow pl-6 ">
           <h2 class="text-gray-900 text-xl title-font font-semibold mb-2">Sell Your Home Faster</h2>
           <p class="leading-relaxed text-base text-black">In a market that's moving at warp speed, how do you crack the best deal? Let us help your property steal the spotlight and get you top dollar!</p>
-          <button className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Get a Free Valuation</button>
+          <button  onClick={() => window.location.href = "/sell"} className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Get a Free Valuation</button>
         </div>
       </div>
       <div class="p-4 flex bg-gray-100">
