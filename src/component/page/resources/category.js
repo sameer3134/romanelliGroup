@@ -72,11 +72,18 @@ const Category = () => {
      const [visibleItems, setVisibleItems] = useState(6)
      const fetchYoutubeVidoes = async () => {
         try {
-          let response;
-          const h= await axios.get(`https://static.elfsight.com/apps/yottie/stable/774d9b25dc41371a3d1fabd227dc5573870d3569/app/yottie.js`)
-             response = await axios.get(
-              `    https://storage.elfsight.com/api/v2/youtube?q=%2Fvideos%3Fid%3D56TmOwhfJxE%252Cf5b3v3zPG_I%252C3jZLIPTABRM%252CyJ5NNkteBmc%252CiseAOp2xBhI%252Cn2aIAbGEcvo%252CsENwKuQO5iE%252COULPdgY_yDo%252Clt_PhNeRPis%252C1_i2dWtJJMc%252CjcjHxpP-BUA%252CJCYSbmOGDq0%252CwwNnh7VOsYA%252C82SYtIW1Vto%252CRgKZ7FiiPBs%252Cba1pD1snY8U%252COqoojWSFLXQ%252CYHIpHvO91g4%252CoLyHWqaudos%252C_cU4jEX7JFw%252Cyl6abGknojw%252C4DxbtvWo_AM%252CIpHmABoBQGs%252CmqEBCdNtvqA%252CdvSEwZLQ914%252CgaQMQwUwS1Y%252CSASezCQsWbY%252CkLj2DO0jSsE%252CxXVHIM7z_Z8%252CXy_nMhxsZq4%252C0BUOviyBa_w%252CVYXKtFyZlOw%252CUwD2w26uMpg%252CJgbcodyLUI8%252C1AnRGqG1Nu0%252CqGGAPPw0h9I%252CFQjg-WHaSX8%252COBK43uSzP7g%252CgF9R5oowqz0%252Cbr8Sjrd4UeM%252COmuWfrFyMpA%252CZf4jo1NGKvw%252Cuu6UY1gjQGU%252CT79cG9Yui9c%252Chh1c-lRTe_U%252C27NfF1fQaC0%252CvyuaYJAKdF0%252CBLdBhvrwR0s%252C7la8xzYa5-w%252CqxUwIlwS8YY%26part%3Dsnippet%252CcontentDetails%252Cstatistics&public_key=RWxmc2lnaHQuIEFsbCByaWdodHMgcmVzZXJ2ZWQu`
-            );
+          // await axios.get(`https://embed.homebotapp.com/lgw/v1/widget.js`)
+          //  await axios.get(`https://static.elfsight.com/apps/yottie/stable/774d9b25dc41371a3d1fabd227dc5573870d3569/app/yottie.js`)
+          //  await axios.get(`https://static.elfsight.com/platform/platform.js`)
+          const response = await axios.get(
+            `https://storage.elfsight.com/api/v2/youtube?q=%2Fvideos%3Fid%3D56TmOwhfJxE%252Cf5b3v3zPG_I%252C3jZLIPTABRM%252CyJ5NNkteBmc%252CiseAOp2xBhI%252Cn2aIAbGEcvo%252CsENwKuQO5iE%252COULPdgY_yDo%252Clt_PhNeRPis%252C1_i2dWtJJMc%252CjcjHxpP-BUA%252CJCYSbmOGDq0%252CwwNnh7VOsYA%252C82SYtIW1Vto%252CRgKZ7FiiPBs%252Cba1pD1snY8U%252COqoojWSFLXQ%252CYHIpHvO91g4%252CoLyHWqaudos%252C_cU4jEX7JFw%252Cyl6abGknojw%252C4DxbtvWo_AM%252CIpHmABoBQGs%252CmqEBCdNtvqA%252CdvSEwZLQ914%252CgaQMQwUwS1Y%252CSASezCQsWbY%252CkLj2DO0jSsE%252CxXVHIM7z_Z8%252CXy_nMhxsZq4%252C0BUOviyBa_w%252CVYXKtFyZlOw%252CUwD2w26uMpg%252CJgbcodyLUI8%252C1AnRGqG1Nu0%252CqGGAPPw0h9I%252CFQjg-WHaSX8%252COBK43uSzP7g%252CgF9R5oowqz0%252Cbr8Sjrd4UeM%252COmuWfrFyMpA%252CZf4jo1NGKvw%252Cuu6UY1gjQGU%252CT79cG9Yui9c%252Chh1c-lRTe_U%252C27NfF1fQaC0%252CvyuaYJAKdF0%252CBLdBhvrwR0s%252C7la8xzYa5-w%252CqxUwIlwS8YY%26part%3Dsnippet%252CcontentDetails%252Cstatistics&public_key=RWxmc2lnaHQuIEFsbCByaWdodHMgcmVzZXJ2ZWQu`,
+            {
+              headers: {
+                'x-widget-token': 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0eXBlIjoiUFVCTElDIiwid2lkZ2V0UGlkIjoiNmU3NzY0YzQtNzRhOS00ZGEyLWIxMzEtNTFjMDA1NGQzZWM4Iiwid2lkZ2V0UmV2aXNpb25QaWQiOiJkZDViMjgyOC03NGY1LTRlNWUtYTUxZi03NDZkNDllZTQ2MzIiLCJhcHAiOiJ5b3V0dWJlLWdhbGxlcnkiLCJhY2NvdW50UGlkIjoiMjYxM2RhNzktYTc3OC00NmE3LThjNTAtNDkwODc3MWNkYjFiIiwic3ViIjoiNmU3NzY0YzQtNzRhOS00ZGEyLWIxMzEtNTFjMDA1NGQzZWM4IiwidmVyIjoiZGQ1YjI4MjgtNzRmNS00ZTVlLWE1MWYtNzQ2ZDQ5ZWU0NjMyIiwiaWF0IjoxNzQzODM2NjU0LCJleHAiOjE3NDQwMDk0NTR9.CZPeGyxUngyoUUv4eQuEHxjsVrZTashPK148mU_eWHLqJ7yDfT1bhHn2s6VP17VnRU6tchHDvUomO7QSuIOR8-bgaz6Eqm826BDOBhrrscrXZnEUFlnPwNOHhUfA_oMz7qhNxxX1-wD7nI6-WOywXK3CkJXXzK0TZ0erwvoC-ejhR9nf4-Z3J2sfSSCZLFOZxpfb2PC6dW_yy4myx53GKPTmLJJTA14S7XDRgAUaxtcfaVyjaXvCJb10E08jnJoKfbdV8B9DE6YsU4qi-C9OB3TZV_zNSP_YsNrj01AFUlaOCFk78bNGU41iwcip52RQowipWd4sBdeFXYUW1Enlimk6i_R21ZNr8jf43Tk8SgyNDYbbl-UeF6ZPKrcvO_RlVofRLpbStosCfBSeskHzR_R7oOVHcq7FqsMvrF5RKqt21pSqFc4dUVRt6Z8Lf3-hvuAyySHSMdw9vG_4q0eVqDIOqtZbn1mGgp_1gZkD-axd-WH6olIQ-1kuQ_TABNShIOQUuDpuQwr3JtwOV64ctS8xGjfgJHH16xh-0llx0rBgyicvDAjiklpYHS-VolNXHCW27uG3z0YiwJRQC70jTOV3mbuzhRm2W2jfzu8wnEQ0JIi2k6l0qZfBCETQOAOOEfTomUIDLWoWAyIX9ypkZevMHfjDRH4qLYoG9JgyhOQ'
+              }
+            }
+          );
+          
           
     
           console.log(response.data)
