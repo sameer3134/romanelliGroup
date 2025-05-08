@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from "react";
 
 // Testimonial card component
 const TestimonialCard = ({ testimonial }) => {
-  console.log(testimonial)
   const maxLength = 300; // Character limit for truncated text
 
   const truncatedText =

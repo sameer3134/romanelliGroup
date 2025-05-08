@@ -36,7 +36,7 @@ const Succeed = () => {
          <img src={icon1_url}/>
         </div>
         <div class="flex-grow pl-6 ">
-          <h2 class="text-gray-900 text-xl title-font font-semibold mb-2">Find Your Perfect Home</h2>
+          <h2 class="text-gray-900 text-xl title-font font-semibold mb-2">Buy Your New Home</h2>
           <p class="leading-relaxed text-base text-black">On the hunt for your dream family home or the perfect investment property in Central Ohio? We've got the keys to your next big win!</p>
           <button onClick={() => window.location.href = "/buy"}  className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Buy a Property</button>
         </div>

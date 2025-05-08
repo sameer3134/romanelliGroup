@@ -4,7 +4,7 @@ import gsap from "gsap";
 const stats = [
   {
     number: "#2",
-    title: "In the Tri-state Area",
+    title: "In the Ohio Valley Region",
     description: "Ranked among the top for unmatched real estate expertise and community impact.",
     images: [
       "https://ivang-design.com/svg-load/slider/1.jpg",
@@ -14,7 +14,7 @@ const stats = [
     ],
   },
   {
-    number: "320+",
+    number: "485+",
     title: "Deals Closed",
     description: "Every transaction reflects trust, precision, and client-first focus.",
     images: [
@@ -36,8 +36,8 @@ const stats = [
     ],
   },
   {
-    number: "9+",
-    title: "Years in Business",
+    number: "20+",
+    title: "Years in Business between AR/CR/SB/AB & ",
     description: "Delivering results backed by nearly a decade of experience.",
     images: [
       "https://ivang-design.com/svg-load/slider/13.jpg",

@@ -50,7 +50,8 @@ const Mainsell = () => {
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
-      ><QuestionAnswer/></motion.div> 
+      ><QuestionAnswer onSet={"seller"}/>
+      </motion.div> 
     <motion.div
         variants={fadeInUp}
         whileInView="visible"

@@ -69,15 +69,15 @@ const Navbar = () => {
               </Link>
             ))}
             <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2 rounded-md">
-              Schedule a Call
+              Talk to our Team!
             </button>
           </div>
 
           {/* Mobile CTA + Hamburger Menu */}
           <div className="flex items-center md:hidden space-x-2">
-            {/* Schedule a Call - Left of Hamburger */}
+            {/* Talk to our Team! - Left of Hamburger */}
             <button className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2">
-              Schedule a Call
+              Talk to our Team!
             </button>
 
             {/* Mobile Menu Button */}

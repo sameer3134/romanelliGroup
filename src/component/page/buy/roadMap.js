@@ -27,10 +27,10 @@ const steps = [
   },
   {
     step: "Step 04",
-    title: "Learn to Negotiate",
+    title: "How We Win",
     description:
-      "Master the art of negotiation with expert tips tailored to today's competitive market. Knowledge is power.",
-    button: "Join Negotiation Workshop",
+      "Discover our winning strategy—proven methods, expert insights, and a track record of success.",
+    button: "How We Win",
     imgSrc: "https://media-hosting.imagekit.io//f6ecc9b1ae1d4a43/undraw_interview_yz52%201.png?Expires=1836519883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=VKpNiCbOicMFpuqVKdgmeh7KySQlDwtBEtCZqauO25mAIIoMVPv8UMsTfflpn2XAuvVvTAV9cjxTUzeY5N5US9uqa05NKVWquWNLLa~q9Z355y0qt37xx8xcZs1JHfrYce9lb9a56Vz-OdxRJiRhzl94jS3waObDrnKNKuTaVkr3lZeepkp0upwFo2qQTgxh1148YN3qaNz95ZHMPMv73Gpdh4iMYMnNX4iGWNraKv8BpeUBziEiqfvWFhIopfMZuXGSXlK6k4OVgzLRL2jxM~iz6~tL2xg7H-owJGVxCo7U1MBhrgJom8GSTBmb0mK52joE-n3kDuXmBJwVDKob5Q__",
   },
 ];

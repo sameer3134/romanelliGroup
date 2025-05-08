@@ -3,8 +3,8 @@ import Buyer from './buyer'
 import Seller from './seller'
 import Agent from './agent'
 
-const QuestionAnswer = () => {
-  const [selectedArea, setSelectedArea] = useState("buyer")
+const QuestionAnswer = ({onSet}) => {
+  const [selectedArea, setSelectedArea] = useState(onSet)
   return (
     <><section class="bg-backgroundColor text-white pb-10">
       <div class="container px-5 pt-8 mx-auto">

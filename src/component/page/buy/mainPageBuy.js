@@ -31,15 +31,25 @@ const MainPageBuy = () => {
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
       >
-        <FeaureListing />
+         <RoadMap />
+      
       </motion.div>
-      <motion.div
+      {/* <motion.div
         variants={fadeInUp}
         whileInView="visible"
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0"
       >
         <NumberSpeak />
+      </motion.div> */}
+      <motion.div
+        variants={fadeInUp}
+        whileInView="visible"
+        viewport={{ once: false, amount: 0.2 }}
+        className="opacity-0"
+      >
+          <FeaureListing />
+    
       </motion.div>
       <motion.div
         variants={fadeInUp}
@@ -47,15 +57,7 @@ const MainPageBuy = () => {
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0"
       >
-        <ClientSay />
-      </motion.div>
-      <motion.div
-        variants={fadeInUp}
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0"
-      >
-        <RoadMap />
+           <ClientSay />
       </motion.div>
       {/* <motion.div
         variants={fadeInUp}
@@ -63,7 +65,7 @@ const MainPageBuy = () => {
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
       > */}
-        <ClientSuccess />
+        {/* <ClientSuccess /> */}
       {/* </motion.div> */}
       <motion.div
         variants={fadeInUp}
@@ -71,7 +73,7 @@ const MainPageBuy = () => {
         viewport={{ once: false, amount: 0.2 }}
         className="opacity-0 -my-1"
       >
-        <QuestionAnswer />
+        <QuestionAnswer onSet={"buyer"}/>
       </motion.div>
       <motion.div
         variants={fadeInUp}

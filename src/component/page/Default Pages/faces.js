@@ -64,8 +64,14 @@ const Faces = () => {
     </div>
   </div>
         <p className="leading-relaxed text-base text-black mt-4 max-w-xl">
-        As a graduate of Ohio Wesleyan University with a degree in Finance and Economics, I bring a detail-oriented, data-driven approach to every property transaction. After starting my career in Commercial Real Estate at Huntington Bank in 2021, I’ve transitioned to residential properties with The Romanelli Group. Growing up in Central Ohio, I learned the value of community and connection—values I bring to every client relationship.
+        Growing up with a dad who was a custom home builder in Columbus, I didn’t realize how much I loved real estate until I graduated from Ohio Wesleyan University. I majored in Finance, Economics, and Accounting, and took a job in Commercial Real Estate at Huntington Bank. I enjoyed my time there and built a strong understanding of real estate financing.
         </p>
+        <p className="leading-relaxed text-base text-black max-w-xl">
+        Once I realized the 9-to-5 life wasn’t for me, I teamed up with my sister Cristina, and together we’ve built a strong real estate business that we take a lot of pride in. Homes have been a part of our lives since we were kids!
+          </p>
+          <p className="leading-relaxed text-base text-black max-w-xl">
+          As we say, Romanelli is Real Estate.
+            </p>
       </div>
 
     </div>

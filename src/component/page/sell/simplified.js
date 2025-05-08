@@ -11,7 +11,7 @@ const steps = [
   },
   {
     step: "Step 02",
-    title: "Schedule a Sales Call",
+    title: "Schedule a Call with us!",
     description:
       "Talk to our experts to discuss your property goals and get a tailored selling strategy.",
     button: "Schedule a Prep Call",
