@@ -1,11 +1,8 @@
 import React from 'react'
+import { icon1_url, icon2_url, icon3_url, image1_url, image2_url } from '../../../assets/allImg'
 
 const Succeed = () => {
-    const image1_url="https://media-hosting.imagekit.io//d80224444ff34a05/image%20(7).png?Expires=1834917220&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=kdwncilK37lt5UlRD1K~qOp97M-iIdUgNZFtq1i6bPGt2aT0KuURlZXg35jjpX3LsC2OzuOdqsNi~Uu5guWlhVARUOQ3UYrY~sF8u5F7EAHd9BvG6VCiQsbd~uWayjrKed4dAWf-~3dlb0KEhw4BHapNoePIHsLiLm9a9Gy-XweFkTDkL0g6hxv3F1x0kAISXgi-7QuXYaNHSSQpN5IRhnJfRKqyabUg5hZr5qmf~rKcvfZ7msag8Ylr76RRA6EajfAeuDQE3Gytga0IsFPUi6lRW80dUEbFrNpZVF7Yg2GWcD7oz4sF7E14IxyMqxizyPnBsPaWT3L3NqwDQ217~Q__"
-     const image2_url="https://media-hosting.imagekit.io//eb33eaa51329437c/image%20(8).png?Expires=1834917313&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=dBEcm3gqNku2I3GCca6lceHJWnvy6voTzWAwRZ1R5mG0r4TIHCQB0oW1l2oI9TKJjMK4b1498x-fpI69eZSTZYuRDkO-nV-IqgRHBWnojzzlg-~YQzKywyVNeUl7M-fZJ5hYKMQmyqaqcPbj06tSO71gscGW~zw-gTV2t0kfq9LQzznobX39x5bWcULaWBmPvsR8QnJ2PXfYFPq3JtIZqXFXIRutGsdcZkygCU93HTMnQqrXb5-rHNfnt1hUyNDpFe01Y9eZyvmdGMo9q2~xf1krVCJha8gwoBOtALlkJOK6BJ0ZtlDnoEmH9ANCSFmo1h7i2okjhrlncxjKGIbG5A__"
-     const icon1_url="https://media-hosting.imagekit.io//ea420b2de04849bc/reshot-icon-house-search-2XBMQ7YWTP%201.png?Expires=1834918777&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=zP3k1QelBx7u-YtoW1wvI~ve4tM40jP8LStW6~s62YBS4p1SHaKmdJnFKPmJzK7~I~wpA72vFKmHABmT78fGc3jkqJC5ywpBdSXmI7kypQB~guUo2Z9kiSj47TiFsu5Ae5MskJdn051L~84QZLeT2FmetbdV~Z0k1zeI1Q75JBuyrlPOff03m2~Vyh0Kfg2hRCF11tlw2VMyJEOv2DD1GMWvzvr-y5CsSrVVdyx~jEkwg6F4rte~wYPt0tqR3bQrPzbedwk7ae133pq212xPRMhesojzqYO4cbjSmx~4cH6Oc92ztlmDB683ICbnPiXgyzOmi9tYPilKf0xl~ThmMw__"
-      const icon2_url="https://media-hosting.imagekit.io//48d1fddcb8294fc4/81-Real%20Estate.png?Expires=1834919652&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=p7ItfzMdg-4nxS03a~vsK2c62WCWMGE7VJoG27mXahHElXp6W1Fpn3Whjote-hJH0skUmApAtH07uZ0y0L8m3FQ7onjWawHTesNdepHba4WJqdZtUTYlo5xk6lfXVG-Hl-dzJFRLJmR~r1tP8dM0d9RlFKdP556OTQjzMtSncduJ~VOmssA6L9LVRIu-Nc5FejE23ae1xCuUkmACXw~raySiUo8PUhzsJyHFxROpwaGNLx6lGoqhsekP9780jPqOzIvlTHcu4~bWzvtkQlD8D3QjR3gB1UBulaFER262Vmn4YlAw3ISjFpCjseS16C3cAexTXsPlXhYE3cl1JFH2AQ__"
-      const icon3_url="https://media-hosting.imagekit.io//f73e0fe11bc246a8/33-House-Arrow%20up.png?Expires=1834919706&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=XLbUrKXELr~cn5OPo5gamiDIWyWrK~EoUI-tPY16bULrNLgACRDMyMFsgo2KiYaoELeELhn0JIdMBBJyRrTbzC9n2TKmjQaI5AyhytGELw7~-~QXrpwzXJcWKrmhY6QSn2VI96QCd5J0lX02kfTYI08mvQXTz6o3QqxU~VqeNxHQNGSrdBrRFn4qv7saxbiG3tTbKovgsUOwBswud~a1JaXAFHFm0lkjnkKKkwexr90BT7v9MHWxZk2vxRxT05emWt5xm3W~JXzjlPxJElXYXX70eQfgw7QKlKro9XZdHo6RR5Me-8TVbIJqUlE6ZUqcMQZxLHhi6xUliamz6AtxfQ__"
+
      return (
     <div>
         <section class=" body-font text-backgroundColor">

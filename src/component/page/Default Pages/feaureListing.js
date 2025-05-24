@@ -3,35 +3,35 @@ import React from 'react'
 
 const imagesData = [
     {
-        image: "https://media-hosting.imagekit.io//4d9d3b8615b84738/image%20(9).png?Expires=1835003340&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=fcwMrIbBOKFNLhzaL~n9K1EW4ZKP~eL1WyrGfzW4Zb92qTygzzVeItMj6enqrkGS4EFXFb92UlOpNaqweCXGPa8abUwnXJGPqWzP~3WRnsE-cUvqhaG2OBs91HCW2IIvXjD183nRs5nqY9cv02TzjLaDR-3XV1AC3CxOesKFX9k~y6MOaPavIpl7kcgtcmAGE66PdFBR8fCrG4DB0ou7a-SsEl-9joOjXL8QYff7UVIf6j~oVP897aeO9-De2CFS2tgnM6oIQmy483PqgUZh5yExUd1Tc6FkpmqToCvf4rO~XHLzv5hfbbRGGYIXRVuoNL3vpM5hwgRhdClh-liCMw__",
+        image: "https://ik.imagekit.io/ic938owib/0041de26f53f09af894faf5811e9348ae7d2f6d5.png?updatedAt=1748094166923",
         amount: "$67500",
         heading: "Stunning 4-Bedroom Home in Worthington",
         detail: "4 Bed | 2 Bath | 2,500 sqft",
         description: "This property is hot! Contact us today for a private showing.",
     },
     {
-        image: "https://media-hosting.imagekit.io//78409b8fe70a4058/image%20(10).png?Expires=1835003515&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Hifx3wm13MEXu90~eyNXskfh676i5izxXc6MeDPPDW5SI7j4VYArxd4v2xQlVzFH3sFw3hugLEglZjxgvaWnXjxK5jlDvsJCq1j4eceb3tNmysq0j~BvmIZSs6vIBajb~aNqcDu0tA9GGEJwQQ714GWuJyX5fZTCas4lv-kiof8zsWxeaddqG6Q9bBvwQW-01wcFM3vb-oQEhF5R2bUZPaWmpJu0qDl864k7rz2wbNlVHaIKt8EV0fnPNjx~A1da8-KHzlmtmNblyWS8QUU2yBxmoOFXaNjowHNf-HfL71DLIt~7mKQr1ChYDI2Au15M9QuO9SQWEOV21pWbQdw9Zw__",
+        image: "https://ik.imagekit.io/ic938owib/5530e4a90777dee3ab2e9957940d865701839bf8.png?updatedAt=1748094168921",
         amount: "$67500",
         heading: "Stunning 4-Bedroom Home in Worthington",
         detail: "4 Bed | 2 Bath | 2,500 sqft",
         description: "This property is hot! Contact us today for a private showing.",
     },
     {
-        image: "https://media-hosting.imagekit.io//4d9d3b8615b84738/image%20(9).png?Expires=1835003340&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=fcwMrIbBOKFNLhzaL~n9K1EW4ZKP~eL1WyrGfzW4Zb92qTygzzVeItMj6enqrkGS4EFXFb92UlOpNaqweCXGPa8abUwnXJGPqWzP~3WRnsE-cUvqhaG2OBs91HCW2IIvXjD183nRs5nqY9cv02TzjLaDR-3XV1AC3CxOesKFX9k~y6MOaPavIpl7kcgtcmAGE66PdFBR8fCrG4DB0ou7a-SsEl-9joOjXL8QYff7UVIf6j~oVP897aeO9-De2CFS2tgnM6oIQmy483PqgUZh5yExUd1Tc6FkpmqToCvf4rO~XHLzv5hfbbRGGYIXRVuoNL3vpM5hwgRhdClh-liCMw__",
+        image: "https://ik.imagekit.io/ic938owib/0041de26f53f09af894faf5811e9348ae7d2f6d5.png?updatedAt=1748094166923",
         amount: "$67500",
         heading: "Stunning 4-Bedroom Home in Worthington",
         detail: "4 Bed | 2 Bath | 2,500 sqft",
         description: "This property is hot! Contact us today for a private showing.",
     },
     {
-        image: "https://media-hosting.imagekit.io//78409b8fe70a4058/image%20(10).png?Expires=1835003515&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Hifx3wm13MEXu90~eyNXskfh676i5izxXc6MeDPPDW5SI7j4VYArxd4v2xQlVzFH3sFw3hugLEglZjxgvaWnXjxK5jlDvsJCq1j4eceb3tNmysq0j~BvmIZSs6vIBajb~aNqcDu0tA9GGEJwQQ714GWuJyX5fZTCas4lv-kiof8zsWxeaddqG6Q9bBvwQW-01wcFM3vb-oQEhF5R2bUZPaWmpJu0qDl864k7rz2wbNlVHaIKt8EV0fnPNjx~A1da8-KHzlmtmNblyWS8QUU2yBxmoOFXaNjowHNf-HfL71DLIt~7mKQr1ChYDI2Au15M9QuO9SQWEOV21pWbQdw9Zw__",
+        image: "https://ik.imagekit.io/ic938owib/29fdd38b5e8053540c1a9e519c8bb207f1093ea5.png?updatedAt=1748094169141",
         amount: "$67500",
         heading: "Stunning 4-Bedroom Home in Worthington",
         detail: "4 Bed | 2 Bath | 2,500 sqft",
         description: "This property is hot! Contact us today for a private showing.",
     },
     {
-        image: "https://media-hosting.imagekit.io//4d9d3b8615b84738/image%20(9).png?Expires=1835003340&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=fcwMrIbBOKFNLhzaL~n9K1EW4ZKP~eL1WyrGfzW4Zb92qTygzzVeItMj6enqrkGS4EFXFb92UlOpNaqweCXGPa8abUwnXJGPqWzP~3WRnsE-cUvqhaG2OBs91HCW2IIvXjD183nRs5nqY9cv02TzjLaDR-3XV1AC3CxOesKFX9k~y6MOaPavIpl7kcgtcmAGE66PdFBR8fCrG4DB0ou7a-SsEl-9joOjXL8QYff7UVIf6j~oVP897aeO9-De2CFS2tgnM6oIQmy483PqgUZh5yExUd1Tc6FkpmqToCvf4rO~XHLzv5hfbbRGGYIXRVuoNL3vpM5hwgRhdClh-liCMw__",
+        image: "https://ik.imagekit.io/ic938owib/29fdd38b5e8053540c1a9e519c8bb207f1093ea5.png?updatedAt=1748094169141",
         amount: "$67500",
         heading: "Stunning 4-Bedroom Home in Worthington",
         detail: "4 Bed | 2 Bath | 2,500 sqft",

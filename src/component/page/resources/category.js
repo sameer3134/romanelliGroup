@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { sellsmarter_step1, sellsmarter_step2, time, trend } from '../../../assets/allImg'
 
 const blogData = [
     {
       media:"blog",
       type: "video",
-      src: "https://media-hosting.imagekit.io//d1f5208abae0498c/-fcc1-4915-ac06-634f4cfcab8a.mp4?Expires=1836723664&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1qPWaRiJqzCLrNZp~VXY7p67zllE4bBiQOSoj77lo0vwJ1cY2Wfa69ozUwx-5nd6EvgxfheVmXdEJIjtTnEx8b-vDphZshrVG~af3X3LrPjUIdbBD2W4oFZyud7VH3CUq4r3ULMNNjUFXwglfWaGfWJUehdIdd8FdudTJkP-HKf6LfHTUZuwyQdDQAgBxTFJTo4Lf1CjRdXfq6e1Ut9BTudnXl-LYu4HH9I~IdOV89oRhEBsuK6MrV-Uj-QugSr1w9qUa4ra4cGQUiOqnXG-Wc2jtSSsOyNVTlEJkCjeP2dmrAPjFaKckq31X4vTdXTnjnO9hDbpF0ZCXhb2Zit41w__",
+      src: sellsmarter_step1,
       title: "Blog Post",
       timing:"5 min read",
       description: "How to Stage Your Home for Maximum Impact",
@@ -14,55 +15,13 @@ const blogData = [
       {
         media:"blog",
         type: "image",
-        src: "https://media-hosting.imagekit.io//cddf7dbc640745d6/screenshot_1742114273684.png?Expires=1836722274&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=zpvM51JpXozJJOFL3RokLVuCli7AdaDNHsrJthcEzSLsl6JMrx2~dlQjihAVpGW2P1eaVLR4UbrDiEYIl3mISXP2o1u9TZyTgvTskcr369hbdpi2ba4fn4G-14SXyDqamnKPT-0lzFOsPgHDBP9TDUAwm8IE2gFAmPkPqHN1XLyyXeYKs9yohOh7YY28GqiqDRtSqXZyBuXdCFP4pDCRdIrU8K-Q52F9gl~UOoEJ~y8higHNuphU5VLMt9hJkQSxAtjTVOmp4f9Yj4Bx5ofENjiBzzixKRoSvucy0rZXiw4T3PrwJ3sZiFn1j4qD9meKPGCPLbPLfJ1GSzwF7l-zvg__",
+        src:sellsmarter_step2,
         title: "Blog Post",
         timing:"5 min read",
         description: "Central Ohio Real Estate Trends (2023 Report)",
         button:"Read Now"
       },
 ]
-const youtubeData = [
-    {
-      media:"blog",
-      type: "video",
-      src: "https://media-hosting.imagekit.io//d1f5208abae0498c/-fcc1-4915-ac06-634f4cfcab8a.mp4?Expires=1836723664&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1qPWaRiJqzCLrNZp~VXY7p67zllE4bBiQOSoj77lo0vwJ1cY2Wfa69ozUwx-5nd6EvgxfheVmXdEJIjtTnEx8b-vDphZshrVG~af3X3LrPjUIdbBD2W4oFZyud7VH3CUq4r3ULMNNjUFXwglfWaGfWJUehdIdd8FdudTJkP-HKf6LfHTUZuwyQdDQAgBxTFJTo4Lf1CjRdXfq6e1Ut9BTudnXl-LYu4HH9I~IdOV89oRhEBsuK6MrV-Uj-QugSr1w9qUa4ra4cGQUiOqnXG-Wc2jtSSsOyNVTlEJkCjeP2dmrAPjFaKckq31X4vTdXTnjnO9hDbpF0ZCXhb2Zit41w__",
-      title: "Video Tutorials",
-      timing:"5 min read",
-      description: "How to Stage Your Home for Maximum Impact",
-      button:"Watch Now"
-    },
-      {
-        media:"blog",
-        type: "image",
-        src: "https://media-hosting.imagekit.io//cddf7dbc640745d6/screenshot_1742114273684.png?Expires=1836722274&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=zpvM51JpXozJJOFL3RokLVuCli7AdaDNHsrJthcEzSLsl6JMrx2~dlQjihAVpGW2P1eaVLR4UbrDiEYIl3mISXP2o1u9TZyTgvTskcr369hbdpi2ba4fn4G-14SXyDqamnKPT-0lzFOsPgHDBP9TDUAwm8IE2gFAmPkPqHN1XLyyXeYKs9yohOh7YY28GqiqDRtSqXZyBuXdCFP4pDCRdIrU8K-Q52F9gl~UOoEJ~y8higHNuphU5VLMt9hJkQSxAtjTVOmp4f9Yj4Bx5ofENjiBzzixKRoSvucy0rZXiw4T3PrwJ3sZiFn1j4qD9meKPGCPLbPLfJ1GSzwF7l-zvg__",
-        title: "Market Insights",
-        timing:"5 min read",
-        description: "Central Ohio Real Estate Trends (2023 Report)",
-        button:"Read More"
-      },
-]
-const instagramData = [
-    {
-    media:"blog",
-      type: "video",
-      src: "https://media-hosting.imagekit.io//d1f5208abae0498c/-fcc1-4915-ac06-634f4cfcab8a.mp4?Expires=1836723664&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1qPWaRiJqzCLrNZp~VXY7p67zllE4bBiQOSoj77lo0vwJ1cY2Wfa69ozUwx-5nd6EvgxfheVmXdEJIjtTnEx8b-vDphZshrVG~af3X3LrPjUIdbBD2W4oFZyud7VH3CUq4r3ULMNNjUFXwglfWaGfWJUehdIdd8FdudTJkP-HKf6LfHTUZuwyQdDQAgBxTFJTo4Lf1CjRdXfq6e1Ut9BTudnXl-LYu4HH9I~IdOV89oRhEBsuK6MrV-Uj-QugSr1w9qUa4ra4cGQUiOqnXG-Wc2jtSSsOyNVTlEJkCjeP2dmrAPjFaKckq31X4vTdXTnjnO9hDbpF0ZCXhb2Zit41w__",
-      title: "Video Tutorials",
-      timing:"5 min read",
-      description: "How to Stage Your Home for Maximum Impact",
-      button:"Watch Now"
-    },
-      {
-        media:"blog",
-        type: "image",
-        src: "https://media-hosting.imagekit.io//cddf7dbc640745d6/screenshot_1742114273684.png?Expires=1836722274&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=zpvM51JpXozJJOFL3RokLVuCli7AdaDNHsrJthcEzSLsl6JMrx2~dlQjihAVpGW2P1eaVLR4UbrDiEYIl3mISXP2o1u9TZyTgvTskcr369hbdpi2ba4fn4G-14SXyDqamnKPT-0lzFOsPgHDBP9TDUAwm8IE2gFAmPkPqHN1XLyyXeYKs9yohOh7YY28GqiqDRtSqXZyBuXdCFP4pDCRdIrU8K-Q52F9gl~UOoEJ~y8higHNuphU5VLMt9hJkQSxAtjTVOmp4f9Yj4Bx5ofENjiBzzixKRoSvucy0rZXiw4T3PrwJ3sZiFn1j4qD9meKPGCPLbPLfJ1GSzwF7l-zvg__",
-        title: "Market Insights",
-        timing:"5 min read",
-        description: "Central Ohio Real Estate Trends (2023 Report)",
-        button:"Read More"
-      },
-]
-const trends ="https://media-hosting.imagekit.io/9368bd3bc7e24bd4/trend-up-svgrepo-com%201.svg?Expires=1838146886&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ITNU7plf0l7kh0k71Ar4v6GxbixW7RfWmOv7Vwuat4CuLdHzQKk019GdQm5-ZFgirKKGgyuGI-Vr3kuz7xKEm4I9uiZS45CWa1HiMGFC1h0bd3K4gSXRZAS-w3oBotwfSYHWPDkDfqZGtf9isXowVKBBFSZT0VxpliXtT~vTPF3Q7dzM~TZTdF5ZshMX3fVcIiK~DuU~0U7nnOVBQ5tCl-FzYyhGeHvH~Abo69~Hqpc~wmBY5t7PWk7i~i7qm2UqIUmqAIQtD5A6eAH1OvyMIcbJwocaioD036yFcaS1tPRyulzPDCBUBG-1uIhHIjRaZTrj-z6oydz2W4iMcdJdYg__"
-const time="https://media-hosting.imagekit.io/aeb3a762b03a4f71/time-svgrepo-com%201.svg?Expires=1838146895&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=bv53TM9DFvCg3QvkZR2x4Hpwc4vDTG4oc2jjGLGTJR8U7DS2hunwUM~QVtt5XB0yeOmfLLO~JlqWMQA8xR~uu7OCquOarbsKoKBsNvTormwHRfTQxM0RlElO2Ls2SHpL9TZBt5ypO1DeWnxjUGTPorIAHqyJ~nCLWQz~4Z-i44CLeteMDBGNJu5rXIndSo53b~3CCaJ8SFDo7I0~KxvTHAgDK54GmWgs1HK6-Jk2ICGABl4M8WwEco4gM8H6Wf1XAGqtRK~C9cEft5vq6au6LAx3iYt0RxhFK7t~q0JpvT6yEb2bMZNg7kR8xyI3LztEjpssNUwHSmtkrXx3sdogNg__"
 const Category = () => {
      const [selectedArea, setSelectedArea] = useState("all")
      const [showData, setShowData] = useState(blogData)
@@ -244,7 +203,7 @@ const Category = () => {
   <img src={time} className="w-5 h-5 mr-1" alt="trends icon" />
   {item.timing}
 </div>: <div className="absolute flex items-center top-2 right-2 bg-white py-1 px-2 text-black font-semibold">
-  <img src={trends} className="w-5 h-5 mr-1" alt="trends icon" />
+  <img src={trend} className="w-5 h-5 mr-1" alt="trends icon" />
   {item.timing}
 </div>}
 

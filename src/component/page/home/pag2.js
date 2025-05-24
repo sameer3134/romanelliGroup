@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import VideoPopUp from "./videoPopUp";
+import { video_url } from '../../../assets/allImg';
 
 const Pag2 = () => {
     const [videoPopUp, setVideoPopUp] = useState(false);
-    const video_pop_url = "https://media-hosting.imagekit.io//432b84cea88a4d78/050748de5868b1779c152ba72df21c73570958a5.mp4?Expires=1834914333&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=P7qPGfyrFlDCn89VrU~wUpqBjc4FUFJDkg8H2ABgf3ip0qwVZsXw4jqXNi1X2WuH1ao5CGG6Us~gPHmt9ijeUjY~Vv7sTbuhjw~1ql6iInvOdTyo88hRD7~wHt8~YcQH45vcapcKyH4yk7Sk2hpxxvhqa8TQ73P89SNjrgTs8hKBRnCs6rTwTFjCwW18cAPVUNeuUU8r8acEvIhwPHed24t8vRc-de2K~VpBPJynsmiMA4H8xH9qpiCN6Qb3ZjS~ApcxYsUYxJjB2vPwmBYoioBgxc-QN1VsgXo1SzsmKS~JzaR41zctUIMlmCa2aelaNw3KFO8GcJ4taMULzAXMkg__"
+    
     const handleVideoPopUp = () => {
         setVideoPopUp(true)
     }
@@ -153,7 +154,7 @@ const Pag2 = () => {
                             preload="auto"
                             className="w-full h-full object-cover rounded-lg"
                         >
-                            <source src={video_pop_url} type="video/mp4" />
+                            <source src={video_url} type="video/mp4" />
                         </video>
                     </div>
                     {/* Square Button */}
@@ -178,7 +179,7 @@ const Pag2 = () => {
 
                 </div>
             </div>
-            {videoPopUp && <VideoPopUp video_pop_url={video_pop_url} close={() => { setVideoPopUp(false) }} />}
+            {videoPopUp && <VideoPopUp video_pop_url={video_url} close={() => { setVideoPopUp(false) }} />}
         </div>
     )
 }

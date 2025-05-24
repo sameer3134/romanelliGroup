@@ -1,4 +1,5 @@
 import React from "react";
+import {roadMapstep1, roadMapstep2, roadMapstep3, roadMapstep4} from "../../../assets/allImg"
 
 const steps = [
   {
@@ -7,7 +8,7 @@ const steps = [
     description:
       "Prequalify to show you're serious about buying. This step ensures you're ready to act fast when you find 'the one'.",
     button: "Start Prequalification",
-    imgSrc: "https://media-hosting.imagekit.io//de6be70f2e3143c0/undraw_certificate_71gt%201.png?Expires=1836519880&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=JdFa7wVY1j-TYskQf0Pnqcmk~eCp3eFrI8B9Mn~V1hPscEuxAwOclwsMTW0c6iTr6yC7Rws7L0Kjxs5oIydBcp2D6XGpfZIPh8igGr4TgglecuZrcn0HbEkFUfQCvwiwn2A8yF7pn5eKy9MsUP42RXph3zFszurcDZib0dB-xGtl6grrUFN7itEpL9CdxeEIe4oT60uFPGQOrf6rKi1hWAaxStgE4DMUM9hGCZYXEAJfNECu4rZCLSw1AaRjpt~TTG02KIgi7~Uui2hyp3YKp--1pNVCZLa-miqXaF6N3pErpm0AFKpPtxnqjWq8HUpZU6cxblQ35DV9dJAmE4b93w__",
+    imgSrc: roadMapstep1,
   },
   {
     step: "Step 02",
@@ -15,7 +16,7 @@ const steps = [
     description:
       "Complete a quick form to share your goals, then book a consultation to plan your next steps—simple & stress-free.",
     button: "Get Started",
-    imgSrc: "https://media-hosting.imagekit.io//9a453874e27c4e83/undraw_accept-tasks_syrr%201.png?Expires=1836519874&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=m~InqeO2e0UeJHBqUH7~afkgw0WRu2FsvqksGsPOjDsnaWYMQxjyXBXu~sKL8Tdf0Pt-kSt1DdThsvK8mkUSZjvKKAtFKm6APMYkfOulYy-s4iRH9YZfdP5H-ZZeG9NpQLwFToTAV7NwpvmV0Ncr8dMyLnXi-U2s92oZgJUMMYQOKBH0FT6MWE6~RpIkUmdx~nwjxdSNik6JkX79OXSkjR8Rw863CoJrz1tyq3EpVbLrXkhu~tJjnSohCJplv0CLqqyIEhyC~yCNzEVxe4HlAM-e1bf1iYsdnHEiR9YTHiujFGBPDJMBAUD64ibpjwFgv63lDaXWXRi2Lt2CF-iG1w__",
+    imgSrc: roadMapstep2,
   },
   {
     step: "Step 03",
@@ -23,7 +24,7 @@ const steps = [
     description:
       "Start exploring properties that match your goals and lifestyle. Whether resale or new construction, the choice is yours.",
     button: "Start Searching",
-    imgSrc: "https://media-hosting.imagekit.io//1d6722b412b44882/undraw_searching_no1g%201.png?Expires=1836519887&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=xnBiDKjKIsU09r3AkhdVmMPJWKSEp6RRrjdM0X-eHE4Ik6aUxMRPNrQ1VS5rLHUHqzjNk9lnX8Ps5OtmXK3LketXoEcGenYVH98K22AY8qEeLhJCRycD9fVWwwtwgCW-3-yy-zX3O~yMJ5S8sQKSatEfAfN3qG7dkBjweye7~a2kAK-q1I0CR-QV0cpI0gaA79L6gPTDNc-h2qHdfiRArjhaBsXyt6Xqy8hCjJ0OFqcqYfchYk4ikpG3TkjOCDcs2BrnTcRQCoV72vZnVU-PGS9Ik2aRiGR1DCbYmIHiNJv4-zx5SXk21~MRYts3mWRnlUFBb~7gv4qOA1Z78ZTAzQ__",
+    imgSrc: roadMapstep3,
   },
   {
     step: "Step 04",
@@ -31,7 +32,7 @@ const steps = [
     description:
       "Discover our winning strategy—proven methods, expert insights, and a track record of success.",
     button: "How We Win",
-    imgSrc: "https://media-hosting.imagekit.io//f6ecc9b1ae1d4a43/undraw_interview_yz52%201.png?Expires=1836519883&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=VKpNiCbOicMFpuqVKdgmeh7KySQlDwtBEtCZqauO25mAIIoMVPv8UMsTfflpn2XAuvVvTAV9cjxTUzeY5N5US9uqa05NKVWquWNLLa~q9Z355y0qt37xx8xcZs1JHfrYce9lb9a56Vz-OdxRJiRhzl94jS3waObDrnKNKuTaVkr3lZeepkp0upwFo2qQTgxh1148YN3qaNz95ZHMPMv73Gpdh4iMYMnNX4iGWNraKv8BpeUBziEiqfvWFhIopfMZuXGSXlK6k4OVgzLRL2jxM~iz6~tL2xg7H-owJGVxCo7U1MBhrgJom8GSTBmb0mK52joE-n3kDuXmBJwVDKob5Q__",
+    imgSrc: roadMapstep4,
   },
 ];
 
@@ -68,7 +69,7 @@ const RoadMap = () => {
 
             {/* Image Section */}
             <div className="w-full md:w-5/12 p-4 flex justify-center">
-              <div className="w-[229px] h-[300px] bg-gray-300 rounded-lg overflow-hidden">
+              <div className="w-[229px] h-[300px]  rounded-lg overflow-hidden">
                 <img
                   src={step.imgSrc}
                   alt={step.title}

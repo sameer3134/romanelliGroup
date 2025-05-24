@@ -1,30 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { sellsmarter_step1, sellsmarter_step2, sellsmarter_step3, sellsmarter_step4 } from "../../../assets/allImg";
 
 const data = [
   {
     type: "video",
-    src: "https://media-hosting.imagekit.io//d1f5208abae0498c/-fcc1-4915-ac06-634f4cfcab8a.mp4?Expires=1836723664&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1qPWaRiJqzCLrNZp~VXY7p67zllE4bBiQOSoj77lo0vwJ1cY2Wfa69ozUwx-5nd6EvgxfheVmXdEJIjtTnEx8b-vDphZshrVG~af3X3LrPjUIdbBD2W4oFZyud7VH3CUq4r3ULMNNjUFXwglfWaGfWJUehdIdd8FdudTJkP-HKf6LfHTUZuwyQdDQAgBxTFJTo4Lf1CjRdXfq6e1Ut9BTudnXl-LYu4HH9I~IdOV89oRhEBsuK6MrV-Uj-QugSr1w9qUa4ra4cGQUiOqnXG-Wc2jtSSsOyNVTlEJkCjeP2dmrAPjFaKckq31X4vTdXTnjnO9hDbpF0ZCXhb2Zit41w__",
+    src: sellsmarter_step1,
     title: "Video Tutorials",
     description: "How to Stage Your Home for Maximum Impact",
     button:"Watch Now"
   },
     {
       type: "image",
-      src: "https://media-hosting.imagekit.io//cddf7dbc640745d6/screenshot_1742114273684.png?Expires=1836722274&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=zpvM51JpXozJJOFL3RokLVuCli7AdaDNHsrJthcEzSLsl6JMrx2~dlQjihAVpGW2P1eaVLR4UbrDiEYIl3mISXP2o1u9TZyTgvTskcr369hbdpi2ba4fn4G-14SXyDqamnKPT-0lzFOsPgHDBP9TDUAwm8IE2gFAmPkPqHN1XLyyXeYKs9yohOh7YY28GqiqDRtSqXZyBuXdCFP4pDCRdIrU8K-Q52F9gl~UOoEJ~y8higHNuphU5VLMt9hJkQSxAtjTVOmp4f9Yj4Bx5ofENjiBzzixKRoSvucy0rZXiw4T3PrwJ3sZiFn1j4qD9meKPGCPLbPLfJ1GSzwF7l-zvg__",
+      src: sellsmarter_step2,
       title: "Market Insights",
       description: "Central Ohio Real Estate Trends (2023 Report)",
       button:"Read More"
     },
     {
         type: "image",
-        src: "https://media-hosting.imagekit.io//377b369fc3be45e2/image%20(1).png?Expires=1836722277&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=MaK0efTGjHnDsPiu11Pcctvi0WJcWGjpGI3tWXMyJ9AfDYudwzvKQNHcbwp~YbpNO5LUqcyREsMcwGlhKF--upUT5nOVbQCOw~tMjaZT0Arg8dPV~7xMJCLemouZQuEblCutmLoo0GFeWVNhEzpBCf4rQ03I491G7cMU3GZeNAXrdFpmNRggApEKE19LRl92V6cZGyqTpVpznz817JBmHQvetFeynwOea10UkYnHnpgUPm-2u~5W7Kj3r8FUhdLqZjayp1ALdTzQdM5wLwqgm6CSFVvNSGiQ0DOen69Mi-VmAEsPvMPrebPJCdCRwDoTXI51sxsCIAz~BYNR2CzqEg__",
+        src: sellsmarter_step3,
         title: "Seller FAQs",
         description: "Do I Need a Home Inspection Before Selling?",
         button:"Learn More"
       },
       {
         type: "image",
-        src: "https://media-hosting.imagekit.io//f4ec52c700ab4e8a/image%20(2).png?Expires=1836722280&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=i58Otx4XPwpQDXAXvbh64A-DNLHv9bXFlCfHGPPV8sZtEuJhX0zr7kqHb7~I-W9ByQ8WpMugPfba9kZUjWUHZFhdCNKL9eZte2qi2nKhimsILJ47XM0pgNGD3ztVg3in3qrv2IhyPLnUqI3Q8qjJTSSba1H~REjXoBsA~eP5qxp6f9DgypQxtj1Qk8~TyDKnEQ8Ue2Y0u4knaBLFsfzLOfze6okeznDhRQ~2FkDI3mXEZeHhPYGNaIxkXVyzlJHjVAiKO4m7xQsgbvv~sDu0TGVOVKvoKCnrhtQzT10kCdyeDeDATMnpizCXKf~eGWU0xCVqT5zUeys-BAG2EzQ0JA__",
+        src: sellsmarter_step4,
         title: "Guides & Checklists",
         description: "10 Steps to Prepare Your Home for Sale",
         button:"Download PDF"

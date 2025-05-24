@@ -7,10 +7,10 @@ import FirstPageSell from "../component/page/sell/firstPageSell";
 import FirstPageContact from "../component/page/contactUs/firstPageContact";
 import FirstPageProperties from "../component/page/properties/firstPageProperties";
 import FirstPageResource from "../component/page/resources/firstPageResource";
+import { video_url } from "../assets/allImg";
 
 const Page1 = ({ page }) => {
-  const video_url =
-    "https://media-hosting.imagekit.io//1edf924c93774ee2/-58aa-4fa6-a769-b57f59b07b9e%20(1).mp4?Expires=1836286464&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cdhQOF7T2yeqNvP1W22d4agTUsCxzrsei~1nI8~A00-RMcS07gG5pxS0XbllgYS28-iBs5tRxsnjz6TYARH1lL0JV6pcpWyS2B~Zte-NFzmV5gLVGReAJkzM7Uen~DS43AZnVhvYPGCIDmQcj0nDle~R7eT3jPSqvHE1ZVwFU14ngfKaVPH-cOZpOVuE-qdOsWWM5qbKQqXQrHZh4UqZAIvdwQXs1C21Tj3A88FcY4RgKAWHwLdrLtfn4kPj1hKMKoqdJbhT~Oyx5QKa0m8KClWhmpETaBYWrhPKIxMiovZCzmuqrSguZIJG0DwPR5GzXj4I64ZsMHwekeXvY0ywew__";
+  
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(true);

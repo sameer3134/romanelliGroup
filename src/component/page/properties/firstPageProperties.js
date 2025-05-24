@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Filter from './filter';
-import PriceRangeSlider from './priceRange';
 
 const FirstPageProperties = () => {
     const [selectedOption, setSelectedOption] = useState("Buy");

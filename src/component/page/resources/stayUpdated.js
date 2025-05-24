@@ -1,6 +1,6 @@
 import React from 'react'
+import { stay_updated } from '../../../assets/allImg';
 
-const img_updated="https://media-hosting.imagekit.io/abd25bd6877b47fa/Rectangle%20198.png?Expires=1838187620&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=1OOXQQjHAdGBcVQkTwYGd6032tBugwEEozs4bLd~HdC676BP6Xz8VqLeIh5qDy~r35-AXigpjybLXoxsPyV~SnwlrC9RLun8-yGzZrMqeHxyMtWtzWOA2X-jOcCr7gx7TmpAkddSpFesCqoxAoGlG09UHniuLyYHGOy7S-H6IM6u4hiM-2SiIGbQW7SlE60v3OR7o4UfOZwrWdTdbXL2N9QQbo03cn-KmkpxsBujJSQHAZe1w0-emUpd5nNqwRbtn9bz7QET6MSjhdLVW7yhUMbdQmlQb-zoxUeqeJVy3IH~z38iAMXsq476SA4Bu1pGFqrCW2E7R~S2EFq31N~OsA__"
 const StayUpdated = () => {
     return (
       <section className="bg-white text-gray-900 py-12 md:py-16 lg:py-24">
@@ -48,7 +48,7 @@ const StayUpdated = () => {
               <img 
                 alt="Real estate newsletter" 
                 className="w-full h-auto max-h-96 object-cover object-center rounded-lg shadow-lg" 
-                src={img_updated}
+                src={stay_updated}
                 loading="lazy"
               />
             </div>

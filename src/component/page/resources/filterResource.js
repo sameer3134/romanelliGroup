@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { propertyType1, propertyType2, propertyType3 } from "../../../assets/allImg";
 
 const FilterResource = ({ close }) => {
     const handlePriceChange = ({ min, max }) => {
@@ -17,15 +18,15 @@ const FilterResource = ({ close }) => {
 
     }, {
         type: "Blog Posts",
-        Link: "https://media-hosting.imagekit.io/716a1599aca143a7/blog.png?Expires=1838099321&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=cSTPWo1GdgIYtegCcQbZmuXyDdzznWYu-hOoYsvzlZh0IV9Ln-yNCkHuU4wYZXHO~Asf-jm1RilsiJtu6g7nyUSp9Y96ceMS9GdpnttPRFzhCiRLrgUQeoFmgYOhQosSmQ5Rm-0s7AMwyHpLpeDZ~WtssCaav-~at7s2zXEFgmZbJMi47aIHWgVUhLP-8CydHkyWvW-P0cFkkySIqleTzQUnOJD~SjHWAo-IlcIkO9TAQta5IMhofe3utOt3Qc0xulQDjSHK~pXRGjRtEhSupy~iR-JcmHpC1417OGxmHT0zIU7Bi38~Taj17MksNf4c6jn1jowgL5GhJWtc0ll0uQ__"
+        Link: propertyType1
     },
     {
         type: "Media",
-        Link: "https://media-hosting.imagekit.io/4cda34cb9e45419e/media.png?Expires=1838099308&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=wz3lcnCOpNE9W2g0ikzJcAYClEfhTfvyN1Row9jQ6lfQTe0BBNd6~1UVGEvvpVnFOiIdmoATVJu48TPzJherfgITS-iyR8IEvvNKLQcVkW7a~SKNzOo3nje4nh4hwA4AKpseZ4Ezo-z2VIcntCv-BOo8rAEsUTTnOIy4WvOdRqHqkm3fMN~N~SrlsPXyw~ChB4Ev2T1R8vPwSZROyQOBLhYpMl62n27EOSWlUUcPqyTxprH2y6rSM8u4OW4svGpZxcxtPa41AfFsreOw~mxYftLUp5DWqemmYi6ybcwB8xnbEdy2DXQMtZ1VQTSn7pEjaJPNyPC3ZeHWJ~Z~43NXVQ__"
+        Link:propertyType2
     },
     {
         type: "Case Studies",
-        Link: "https://media-hosting.imagekit.io/86c110f58f2b4f85/case.png?Expires=1838099299&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=OZQFCLJg7vMwmprtCbvpWWy2OW2BlMoBiQgHlY78Yxmy4J8T~Xte53EM9ykCp9RTBukk4tfAHR1CNe6kWaiqRQ5Njndl75wq5uN6JwvHdlIp0rvvK1v2s3kC6HyU7Yi6~K0r77vyWIfVIv~Ci-m1BhDzUJg-uK7-CEHh~n0fy~V1uYQNib9E1oSl78LhfLiYkAFJvCoSHgyiDEBepIDnQEmxM0xzNvRKphc4RFJZijc6LMvZi0nKsZrUsD07fZIodU2qM1AI-bQ15s3o5bVFi4UyGA1uY2KAeTAjupl9uetiB4Xs3H9HnXblypWwEYjKOmHuu-Q1vGw-fmYVGeMKHA__"
+        Link: propertyType3
     }
     ]
 

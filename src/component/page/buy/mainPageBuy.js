@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import FeaureListing from "../Default Pages/feaureListing";
-import NumberSpeak from "../Default Pages/numberSpeak";
 import ClientSay from "../Default Pages/clientSay";
 import RoadMap from "./roadMap";
-import ClientSuccess from "../Default Pages/clientSuccess";
 import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
 import Footer from "../Default Pages/footer";
 import Talk from "../Default Pages/talk";
@@ -34,14 +32,6 @@ const MainPageBuy = () => {
          <RoadMap />
       
       </motion.div>
-      {/* <motion.div
-        variants={fadeInUp}
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0"
-      >
-        <NumberSpeak />
-      </motion.div> */}
       <motion.div
         variants={fadeInUp}
         whileInView="visible"
@@ -59,14 +49,6 @@ const MainPageBuy = () => {
       >
            <ClientSay />
       </motion.div>
-      {/* <motion.div
-        variants={fadeInUp}
-        whileInView="visible"
-        viewport={{ once: false, amount: 0.2 }}
-        className="opacity-0 -my-1"
-      > */}
-        {/* <ClientSuccess /> */}
-      {/* </motion.div> */}
       <motion.div
         variants={fadeInUp}
         whileInView="visible"

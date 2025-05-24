@@ -1,5 +1,5 @@
 import React from 'react';
-import group125 from "../../../assets/group125.png";
+import { mainPageBuy_img_url } from '../../../assets/allImg';
 
 const FirstPageBuy = () => {
     return (
@@ -22,7 +22,7 @@ const FirstPageBuy = () => {
 
                 {/* Scrollable Image in Bottom-Right */}
                 <div className="absolute -bottom-2 right-4 sm:right-6 md:right-10 lg:right-24 xl:right-16 w-60 hidden md:block">
-                    <img src={group125} alt="Floating Icon" className="w-full h-auto object-contain" />
+                    <img src={mainPageBuy_img_url} alt="Floating Icon" className="w-full h-auto object-contain" />
                 </div>
             </div>
         </div>

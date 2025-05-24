@@ -1,11 +1,8 @@
 import React from 'react';
+import { faces_url1, faces_url2 } from '../../../assets/allImg';
 
 const Faces = () => {
-  const image1_url =
-    'https://media-hosting.imagekit.io//7e9679f120bb4dcc/image%20(4).png?Expires=1836772144&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=j1Pepq4bFiKjG6hJ40R844ODW7EpSOxQ8XdbTYR-FHuEvBPlR~6DqNj4BR0RX7Sztlx1lRURAFMzwBYpgj8zKg2EJJCq00Hfoj5~nDrqReNcAd7yiuTyg~1SYT21C7IaeHE6MKQ5~lzP9o7L3J0F~uEPXQ5vZYyrbZyuTcX10Qykop8jfAxNw3E4Wmfk6J95oNBYMRGVJ3zWr7wSgMsHB1yNqgAX9AvId9IXa3cOfaRTawvRa9tAbY~djTDimu8ldZnssEOdzcbo3pbRzvHeD51E48XOL9SOnwPguZgh6DR1FlAV8CjiGjoT5okhc70Pn~cXIHeVUo8jZp~OYZja7A__';
-  const image2_url =
-    'https://media-hosting.imagekit.io//ed7776bcc5d447ff/screenshot_1740236218214.png?Expires=1834844219&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DVCdW4C6t97Jaqlw1y6Y~Tf8hoX61JuAek2zpjHjlBNewXF79JF1UNtmYsrPxpSaF8d23rQisWjJiv2N3AdNcmfd2ISLW7M~JauaW1hIM9cNROcxTW8iHH7spT6ON07BBvEXQppAMecNoPpd-0tsF0PsInTIsxfmddUDox74H8DOkQAnuctgXyaLwqTDCrB-W3fZMSHOZU8SHyjFgBQOtXzxx5PnIRXlMOIQ02Id94nH6cOncBlpS7w0A41F7lH9hVQsSGITa6LqMsMS7qDUWC23SBzVRd~yFRt-o~riBnGh7Sh3enIht5A0gbYQ5oGcmLCMzEpmp7ny0k0UdgytAQ__';
-
+  
   return (
     <>
       {/* Heading */}
@@ -33,7 +30,7 @@ const Faces = () => {
     <img
       alt="content"
       className="object-cover object-center h-auto w-full"
-      src={image1_url}
+      src={faces_url2}
     />
     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/4 to-transparent"></div>
     <div className="absolute bottom-2 left-0 w-full text-white text-left px-2 pl-4">
@@ -55,7 +52,7 @@ const Faces = () => {
     <img
       alt="content"
       className="object-cover object-center h-auto w-full"
-      src={image2_url}
+      src={faces_url1}
     />
     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/4 to-transparent"></div>
     <div className="absolute bottom-2 left-0 w-full text-white text-left px-2 pl-4">

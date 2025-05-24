@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react'
+import { families_url1, families_url2, families_url3, families_url4 } from '../../../assets/allImg';
 
 
 const images = [
   {
-    url: "https://media-hosting.imagekit.io//21b477256c034cc5/image%20(1).png?Expires=1834844633&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=VLcvYAsr3RjVFh9iNFYUfkWUtlSGpfjI1K4Z9tl7YMaRF0kU-DM~ukwIn64zbe6h27eSGmR2ma0lHCd6aU01uyXDGLZQLJriwOucH2uQBkLUIyPY3-KiLonhuJc6lwfvGQEjDXlrLDCLlnU946FjdC7sjb-f09n6ePC-ThkPvIUOVnype~GBVnYG0H6o6j8EFgCaU~hxUf63YXRFr~70F9nws2Xz21c6W~bAj4AU9H91fCaRqc~HdU81-L4AvKcgDQxG8QtZKu2o7dYF1JqiJXCcacvYWzmuT3ZTYtCY~~WnfuF42UBFr9L7wjPo4A7lRWxecSZ0M6CJlRo7ammf1w__",
+    url: families_url1,
     title: "Antonio and Cristina made our home-buying journey seamless! Their expertise and dedication helped us find the perfect home for our family.",
     name: "The Johnson Family",
   },
   {
-    url:   "https://media-hosting.imagekit.io//c5a623ff783f4c4a/image%20(2).png?Expires=1834845250&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=GnSHMf3JUr4fN7Ipof9wo5Okj4lZIfwHR5yP3dM1Ftr4GtW4beLcdYKhgwOcjef-ztuC4nNnUlFr9qd5JvZDiNIHW3PGwJYeIPTFHCfyK43wrc8ylwN5Q1uqCNExSS6dFIfV-SMQgohyWKzyfamWHQ3iMlOM5q4Tq1B6dnqPN1prVjo-4jVgftC2aSGkC2mCcFQfJDYOLU-HMogH3lwpO70I9iHiWBEfGjUyCZz5qljLWIAHkBVmn8rqDaNu8lTgFnA-awRLe6AbVtmuNpy20slADMCFqwWBRTY87y1ms1-iPeJtBGZGH61MCfK3eoIhHaX~igXsNIFn8VQqJfWy9w__",
+    url:   families_url2,
     title: "Selling our home felt overwhelming, but The Romanelli Group guided us every step of the way. We couldn’t have asked for better realtors!",
     name: "The Martinez Family",
   },
   {
-    url: "https://media-hosting.imagekit.io//7be58930fe5b4bf2/image%20(3).png?Expires=1834914021&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=BxR~E04IYPUzzpUQ1RICcaAe2YOQWNS~vgafpaTF~i3kSc81qni1ENkQOAKaesP0AM4jWNYpHgiA3t41h4GoBV0tSZnzVMDz1wwctDG0olnLG5lQUqc41LD4-blug8VMFi7Brk8V4greqwF6SGmps03X5WENFr1YTEKfwPMIgM~1NjhUjNVMyv50kH21YX2dUucc5dzKKvbkCFiVppp-gOk9xwLQZtA1yuj-Hect9KhytEumQq6q0to72-jCQCI6vJRl~LkkEMjXrO~HzmV8sLvQTDRM-RtaYrJY-1QpHt0u4hUjZ3uEGIn1mChuKGFjX~R9z1R7gjMsAXHC0y6HUQ__",
+    url: families_url3,
     title: "From our first meeting to closing day, Antonio and Cristina were incredible. They truly care about their clients and go above and beyond!",
     name: "The Patel Family",
   },
   {
-    url: "https://media-hosting.imagekit.io//8d78116cd7894265/image%20(3).png?Expires=1836735975&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=pB5zQAp4uoxDtAozpT0g7wGqYUBLlqjNHRULcMFoexmrXPssOYBSYKUQS24N6UQNqRdP~04TB1TKIQpOaP6Q4H6nKwNLpf4BX6EY0HjoJjsloubUyVrW6GO9pwpzzI-vtEiPu1Lv3UwuWbb5ZSqoWMivKvTZsUTu2irbPikhEwQi4P4QvzZYDPseqS4EcDIE9M7nmzR2rLlODDXqmAt35vAf-NGgfSeM52euaAVicTBEZhaFdsPL61aAmoK4QJBkLRV3j1AiNmXVaf0OUdXz6DggnbVsw-yCmG3H8FIlZ-xVjpO0-rXcG8pnFgoruKvAXJ9oqZC94RhE2Jt0Gx9hFg__",
+    url: families_url4,
     title: "Finding our forever home was a dream come true, thanks to The Romanelli Group. Highly recommend their team!",
     name: "The Thompson Family",
   },
