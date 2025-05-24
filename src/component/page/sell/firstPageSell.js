@@ -155,7 +155,7 @@ const FirstPageSell = () => {
                                             {/* Centered Image */}
                                             <img
                                                 className="w-32 md:w-40 lg:w-48 mx-auto mb-4"
-                                                src="https://media-hosting.imagekit.io//b26811412c2c4bad/Group%20223.png?Expires=1836563036&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Cvmexegcmh2phEMptYbsrnGFcMiVIBGopo7qOULWMMFptRQOmwn0nPBViD2v5zlSR5B9p0OTprA98InsmuyirfektrvjP01XzUm~0hSqcNnW~sg9BMsT3Bez3mdOL0UKzAnwCD4hvtl5SUXHCryb2Jlka~nz5tRqdfkuFv0JJ9SKuToyZAX-0jTebJRNLAowA0y8LyypQZELz3kkIqJOriJjeokEeInJrxyma-Wf3ChRTKtWv~eOi20v1AmpjGo5o3ThUYT3jxNcYlrE7~0ewzx9pFdjUu55GV5U6cQZOWDYtXFq3qff1QF-BTq-ReDdYvkwX7EUFwqxMi37xokhrA__"
+                                                src="https://ik.imagekit.io/ic938owib/undraw_interview_yz52%201.svg?updatedAt=1748097265212"
                                                 alt="Thank You"
                                             />
 
