@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import DoubleRangeSlider from "./priceRange";
 import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../assets/allImg";
 
-const Filter = ({ close , onSave }) => {
+const FilterPage = ({ close , onSave }) => {
     const handlePriceChange = ({ min, max }) => {
         setPriceRange({ min, max }); // ✅ store in state
     };
+    console.log("hello")
      const [priceRange, setPriceRange] = useState({ min: 0, max: 50000 });
     const [selectedBedroom, setSelectedBedroom] = useState(null);
     const [selectedBathroom, setSelectedBathroom] = useState(null);
@@ -191,4 +192,4 @@ const Filter = ({ close , onSave }) => {
     );
 };
 
-export default Filter;
+export default FilterPage;

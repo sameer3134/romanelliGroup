@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react'
 import DoubleRangeSlider from '../priceRange'
 import { ChevronDown, Search, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
+import { useNavigate } from 'react-router-dom';
+import FilterPage from '../filter';
 
 const Header = ({ filter, onResults }) => {
+    const navigate=useNavigate()
+    const [filterOpen, setFilterOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState('');
   const [localFilters, setLocalFilters] = useState({
     searchCity: filter?.searchCity || '',
@@ -104,11 +108,26 @@ const Header = ({ filter, onResults }) => {
       console.error('Search failed:', error);
     }
   };
+  
+ const handleFilterSave = async (values) => {
+    console.log("Filters from child:", values);
+    console.log("buy or rent", values.selectedOption)
+    setFilterOpen(false);
+    const data = await checkProperty(values); // ✅ reuse
+    console.log(data)
+    if (data) {
+      console.log("filter",values)
+      navigate(`/details/properties`, { state: { data, filters: values } });
+    } else {
+      console.log("⚠️ No properties found");
+    }
+  };
 
   return (
     <div className="bg-white border-b border-gray-200">
+        
       {/* Search Header */}
-      <div className="flex items-center px-6 py-4">
+      <div className="flex items-center py-4">
         {/* Search Section */}
         <div className="flex-1 flex space-x-2 w-full">
           {/* Location Search */}
@@ -132,9 +151,9 @@ const Header = ({ filter, onResults }) => {
           </div>
 
           {/* Filters Row */}
-          <div className="flex items-center ml-4 space-x-2">
+          <div className="flex items-center ml-4 space-x-2 ">
             {/* Buy/Rent Dropdown */}
-            <div className="relative">
+            <div className="relative hidden lg:flex">
               <button
                 onClick={() => toggleDropdown('sale')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -163,7 +182,7 @@ const Header = ({ filter, onResults }) => {
             </div>
 
             {/* Price Dropdown */}
-            <div className="relative">
+            <div className="relative hidden lg:flex ">
               <button
                 onClick={() => toggleDropdown('price')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -183,7 +202,7 @@ const Header = ({ filter, onResults }) => {
             </div>
 
             {/* Property Type Dropdown */}
-            <div className="relative">
+            <div className="relative hidden lg:flex ">
               <button
                 onClick={() => toggleDropdown('type')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -212,8 +231,8 @@ const Header = ({ filter, onResults }) => {
 
             {/* Filter Button */}
             <button
-              onClick={() => toggleDropdown('filter')}
-              className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
+              onClick={() => { setFilterOpen(true) }}
+              className="border border-gray-300  px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
             >
               <Filter size={16} />
               <span className="text-sm">Filter</span>
@@ -222,7 +241,7 @@ const Header = ({ filter, onResults }) => {
         </div>
 
         {/* Save Search Button */}
-        <div className="ml-6">
+        <div className="ml-6 hidden lg:flex ">
           <button 
             className="bg-black hover:bg-gray-800 text-white px-6 py-3 text-sm font-medium" 
             onClick={filteredSearch}
@@ -254,6 +273,7 @@ const Header = ({ filter, onResults }) => {
           box-shadow: 0 0 0 1px #ccc;
         }
       `}</style>
+      {filterOpen && <FilterPage close={() => { setFilterOpen(false) }} onSave={handleFilterSave} />}
     </div>
   );
 };

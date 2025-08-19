@@ -25,59 +25,46 @@ const RelatedItem = ({listings,allData,id}) => {
 
 
             </div>
-            <div className=" bg-white mb-4 w-full max-w-3xl">
+            <div className="bg-white mb-4 w-full max-w-3xl">
                 {listings.filter(single=> single.id !== id)?.map((item)=>(
-                    <div className='flex justify-between p-2 bg-gray-200' onClick={()=> handleGetitem(item.id)}>
-                      {/* Image */}
-      <img
-        src={item.image}
-        alt={item.heading}
-        className=" w-1/4 h-28 m-2 object-cover  flex-shrink-0"
-      />
-
-      {/* Content */}
-      <div className="flex w-1/2 flex-col flex-grow pl-4">
-        {/* Heading & Price */}
-        <div className="flex justify-between items-start">
-          <div>
-            <h2 className="text-lg font-semibold text-gray-900">{item.heading}</h2>
-            <p className="text-sm text-gray-500">{item.location}</p>
-          </div>
-   
-        </div>
-
-        {/* Description */}
-        <p className="text-sm text-gray-600 mt-2 line-clamp-2">
-          {item.description}
-        </p>
-
-        {/* Details */}
-
-      </div>
-      <div className='w-1/5 pl-2'>
-             <p className="text-red-700 font-bold text-lg">
-            $<span className='text-2xl'>{item.amount}</span>
-          </p>
-                  <div className=" text-gray-700 mt-3  text-sm">
-          <div className="flex  space-x-1">
-            <img src={bed} alt='bed' className='w-4 h-4'/>
-           <span>{item.bedroom} Bed</span>
-          </div>
-          <hr className='mb-2 bg-gray-600'/>
-          <div className="flex  space-x-1">
-          <img src={bathroom} alt='bathroom' className='w-4 h-4'/>
-          <span>{item.bathroom} Bath</span>
-          </div>
-          <hr className='mb-2 bg-gray-600'/>
-          <div className="flex  space-x-1">
-       <img src={square} alt='square' className='w-4 h-4'/>
-        <span>{item.area}</span>{" "} sq ft
-          </div>
-          <hr className='mb-2 bg-gray-600'/>
-        </div>
-          </div>
-
-                </div>))}
+                         <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col sm:flex-row justify-between p-2 bg-gray-200 mb-4 rounded-lg'>
+                           {/* Image */}
+                           <div className="w-48 h-48 sm:w-32 sm:h-32 m-2 overflow-hidden flex-shrink-0">
+                             <img src={item.image} alt={item.heading} className="w-full h-full object-cover" />
+                           </div>
+             
+                           {/* Content */}
+                           <div className="flex flex-col text-left w-full sm:w-1/2 flex-grow px-2 sm:pl-4">
+                             <h2 className="text-xl font-semibold text-gray-900 line-clamp-1">{item.heading}</h2>
+                             <p className="text-sm text-gray-800 font-medium line-clamp-1">{item.location}</p>
+                             <p className="text-sm text-gray-900 mt-2 line-clamp-2">{item.description}</p>
+                           </div>
+             
+                           {/* Price & Details */}
+                           <div className='w-full sm:w-1/5 text-left px-2 mt-2 sm:mt-0'>
+                             <p className="text-red-700 font-bold text-lg">
+                               $<span className='ld:text-2xl text-sm'>{item.amount.toLocaleString()}</span>
+                             </p>
+                             <div className="text-gray-700 mt-3 text-sm">
+                               <div className="flex items-center space-x-1">
+                                 <img src={bed} alt='bed' className='w-4 h-4' />
+                                 <span>{item.bedroom} Bed</span>
+                               </div>
+                               <hr className='my-2 py-[0.3px] bg-gray-400' />
+                               <div className="flex items-center space-x-1">
+                                 <img src={bathroom} alt='bathroom' className='w-4 h-4' />
+                                 <span>{item.bathroom} Bath</span>
+                               </div>
+                               <hr className='my-2 py-[0.3px] bg-gray-400' />
+                               <div className="flex items-center space-x-1">
+                                 <img src={square} alt='square' className='w-4 h-4' />
+                                 <span>{item.area.toLocaleString()} sq ft</span>
+                               </div>
+                               <hr className='my-2 py-[0.3px] bg-gray-400' />
+                             </div>
+                           </div>
+                         </div>
+                        ))}
 </div>
     </div>
     )

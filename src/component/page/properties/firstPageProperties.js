@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Filter from './filter';
+import FilterPage from './filter';
 import { useNavigate } from 'react-router-dom';
 import { usePropertySearch } from './api/getCheckProperty';
 
@@ -119,7 +119,7 @@ const FirstPageProperties = () => {
       </div>
 
 
-      {filterOpen && < Filter close={() => { setFilterOpen(false) }} onSave={handleFilterSave} />}
+      {filterOpen && < FilterPage close={() => { setFilterOpen(false) }} onSave={handleFilterSave} />}
     </div>
 
   )

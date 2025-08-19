@@ -44,12 +44,12 @@ const DetailPage = () => {
   }
 
   return (
-    <div className='mt-16 px-0 lg:px-24'>
+    <div className='mt-8 px-0 lg:px-24'>
       <Header filter={filters} onResults={handleResults} />
 
       <div className='flex flex-col lg:flex-row'>
         {/* Property List Section */}
-        <div className="bg-white mb-4 w-full lg:w-2/3 px-2 order-2 lg:order-1">
+        <div className="bg-white mb-4 w-full lg:w-2/3 px-2 order-1 lg:order-1">
           <h1 className='text-2xl text-gray-900 font-dmsans text-left my-2'>Property for sale</h1>
 
           <div className='flex flex-col sm:flex-row justify-between text-md text-gray-900 font-dmsans text-left my-2'>
@@ -106,7 +106,7 @@ const DetailPage = () => {
         </div>
 
         {/* Map Section */}
-        <div className='w-full lg:w-1/3 px-2 my-2 order-1 lg:order-2 mb-4 lg:mb-0'>
+        <div className='w-full lg:w-1/3 px-2 my-2 order-2 lg:order-2 mb-4 lg:mb-0'>
           <div className='sticky top-20 h-96 lg:h-[calc(100vh-5rem)]'>
             <Map alldata={alldata} />
           </div>
