@@ -32,6 +32,7 @@ const Navbar = () => {
     }
   }, [location]);
 
+
   
   return (
     <>
@@ -128,7 +129,9 @@ const Navbar = () => {
 
       {/* Page Content */}
       <div className="pt-16">
-  <Page1 page={activeLink} />
+  {!location.pathname.startsWith("/properties/") && !location.pathname.startsWith("/details/properties") && (
+    <Page1 page={activeLink} />
+  )}
 </div>
     </>
   );

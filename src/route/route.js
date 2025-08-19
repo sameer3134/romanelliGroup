@@ -11,6 +11,8 @@ import MainPageContact from "../component/page/contactUs/mainPageContact";
 import MainPageProperties from "../component/page/properties/mainPageProperties";
 import ScrollToTop from "../component/scrollTop/scrollToTop";
 import MainPageResource from "../component/page/resources/mainPageResource";
+import DetailSingleItem from "../component/page/properties/detailSingleItem";
+import DetailPage from "../component/page/properties/detailPropertyPage/detailPage";
 
 
 const AccessComponent = () => {
@@ -18,21 +20,23 @@ const AccessComponent = () => {
   return (
     <>
       <Router>
-        <Navbar/>
-        <ScrollToTop/>
+        <Navbar />
+        <ScrollToTop />
         <Routes>
           {/* Public Route */}
           <Route path="/" element={<PublicRoute />}>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/buy" element={<MainPageBuy />} />
-          <Route path="/sell" element={<Mainsell />} />
-          <Route path="/contactus" element={<MainPageContact />} />
-          <Route path="/properties" element={<MainPageProperties />} />
-          <Route path="/resources" element={<MainPageResource />} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/buy" element={<MainPageBuy />} />
+            <Route path="/sell" element={<Mainsell />} />
+            <Route path="/contactus" element={<MainPageContact />} />
+            <Route path="/properties" element={<MainPageProperties />} />
+            <Route path="/resources" element={<MainPageResource />} />
+            <Route path="/properties/:id" element={<DetailSingleItem />} />
+            <Route path="/details/properties" element={<DetailPage />} />
           </Route>
           {/* Private Route */}
           <Route path="/" element={<PrivateRoute />}>
-      
+
           </Route>
         </Routes>
       </Router>

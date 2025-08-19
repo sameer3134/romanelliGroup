@@ -92,3 +92,42 @@ const Connected = () => {
 };
 
 export default Connected;
+
+//feature listing data
+// const imagesData = [
+//     {
+//         image: "https://ik.imagekit.io/ic938owib/0041de26f53f09af894faf5811e9348ae7d2f6d5.png?updatedAt=1748094166923",
+//         amount: "$67500",
+//         heading: "Stunning 4-Bedroom Home in Worthington",
+//         detail: "4 Bed | 2 Bath | 2,500 sqft",
+//         description: "This property is hot! Contact us today for a private showing.",
+//     },
+//     {
+//         image: "https://ik.imagekit.io/ic938owib/5530e4a90777dee3ab2e9957940d865701839bf8.png?updatedAt=1748094168921",
+//         amount: "$67500",
+//         heading: "Stunning 4-Bedroom Home in Worthington",
+//         detail: "4 Bed | 2 Bath | 2,500 sqft",
+//         description: "This property is hot! Contact us today for a private showing.",
+//     },
+//     {
+//         image: "https://ik.imagekit.io/ic938owib/0041de26f53f09af894faf5811e9348ae7d2f6d5.png?updatedAt=1748094166923",
+//         amount: "$67500",
+//         heading: "Stunning 4-Bedroom Home in Worthington",
+//         detail: "4 Bed | 2 Bath | 2,500 sqft",
+//         description: "This property is hot! Contact us today for a private showing.",
+//     },
+//     {
+//         image: "https://ik.imagekit.io/ic938owib/29fdd38b5e8053540c1a9e519c8bb207f1093ea5.png?updatedAt=1748094169141",
+//         amount: "$67500",
+//         heading: "Stunning 4-Bedroom Home in Worthington",
+//         detail: "4 Bed | 2 Bath | 2,500 sqft",
+//         description: "This property is hot! Contact us today for a private showing.",
+//     },
+//     {
+//         image: "https://ik.imagekit.io/ic938owib/29fdd38b5e8053540c1a9e519c8bb207f1093ea5.png?updatedAt=1748094169141",
+//         amount: "$67500",
+//         heading: "Stunning 4-Bedroom Home in Worthington",
+//         detail: "4 Bed | 2 Bath | 2,500 sqft",
+//         description: "This property is hot! Contact us today for a private showing.",
+//     }
+// ];

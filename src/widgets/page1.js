@@ -16,7 +16,7 @@ const Page1 = ({ page }) => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   let interval;
-  
+  console.log("hello")
 // Unified interaction handler
 const handleUserInteraction = () => {
   if (videoRef.current && isMuted) {

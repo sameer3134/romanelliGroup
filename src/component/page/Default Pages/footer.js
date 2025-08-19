@@ -19,7 +19,7 @@ const Footer = () => {
     ];
     return (
         <>
-        <header class={`text-gray-600 body-font ${location?.pathname == '/resources' ? "bg-white": "bg-backgroundColor"}  `}>
+        <header class={`text-gray-600 body-font ${location?.pathname == '/resources' || location?.pathname.startsWith('/properties/') || location?.pathname.startsWith('/details/') ? "bg-white": "bg-backgroundColor"}  `}>
             <div class="container mx-auto flex  flex-wrap pt-5 flex-col md:flex-row items-center px-0 lg:px-24">
                 <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
                     {socialLinks.map((link, index) => (

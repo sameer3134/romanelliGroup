@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import DoubleRangeSlider from "./priceRange";
 import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../assets/allImg";
 
-const Filter = ({ close }) => {
+const Filter = ({ close , onSave }) => {
     const handlePriceChange = ({ min, max }) => {
-        console.log(`Min price: $${min}, Max price: $${max}`);
+        setPriceRange({ min, max }); // ✅ store in state
     };
-    const [selectedSize, setSelectedSize] = useState(null);
+     const [priceRange, setPriceRange] = useState({ min: 0, max: 50000 });
     const [selectedBedroom, setSelectedBedroom] = useState(null);
     const [selectedBathroom, setSelectedBathroom] = useState(null);
     const [selectedProperty, setSelectedProperty] = useState(null);
@@ -48,11 +48,29 @@ const Filter = ({ close }) => {
 ]
 
     const resetFilters = () => {
-        setSelectedSize(null);
         setSelectedBedroom(null);
         setSelectedBathroom(null);
         setSelectedProperty(null);
+        setPriceRange({ min: 0, max: 50000 });
+        close()
     };
+    const saveSearch = () => {
+    const filters = {
+      min: priceRange.min,
+      max: priceRange.max,
+      bedrooms: selectedBedroom,
+      bathrooms: selectedBathroom,
+      propertyType: selectedProperty,
+    };
+    console.log(filters);
+
+    // send to parent
+    if (onSave) {
+      onSave(filters);
+    }
+  };
+
+    
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -76,7 +94,7 @@ const Filter = ({ close }) => {
                     {/* Price Range */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Price Range</h2>
-                        <DoubleRangeSlider min={0} max={1000} onChange={handlePriceChange} />
+                        <DoubleRangeSlider min={0} max={50000} onChange={handlePriceChange} />
                     </div>
                     
                     <hr className="my-4 border-gray-200" />
@@ -162,6 +180,7 @@ const Filter = ({ close }) => {
                     </button>
                     <button 
                         type="button" 
+                        onClick={saveSearch}
                         className="py-2 px-4 bg-black text-white rounded"
                     >
                         Save Search

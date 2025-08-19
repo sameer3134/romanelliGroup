@@ -54,3 +54,14 @@ export const connect_url1="https://ik.imagekit.io/ic938owib/maps-svgrepo-com%201
 export const connect_url2="https://ik.imagekit.io/ic938owib/call-chat-svgrepo-com%201.svg?updatedAt=1748096590357"
 export const connect_url3="https://ik.imagekit.io/ic938owib/business-hours-svgrepo-com%201.svg?updatedAt=1748096590353"
 export const connect_url4="https://ik.imagekit.io/ic938owib/find-svgrepo-com%201.svg?updatedAt=1748096590504"
+
+export const bed="https://ik.imagekit.io/ic938owib/bed-svgrepo-com%201.png?updatedAt=1755182323850"
+export const bathroom="https://ik.imagekit.io/ic938owib/bathroom-svgrepo-com%201.png?updatedAt=1755182323930";
+export const square="https://ik.imagekit.io/ic938owib/square-pt-svgrepo-com%201.png?updatedAt=1755182323813";
+export const propType="https://ik.imagekit.io/ic938owib/type.png?updatedAt=1755182323925";
+export const size="https://ik.imagekit.io/ic938owib/size.png?updatedAt=1755182323953";
+export const year="https://ik.imagekit.io/ic938owib/year.png?updatedAt=1755182323927";
+export const globe="https://ik.imagekit.io/ic938owib/globe.png?updatedAt=1755182323809"
+export const hvac="https://ik.imagekit.io/ic938owib/hvac.png?updatedAt=1755182323679"
+export const park="https://ik.imagekit.io/ic938owib/park.png?updatedAt=1755182323683"
+export const hoa="https://ik.imagekit.io/ic938owib/hoa.png?updatedAt=1755182323920"

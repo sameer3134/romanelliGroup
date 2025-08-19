@@ -3,12 +3,11 @@ const apiServices = {
   getBaseUrl(apiType) {
     switch (apiType) {
       case "authentication":
-        return process.env.REACT_APP_REGISTRATION_BASE_URL;
+        return process.env.REACT_APP_FEATURE_LISTINGS;
       default:
         return "";
     }
   },
-
   async request(
     apiType,
     method,

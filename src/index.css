@@ -21,3 +21,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  image-rendering: crisp-edges; /* makes tiles sharper */
+}

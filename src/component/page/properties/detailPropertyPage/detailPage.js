@@ -1,0 +1,123 @@
+import React, { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom';
+import { bathroom, bed, square } from '../../../../assets/allImg';
+import Map from './map';
+import Footer from '../../Default Pages/footer';
+import Header from './header';
+import useFilteredProperties from './hook/useFilterProperties';
+import { usePropertySearch } from '../api/getCheckProperty';
+
+const DetailPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { data, filters: initialFilters } = location.state || {}; // ✅ default safe
+  const [filters, setFilters] = useState(initialFilters || {});
+
+  // ✅ Call hook at top-level (safe)
+  const alldata = useFilteredProperties(data, filters);
+   const { checkProperty, loading, error } = usePropertySearch(); // ✅ hook
+  const handleGetitem = (id) => {
+    const listings = alldata;
+    const allData = data?.value;
+    navigate(`/properties/${id}`, { state: { id, listings, allData } });
+  };
+    console.log("final",alldata)
+
+  // ✅ Callback passed to Header
+  const handleResults = async (newFilters) => {
+    setFilters(newFilters); // just update filters
+    const data = await checkProperty(newFilters); // ✅ reuse
+    console.log(data)
+    if (data) {
+      console.log("filter",newFilters)
+      navigate(`/details/properties`, { state: { data, filters: newFilters } });
+
+      // i want usefiltered properties runs here  
+    } else {
+      console.log("⚠️ No properties found");
+    }
+  };
+
+  if (!data) {
+    return <p>No property found</p>;
+  }
+
+  return (
+    <div className='mt-16 px-0 lg:px-24'>
+      <Header filter={filters} onResults={handleResults} />
+
+      <div className='flex flex-col lg:flex-row'>
+        {/* Property List Section */}
+        <div className="bg-white mb-4 w-full lg:w-2/3 px-2 order-2 lg:order-1">
+          <h1 className='text-2xl text-gray-900 font-dmsans text-left my-2'>Property for sale</h1>
+
+          <div className='flex flex-col sm:flex-row justify-between text-md text-gray-900 font-dmsans text-left my-2'>
+            <div className='mb-2 sm:mb-0'>{alldata.length} results</div>
+            <div className='px-3 py-1 text-sm'>
+              <select className='bg-transparent border-none'>
+                <option>Sort by</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+              </select>
+            </div>
+          </div>
+
+          {alldata?.map((item) => (
+            <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col sm:flex-row justify-between p-2 bg-gray-200 mb-4 rounded-lg'>
+              {/* Image */}
+              <div className="w-48 h-48 sm:w-32 sm:h-32 m-2 overflow-hidden flex-shrink-0">
+                <img src={item.image} alt={item.heading} className="w-full h-full object-cover" />
+              </div>
+
+              {/* Content */}
+              <div className="flex flex-col text-left w-full sm:w-1/2 flex-grow px-2 sm:pl-4">
+                <h2 className="text-xl font-semibold text-gray-900 line-clamp-1">{item.heading}</h2>
+                <p className="text-sm text-gray-800 font-medium line-clamp-1">{item.location}</p>
+                <p className="text-sm text-gray-900 mt-2 line-clamp-2">{item.description}</p>
+              </div>
+
+              {/* Price & Details */}
+              <div className='w-full sm:w-1/5 text-left px-2 mt-2 sm:mt-0'>
+                <p className="text-red-700 font-bold text-lg">
+                  $<span className='text-2xl'>{item.amount.toLocaleString()}</span>
+                </p>
+                <div className="text-gray-700 mt-3 text-sm">
+                  <div className="flex items-center space-x-1">
+                    <img src={bed} alt='bed' className='w-4 h-4' />
+                    <span>{item.bedroom} Bed</span>
+                  </div>
+                  <hr className='my-2 py-[0.3px] bg-gray-400' />
+                  <div className="flex items-center space-x-1">
+                    <img src={bathroom} alt='bathroom' className='w-4 h-4' />
+                    <span>{item.bathroom} Bath</span>
+                  </div>
+                  <hr className='my-2 py-[0.3px] bg-gray-400' />
+                  <div className="flex items-center space-x-1">
+                    <img src={square} alt='square' className='w-4 h-4' />
+                    <span>{item.area.toLocaleString()} sq ft</span>
+                  </div>
+                  <hr className='my-2 py-[0.3px] bg-gray-400' />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Map Section */}
+        <div className='w-full lg:w-1/3 px-2 my-2 order-1 lg:order-2 mb-4 lg:mb-0'>
+          <div className='sticky top-20 h-96 lg:h-[calc(100vh-5rem)]'>
+            <Map alldata={alldata} />
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div className='relative z-[2]'>
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default DetailPage;
