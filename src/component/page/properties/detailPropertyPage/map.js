@@ -195,7 +195,7 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
 
   if (!alldata || alldata.length === 0) {
     return (
-      <div className="bg-gray-100 h-full relative overflow-hidden rounded-lg">
+      <div className="bg-gray-100 h-full relative overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center text-gray-500">
           <div className="text-center">
             <div className="w-16 h-16 bg-gray-300 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl">
@@ -215,7 +215,7 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
 
 
       {/* Map Container */}
-      <div className="bg-white h-screen overflow-hidden border border-gray-200 rounded-lg">
+      <div className="bg-white h-screen overflow-hidden border border-gray-200">
         <div 
           ref={mapRef} 
           className="h-96 w-full"

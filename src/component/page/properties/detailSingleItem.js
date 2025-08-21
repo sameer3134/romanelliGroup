@@ -33,6 +33,7 @@ const DetailSingleItem = () => {
   ];
 
   return (
+    <div className=''>
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
       {/* Carousel Section */}
       <div className="mb-6 md:mb-8">
@@ -59,7 +60,7 @@ const DetailSingleItem = () => {
                 <div className="text-base sm:text-lg text-gray-900 mb-2">
                   {unique.UnparsedAddress || `${unique.StreetNumber} ${unique.StreetName}, ${unique.City}, ${unique.StateOrProvince} ${unique.PostalCode}`}
                 </div>
-                <div className="text-sm text-gray-500 mb-4">
+                <div className="text-sm text-gray-900 mb-4">
                   Estimation payment provided by {unique.ListOfficeName || 'Keller Williams Realty Inc.'} is ${Math.round((unique.ListPrice || 0) * 0.005)}/mo
                 </div>
                 <hr className="my-4"/>
@@ -72,8 +73,8 @@ const DetailSingleItem = () => {
                 
                 {/* Property Details */}
                 <div className="py-4 md:py-6">
-                  <h2 className="text-xl font-bold text-gray-900 mb-3 md:mb-4">Property Details</h2>
-                  <div className="grid grid-cols-1 gap-3 md:gap-4 bg-gray-100 md:bg-gray-200 px-3 md:px-4 py-3 md:py-4 rounded-lg">
+                  <h2 className="text-xl font-semibold text-gray-900 mb-3 md:mb-4">Property Details</h2>
+                  <div className="grid grid-cols-1 gap-3 md:gap-4 bg-gray-100 md:bg-gray-200 px-3 md:px-4 py-3 md:py-4 ">
                     {propertyDetails?.map((detail, index) => (
                       <div key={index} className="flex justify-between items-center py-1 border-b border-gray-300 last:border-b-0">
                         <div className="flex items-center gap-2">
@@ -92,7 +93,7 @@ const DetailSingleItem = () => {
                 <div className="">
                   <h2 className="text-xl font-semibold text-gray-900 my-3 md:my-4">Price History</h2>
                   <div className="overflow-x-auto">
-                    <table className="w-full bg-gray-100 md:bg-gray-200 rounded-lg">
+                    <table className="w-full bg-gray-100 md:bg-gray-200">
                       <thead>
                         <tr className="">
                           <th className="text-left py-2 md:py-3 px-2 md:px-4 font-medium text-gray-600 text-sm md:text-base">Date</th>
@@ -195,7 +196,7 @@ const DetailSingleItem = () => {
                 {/* Market Update */}
                 <div className="bg-white">
                   <h2 className="text-xl font-semibold text-gray-900 mb-3 md:mb-4">Market Update</h2>
-                  <div className="flex flex-col sm:flex-row justify-between gap-3 bg-gray-100 md:bg-gray-200 p-3 md:p-4 rounded-lg">
+                  <div className="flex flex-col sm:flex-row justify-between gap-3 bg-gray-100 md:bg-gray-200 p-3 md:p-4 ">
                     <div className="text-center p-2 md:p-4 rounded-lg bg-white md:bg-transparent shadow-sm md:shadow-none">
                       <div className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-1 md:mb-2">$600K</div>
                       <div className="text-xs md:text-sm text-gray-800 font-semibold">Average List Price</div>
@@ -279,7 +280,9 @@ const DetailSingleItem = () => {
         </div>
       </div>
       
-      <Footer/>
+
+    </div>
+          <Footer/>
     </div>
   )
 }

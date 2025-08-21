@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import "./styles.css"
 
 const DoubleRangeSlider = ({ min, max, onChange }) => {
@@ -9,7 +9,7 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
   const range = useRef(null);
 
   // Convert to percentage
-  const getPercent = (value) => ((value - min) / (max - min)) * 100;
+  const getPercent = useCallback((value) => ((value - min) / (max - min)) * 100, [min, max]);
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
@@ -20,7 +20,7 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
       range.current.style.left = `${minPercent}%`;
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, [minVal, max]);
+  }, [minVal, getPercent]);
 
   // Set width of the range to decrease from the right side
   useEffect(() => {
@@ -30,15 +30,23 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
     if (range.current) {
       range.current.style.width = `${maxPercent - minPercent}%`;
     }
-  }, [maxVal, min]);
+  }, [maxVal, getPercent]);
 
-  // Get min and max values when their state changes
+  // Get min and max values when their state changes - FIXED: use callback for onChange
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
-  }, [minVal, maxVal, onChange]);
+    if (onChange) {
+      onChange({ min: minVal, max: maxVal });
+    }
+  }, [minVal, maxVal]); // Removed onChange from dependencies
 
   const [inputMin, setInputMin] = useState(min);
   const [inputMax, setInputMax] = useState(max);
+
+  // Update input values when min/max props change
+  useEffect(() => {
+    setInputMin(minVal);
+    setInputMax(maxVal);
+  }, [minVal, maxVal]);
 
   return (
     <div className="w-full pb-4 text-black">
@@ -136,12 +144,6 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
                 width: `${getPercent(maxVal) - getPercent(minVal)}%`,
               }}
             />
-            {/* <div className="absolute text-sm text-slate-800 mt-5 left-0">
-              {minVal?.toFixed(2)}
-            </div>
-            <div className="absolute text-sm text-slate-800 mt-5 right-0">
-              {maxVal?.toFixed(2)}
-            </div> */}
           </div>
         </div>
       </div>

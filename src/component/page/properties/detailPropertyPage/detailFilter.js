@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import DoubleRangeSlider from "./priceRange";
-import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../assets/allImg";
+import DoubleRangeSlider from "../priceRange";
+import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../../assets/allImg";
 
-const FilterPage = ({ close , onSave }) => {
+const DetailFilter = ({ close , onSave, filterVal }) => {
     const handlePriceChange = ({ min, max }) => {
         setPriceRange({ min, max }); // ✅ store in state
     };
     console.log("hello")
-     const [priceRange, setPriceRange] = useState({ min: 0, max: 50000 });
-    const [selectedBedroom, setSelectedBedroom] = useState(null);
-    const [selectedBathroom, setSelectedBathroom] = useState(null);
-    const [selectedProperty, setSelectedProperty] = useState(null);
+     const [priceRange, setPriceRange] = useState({ min: filterVal.min || 0, max: filterVal.max || 50000 });
+    const [selectedBedroom, setSelectedBedroom] = useState(filterVal.bedrooms || null);
+    const [selectedBathroom, setSelectedBathroom] = useState(filterVal.bathrooms || null);
+    const [selectedProperty, setSelectedProperty] = useState(filterVal.property || null);
     
     const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
     const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
@@ -53,6 +53,18 @@ const FilterPage = ({ close , onSave }) => {
         setSelectedBathroom(null);
         setSelectedProperty(null);
         setPriceRange({ min: 0, max: 50000 });
+    const filters = {
+      min: 0,
+      max: 50000,
+      bedrooms: null,
+      bathrooms: null,
+      property: null,
+    };
+
+    // send to parent
+    if (onSave) {
+      onSave(filters);
+    }
         close()
     };
     const saveSearch = () => {
@@ -94,7 +106,7 @@ const FilterPage = ({ close , onSave }) => {
                     {/* Price Range */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Price Range</h2>
-                        <DoubleRangeSlider min={0} max={50000} onChange={handlePriceChange} />
+                        <DoubleRangeSlider min={filterVal.min || 0} max={filterVal.max || 50000} onChange={handlePriceChange} />
                     </div>
                     
                     <hr className="my-4 border-gray-200" />
@@ -191,4 +203,4 @@ const FilterPage = ({ close , onSave }) => {
     );
 };
 
-export default FilterPage;
+export default DetailFilter;

@@ -65,3 +65,4 @@ export const globe="https://ik.imagekit.io/ic938owib/globe.png?updatedAt=1755182
 export const hvac="https://ik.imagekit.io/ic938owib/hvac.png?updatedAt=1755182323679"
 export const park="https://ik.imagekit.io/ic938owib/park.png?updatedAt=1755182323683"
 export const hoa="https://ik.imagekit.io/ic938owib/hoa.png?updatedAt=1755182323920"
+export const locationIcon="https://ik.imagekit.io/ic938owib/maps-svgrepo-com%201.png?updatedAt=1755713880455"

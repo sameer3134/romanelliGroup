@@ -1,16 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import LoadingScreen from "../loading/loadingScreen";
-
-import Pag2 from "../component/page/home/pag2";
-import FirstPageBuy from "../component/page/buy/firstPageBuy";
-import FirstPageSell from "../component/page/sell/firstPageSell";
-import FirstPageContact from "../component/page/contactUs/firstPageContact";
-import FirstPageProperties from "../component/page/properties/firstPageProperties";
-import FirstPageResource from "../component/page/resources/firstPageResource";
 import { video_url } from "../assets/allImg";
+import Pages from "./pages";
 
 const Page1 = ({ page }) => {
-  
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(true);
@@ -136,19 +129,7 @@ useEffect(() => {
             </video>
           </div>
           {/* Content */}
-          {page == "Home" &&
-            <Pag2 />
-          }
-          {page == "Buy" &&
-          <FirstPageBuy/>}
-            {page == "Sell" &&
-          <FirstPageSell/>}
-           {page == "Contact Us" &&
-          <FirstPageContact/>}
-          {page == "Properties" &&
-          <FirstPageProperties/>}
-           {page == "Resources" &&
-          <FirstPageResource/>}
+         <Pages page={page}/>
         </section>
       
       </div>

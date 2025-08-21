@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import FilterPage from './filter';
 import { useNavigate } from 'react-router-dom';
 import { usePropertySearch } from './api/getCheckProperty';
+import LoadingScreen from '../../../loading/loadingScreen';
 
 const FirstPageProperties = () => {
-  // const [selectedOption, setSelectedOption] = useState("Buy");
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0)
   const [filterOpen, setFilterOpen] = useState(false)
   const [placeholder, setPlaceholder] = useState("Enter city");
   const [filters, setFilters] = useState({
@@ -31,24 +33,40 @@ const FirstPageProperties = () => {
 
     return () => window.removeEventListener("resize", updatePlaceholder); // Cleanup
   }, []);
-     const { checkProperty, loading, error } = usePropertySearch(); // ✅ hook
+     const { checkProperty, error } = usePropertySearch(); // ✅ hook
   const handleFilterSave = async (values) => {
     setFilters(values); // update parent state
     console.log("Filters from child:", values);
     console.log("buy or rent", values.selectedOption)
     setFilterOpen(false);
-    const data = await checkProperty(values); // ✅ reuse
+    setLoading(true)
+    const f={...values,searchCity:filters.searchCity, selectedOption: filters.selectedOption}
+    const data = await checkProperty(f); // ✅ reuse
+    setLoading(false)
     console.log(data)
     if (data) {
-      console.log("filter",values)
-      navigate(`/details/properties`, { state: { data, filters: values } });
+      console.log("filter",f)
+      navigate(`/details/properties`, { state: { data, filters: f } });
     } else {
       console.log("⚠️ No properties found");
     }
   };
+    let interval;
+     useEffect(() => {
+        interval = setInterval(() => {
+          setProgress((oldProgress) => {
+            if (oldProgress >= 90) return oldProgress; // Stop at 90%
+            return oldProgress + 5;
+          });
+        }, 300);
+    
+        // Clean up interval on component unmount
+        return () => clearInterval(interval);
+      }, []);
 
   return (
     <div>
+              {loading && <LoadingScreen progress={progress} />}
       <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
         {/* Heading */}
         <div className="flex flex-col text-center w-full mb-6">
@@ -105,7 +123,9 @@ const FirstPageProperties = () => {
               </span></div>
             </button>
             <button className=" bg-red-800 text-white text-xs sm:text-sm px-3 sm:px-4 py-2 "         onClick={async () => {
+              setLoading(true)
           const data = await checkProperty(filters); // ✅ reuse
+          setLoading(false)
           if (data) {
             console.log("filter",filters)
             navigate(`/details/properties`, { state: { data, filters } });

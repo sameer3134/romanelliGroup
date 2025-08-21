@@ -3,10 +3,13 @@ import DoubleRangeSlider from '../priceRange'
 import { ChevronDown, Search, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
-import FilterPage from '../filter';
+import DetailFilter from './detailFilter';
+import LoadingScreen from '../../../../loading/loadingScreen';
 
 const Header = ({ filter, onResults }) => {
     const navigate=useNavigate()
+      const [loading, setLoading] = useState(false);
+      const [progress, setProgress] = useState(0)
     const [filterOpen, setFilterOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState('');
   const [localFilters, setLocalFilters] = useState({
@@ -28,8 +31,9 @@ const Header = ({ filter, onResults }) => {
     "Commercial Lease",
     "Farm"
   ];
+  console.log(filter.property)
 
-  const { checkProperty, loading, error } = usePropertySearch();
+  const { checkProperty, error } = usePropertySearch();
 
   // Sync with parent filter changes
   useEffect(() => {
@@ -100,32 +104,41 @@ const Header = ({ filter, onResults }) => {
     if (onResults) {
       onResults(localFilters);
     }
-
-    // You can also trigger the actual API call here if needed
-    try {
-      await checkProperty(localFilters);
-    } catch (error) {
-      console.error('Search failed:', error);
-    }
   };
   
  const handleFilterSave = async (values) => {
     console.log("Filters from child:", values);
     console.log("buy or rent", values.selectedOption)
     setFilterOpen(false);
-    const data = await checkProperty(values); // ✅ reuse
+    const f={...values,searchCity:filter.searchCity, selectedOption: filter.selectedOption}
+    setLocalFilters(f)
+    setLoading(true)
+    const data = await checkProperty(f); // ✅ reuse
+    setLoading(false)
     console.log(data)
     if (data) {
-      console.log("filter",values)
-      navigate(`/details/properties`, { state: { data, filters: values } });
+      console.log("filter",f)
+      navigate(`/details/properties`, { state: { data, filters: f } });
     } else {
       console.log("⚠️ No properties found");
     }
   };
+      let interval;
+       useEffect(() => {
+          interval = setInterval(() => {
+            setProgress((oldProgress) => {
+              if (oldProgress >= 90) return oldProgress; // Stop at 90%
+              return oldProgress + 5;
+            });
+          }, 700);
+      
+          // Clean up interval on component unmount
+          return () => clearInterval(interval);
+        }, []);
 
   return (
     <div className="bg-white border-b border-gray-200">
-        
+               {loading && <LoadingScreen progress={progress} />}
       {/* Search Header */}
       <div className="flex items-center py-4">
         {/* Search Section */}
@@ -142,7 +155,7 @@ const Header = ({ filter, onResults }) => {
               />
               <button 
                 onClick={directSearch} 
-                className="bg-red-600 absolute right-1 top-2 md:top-1 bottom-1 hover:bg-red-700 text-white px-6 py-3 font-medium flex items-center"
+                className="bg-red-600 absolute right-1 top-1  bottom-1  hover:bg-red-700 text-white px-6 py-3 font-medium flex items-center"
                 disabled={loading}
               >
                 {loading ? 'Searching...' : 'Search'}
@@ -153,12 +166,12 @@ const Header = ({ filter, onResults }) => {
           {/* Filters Row */}
           <div className="flex items-center ml-4 space-x-2 ">
             {/* Buy/Rent Dropdown */}
-            <div className="relative hidden lg:flex">
+            <div className="relative hidden xl:flex">
               <button
                 onClick={() => toggleDropdown('sale')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
               >
-                <span className="text-sm">For {localFilters.selectedOption}</span>
+                <span className="text-sm">For {localFilters?.selectedOption}</span>
                 <ChevronDown size={16} />
               </button>
               {dropdownOpen === 'sale' && (
@@ -182,7 +195,7 @@ const Header = ({ filter, onResults }) => {
             </div>
 
             {/* Price Dropdown */}
-            <div className="relative hidden lg:flex ">
+            <div className="relative hidden xl:flex ">
               <button
                 onClick={() => toggleDropdown('price')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -202,7 +215,7 @@ const Header = ({ filter, onResults }) => {
             </div>
 
             {/* Property Type Dropdown */}
-            <div className="relative hidden lg:flex ">
+            <div className="relative hidden xl:flex ">
               <button
                 onClick={() => toggleDropdown('type')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -234,14 +247,15 @@ const Header = ({ filter, onResults }) => {
               onClick={() => { setFilterOpen(true) }}
               className="border border-gray-300  px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
             >
-              <Filter size={16} />
+       
               <span className="text-sm">Filter</span>
+                     <Filter size={16} />
             </button>
           </div>
         </div>
 
         {/* Save Search Button */}
-        <div className="ml-6 hidden lg:flex ">
+        <div className="ml-6 hidden xl:flex ">
           <button 
             className="bg-black hover:bg-gray-800 text-white px-6 py-3 text-sm font-medium" 
             onClick={filteredSearch}
@@ -273,7 +287,7 @@ const Header = ({ filter, onResults }) => {
           box-shadow: 0 0 0 1px #ccc;
         }
       `}</style>
-      {filterOpen && <FilterPage close={() => { setFilterOpen(false) }} onSave={handleFilterSave} />}
+      {filterOpen && <DetailFilter close={() => { setFilterOpen(false) }} onSave={handleFilterSave} filterVal={localFilters} />}
     </div>
   );
 };

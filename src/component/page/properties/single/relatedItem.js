@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaBed, FaBath, FaRulerCombined } from "react-icons/fa"; // for icons
-import { bathroom, bed, square } from '../../../../assets/allImg';
+import { bathroom, bed, locationIcon, square } from '../../../../assets/allImg';
 import { useNavigate } from 'react-router-dom';
 
 const RelatedItem = ({listings,allData,id}) => {
@@ -27,7 +27,7 @@ const RelatedItem = ({listings,allData,id}) => {
             </div>
             <div className="bg-white mb-4 w-full max-w-3xl">
                 {listings.filter(single=> single.id !== id)?.map((item)=>(
-                         <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col sm:flex-row justify-between p-2 bg-gray-200 mb-4 rounded-lg'>
+                         <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col sm:flex-row justify-between p-2 bg-gray-200 mb-4'>
                            {/* Image */}
                            <div className="w-48 h-48 sm:w-32 sm:h-32 m-2 overflow-hidden flex-shrink-0">
                              <img src={item.image} alt={item.heading} className="w-full h-full object-cover" />
@@ -36,7 +36,7 @@ const RelatedItem = ({listings,allData,id}) => {
                            {/* Content */}
                            <div className="flex flex-col text-left w-full sm:w-1/2 flex-grow px-2 sm:pl-4">
                              <h2 className="text-xl font-semibold text-gray-900 line-clamp-1">{item.heading}</h2>
-                             <p className="text-sm text-gray-800 font-medium line-clamp-1">{item.location}</p>
+                             <p className="flex text-sm text-gray-800 font-medium"><img src={locationIcon} className='w-5 h-5' alt='location'/>{item.location}</p>
                              <p className="text-sm text-gray-900 mt-2 line-clamp-2">{item.description}</p>
                            </div>
              
