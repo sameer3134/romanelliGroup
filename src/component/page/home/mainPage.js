@@ -6,7 +6,7 @@ import Families from "../Default Pages/families";
 import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
 import Talk from "../Default Pages/talk";
 import Footer from "../Default Pages/footer";
-import ClientSay from "../Default Pages/clientSay";
+import ClientSay from "../Default Pages/Client Review/clientSay";
 import Succeed from "../Default Pages/succeed";
 import ClientSuccess from "../Default Pages/clientSuccess";
 

@@ -5,9 +5,9 @@ export const roadMapstep3="https://ik.imagekit.io/ic938owib/undraw_searching_no1
 export const roadMapstep4="https://ik.imagekit.io/ic938owib/undraw_interview_yz52%201.svg?updatedAt=1748097265212"
 export const video_url = "https://ik.imagekit.io/ic938owib/hero.mp4?updatedAt=1748086241970";
 export const logoUrl = "https://ik.imagekit.io/ic938owib/logo.png?updatedAt=1748086142786";
-export const simplified_step1="https://ik.imagekit.io/ic938owib/s1.png?updatedAt=1748086485977"
-export const simplified_step2="https://ik.imagekit.io/ic938owib/s2.png?updatedAt=1748086577115"
-export const simplified_step3="https://ik.imagekit.io/ic938owib/s3.png?updatedAt=1748086691697"
+export const simplified_step1="https://ik.imagekit.io/ic938owib/undraw_term-sheet_70lo%201.png?updatedAt=1755878500734"
+export const simplified_step2="https://ik.imagekit.io/ic938owib/undraw_group-video_k4jx%201.png?updatedAt=1755878500407"
+export const simplified_step3="https://ik.imagekit.io/ic938owib/undraw_for-sale_7qjb%202.png?updatedAt=1755878500465"
 export const simplified_step4="https://ik.imagekit.io/ic938owib/s6.png?updatedAt=1748086691700"
 export const simplified_step5="https://ik.imagekit.io/ic938owib/s5.png?updatedAt=1748086691745"
 export const simplified_step6="https://ik.imagekit.io/ic938owib/s4.png?updatedAt=1748086691756"

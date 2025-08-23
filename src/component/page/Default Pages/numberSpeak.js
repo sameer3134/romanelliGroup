@@ -49,7 +49,6 @@ const stats = [
 ];
 
 const NumberSpeak = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
   const imagesRef = useRef([]);
 
   useEffect(() => {
@@ -57,7 +56,6 @@ const NumberSpeak = () => {
   }, []);
 
   const handleMouseMove = (e, index) => {
-    setHoveredIndex(index);
 
     if (imagesRef.current[index]) {
       imagesRef.current[index].forEach((img, imgIndex) => {
@@ -84,7 +82,6 @@ const NumberSpeak = () => {
   };
 
   const handleMouseLeave = (index) => {
-    setHoveredIndex(null);
 
     if (imagesRef.current[index]) {
       imagesRef.current[index].forEach((img, imgIndex) => {

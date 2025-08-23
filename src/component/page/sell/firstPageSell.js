@@ -17,7 +17,6 @@ const FirstPageSell = () => {
 
     const handleSubmit = () => {
         setStep(step + 1)
-        console.log(formData);
     };
 
     const nextStep = () => setStep(step + 1);

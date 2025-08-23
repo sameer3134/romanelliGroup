@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import apiServices from '../../../Service/apiService';
-import DetailSingleItem from '../properties/detailSingleItem';
 import { useNavigate } from 'react-router-dom';
 
 const FeaureListing = () => {
+  const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   const [allData, setAllData] = useState([]);
-const navigate = useNavigate();
+
   const apiResult = async () => {
     try {
       const response = await apiServices.get(
@@ -23,7 +23,7 @@ const navigate = useNavigate();
         item.ListPrice &&
         (item.StreetNumber || item.UnparsedAddress) &&
         item.PublicRemarks &&
-       item.BedroomsTotal && item.BathroomsTotalInteger && item.BuildingAreaTotal  && item.Latitude && item.Longitude
+        item.BedroomsTotal && item.BathroomsTotalInteger && item.BuildingAreaTotal && item.Latitude && item.Longitude
       );
 
       // Map to simplified objects & limit to 6
@@ -38,9 +38,9 @@ const navigate = useNavigate();
           : "No description available",
         bedroom: item.BedroomsTotal,
         bathroom: item.BathroomsTotalInteger,
-        area:item.BuildingAreaTotal,
-        lat : item.Latitude || item.latitude || item.lat,
-        lng : item.Longitude || item.longitude || item.lng || item.lon,
+        area: item.BuildingAreaTotal,
+        lat: item.Latitude || item.latitude || item.lat,
+        lng: item.Longitude || item.longitude || item.lng || item.lon,
         detail: [
           item.BedroomsTotal ? `Bedroom - ${item.BedroomsTotal}` : "",
           item.BathroomsTotalInteger ? `Bath - ${item.BathroomsTotalInteger}` : "",
@@ -64,9 +64,9 @@ const navigate = useNavigate();
   useEffect(() => {
     apiResult();
   }, []);
-const handleGetItem=(id)=>{
-     navigate(`/properties/${id}`, { state: {id, listings,allData } }); // ✅ Pass unique data
-}
+  const handleGetItem = (id) => {
+    navigate(`/properties/${id}`, { state: { id, listings, allData } }); // ✅ Pass unique data
+  }
   return (
     <section className="text-white body-font bg-backgroundColor">
       <div className="container px-0 lg:px-24 pt-8 mx-auto">
@@ -103,7 +103,7 @@ const handleGetItem=(id)=>{
                     <p className="text-base sm:text-lg mt-1 font-semibold">{item.heading}</p>
                     <h3 className="text-sm sm:text-lg mt-1">{item.detail}</h3>
                     <p className="text-sm sm:text-md font-semibold mt-1 ">{item.description}</p>
-                    <button className="w-full py-2 px-2 bg-red-800 text-white mt-2 text-sm sm:text-base" onClick={()=>handleGetItem(item.id)}>
+                    <button className="w-full py-2 px-2 bg-red-800 text-white mt-2 text-sm sm:text-base" onClick={() => handleGetItem(item.id)}>
                       Schedule a Tour
                     </button>
                   </div>

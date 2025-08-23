@@ -4,13 +4,7 @@ import { motion, AnimatePresence } from "framer-motion"; // Import Framer Motion
 import Page1 from "./page1";
 import { logoUrl } from "../assets/allImg";
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeLink, setActiveLink] = useState("Home");
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const navLinksLeft = [
+const navLinksLeft = [
     { title: "Home", href: "/" },
     { title: "Buy", href: "/buy" },
     { title: "Sell", href: "/sell" },
@@ -21,16 +15,23 @@ const Navbar = () => {
     { title: "Properties", href: "/properties" },
     { title: "Resources", href: "/resources" },
   ];
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("Home");
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  
 
   const location = useLocation();
-  useEffect(() => {
-    const activeLink = [...navLinksLeft, ...navLinksRight].find(
-      (link) => link.href === location.pathname
-    );
-    if (activeLink) {
-      setActiveLink(activeLink.title);
-    }
-  }, [location]);
+useEffect(() => {
+  const links = [...navLinksLeft, ...navLinksRight];
+  const active = links.find((link) => link.href === location.pathname);
+  if (active) {
+    setActiveLink(active.title);
+  }
+}, [location.pathname]);
+
 
 
   

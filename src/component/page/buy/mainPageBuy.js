@@ -1,12 +1,10 @@
-import { useEffect } from "react";
 import FeaureListing from "../Default Pages/feaureListing";
-import ClientSay from "../Default Pages/clientSay";
+import ClientSay from "../Default Pages/Client Review/clientSay";
 import RoadMap from "./roadMap";
 import QuestionAnswer from "../Default Pages/QuestionAnswer/questionAnswer";
 import Footer from "../Default Pages/footer";
 import Talk from "../Default Pages/talk";
 import { motion } from "framer-motion";
-
 
 // Animation Variants (Slide-up & Fade-in)
 const fadeInUp = {
@@ -19,8 +17,6 @@ const fadeInUp = {
 };
 
 const MainPageBuy = () => {
-
-
   return (
     <div className="font-dmsans">
       <motion.div

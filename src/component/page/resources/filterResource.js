@@ -3,9 +3,8 @@ import { propertyType1, propertyType2, propertyType3 } from "../../../assets/all
 
 const FilterResource = ({ close }) => {
     const handlePriceChange = ({ min, max }) => {
-        console.log(`Min price: $${min}, Max price: $${max}`);
+        // console.log(`Min price: $${min}, Max price: $${max}`);
     };
-    const [selectedSize, setSelectedSize] = useState(null);
     const [selectedBedroom, setSelectedBedroom] = useState(null);
     const [selectedBathroom, setSelectedBathroom] = useState(null);
     const [selectedProperty, setSelectedProperty] = useState(null);
@@ -31,7 +30,6 @@ const FilterResource = ({ close }) => {
     ]
 
     const resetFilters = () => {
-        setSelectedSize(null);
         setSelectedBedroom(null);
         setSelectedBathroom(null);
         setSelectedProperty(null);

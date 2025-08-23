@@ -9,18 +9,18 @@ import FirstPageResource from "../component/page/resources/firstPageResource";
 const Pages = ({page}) => {
   return (
     <div>
-         {page == "Home" &&
+         {page === "Home" &&
             <Pag2 />
           }
-          {page == "Buy" &&
+          {page === "Buy" &&
           <FirstPageBuy/>}
-            {page == "Sell" &&
+            {page === "Sell" &&
           <FirstPageSell/>}
-           {page == "Contact Us" &&
+           {page === "Contact Us" &&
           <FirstPageContact/>}
-          {page == "Properties" &&
+          {page === "Properties" &&
           <FirstPageProperties/>}
-           {page == "Resources" &&
+           {page === "Resources" &&
           <FirstPageResource/>}
     </div>
   )

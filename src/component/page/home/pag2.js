@@ -4,11 +4,6 @@ import { video_url } from '../../../assets/allImg';
 
 const Pag2 = () => {
     const [videoPopUp, setVideoPopUp] = useState(false);
-    
-    const handleVideoPopUp = () => {
-        setVideoPopUp(true)
-    }
-    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         const scriptId = "homebot-script";
@@ -41,13 +36,15 @@ const Pag2 = () => {
         };
     }, []);
 
+    const handleVideoPopUp = () => {
+        setVideoPopUp(true)
+    }
+
     const waitForHomebot = () => {
         let attempts = 0;
         const interval = setInterval(() => {
             if (window.Homebot) {
                 clearInterval(interval);
-                console.log("✅ Homebot loaded!");
-                setIsLoaded(true);
                 window.Homebot("#homebot_homeowner", "df5f3d04dde9ce0dccc0f12c06ac8d7cfd911b11ea7f4bfd", {
                     size: "compact",
                     theme: "light-mode-theme",
@@ -114,15 +111,12 @@ const Pag2 = () => {
 }
                         `;
                         homebotShadow.appendChild(style);
-                        console.log("🎨 Custom styles applied inside Shadow DOM.");
                     }
                 }, 100);
             } else {
-                console.log("⏳ Waiting for Homebot...");
                 attempts++;
                 if (attempts > 10) {
                     clearInterval(interval);
-                    console.log("❌ Homebot failed to load.");
                 }
             }
         }, 500);
@@ -132,7 +126,7 @@ const Pag2 = () => {
             <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto overflow-visible">
                 <div className="flex flex-col text-center w-full md:mb-6">
                     <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-5xl px-4">
-                    Making Real Estate Feel Like Home
+                        Making Real Estate Feel Like Home
                     </h1>
                     <p className="mx-auto leading-relaxed font-medium md:font-semibold text-base sm:text-xl max-w-4xl mt-4">
                         Enter your address to get an instant report for selling, renting it out, or putting it on Airbnb:

@@ -1,8 +1,7 @@
-import React from 'react'
 import Connected from './connected'
 import Faces from '../Default Pages/faces'
 import Families from '../Default Pages/families'
-import ClientSay from '../Default Pages/clientSay'
+import ClientSay from '../Default Pages/Client Review/clientSay'
 import QuestionAnswer from '../Default Pages/QuestionAnswer/questionAnswer'
 import Footer from '../Default Pages/footer'
 import { motion } from "framer-motion";

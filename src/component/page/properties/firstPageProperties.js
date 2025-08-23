@@ -18,7 +18,7 @@ const FirstPageProperties = () => {
     searchCity: "",
     selectedOption: "Buy"
   });
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   useEffect(() => {
     const updatePlaceholder = () => {
       if (window.innerWidth >= 640) {
@@ -33,40 +33,34 @@ const FirstPageProperties = () => {
 
     return () => window.removeEventListener("resize", updatePlaceholder); // Cleanup
   }, []);
-     const { checkProperty, error } = usePropertySearch(); // ✅ hook
+  const { checkProperty, error } = usePropertySearch(); // ✅ hook
   const handleFilterSave = async (values) => {
-    setFilters(values); // update parent state
-    console.log("Filters from child:", values);
-    console.log("buy or rent", values.selectedOption)
+    setFilters(values);
     setFilterOpen(false);
     setLoading(true)
-    const f={...values,searchCity:filters.searchCity, selectedOption: filters.selectedOption}
+    const f = { ...values, searchCity: filters.searchCity, selectedOption: filters.selectedOption }
     const data = await checkProperty(f); // ✅ reuse
     setLoading(false)
-    console.log(data)
     if (data) {
-      console.log("filter",f)
       navigate(`/details/properties`, { state: { data, filters: f } });
-    } else {
-      console.log("⚠️ No properties found");
     }
   };
-    let interval;
-     useEffect(() => {
-        interval = setInterval(() => {
-          setProgress((oldProgress) => {
-            if (oldProgress >= 90) return oldProgress; // Stop at 90%
-            return oldProgress + 5;
-          });
-        }, 300);
-    
-        // Clean up interval on component unmount
-        return () => clearInterval(interval);
-      }, []);
+  let interval;
+  useEffect(() => {
+    interval = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress >= 90) return oldProgress; // Stop at 90%
+        return oldProgress + 5;
+      });
+    }, 300);
+
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div>
-              {loading && <LoadingScreen progress={progress} />}
+      {loading && <LoadingScreen progress={progress} />}
       <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
         {/* Heading */}
         <div className="flex flex-col text-center w-full mb-6">
@@ -85,7 +79,7 @@ const FirstPageProperties = () => {
             <button
               className={`p-2 px-4   ${filters.selectedOption === "Buy" ? "bg-gray-900 text-white" : "text-gray-900 bg-white"
                 }`}
-              onClick={() => setFilters({...filters, selectedOption: "Buy"})}
+              onClick={() => setFilters({ ...filters, selectedOption: "Buy" })}
             >
               Buy
             </button>
@@ -94,7 +88,7 @@ const FirstPageProperties = () => {
             <button
               className={`p-2 px-4  ${filters.selectedOption === "Rent" ? "bg-gray-900 text-white" : "text-gray-900 bg-white"
                 }`}
-              onClick={() => setFilters({...filters, selectedOption: "Rent"})}
+              onClick={() => setFilters({ ...filters, selectedOption: "Rent" })}
             >
               Rent
             </button>
@@ -107,7 +101,7 @@ const FirstPageProperties = () => {
             className="w-full bg-white p-3 pl-4 text-black  focus:outline-none"
             placeholder={placeholder}
             value={filters.searchCity}
-            onChange={(e) => setFilters({...filters, searchCity: e.target.value})}
+            onChange={(e) => setFilters({ ...filters, searchCity: e.target.value })}
           />
           <div className='absolute right-1 top-2 md:top-1 bottom-1'>
             <button className="bg-gray-100 mr-2 text-black text-xs sm:text-sm px-3 sm:px-4 py-2 border border-gray-200">
@@ -122,16 +116,15 @@ const FirstPageProperties = () => {
                 </svg>
               </span></div>
             </button>
-            <button className=" bg-red-800 text-white text-xs sm:text-sm px-3 sm:px-4 py-2 "         onClick={async () => {
+            <button className=" bg-red-800 text-white text-xs sm:text-sm px-3 sm:px-4 py-2 " onClick={async () => {
               setLoading(true)
-          const data = await checkProperty(filters); // ✅ reuse
-          setLoading(false)
-          if (data) {
-            console.log("filter",filters)
-            navigate(`/details/properties`, { state: { data, filters } });
-          }
-        }}
->
+              const data = await checkProperty(filters); // ✅ reuse
+              setLoading(false)
+              if (data) {
+                navigate(`/details/properties`, { state: { data, filters } });
+              }
+            }}
+            >
               Check Now
             </button>
           </div>

@@ -153,17 +153,3 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
 
 export default DoubleRangeSlider;
 
-// const PriceFilter = () => {
-//   const handlePriceChange = ({ min, max }) => {
-//     console.log(`Min price: $${min}, Max price: $${max}`);
-//   };
-
-//   return (
-//     <div>
-//       <h2 className="text-xl font-semibold mb-4 text-center">Price Range</h2>
-//       <DoubleRangeSlider min={0} max={1000} onChange={handlePriceChange} />
-//     </div>
-//   );
-// };
-
-// export default PriceFilter;

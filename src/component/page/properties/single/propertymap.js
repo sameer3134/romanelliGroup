@@ -6,21 +6,15 @@ const PropertyMap = ({ property }) => {
   const markerRef = useRef(null);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [coordinates, setCoordinates] = useState(null);
- console.log(property.ListPrice)
   // Extract coordinates from property data
   useEffect(() => {
     if (property) {
       // Check for latitude and longitude in various possible field names
       const lat = property.Latitude || property.latitude || property.lat;
       const lng = property.Longitude || property.longitude || property.lng || property.lon;
-      console.log("lat",lat,"lng",lng)
       if (lat && lng) {
         setCoordinates({ lat: parseFloat(lat), lng: parseFloat(lng) });
-      } else {
-        // Fallback: try to geocode the address if coordinates aren't available
-        console.log('No coordinates found for property:', property.UnparsedAddress);
-        // You could implement geocoding here if needed
-      }
+      } 
     }
   }, [property]);
 
@@ -110,43 +104,6 @@ const PropertyMap = ({ property }) => {
 
       mapInstanceRef.current = map;
       markerRef.current = marker;
-
-      // Add some nearby points of interest (mock data)
-    //   const nearbyPlaces = [
-    //     { lat: coordinates.lat + 0.01, lng: coordinates.lng + 0.01, name: 'Shopping Center', icon: '🛒' },
-    //     { lat: coordinates.lat - 0.008, lng: coordinates.lng + 0.012, name: 'School', icon: '🏫' },
-    //     { lat: coordinates.lat + 0.015, lng: coordinates.lng - 0.01, name: 'Hospital', icon: '🏥' },
-    //     { lat: coordinates.lat - 0.012, lng: coordinates.lng - 0.008, name: 'Park', icon: '🌳' }
-    //   ];
-
-    //   nearbyPlaces.forEach(place => {
-    //     const poiIcon = window.L.divIcon({
-    //       className: 'custom-poi-marker',
-    //       html: `
-    //         <div style="
-    //           background: #3b82f6;
-    //           color: white;
-    //           border-radius: 50%;
-    //           width: 24px;
-    //           height: 24px;
-    //           display: flex;
-    //           align-items: center;
-    //           justify-content: center;
-    //           border: 2px solid white;
-    //           box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    //           font-size: 12px;
-    //         ">
-    //           ${place.icon}
-    //         </div>
-    //       `,
-    //       iconSize: [24, 24],
-    //       iconAnchor: [12, 12]
-    //     });
-
-    //     window.L.marker([place.lat, place.lng], { icon: poiIcon })
-    //       .addTo(map)
-    //       .bindPopup(place.name);
-    //   });
     }
   }, [mapLoaded, coordinates, property]);
 

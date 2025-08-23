@@ -1,4 +1,3 @@
-import React from 'react'
 import { clientsuccess_auction, clientsuccess_bidding, clientsuccess_corner, clientsuccess_location, clientsuccess_url1, clientsuccess_url2, clientsuccess_url3, clientsuccess_url4, clientsuccess_url5, clientsuccess_url6 } from '../../../assets/allImg'
 
 const ClientSuccess = () => {
@@ -15,10 +14,10 @@ const ClientSuccess = () => {
                     </p>
                 </div>
             </div>
-            <section class="text-gray-600 px-5 lg:px-24 body-font">
-                <div class="container px-5 py-6 mx-auto">
-                    <div class="flex flex-wrap -m-4">
-                        <div class="md:w-1/3 p-1 w-full">
+            <section className="text-gray-600 px-5 lg:px-24 body-font">
+                <div className="container px-5 py-6 mx-auto">
+                    <div className="flex flex-wrap -m-4">
+                        <div className="md:w-1/3 p-1 w-full">
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
                                 <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={clientsuccess_url1} />
@@ -64,7 +63,7 @@ const ClientSuccess = () => {
                                 </div>
                             </a>
                         </div>
-                        <div class="md:w-1/3 p-1 w-full">
+                        <div className="md:w-1/3 p-1 w-full">
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
                                 <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={clientsuccess_url3} />
@@ -116,7 +115,7 @@ const ClientSuccess = () => {
                                 </div>
                             </a>
                         </div>
-                        <div class="md:w-1/3 p-1 w-full">
+                        <div className="md:w-1/3 p-1 w-full">
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
                                 <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={clientsuccess_url5} />

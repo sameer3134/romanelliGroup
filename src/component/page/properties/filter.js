@@ -2,16 +2,6 @@ import React, { useState } from "react";
 import DoubleRangeSlider from "./priceRange";
 import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../assets/allImg";
 
-const FilterPage = ({ close , onSave }) => {
-    const handlePriceChange = ({ min, max }) => {
-        setPriceRange({ min, max }); // ✅ store in state
-    };
-    console.log("hello")
-     const [priceRange, setPriceRange] = useState({ min: 0, max: 50000 });
-    const [selectedBedroom, setSelectedBedroom] = useState(null);
-    const [selectedBathroom, setSelectedBathroom] = useState(null);
-    const [selectedProperty, setSelectedProperty] = useState(null);
-    
     const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
     const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
 
@@ -48,6 +38,16 @@ const FilterPage = ({ close , onSave }) => {
     },
 ]
 
+const FilterPage = ({ close , onSave }) => {
+    const handlePriceChange = ({ min, max }) => {
+        setPriceRange({ min, max }); // ✅ store in state
+    };
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 50000 });
+    const [selectedBedroom, setSelectedBedroom] = useState(null);
+    const [selectedBathroom, setSelectedBathroom] = useState(null);
+    const [selectedProperty, setSelectedProperty] = useState(null);
+
+
     const resetFilters = () => {
         setSelectedBedroom(null);
         setSelectedBathroom(null);
@@ -69,8 +69,6 @@ const FilterPage = ({ close , onSave }) => {
       onSave(filters);
     }
   };
-
-    
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">

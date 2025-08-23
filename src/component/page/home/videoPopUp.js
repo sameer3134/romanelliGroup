@@ -19,7 +19,7 @@ const VideoPopUp = ({ video_pop_url, close }) => {
     >
       <div className="relative w-auto max-w-sm sm:max-w-sm border-8 border-black rounded-3xl bg-white flex flex-col items-center justify-between shadow-xl">
         {/* Close Button */}
-      <button
+        <button
           onClick={close}
           className="absolute -top-2 -right-2 bg-white  text-gray-900 rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-gray-900 hover:text-white z-10"
         >

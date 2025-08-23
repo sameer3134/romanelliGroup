@@ -1,4 +1,3 @@
-import React from "react";
 import {roadMapstep1, roadMapstep2, roadMapstep3, roadMapstep4} from "../../../assets/allImg"
 
 const steps = [

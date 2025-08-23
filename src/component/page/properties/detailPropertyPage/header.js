@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import DoubleRangeSlider from '../priceRange'
-import { ChevronDown, Search, Filter } from 'lucide-react';
+import { ChevronDown, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
 import { useNavigate } from 'react-router-dom';
 import DetailFilter from './detailFilter';
 import LoadingScreen from '../../../../loading/loadingScreen';
 
+const allowedPropertyTypes = [
+  "Residential",
+  "Residential Lease",
+  "Residential Income",
+  "Land",
+  "Commercial Sale",
+  "Commercial Lease",
+  "Farm"
+];
+
 const Header = ({ filter, onResults }) => {
-    const navigate=useNavigate()
-      const [loading, setLoading] = useState(false);
-      const [progress, setProgress] = useState(0)
-    const [filterOpen, setFilterOpen] = useState(false)
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0)
+  const [filterOpen, setFilterOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState('');
   const [localFilters, setLocalFilters] = useState({
     searchCity: filter?.searchCity || '',
@@ -21,17 +31,6 @@ const Header = ({ filter, onResults }) => {
     bedrooms: filter?.bedrooms || null,
     bathrooms: filter?.bathrooms || null
   });
-
-  const allowedPropertyTypes = [
-    "Residential",
-    "Residential Lease",
-    "Residential Income",
-    "Land",
-    "Commercial Sale",
-    "Commercial Lease",
-    "Farm"
-  ];
-  console.log(filter.property)
 
   const { checkProperty, error } = usePropertySearch();
 
@@ -47,6 +46,19 @@ const Header = ({ filter, onResults }) => {
       bathrooms: filter?.bathrooms || null
     });
   }, [filter]);
+
+    let interval;
+  useEffect(() => {
+    interval = setInterval(() => {
+      setProgress((oldProgress) => {
+        if (oldProgress >= 90) return oldProgress; // Stop at 90%
+        return oldProgress + 5;
+      });
+    }, 700);
+
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, []);
 
   const toggleDropdown = (dropdown) => {
     setDropdownOpen(dropdownOpen === dropdown ? '' : dropdown);
@@ -68,7 +80,6 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handleBuyRentChange = (option) => {
-    console.log(option)
     updateFilter('selectedOption', option);
     setDropdownOpen('');
   };
@@ -80,65 +91,36 @@ const Header = ({ filter, onResults }) => {
 
   const directSearch = async () => {
     setDropdownOpen('');
-    console.log('Direct search with filters:', localFilters);
     if (onResults) {
       onResults(localFilters);
     }
   };
 
   const filteredSearch = async () => {
-    console.log('Filtered search - Updated filters:', localFilters);
     setDropdownOpen('');
-    // Show updated filtered values
-    console.log('Current Filter State:', {
-      searchCity: localFilters.searchCity,
-      selectedOption: localFilters.selectedOption,
-      property: localFilters.property,
-      min: localFilters.min,
-      max: localFilters.max,
-      bedrooms: localFilters.bedrooms,
-      bathrooms: localFilters.bathrooms
-    });
 
     // Call the property search with updated filters
     if (onResults) {
       onResults(localFilters);
     }
   };
-  
- const handleFilterSave = async (values) => {
-    console.log("Filters from child:", values);
-    console.log("buy or rent", values.selectedOption)
+
+  const handleFilterSave = async (values) => {
     setFilterOpen(false);
-    const f={...values,searchCity:filter.searchCity, selectedOption: filter.selectedOption}
+    const f = { ...values, searchCity: filter.searchCity, selectedOption: filter.selectedOption }
     setLocalFilters(f)
     setLoading(true)
     const data = await checkProperty(f); // ✅ reuse
     setLoading(false)
-    console.log(data)
     if (data) {
-      console.log("filter",f)
       navigate(`/details/properties`, { state: { data, filters: f } });
-    } else {
-      console.log("⚠️ No properties found");
     }
   };
-      let interval;
-       useEffect(() => {
-          interval = setInterval(() => {
-            setProgress((oldProgress) => {
-              if (oldProgress >= 90) return oldProgress; // Stop at 90%
-              return oldProgress + 5;
-            });
-          }, 700);
-      
-          // Clean up interval on component unmount
-          return () => clearInterval(interval);
-        }, []);
+
 
   return (
     <div className="bg-white border-b border-gray-200">
-               {loading && <LoadingScreen progress={progress} />}
+      {loading && <LoadingScreen progress={progress} />}
       {/* Search Header */}
       <div className="flex items-center py-4">
         {/* Search Section */}
@@ -153,8 +135,8 @@ const Header = ({ filter, onResults }) => {
                 onChange={(e) => updateFilter('searchCity', e.target.value)}
                 placeholder="Enter location..."
               />
-              <button 
-                onClick={directSearch} 
+              <button
+                onClick={directSearch}
                 className="bg-red-600 absolute right-1 top-1  bottom-1  hover:bg-red-700 text-white px-6 py-3 font-medium flex items-center"
                 disabled={loading}
               >
@@ -177,13 +159,13 @@ const Header = ({ filter, onResults }) => {
               {dropdownOpen === 'sale' && (
                 <div className="absolute top-full left-0 bg-white border text-gray-900 border-gray-300 shadow-lg z-10 w-40">
                   <div className="py-1">
-                    <button 
+                    <button
                       className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
                       onClick={() => handleBuyRentChange('Buy')}
                     >
                       For Buy
                     </button>
-                    <button 
+                    <button
                       className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
                       onClick={() => handleBuyRentChange('Rent')}
                     >
@@ -205,10 +187,10 @@ const Header = ({ filter, onResults }) => {
               </button>
               {dropdownOpen === 'price' && (
                 <div className="absolute w-[300px] my-2 px-2 bg-white border text-gray-900 border-gray-300 shadow-lg z-10">
-                  <DoubleRangeSlider 
-                    min={localFilters.min} 
-                    max={localFilters.max} 
-                    onChange={handlePriceChange} 
+                  <DoubleRangeSlider
+                    min={localFilters.min}
+                    max={localFilters.max}
+                    onChange={handlePriceChange}
                   />
                 </div>
               )}
@@ -229,7 +211,7 @@ const Header = ({ filter, onResults }) => {
                 <div className="absolute top-full left-0 bg-white border border-gray-300 shadow-lg z-10 w-44">
                   <div className="py-1 text-gray-900">
                     {allowedPropertyTypes.map((item, index) => (
-                      <button 
+                      <button
                         key={index}
                         className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
                         onClick={() => handlePropertyTypeChange(item)}
@@ -247,17 +229,17 @@ const Header = ({ filter, onResults }) => {
               onClick={() => { setFilterOpen(true) }}
               className="border border-gray-300  px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
             >
-       
+
               <span className="text-sm">Filter</span>
-                     <Filter size={16} />
+              <Filter size={16} />
             </button>
           </div>
         </div>
 
         {/* Save Search Button */}
         <div className="ml-6 hidden xl:flex ">
-          <button 
-            className="bg-black hover:bg-gray-800 text-white px-6 py-3 text-sm font-medium" 
+          <button
+            className="bg-black hover:bg-gray-800 text-white px-6 py-3 text-sm font-medium"
             onClick={filteredSearch}
             disabled={loading}
           >

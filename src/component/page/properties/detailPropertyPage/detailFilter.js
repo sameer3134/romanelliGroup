@@ -2,87 +2,87 @@ import React, { useState } from "react";
 import DoubleRangeSlider from "../priceRange";
 import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../../assets/allImg";
 
-const DetailFilter = ({ close , onSave, filterVal }) => {
-    const handlePriceChange = ({ min, max }) => {
-        setPriceRange({ min, max }); // ✅ store in state
-    };
-    console.log("hello")
-     const [priceRange, setPriceRange] = useState({ min: filterVal.min || 0, max: filterVal.max || 50000 });
-    const [selectedBedroom, setSelectedBedroom] = useState(filterVal.bedrooms || null);
-    const [selectedBathroom, setSelectedBathroom] = useState(filterVal.bathrooms || null);
-    const [selectedProperty, setSelectedProperty] = useState(filterVal.property || null);
-    
     const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
     const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
 
-    const PropertyTypes=[{
-        type:"Residential",
-        Link:typeFilter1
-    },{
-        type:"Townhomes",
-        Link:typeFilter2
+    const PropertyTypes = [{
+        type: "Residential",
+        Link: typeFilter1
+    }, {
+        type: "Townhomes",
+        Link: typeFilter2
     },
     {
-        type:"Multi-family",
-        Link:typeFilter3
+        type: "Multi-family",
+        Link: typeFilter3
     },
     {
-        type:"Co-op",
-        Link:typeFilter4
+        type: "Co-op",
+        Link: typeFilter4
     },
     {
-        type:"Commercial",
-        Link:typeFilter5
+        type: "Commercial",
+        Link: typeFilter5
     },
     {
-        type:"Manufactured",
-        Link:typeFilter6
+        type: "Manufactured",
+        Link: typeFilter6
     },
     {
-        type:"Land",
-        Link:typeFilter7
+        type: "Land",
+        Link: typeFilter7
     },
     {
-        type:"Other",
-        Link:typeFilter8
+        type: "Other",
+        Link: typeFilter8
     },
 ]
+
+const DetailFilter = ({ close, onSave, filterVal }) => {
+
+    const [priceRange, setPriceRange] = useState({ min: filterVal.min || 0, max: filterVal.max || 50000 });
+    const [selectedBedroom, setSelectedBedroom] = useState(filterVal.bedrooms || null);
+    const [selectedBathroom, setSelectedBathroom] = useState(filterVal.bathrooms || null);
+    const [selectedProperty, setSelectedProperty] = useState(filterVal.property || null);
+
+    const handlePriceChange = ({ min, max }) => {
+        setPriceRange({ min, max }); // ✅ store in state
+    };
 
     const resetFilters = () => {
         setSelectedBedroom(null);
         setSelectedBathroom(null);
         setSelectedProperty(null);
         setPriceRange({ min: 0, max: 50000 });
-    const filters = {
-      min: 0,
-      max: 50000,
-      bedrooms: null,
-      bathrooms: null,
-      property: null,
-    };
+        const filters = {
+            min: 0,
+            max: 50000,
+            bedrooms: null,
+            bathrooms: null,
+            property: null,
+        };
 
-    // send to parent
-    if (onSave) {
-      onSave(filters);
-    }
+        // send to parent
+        if (onSave) {
+            onSave(filters);
+        }
         close()
     };
     const saveSearch = () => {
-    const filters = {
-      min: priceRange.min,
-      max: priceRange.max,
-      bedrooms: selectedBedroom,
-      bathrooms: selectedBathroom,
-      property: selectedProperty,
+        const filters = {
+            min: priceRange.min,
+            max: priceRange.max,
+            bedrooms: selectedBedroom,
+            bathrooms: selectedBathroom,
+            property: selectedProperty,
+        };
+
+        // send to parent
+        if (onSave) {
+            onSave(filters);
+        }
     };
 
-    // send to parent
-    if (onSave) {
-      onSave(filters);
-    }
-  };
-
-    
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -108,9 +108,9 @@ const DetailFilter = ({ close , onSave, filterVal }) => {
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Price Range</h2>
                         <DoubleRangeSlider min={filterVal.min || 0} max={filterVal.max || 50000} onChange={handlePriceChange} />
                     </div>
-                    
+
                     <hr className="my-4 border-gray-200" />
-                    
+
                     {/* Bedrooms */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Bedrooms</h2>
@@ -119,20 +119,19 @@ const DetailFilter = ({ close , onSave, filterVal }) => {
                                 <button
                                     key={index}
                                     onClick={() => setSelectedBedroom(room)}
-                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${
-                                        selectedBedroom === room
+                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${selectedBedroom === room
                                             ? "bg-gray-800 text-white"
                                             : "border-gray-300 text-gray-700"
-                                    }`}
+                                        }`}
                                 >
                                     {room}
                                 </button>
                             ))}
                         </div>
                     </div>
-                    
+
                     <hr className="my-4 border-gray-200" />
-                    
+
                     {/* Bathrooms */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Bathrooms</h2>
@@ -141,20 +140,19 @@ const DetailFilter = ({ close , onSave, filterVal }) => {
                                 <button
                                     key={index}
                                     onClick={() => setSelectedBathroom(numbers)}
-                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${
-                                        selectedBathroom === numbers
+                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${selectedBathroom === numbers
                                             ? "bg-gray-800 text-white"
                                             : "border-gray-300 text-gray-700"
-                                    }`}
+                                        }`}
                                 >
                                     {numbers}
                                 </button>
                             ))}
                         </div>
                     </div>
-                    
+
                     <hr className="my-4 border-gray-200" />
-                    
+
                     {/* Property Types */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Property types</h2>
@@ -163,11 +161,10 @@ const DetailFilter = ({ close , onSave, filterVal }) => {
                                 <button
                                     key={index}
                                     onClick={() => setSelectedProperty(property.type)}
-                                    className={`rounded border flex flex-col items-center justify-center p-2 ${
-                                        selectedProperty === property.type
+                                    className={`rounded border flex flex-col items-center justify-center p-2 ${selectedProperty === property.type
                                             ? "bg-gray-800 text-white"
                                             : "border-gray-300 text-gray-700"
-                                    }`}
+                                        }`}
                                 >
                                     <img
                                         src={property.Link}
@@ -180,18 +177,18 @@ const DetailFilter = ({ close , onSave, filterVal }) => {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Footer Buttons */}
                 <div className="p-4 flex justify-between border-t">
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         className="py-2 px-4 bg-gray-200 text-black rounded"
                         onClick={resetFilters}
                     >
                         Reset Filter
                     </button>
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         onClick={saveSearch}
                         className="py-2 px-4 bg-black text-white rounded"
                     >

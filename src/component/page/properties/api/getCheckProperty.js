@@ -11,7 +11,6 @@ const allowedPropertyTypes = [
 ];
 
 export const usePropertySearch = () => {
-
   const [error, setError] = useState(null);
 
   const checkProperty = async (filters) => {

@@ -9,7 +9,6 @@ const Page1 = ({ page }) => {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   let interval;
-  console.log("hello")
 // Unified interaction handler
 const handleUserInteraction = () => {
   if (videoRef.current && isMuted) {
@@ -19,11 +18,9 @@ const handleUserInteraction = () => {
     // Attempt playback with sound
     videoRef.current.play()
       .then(() => {
-        console.log('Playing with sound');
         removeAllListeners();
       })
       .catch(err => {
-        console.warn('Failed to play with sound:', err);
         // Fallback to muted if unmuted play fails
         videoRef.current.muted = true;
         setIsMuted(true);
@@ -50,7 +47,7 @@ useEffect(() => {
   if (playPromise !== undefined) {
     playPromise
       .then(() => {
-        console.log('Muted autoplay started');
+        // console.log('Muted autoplay started');
       })
       .catch(err => {
         console.warn('Muted autoplay blocked:', err);
@@ -87,7 +84,6 @@ useEffect(() => {
 
   // 🔹 When the video starts loading (packets should be in Network tab)
   const handleVideoStart = () => {
-    console.log("Video is starting to load...");
     setProgress(50); // Start progress at 50% when video request starts
   };
 
