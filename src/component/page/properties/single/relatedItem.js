@@ -22,7 +22,7 @@ const RelatedItem = ({ listings, allData, id }) => {
       </div>
       <div className="bg-white mb-4 w-full max-w-3xl">
         {listings.filter(single => single.id !== id)?.map((item) => (
-          <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col sm:flex-row justify-between p-2 bg-gray-200 mb-4'>
+          <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col cursor-pointer sm:flex-row justify-between p-2 bg-gray-200 mb-4'>
             {/* Image */}
             <div className="w-48 h-48 sm:w-32 sm:h-32 m-2 overflow-hidden flex-shrink-0">
               <img src={item.image} alt={item.heading} className="w-full h-full object-cover" />

@@ -13,6 +13,7 @@ import ScrollToTop from "../component/scrollTop/scrollToTop";
 import MainPageResource from "../component/page/resources/mainPageResource";
 import DetailSingleItem from "../component/page/properties/detailSingleItem";
 import DetailPage from "../component/page/properties/detailPropertyPage/detailPage";
+import ScrollToTopButton from "../component/scrollTop/fixedScroller";
 
 
 const AccessComponent = () => {
@@ -39,6 +40,7 @@ const AccessComponent = () => {
 
           </Route>
         </Routes>
+        <ScrollToTopButton/>
       </Router>
     </>
   );

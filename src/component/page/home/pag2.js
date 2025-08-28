@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import VideoPopUp from "./videoPopUp";
 import { video_url } from '../../../assets/allImg';
 

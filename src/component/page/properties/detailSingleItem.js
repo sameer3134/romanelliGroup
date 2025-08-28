@@ -33,7 +33,7 @@ const DetailSingleItem = () => {
   ];
 
   return (
-    <div className=''>
+    <div className="mainVideo">
     <div className="pt-8 sm:px-4 md:px-6 px-2 lg:px-24">
       {/* Carousel Section */}
       <div className="mb-6 md:mb-8">

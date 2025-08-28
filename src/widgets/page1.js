@@ -106,8 +106,8 @@ useEffect(() => {
       {/* Loading Screen */}
       {loading && <LoadingScreen progress={progress} />}
       {/* Always render video in background */}
-      <div  style={{ visibility: loading ? "hidden" : "visible" }}>
-        <section id="mainVideo" className="relative w-full min-h-screen flex items-center justify-center text-white body-font overflow-hidden">
+      <div  className="mainVideo" style={{ visibility: loading ? "hidden" : "visible" }}>
+        <section className="relative w-full min-h-screen flex items-center justify-center text-white body-font overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <video
               ref={videoRef}

@@ -68,9 +68,9 @@ const DetailPage = () => {
 
 
   return (
-    <div className=''>
+    <div className="mainVideo">
       {loading && <LoadingScreen progress={progress} />}
-      <div className='mt-8 px-2 lg:px-24'>
+      <div className='mt-8 px-2 lg:px-24' >
         <Header filter={filters} onResults={handleResults} />
 
         <div className='flex flex-col lg:flex-row'>
@@ -97,7 +97,7 @@ const DetailPage = () => {
             </div>
 
             {sortedData?.map((item) => (
-              <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col sm:flex-row justify-between p-2 bg-gray-200 mb-4'>
+              <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex cursor-pointer flex-col sm:flex-row justify-between p-2 bg-gray-200 mb-4'>
                 {/* Image */}
                 <div className="w-48 h-48 sm:w-32 sm:h-32 m-2 overflow-hidden flex-shrink-0">
                   <img src={item.image} alt={item.heading} className="w-full h-full object-cover" />

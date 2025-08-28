@@ -82,7 +82,7 @@ const VideoPopUp = ({ video_pop_url, close }) => {
         {/* Call to Action Button */}
         <button
           type="button"
-          className="absolute right-2 bottom-2 w-[93%] bg-red-800 text-[12px] text-white px-2 py-2 rounded-lg shadow-lg"
+          className="absolute right-2 bottom-2 w-[93%] bg-red-800 text-[10px] text-white px-2 py-2 rounded-lg shadow-lg"
         >
           Book Your Free Consultation
         </button>
