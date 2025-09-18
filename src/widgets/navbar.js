@@ -130,7 +130,8 @@ useEffect(() => {
 
       {/* Page Content */}
       <div className="pt-16">
-  {!location.pathname.startsWith("/properties/") && !location.pathname.startsWith("/details/properties") && (
+  {!location.pathname.startsWith("/properties/") && !location.pathname.startsWith("/details/properties") && 
+  !location.pathname.startsWith("/resources/blogs/") && (
     <Page1 page={activeLink} />
   )}
 </div>

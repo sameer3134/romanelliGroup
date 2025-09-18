@@ -1,33 +1,64 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { sellsmarter_step1, sellsmarter_step2, time, trend } from '../../../assets/allImg'
+import { useNavigate } from 'react-router-dom'
 
-const blogData = [
-  {
-    media: "blog",
-    type: "video",
-    src: sellsmarter_step1,
-    title: "Blog Post",
-    timing: "5 min read",
-    description: "How to Stage Your Home for Maximum Impact",
-    button: "Read Now"
-  },
-  {
-    media: "blog",
-    type: "image",
-    src: sellsmarter_step2,
-    title: "Blog Post",
-    timing: "5 min read",
-    description: "Central Ohio Real Estate Trends (2023 Report)",
-    button: "Read Now"
-  },
-]
+// const blogData = [
+//   {
+//     media: "blog",
+//     type: "video",
+//     src: sellsmarter_step1,
+//     title: "Blog Post",
+//     timing: "5 min read",
+//     description: "How to Stage Your Home for Maximum Impact",
+//     button: "Read Now"
+//   },
+//   {
+//     media: "blog",
+//     type: "image",
+//     src: sellsmarter_step2,
+//     title: "Blog Post",
+//     timing: "5 min read",
+//     description: "Central Ohio Real Estate Trends (2023 Report)",
+//     button: "Read Now"
+//   },
+// ]
 const Category = () => {
   const [selectedArea, setSelectedArea] = useState("all")
-  const [showData, setShowData] = useState(blogData)
+  const [showData, setShowData] = useState([])
   const [selectyoutube, setSelectYoutube] = useState([])
+   const [selectBlog, setSelectBlog] = useState([])
   const [selectinstagram, setSelectInstragram] = useState([])
   const [visibleItems, setVisibleItems] = useState(6)
+const navigate=useNavigate()
+  const fetchBlog= async()=>{
+    try {
+      const response =await axios.get("https://romanelli-strapi.onrender.com/api/blogs?populate=*")
+      const data=response.data.data
+      const mappedBlogs = data.map((item) => ({
+        id: item.id,
+  media: "blog",
+  type: "image",
+  src: item.Image?.formats?.medium?.url ||
+  item.Image?.url
+    ? `https://romanelli-strapi.onrender.com${item.Image.url}`
+    : "",
+  title: "Blog Post",
+  timing: `${item.Read_Timing} min read`,
+  description:item.Title,
+  longDescription: item.Description.replace(/<[^>]+>/g, "").slice(0, 100),
+  button: "Read Now",
+}));
+console.log("r",mappedBlogs)
+setSelectBlog(mappedBlogs)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+useEffect(() => {
+  fetchBlog()
+}, [])
+
   const fetchYoutubeVidoes = async () => {
     try {
       // await axios.get(`https://embed.homebotapp.com/lgw/v1/widget.js`)
@@ -102,9 +133,9 @@ const Category = () => {
     if (selectedArea === "youtube") {
       setShowData(selectyoutube)
     } else if (selectedArea === "all") {
-      setShowData([...blogData, ...selectinstagram, ...selectyoutube,])
+      setShowData([...selectBlog, ...selectinstagram, ...selectyoutube,])
     } else if (selectedArea === "blog") {
-      setShowData(blogData)
+      setShowData(selectBlog)
     } else if (selectedArea === "instagram") {
       setShowData(selectinstagram)
     }
@@ -207,10 +238,15 @@ const Category = () => {
 
                   {/* Button Group */}
                   <div className="flex gap-2">
-                    <button onClick={() => window.open(item.url, "_blank")}
+                    {item.button === "Read Now" ?    <button    onClick={() => navigate(`/resources/blogs/${item.id}`, { state: { showData } })}
                       className="flex-1 bg-red-700 py-2 text-sm sm:text-lg font-semibold text-white transition hover:bg-red-800">
                       {item.button}
-                    </button>
+                    </button>:
+                       <button onClick={() => window.open(item.url, "_blank")}
+                      className="flex-1 bg-red-700 py-2 text-sm sm:text-lg font-semibold text-white transition hover:bg-red-800">
+                      {item.button}
+                    </button>}
+                 
                     <button className="w-10 h-10 sm:w-12 sm:h-12 bg-red-700 flex items-center justify-center transition hover:bg-red-800">
                       <svg
                         width="16"

@@ -20,10 +20,10 @@ module.exports = {
       },
       fontFamily: {
         playfair: ["Playfair Display", "serif"],
-        dmsans: ["DM Sans", "sans-serif"],
+        dmsans: ["DM Sans"],
         inter: ["Inter", "sans-serif"],
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }

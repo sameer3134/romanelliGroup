@@ -14,6 +14,7 @@ import MainPageResource from "../component/page/resources/mainPageResource";
 import DetailSingleItem from "../component/page/properties/detailSingleItem";
 import DetailPage from "../component/page/properties/detailPropertyPage/detailPage";
 import ScrollToTopButton from "../component/scrollTop/fixedScroller";
+import SingleBlog from "../component/page/resources/singleBlog";
 
 
 const AccessComponent = () => {
@@ -32,6 +33,7 @@ const AccessComponent = () => {
             <Route path="/contactus" element={<MainPageContact />} />
             <Route path="/properties" element={<MainPageProperties />} />
             <Route path="/resources" element={<MainPageResource />} />
+             <Route path="/resources/blogs/:id" element={<SingleBlog />} />
             <Route path="/properties/:id" element={<DetailSingleItem />} />
             <Route path="/details/properties" element={<DetailPage />} />
           </Route>

@@ -32,7 +32,7 @@ const Footer = () => {
                     <img className={`w-24 h-auto ${location?.pathname === '/resources' || location?.pathname.startsWith('/properties/') || location?.pathname.startsWith('/details/') ? "invert": ""}`} src={logoUrl} alt='logo' />
                 </a>
                 <div className="lg:w-2/5 inline-flex lg:justify-end">
-                    <button onClick={() => document.querySelector(".mainVideo")?.scrollIntoView({ behavior: "smooth" })}
+                    <button  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                         className={`inline-flex items-center ${location?.pathname.startsWith('/properties/') || location?.pathname.startsWith('/details/') ? "bg-black text-white  hover:bg-gray-500":"bg-gray-100 text-gray-900  hover:bg-gray-200"}  border-0 py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0`}>Back To Top
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.9997 24V8M15.9997 8L9.33301 14.6667M15.9997 8L22.6663 14.6667" stroke={`${location?.pathname.startsWith('/properties/') || location?.pathname.startsWith('/details/') ? "white" : "black"}`} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
