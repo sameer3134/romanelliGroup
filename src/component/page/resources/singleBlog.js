@@ -4,6 +4,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Form from "./single Blog/form";
 import { time, trend } from "../../../assets/allImg";
 import Footer from "../Default Pages/footer";
+import LoadingScreen from "../../../loading/loadingScreen";
 
 const SingleBlog = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const SingleBlog = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  if (!blog) return <p>Loading...</p>;
+  if (!blog) return <p><LoadingScreen progress={90}/></p>;
 
   return (
     <>
