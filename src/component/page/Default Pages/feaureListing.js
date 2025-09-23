@@ -31,7 +31,7 @@ const FeaureListing = () => {
         id: item.ListingKey,
         amount: item.ListPrice,
         heading: item.StreetNumber
-          ? `Street - ${item.StreetNumber}, ${item.StreetName}`
+          ? `${item.StreetNumber} ${item.StreetName}, ${item.City}, ${item.StateOrProvince} ${item.PostalCode}`
           : item.UnparsedAddress || "No Address",
         description: item.PublicRemarks
           ? item.PublicRemarks.split(" ").slice(0, 12).join(" ") + "..."
@@ -69,6 +69,8 @@ const FeaureListing = () => {
   }
   return (
     <section className="text-white body-font bg-backgroundColor">
+      {listings &&
+      <>
       <div className="container px-0 lg:px-24 pt-8 mx-auto">
         <div className="flex flex-wrap w-full mb-8">
           <div className="lg:w-1/2 w-full lg:mb-0 text-left ml-4 lg:ml-8">
@@ -79,7 +81,6 @@ const FeaureListing = () => {
         </div>
       </div>
 
-      {/* Scrolling Image Section */}
       <div className="relative flex overflow-hidden space-x-4 sm:space-x-6 group w-full">
         {[...Array(2)].map((_, setIndex) => (
           <div
@@ -112,7 +113,7 @@ const FeaureListing = () => {
             ))}
           </div>
         ))}
-      </div>
+      </div> </>}
     </section>
   );
 };

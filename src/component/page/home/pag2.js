@@ -167,8 +167,8 @@ const Pag2 = () => {
                     </button>
 
                     {/* "Let Connect Now" Button */}
-                    <button type="button" onClick={handleVideoPopUp} className="absolute right-2 top-1/4 transform -translate-x-3/4 -translate-y-1/2 bg-red-800 text-[7px]  md:text-[10px]  text-white px-1 py-1 md:px-2 md:py-2 border border-black rounded-l-lg rounded-tr-lg shadow-lg">
-                        Let Connect Now
+                    <button type="button" onClick={handleVideoPopUp} className="absolute right-2 top-1/4 transform -translate-x-3/4 -translate-y-1/2 bg-red-800 text-[7px]  md:text-[10px]  text-white px-1 py-1 md:px-1 md:py-2 border border-black rounded-l-lg rounded-tr-lg shadow-lg">
+                        Let's Connect Now
                     </button>
 
                 </div>
