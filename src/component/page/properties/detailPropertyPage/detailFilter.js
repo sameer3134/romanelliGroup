@@ -5,37 +5,37 @@ import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFi
     const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
     const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
 
-    const PropertyTypes = [{
-        type: "Residential",
-        Link: typeFilter1
-    }, {
-        type: "Townhomes",
-        Link: typeFilter2
+      const PropertyTypes=[{
+        type:"Residential",
+        Link:typeFilter1
+    },{
+        type:"Residential Lease",
+        Link:typeFilter2
     },
     {
-        type: "Multi-family",
-        Link: typeFilter3
+        type:"Residential Income",
+        Link:typeFilter3
     },
     {
-        type: "Co-op",
-        Link: typeFilter4
+        type:"Farm",
+        Link:typeFilter4
     },
     {
-        type: "Commercial",
-        Link: typeFilter5
+        type:"Commercial Sale",
+        Link:typeFilter5
     },
     {
-        type: "Manufactured",
-        Link: typeFilter6
+        type:"Commercial Lease",
+        Link:typeFilter6
     },
     {
-        type: "Land",
-        Link: typeFilter7
+        type:"Land",
+        Link:typeFilter7
     },
-    {
-        type: "Other",
-        Link: typeFilter8
-    },
+    // {
+    //     type:"Other",
+    //     Link:typeFilter8
+    // },
 ]
 
 const DetailFilter = ({ close, onSave, filterVal }) => {

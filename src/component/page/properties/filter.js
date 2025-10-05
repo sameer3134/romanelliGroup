@@ -4,38 +4,44 @@ import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFi
 
     const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
     const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
-
+//  "Residential",
+//   "Residential Lease",
+//   "Residential Income",
+//   "Land",
+//   "Commercial Sale",
+//   "Commercial Lease",
+//   "Farm"
     const PropertyTypes=[{
         type:"Residential",
         Link:typeFilter1
     },{
-        type:"Townhomes",
+        type:"Residential Lease",
         Link:typeFilter2
     },
     {
-        type:"Multi-family",
+        type:"Residential Income",
         Link:typeFilter3
     },
     {
-        type:"Co-op",
+        type:"Farm",
         Link:typeFilter4
     },
     {
-        type:"Commercial",
+        type:"Commercial Sale",
         Link:typeFilter5
     },
     {
-        type:"Manufactured",
+        type:"Commercial Lease",
         Link:typeFilter6
     },
     {
         type:"Land",
         Link:typeFilter7
     },
-    {
-        type:"Other",
-        Link:typeFilter8
-    },
+    // {
+    //     type:"Other",
+    //     Link:typeFilter8
+    // },
 ]
 
 const FilterPage = ({ close , onSave }) => {
