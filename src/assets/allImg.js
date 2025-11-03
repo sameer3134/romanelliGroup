@@ -1,68 +1,169 @@
-export const mainPageBuy_img_url="https://ik.imagekit.io/ic938owib/group125.png?updatedAt=1748084846009"
-export const roadMapstep1="https://ik.imagekit.io/ic938owib/undraw_certificate_71gt%201.svg?updatedAt=1748097265300"
-export const roadMapstep2="https://ik.imagekit.io/ic938owib/undraw_accept-tasks_syrr%201.svg?updatedAt=1748097265383"
-export const roadMapstep3="https://ik.imagekit.io/ic938owib/undraw_searching_no1g%201.svg?updatedAt=1748097265189"
-export const roadMapstep4="https://ik.imagekit.io/ic938owib/undraw_interview_yz52%201.svg?updatedAt=1748097265212"
-export const video_url = "https://ik.imagekit.io/ic938owib/hero.mp4?updatedAt=1748086241970";
-export const logoUrl = "https://ik.imagekit.io/ic938owib/logo.png?updatedAt=1748086142786";
-export const simplified_step1="https://ik.imagekit.io/ic938owib/undraw_term-sheet_70lo%201.png?updatedAt=1755878500734"
-export const simplified_step2="https://ik.imagekit.io/ic938owib/undraw_group-video_k4jx%201.png?updatedAt=1755878500407"
-export const simplified_step3="https://ik.imagekit.io/ic938owib/undraw_for-sale_7qjb%202.png?updatedAt=1755878500465"
-export const simplified_step4="https://ik.imagekit.io/ic938owib/s6.png?updatedAt=1748086691700"
-export const simplified_step5="https://ik.imagekit.io/ic938owib/s5.png?updatedAt=1748086691745"
-export const simplified_step6="https://ik.imagekit.io/ic938owib/s4.png?updatedAt=1748086691756"
-export const sellsmarter_step1="https://ik.imagekit.io/ic938owib/q1.mp4?updatedAt=1748088039769"
-export const sellsmarter_step2="https://ik.imagekit.io/ic938owib/q2.png?updatedAt=1748088037368"
-export const sellsmarter_step3="https://ik.imagekit.io/ic938owib/q3.png?updatedAt=1748088037171"
-export const sellsmarter_step4="https://ik.imagekit.io/ic938owib/q4.png?updatedAt=1748088037724"
-export const stay_updated="https://ik.imagekit.io/ic938owib/stay_updated.png?updatedAt=1748088248648"
-export const propertyType1="https://ik.imagekit.io/ic938owib/article-medium-thin-svgrepo-com%201.svg?updatedAt=1748089066039"
-export const propertyType2="https://ik.imagekit.io/ic938owib/videos-svgrepo-com%201.svg?updatedAt=1748089065601"
-export const propertyType3="https://ik.imagekit.io/ic938owib/doc-text-svgrepo-com%201.svg?updatedAt=1748089065641"
-export const time="https://ik.imagekit.io/ic938owib/time-svgrepo-com%201.svg?updatedAt=1748089623672"
-export const trend="https://ik.imagekit.io/ic938owib/Group.svg?updatedAt=1748089531612"
-export const typeFilter1="https://ik.imagekit.io/ic938owib/resident.svg?updatedAt=1748089916026"
-export const typeFilter2="https://ik.imagekit.io/ic938owib/town.svg?updatedAt=1748089915960"
-export const typeFilter3="https://ik.imagekit.io/ic938owib/Property%201=linear%201.svg?updatedAt=1748089915989"
-export const typeFilter4="https://ik.imagekit.io/ic938owib/coop.svg?updatedAt=1748089916083"
-export const typeFilter5="https://ik.imagekit.io/ic938owib/comm.svg?updatedAt=1748089916206"
-export const typeFilter6="https://ik.imagekit.io/ic938owib/manu.svg?updatedAt=1748089915581"
-export const typeFilter7="https://ik.imagekit.io/ic938owib/land.svg?updatedAt=1748089915555"
-export const typeFilter8="https://ik.imagekit.io/ic938owib/other-1-svgrepo-com%201.svg?updatedAt=1748093263135"
-export const image1_url="https://ik.imagekit.io/ic938owib/cb76b015df63a0e812919d3658cc519ec5d6918b.png?updatedAt=1748093546435"
-export const image2_url="https://ik.imagekit.io/ic938owib/d8336c3bff01726b1a4ce34b5e12cad0758ba742.png?updatedAt=1748093534485"
-export const icon1_url="https://ik.imagekit.io/ic938owib/reshot-icon-house-search-2XBMQ7YWTP%201.svg?updatedAt=1748093530022"
-export const icon2_url="https://ik.imagekit.io/ic938owib/reshot-icon-real-estate-UZ3RX7L6FM%201.svg?updatedAt=1748093528136"
-export const icon3_url="https://ik.imagekit.io/ic938owib/33-House-Arrow%20up.svg?updatedAt=1748093527999"
-export const families_url1="https://ik.imagekit.io/ic938owib/f42b95ad2e1a9e8b62d0d983dbda1405567bf981.png?updatedAt=1748094515310"
-export const families_url2="https://ik.imagekit.io/ic938owib/a37e1f67e4addfcb8fd399edce9034d3c73068ed.png?updatedAt=1748094533336"
-export const families_url3="https://ik.imagekit.io/ic938owib/60b92e4f3a82d4f23a5ce6a7704218125df3fbf1.png?updatedAt=1748094498206"
-export const families_url4="https://ik.imagekit.io/ic938owib/1a602eeab9d560c250475412bddd9363a887c307.png?updatedAt=1748094537831"
-export const faces_url1="https://ik.imagekit.io/ic938owib/3e07823e16996d293fbd7ff30b9f681cfef1badd.png?updatedAt=1748094772095"
-export const faces_url2="https://ik.imagekit.io/ic938owib/74ac38fa3639f251ec24aeccf0d48be097a2034d.png?updatedAt=1748094901084"
-export const clientsuccess_url1="https://ik.imagekit.io/ic938owib/Rectangle%2013.png?updatedAt=1748096411180"
-export const clientsuccess_url2="https://ik.imagekit.io/ic938owib/2.png?updatedAt=1748095208123"
-export const clientsuccess_url3="https://ik.imagekit.io/ic938owib/3.png?updatedAt=1748095208475"
-export const clientsuccess_url4="https://ik.imagekit.io/ic938owib/Rectangle%2013.png?updatedAt=1748096411180"
-export const clientsuccess_url5="https://ik.imagekit.io/ic938owib/Rectangle%2015.png?updatedAt=1748096411006"
-export const clientsuccess_url6="https://ik.imagekit.io/ic938owib/6.png?updatedAt=1748095204325"
-export const clientsuccess_corner="https://ik.imagekit.io/ic938owib/Group%20(1).svg?updatedAt=1748095469291"
-export const clientsuccess_location="https://ik.imagekit.io/ic938owib/location.png?updatedAt=1748095469289"
-export const clientsuccess_auction="https://ik.imagekit.io/ic938owib/auction.svg?updatedAt=1748095468842"
-export const clientsuccess_bidding="https://ik.imagekit.io/ic938owib/bidding.svg?updatedAt=1748095468949"
-export const connect_url1="https://ik.imagekit.io/ic938owib/maps-svgrepo-com%201.svg?updatedAt=1748096590520"
-export const connect_url2="https://ik.imagekit.io/ic938owib/call-chat-svgrepo-com%201.svg?updatedAt=1748096590357"
-export const connect_url3="https://ik.imagekit.io/ic938owib/business-hours-svgrepo-com%201.svg?updatedAt=1748096590353"
-export const connect_url4="https://ik.imagekit.io/ic938owib/find-svgrepo-com%201.svg?updatedAt=1748096590504"
+// src/assets/images/index.ts
 
-export const bed="https://ik.imagekit.io/ic938owib/bed-svgrepo-com%201.png?updatedAt=1755182323850"
-export const bathroom="https://ik.imagekit.io/ic938owib/bathroom-svgrepo-com%201.png?updatedAt=1755182323930";
-export const square="https://ik.imagekit.io/ic938owib/square-pt-svgrepo-com%201.png?updatedAt=1755182323813";
-export const propType="https://ik.imagekit.io/ic938owib/type.png?updatedAt=1755182323925";
-export const size="https://ik.imagekit.io/ic938owib/size.png?updatedAt=1755182323953";
-export const year="https://ik.imagekit.io/ic938owib/year.png?updatedAt=1755182323927";
-export const globe="https://ik.imagekit.io/ic938owib/globe.png?updatedAt=1755182323809"
-export const hvac="https://ik.imagekit.io/ic938owib/hvac.png?updatedAt=1755182323679"
-export const park="https://ik.imagekit.io/ic938owib/park.png?updatedAt=1755182323683"
-export const hoa="https://ik.imagekit.io/ic938owib/hoa.png?updatedAt=1755182323920"
-export const locationIcon="https://ik.imagekit.io/ic938owib/maps-svgrepo-com%201.png?updatedAt=1755713880455"
+// Images
+import mainPageBuy_img_url from "../../src/assets/images/mainPageBuy_img_url.avif"
+import logoUrl from "../../src/assets/images/logoUrl.avif"
+import stay_updated from "../../src/assets/images/stay_updated.avif"
+
+// Roadmap steps
+import roadMapstep1 from "../../src/assets/images/roadMapstep1.avif"
+import roadMapstep2 from "../../src/assets/images/roadMapstep2.avif"
+import roadMapstep3 from "../../src/assets/images/roadMapstep3.avif"
+import roadMapstep4 from "../../src/assets/images/roadMapstep4.avif"
+
+// Simplified steps
+import simplified_step1 from "../../src/assets/images/simplified_step1.avif"
+import simplified_step2 from "../../src/assets/images/simplified_step2.avif"
+import simplified_step3 from "../../src/assets/images/simplified_step3.avif"
+import simplified_step4 from "../../src/assets/images/simplified_step4.avif"
+import simplified_step5 from "../../src/assets/images/simplified_step5.avif"
+import simplified_step6 from "../../src/assets/images/simplified_step6.avif"
+
+// Sell smarter
+import sellsmarter_step2 from "../../src/assets/images/sellsmarter_step2.avif"
+import sellsmarter_step3 from "../../src/assets/images/sellsmarter_step3.avif"
+import sellsmarter_step4 from "../../src/assets/images/sellsmarter_step4.avif"
+
+// Property types
+import propertyType1 from "../../src/assets/images/propertyType1.avif"
+import propertyType2 from "../../src/assets/images/propertyType2.avif"
+import propertyType3 from "../../src/assets/images/propertyType3.avif"
+
+// Type filters
+import typeFilter1 from "../../src/assets/images/typeFilter1.avif"
+import typeFilter2 from "../../src/assets/images/typeFilter2.avif"
+import typeFilter3 from "../../src/assets/images/typeFilter3.avif"
+import typeFilter4 from "../../src/assets/images/typeFilter4.avif"
+import typeFilter5 from "../../src/assets/images/typeFilter5.avif"
+import typeFilter6 from "../../src/assets/images/typeFilter6.avif"
+import typeFilter7 from "../../src/assets/images/typeFilter7.avif"
+import typeFilter8 from "../../src/assets/images/typeFilter8.avif"
+
+// Families
+import families_url1 from "../../src/assets/images/families_url1.avif"
+import families_url2 from "../../src/assets/images/families_url2.avif"
+import families_url3 from "../../src/assets/images/families_url3.avif"
+import families_url4 from "../../src/assets/images/families_url4.avif"
+
+// Faces
+import faces_url1 from "../../src/assets/images/faces_url1.avif"
+import faces_url2 from "../../src/assets/images/faces_url2.avif"
+
+// Client success
+import clientsuccess_url1 from "../../src/assets/images/clientsuccess_url1.avif"
+import clientsuccess_url2 from "../../src/assets/images/clientsuccess_url2.avif"
+import clientsuccess_url3 from "../../src/assets/images/clientsuccess_url3.avif"
+import clientsuccess_url4 from "../../src/assets/images/clientsuccess_url4.avif"
+import clientsuccess_url5 from "../../src/assets/images/clientsuccess_url5.avif"
+import clientsuccess_url6 from "../../src/assets/images/clientsuccess_url6.avif"
+import clientsuccess_corner from "../../src/assets/images/clientsuccess_corner.avif"
+import clientsuccess_location from "../../src/assets/images/clientsuccess_location.avif"
+import clientsuccess_auction from "../../src/assets/images/clientsuccess_auction.avif"
+import clientsuccess_bidding from "../../src/assets/images/clientsuccess_bidding.avif"
+
+// Connect
+import connect_url1 from "../../src/assets/images/connect_url1.avif"
+import connect_url2 from "../../src/assets/images/connect_url2.avif"
+import connect_url3 from "../../src/assets/images/connect_url3.avif"
+import connect_url4 from "../../src/assets/images/connect_url4.avif"
+
+// Icons
+import icon1_url from "../../src/assets/images/icon1_url.avif"
+import icon2_url from "../../src/assets/images/icon2_url.avif"
+import icon3_url from "../../src/assets/images/icon3_url.avif"
+
+// Features
+import bed from "../../src/assets/images/bed.avif"
+import bathroom from "../../src/assets/images/bathroom.avif"
+import square from "../../src/assets/images/square.avif"
+import propType from "../../src/assets/images/propType.avif"
+import size from "../../src/assets/images/size.avif"
+import year from "../../src/assets/images/year.avif"
+import globe from "../../src/assets/images/globe.avif"
+import hvac from "../../src/assets/images/hvac.avif"
+import park from "../../src/assets/images/park.avif"
+import hoa from "../../src/assets/images/hoa.avif"
+import locationIcon from "../../src/assets/images/locationIcon.avif"
+
+// Misc
+import time from "../../src/assets/images/time.avif"
+import trend from "../../src/assets/images/trend.avif"
+
+// Additional
+import image1_url from "../../src/assets/images/image1_url.avif"
+import image2_url from "../../src/assets/images/image2_url.avif"
+
+// Videos
+import video_url from "../../src/assets/images/hero.webm"
+import sellsmarter_step1 from "../../src/assets/images/q1.webm"
+
+// Export all as grouped objects for convenience
+export {
+  mainPageBuy_img_url,
+  logoUrl,
+  stay_updated,
+  roadMapstep1,
+  roadMapstep2,
+  roadMapstep3,
+  roadMapstep4,
+  simplified_step1,
+  simplified_step2,
+  simplified_step3,
+  simplified_step4,
+  simplified_step5,
+  simplified_step6,
+  sellsmarter_step1,
+  sellsmarter_step2,
+  sellsmarter_step3,
+  sellsmarter_step4,
+  propertyType1,
+  propertyType2,
+  propertyType3,
+  typeFilter1,
+  typeFilter2,
+  typeFilter3,
+  typeFilter4,
+  typeFilter5,
+  typeFilter6,
+  typeFilter7,
+  typeFilter8,
+  families_url1,
+  families_url2,
+  families_url3,
+  families_url4,
+  faces_url1,
+  faces_url2,
+  clientsuccess_url1,
+  clientsuccess_url2,
+  clientsuccess_url3,
+  clientsuccess_url4,
+  clientsuccess_url5,
+  clientsuccess_url6,
+  clientsuccess_corner,
+  clientsuccess_location,
+  clientsuccess_auction,
+  clientsuccess_bidding,
+  connect_url1,
+  connect_url2,
+  connect_url3,
+  connect_url4,
+  bed,
+  bathroom,
+  square,
+  propType,
+  size,
+  year,
+  globe,
+  hvac,
+  park,
+  hoa,
+  locationIcon,
+  time,
+  trend,
+  image1_url,
+  image2_url,
+  icon1_url,
+  icon2_url,
+  icon3_url,
+  video_url,
+}

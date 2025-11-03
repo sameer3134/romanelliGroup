@@ -1,31 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { families_url1, families_url2, families_url3, families_url4 } from '../../../assets/allImg';
+import { FamiliesWeServed } from '../../data/FamiliesWeServed_data';
 
 
-const images = [
-  {
-    url: families_url1,
-    title: "Antonio and Cristina made our home-buying journey seamless! Their expertise and dedication helped us find the perfect home for our family.",
-    name: "The Johnson Family",
-  },
-  {
-    url: families_url2,
-    title: "Selling our home felt overwhelming, but The Romanelli Group guided us every step of the way. We couldn’t have asked for better realtors!",
-    name: "The Martinez Family",
-  },
-  {
-    url: families_url3,
-    title: "From our first meeting to closing day, Antonio and Cristina were incredible. They truly care about their clients and go above and beyond!",
-    name: "The Patel Family",
-  },
-  {
-    url: families_url4,
-    title: "Finding our forever home was a dream come true, thanks to The Romanelli Group. Highly recommend their team!",
-    name: "The Thompson Family",
-  },
-];
+
 
 const Families = () => {
+  const [images,setImages]=[FamiliesWeServed]
   const [index, setIndex] = useState(0);
   const [visibleImages, setVisibleImages] = useState(3);
   useEffect(() => {

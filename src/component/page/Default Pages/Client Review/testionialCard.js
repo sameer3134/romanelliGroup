@@ -7,8 +7,7 @@ const TestimonialCard = ({ testimonial }) => {
     testimonial.comment.length > maxLength
       ? testimonial.comment.substring(0, maxLength) + "..."
       : testimonial.comment;
-  const proxyUrl = "https://api.allorigins.win/raw?url=";
-  const imageUrl = proxyUrl + encodeURIComponent(testimonial.image);
+  const imageUrl =testimonial.image
   return (
     <article className="bg-gray-200 p-6 text-black rounded-lg">
       <div className="pb-2">
