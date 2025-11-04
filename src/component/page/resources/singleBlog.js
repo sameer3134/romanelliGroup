@@ -17,7 +17,7 @@ const SingleBlog = () => {
   useEffect(() => {
     axios
       .get(
-        `https://romanelli-strapi.onrender.com/api/blogs?filters[id][$eq]=${id}&populate=*`
+        `https://talented-virtue-526c01e261.strapiapp.com/api/blogs?filters[id][$eq]=${id}&populate=*`
       )
       .then((res) => setBlog(res.data.data[0]))
       .catch((err) => console.error(err));
@@ -54,7 +54,7 @@ const SingleBlog = () => {
 
         {/* Blog Image */}
         <img
-          src={`https://romanelli-strapi.onrender.com${blog?.Image?.url}`}
+          src={blog?.Image?.url}
           alt="blog"
           className="w-full max-h-[500px] object-cover rounded-lg"
         />

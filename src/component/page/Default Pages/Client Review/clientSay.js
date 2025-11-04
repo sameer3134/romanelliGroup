@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TestimonialCard from "./testionialCard";
-import { reviewsData } from "../../../data/clientReviews";
+import axios from "axios";
 
 const ClientSay = () => {
   const [reviews, setReviews] = useState([]);
@@ -8,9 +8,28 @@ const ClientSay = () => {
   const [visibleImages, setVisibleImages] = useState(3);
 
   useEffect(() => {
-    // Load JSON data directly
-    setReviews(reviewsData);
-    console.log(reviewsData)
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get('https://talented-virtue-526c01e261.strapiapp.com/api/reviewdatas?populate=*');
+        const apiData = response.data.data;
+        
+        // Map API data to match expected format
+        const mappedReviews = apiData.map(review => ({
+          id: review.id,
+          name: review.Name,
+          rating: review.Rating,
+          comment: review.Comment,
+          image: review.Image_url,
+          url: review.GoogleReviewsUrl
+        }));
+        
+        setReviews(mappedReviews);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+    
+    fetchReviews();
   }, []);
 
   useEffect(() => {

@@ -7,14 +7,14 @@ const ClientSuccess = () => {
     const [allItemsReduce, setAllItemsReduce] = useState([])
     const fetchData = async () => {
         try {
-            const response = await axios.get("https://romanelli-strapi.onrender.com/api/client-successes?populate=*")
+            const response = await axios.get("https://talented-virtue-526c01e261.strapiapp.com/api/client-successes?populate=*")
             const data = response.data.data
             const mappedData = data.reduce((acc, item) => {
                 acc[item.Item_no] = {
                     url: item.Image?.formats?.medium?.url
-                        ? `https://romanelli-strapi.onrender.com${item.Image.formats.medium.url}`
+                        ? item.Image.formats.medium.url
                         : item.Image?.url
-                            ? `https://romanelli-strapi.onrender.com${item.Image.url}`
+                            ? item.Image.url
                             : "",
                     location: item.Location,
                     bidding: item.Bidding,
@@ -55,11 +55,11 @@ const ClientSuccess = () => {
                         <div className="md:w-1/3 p-1 w-full">
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
-                                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={allData[1]?.url} />
+                                <img alt="ecommerce" className="object-cover object-center w-full h-64 md:h-80 lg:h-[600px] block" src={allData[1]?.url} />
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-start justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
                                     {/* Button in Top-Right Corner */}
-                                    <button className="absolute top-5 right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
+                                    <button className="absolute top-5 right-5 md:right-0 xl:right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
                                         <img src={clientsuccess_corner} className="w-6 h-6" alt="Icon" />
                                         <span>Bidding War Winner!</span>
                                     </button>
@@ -74,13 +74,13 @@ const ClientSuccess = () => {
                             </a>
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
-                                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={allData[2]?.url} />
+                                <img alt="ecommerce" className="object-cover object-center w-full h-48 md:h-60 lg:h-[400px] block" src={allData[2]?.url} />
 
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-start justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
 
                                     {/* Button in Top-Right Corner */}
-                                    <button className="absolute top-5 right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
+                                    <button className="absolute top-5 right-5 md:right-0 xl:right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
                                         <img src={clientsuccess_corner} className="w-6 h-6" alt="Icon" />
                                         <span>Bidding War Winner!</span>
                                     </button>
@@ -101,13 +101,13 @@ const ClientSuccess = () => {
                         <div className="md:w-1/3 p-1 w-full">
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
-                                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={allData[3]?.url} />
+                                <img alt="ecommerce" className="object-cover object-center w-full h-48 md:h-60 lg:h-[400px] block" src={allData[3]?.url} />
 
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-start justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
 
                                     {/* Button in Top-Right Corner */}
-                                    <button className="absolute top-5 right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
+                                    <button className="absolute top-5 right-5 md:right-0 xl:right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
                                         <img src={clientsuccess_corner} className="w-6 h-6" alt="Icon" />
                                         <span>Bidding War Winner!</span>
                                     </button>
@@ -126,13 +126,13 @@ const ClientSuccess = () => {
                             </a>
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
-                                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={allData[4]?.url} />
+                                <img alt="ecommerce" className="object-cover object-center w-full h-64 md:h-80 lg:h-[600px] block" src={allData[4]?.url} />
 
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-start justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
 
                                     {/* Button in Top-Right Corner */}
-                                    <button className="absolute top-5 right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
+                                    <button className="absolute top-5 right-5 md:right-0 xl:right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
                                         <img src={clientsuccess_corner} className="w-6 h-6" alt="Icon" />
                                         <span>Bidding War Winner!</span>
                                     </button>
@@ -153,13 +153,13 @@ const ClientSuccess = () => {
                         <div className="md:w-1/3 p-1 w-full">
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
-                                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={allData[5]?.url} />
+                                <img alt="ecommerce" className="object-cover object-center w-full h-64 md:h-80 lg:h-[600px] block" src={allData[5]?.url} />
 
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-start justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
 
                                     {/* Button in Top-Right Corner */}
-                                    <button className="absolute top-5 right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
+                                    <button className="absolute top-5 right-5 md:right-0 xl:right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
                                         <img src={clientsuccess_corner} className="w-6 h-6" alt="Icon" />
                                         <span>Bidding War Winner!</span>
                                     </button>
@@ -178,13 +178,13 @@ const ClientSuccess = () => {
                             </a>
                             <a className="block relative p-1 rounded overflow-hidden group">
                                 {/* Image */}
-                                <img alt="ecommerce" className="object-cover object-center w-full h-full block" src={allData[6]?.url} />
+                                <img alt="ecommerce" className="object-cover object-center w-full h-48 md:h-60 lg:h-[400px] block" src={allData[6]?.url} />
 
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-opacity-50 bg-black flex flex-col items-start justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4">
 
                                     {/* Button in Top-Right Corner */}
-                                    <button className="absolute top-5 right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
+                                    <button className="absolute top-5 right-5 md:right-0 xl:right-5 flex items-center gap-2 bg-red-800 text-gray-200 px-4 py-2 text-sm sm:text-base font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-200">
                                         <img src={clientsuccess_corner} className="w-6 h-6" alt="Icon" />
                                         <span>Bidding War Winner!</span>
                                     </button>

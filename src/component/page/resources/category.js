@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { time, trend} from '../../../assets/allImg';
 import { useNavigate } from 'react-router-dom';
-import { InstagramData } from '../../data/instagram_data';
+
 
 const Category = () => {
   const [selectedArea, setSelectedArea] = useState("all");
@@ -16,7 +16,7 @@ const Category = () => {
   // ✅ Fetch Blogs from Strapi
   const fetchBlog = async () => {
     try {
-      const response = await axios.get("https://romanelli-strapi.onrender.com/api/blogs?populate=*");
+      const response = await axios.get("https://talented-virtue-526c01e261.strapiapp.com/api/blogs?populate=*");
       const data = response.data.data;
       const mappedBlogs = data.map((item) => ({
         id: item.id,
@@ -25,7 +25,7 @@ const Category = () => {
         src:
           item.Image?.formats?.medium?.url ||
           item.Image?.url
-            ? `https://romanelli-strapi.onrender.com${item.Image.url}`
+            ? item.Image.url
             : "",
         title: "Blog Post",
         timing: `${item.Read_Timing} min read`,
@@ -56,7 +56,22 @@ const Category = () => {
       // Instead of API call, we’ll use your local JSON later
       // Example placeholder:
 
-      setSelectInstragram(InstagramData);
+      const response = await axios.get('https://talented-virtue-526c01e261.strapiapp.com/api/instagram-datas');
+      const apiData = response.data.data;
+      
+      const mappedInstagram = apiData.map(item => ({
+        id: item.id,
+        media: "image",
+        type: "image",
+        title: "Instagram Reel",
+        description: item.Description,
+        timing: item.Timing,
+        src: item.ImageUrl,
+        url: item.InstagramLinkUrl,
+        button: "Watch on Instagram"
+      }));
+      
+      setSelectInstragram(mappedInstagram);
     } catch (error) {
       console.error("Error fetching Instagram reels:", error);
     }

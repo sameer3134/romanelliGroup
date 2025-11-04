@@ -40,7 +40,7 @@ export const usePropertySearch = () => {
       }
 
       const res = await fetch(
-        `${process.env.REACT_APP_FEATURE_LISTINGS}/properties/filter?${params.toString()}`
+        `${process.env.REACT_APP_FEATURE_LISTINGS}/property-listings/filter?${params.toString()}`
       );
 
       if (!res.ok) throw new Error("Failed to fetch properties");

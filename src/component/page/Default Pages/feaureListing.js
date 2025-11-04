@@ -11,7 +11,7 @@ const FeaureListing = () => {
     try {
       const response = await apiServices.get(
         "authentication",
-        "/listings/Property",
+        "/property-listings/listings",
         null,
         null
       );

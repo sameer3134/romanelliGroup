@@ -1,17 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { FamiliesWeServed } from '../../data/FamiliesWeServed_data';
-
-
-
+import axios from 'axios';
 
 const Families = () => {
-  const [images,setImages]=[FamiliesWeServed]
+  const [images, setImages] = useState([])
   const [index, setIndex] = useState(0);
   const [visibleImages, setVisibleImages] = useState(3);
+  
   useEffect(() => {
-    const interval = setInterval(nextSlide, 4000); // Auto-slide every 4 sec
-    return () => clearInterval(interval);
+    const fetchFamilies = async () => {
+      try {
+        const response = await axios.get('https://talented-virtue-526c01e261.strapiapp.com/api/families-we-serveds?populate=*');
+        const apiData = response.data.data;
+        
+        const mappedFamilies = apiData.map(family => ({
+          url: family.Image_url,
+          title: family.Title,
+          name: family.Name
+        }));
+        
+        setImages(mappedFamilies);
+      } catch (error) {
+        console.error('Error fetching families:', error);
+      }
+    };
+    
+    fetchFamilies();
   }, []);
+  useEffect(() => {
+    if (images.length > 0) {
+      const interval = setInterval(nextSlide, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [images]);
   useEffect(() => {
     const updateVisibleImages = () => {
       if (window.innerWidth < 640) {
