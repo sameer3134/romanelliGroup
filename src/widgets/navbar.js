@@ -69,18 +69,21 @@ useEffect(() => {
                 {link.title}
               </Link>
             ))}
+            <Link to='/contactUs'>
             <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2 rounded-md">
               Talk to our Team!
             </button>
+            </Link>
           </div>
 
           {/* Mobile CTA + Hamburger Menu */}
           <div className="flex items-center md:hidden space-x-2">
             {/* Talk to our Team! - Left of Hamburger */}
+            <Link to='/contactUs'>
             <button className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2">
               Talk to our Team!
             </button>
-
+            </Link>
             {/* Mobile Menu Button */}
             <button
               type="button"

@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 
 import PrivateRoute from "./privateRoute";
 import PublicRoute from "./publicRoute";
@@ -15,13 +16,15 @@ import DetailSingleItem from "../component/page/properties/detailSingleItem";
 import DetailPage from "../component/page/properties/detailPropertyPage/detailPage";
 import ScrollToTopButton from "../component/scrollTop/fixedScroller";
 import SingleBlog from "../component/page/resources/singleBlog";
+import SEOHead from "../components/SEOHead";
 
 
 const AccessComponent = () => {
 
   return (
     <>
-      <Router>
+      <HelmetProvider>
+        <Router>
         <Navbar />
         <ScrollToTop />
         <Routes>
@@ -42,8 +45,10 @@ const AccessComponent = () => {
 
           </Route>
         </Routes>
-        <ScrollToTopButton/>
-      </Router>
+          <SEOHead />
+          <ScrollToTopButton/>
+        </Router>
+      </HelmetProvider>
     </>
   );
 };
