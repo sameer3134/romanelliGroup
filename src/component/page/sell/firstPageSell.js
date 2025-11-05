@@ -10,16 +10,99 @@ const FirstPageSell = () => {
         propertyType: "",
         timeline: ""
     });
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+        if (errors[e.target.name]) {
+            setErrors({ ...errors, [e.target.name]: "" });
+        }
     };
 
-    const handleSubmit = () => {
-        setStep(step + 1)
+    const validateStep1 = () => {
+        const newErrors = {};
+        if (!formData.name.trim()) newErrors.name = "Name is required";
+        if (!formData.email.trim()) {
+            newErrors.email = "Email is required";
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            newErrors.email = "Email is invalid";
+        }
+        if (!formData.phone.trim()) {
+            newErrors.phone = "Phone is required";
+        } else if (!/^[\d\s\-\+\(\)]+$/.test(formData.phone)) {
+            newErrors.phone = "Phone number is invalid";
+        }
+        return newErrors;
     };
 
-    const nextStep = () => setStep(step + 1);
+    const validateStep2 = () => {
+        const newErrors = {};
+        if (!formData.address.trim()) newErrors.address = "Address is required";
+        if (!formData.propertyType) newErrors.propertyType = "Property type is required";
+        if (!formData.timeline) newErrors.timeline = "Timeline is required";
+        return newErrors;
+    };
+
+    const handleSubmit = async () => {
+        const stepErrors = validateStep2();
+        if (Object.keys(stepErrors).length > 0) {
+            setErrors(stepErrors);
+            return;
+        }
+        
+        console.log('📋 Form Data Being Submitted:', formData);
+        console.log('📤 API Payload:', {
+            firstName: formData.name.split(' ')[0],
+            lastName: formData.name.split(' ').slice(1).join(' ') || '',
+            emails: [{ value: formData.email }],
+            phones: [{ value: formData.phone }],
+            addresses: [{ street: formData.address }],
+            tags: [`Property Type: ${formData.propertyType}`, `Timeline: ${formData.timeline}`],
+            source: 'Sell Website Form'
+        });
+        
+        try {
+            const response = await fetch('https://api.followupboss.com/v1/people', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Basic ' + btoa(process.env.REACT_APP_FOLLOWUPBOSS_API_KEY + ':'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstName: formData.name.split(' ')[0],
+                    lastName: formData.name.split(' ').slice(1).join(' ') || '',
+                    emails: [{ value: formData.email }],
+                    phones: [{ value: formData.phone }],
+                    addresses: [{ street: formData.address }],
+                    tags: [`Property Type: ${formData.propertyType}`, `Timeline: ${formData.timeline}`],
+                    source: 'Sell Website Form'
+                })
+            });
+            
+            if (response.ok) {
+                console.log('✅ SUCCESS: Lead submitted to FollowUpBoss');
+                console.log('Response Status:', response.status);
+                setStep(step + 1);
+            } else {
+                console.error('❌ FAILED: Lead submission failed');
+                console.error('Response Status:', response.status);
+            }
+        } catch (error) {
+            console.error('❌ ERROR: Network or API error:', error);
+        }
+    };
+
+    const nextStep = () => {
+        const stepErrors = validateStep1();
+        if (Object.keys(stepErrors).length > 0) {
+            setErrors(stepErrors);
+            console.log('⚠️ Step 1 validation failed:', stepErrors);
+            return;
+        }
+        console.log('✅ Step 1 validation passed');
+        setStep(step + 1);
+    };
+    
     const prevStep = () => setStep(step - 1);
 
     return (
@@ -69,8 +152,9 @@ const FirstPageSell = () => {
                                                 placeholder="Enter your full name"
                                                 value={formData.name}
                                                 onChange={handleChange}
-                                                className="w-full text-md p-2 border rounded mb-2"
+                                                className={`w-full text-md p-2 border rounded mb-1 ${errors.name ? 'border-red-500' : ''}`}
                                             />
+                                            {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name}</p>}
                                             <p className='text-black font-semibold text-left text-md mb-1'>Email</p>
                                             <input
                                                 type="email"
@@ -78,8 +162,9 @@ const FirstPageSell = () => {
                                                 placeholder="Enter your email"
                                                 value={formData.email}
                                                 onChange={handleChange}
-                                                className="w-full text-md p-2 border rounded mb-2"
+                                                className={`w-full text-md p-2 border rounded mb-1 ${errors.email ? 'border-red-500' : ''}`}
                                             />
+                                            {errors.email && <p className="text-red-500 text-sm mb-2">{errors.email}</p>}
                                             <p className='text-black font-semibold text-left text-md mb-1'>Phone</p>
                                             <input
                                                 type="tel"
@@ -87,8 +172,9 @@ const FirstPageSell = () => {
                                                 placeholder="Enter your phone number"
                                                 value={formData.phone}
                                                 onChange={handleChange}
-                                                className="w-full text-md p-2 border rounded mb-4"
+                                                className={`w-full text-md p-2 border rounded mb-1 ${errors.phone ? 'border-red-500' : ''}`}
                                             />
+                                            {errors.phone && <p className="text-red-500 text-sm mb-4">{errors.phone}</p>}
                                             <button onClick={nextStep} className="bg-red-800 text-white px-4 py-2 w-full rounded">
                                                 Next
                                             </button>
@@ -106,15 +192,16 @@ const FirstPageSell = () => {
                                                 placeholder="Enter your Property Address"
                                                 value={formData.address}
                                                 onChange={handleChange}
-                                                className="w-full text-md p-2 border rounded mb-2"
+                                                className={`w-full text-md p-2 border rounded mb-1 ${errors.address ? 'border-red-500' : ''}`}
                                             />
+                                            {errors.address && <p className="text-red-500 text-sm mb-2">{errors.address}</p>}
                                             <p className='text-black font-semibold text-left text-md mb-1'>Property Type</p>
                                             <select
                                                 name="propertyType"
                                                 id="propertyType"
                                                 value={formData.propertyType}
                                                 onChange={handleChange}
-                                                className="w-full text-md p-2 border rounded mb-2 bg-white"
+                                                className={`w-full text-md p-2 border rounded mb-1 bg-white ${errors.propertyType ? 'border-red-500' : ''}`}
                                             >
                                                 <option value="">Choose from Options</option>
                                                 <option value="Residential">Residential</option>
@@ -122,6 +209,7 @@ const FirstPageSell = () => {
                                                 <option value="Land">Land</option>
                                                 <option value="Other">Other</option>
                                             </select>
+                                            {errors.propertyType && <p className="text-red-500 text-sm mb-2">{errors.propertyType}</p>}
 
                                             <p className='text-black font-semibold text-left text-md mb-1'>Timeline</p>
                                             <select
@@ -129,7 +217,7 @@ const FirstPageSell = () => {
                                                 id="timeline"
                                                 value={formData.timeline}
                                                 onChange={handleChange}
-                                                className="w-full text-md p-2 border rounded mb-4 bg-white"
+                                                className={`w-full text-md p-2 border rounded mb-1 bg-white ${errors.timeline ? 'border-red-500' : ''}`}
                                             >
                                                 <option value="">When are you planning to sell?</option>
                                                 <option value="Immediately">Immediately</option>
@@ -138,6 +226,7 @@ const FirstPageSell = () => {
                                                 <option value="3-6 Months">3-6 Months</option>
                                                 <option value="Not Sure">Not Sure</option>
                                             </select>
+                                            {errors.timeline && <p className="text-red-500 text-sm mb-4">{errors.timeline}</p>}
                                             <div className="flex flex-col sm:flex-row justify-center gap-1 mt-4">
                                                 <button onClick={prevStep} className="text-gray-900 font-semibold bg-gray-200 px-4 py-2 text-md rounded w-full ">
                                                     Back

@@ -10,7 +10,7 @@ const ClientSay = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get('https://talented-virtue-526c01e261.strapiapp.com/api/reviewdatas?populate=*');
+        const response = await axios.get(`${process.env.REACT_APP_FEATURE_LISTINGS}/reviewdatas`);
         const apiData = response.data.data;
         
         // Map API data to match expected format

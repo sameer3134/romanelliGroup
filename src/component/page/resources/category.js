@@ -56,7 +56,7 @@ const Category = () => {
       // Instead of API call, we’ll use your local JSON later
       // Example placeholder:
 
-      const response = await axios.get('https://talented-virtue-526c01e261.strapiapp.com/api/instagram-datas');
+      const response = await axios.get(`${process.env.REACT_APP_FEATURE_LISTINGS}/instagram-datas`);
       const apiData = response.data.data;
       
       const mappedInstagram = apiData.map(item => ({

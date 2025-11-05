@@ -9,7 +9,7 @@ const Families = () => {
   useEffect(() => {
     const fetchFamilies = async () => {
       try {
-        const response = await axios.get('https://talented-virtue-526c01e261.strapiapp.com/api/families-we-serveds?populate=*');
+        const response = await axios.get(`${process.env.REACT_APP_FEATURE_LISTINGS}/families-we-serveds`);
         const apiData = response.data.data;
         
         const mappedFamilies = apiData.map(family => ({
