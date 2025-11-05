@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AccessibleButton from '../../../components/AccessibleButton'
 
 const ConnectForm = () => {
     const [formData, setFormData] = useState({
@@ -93,6 +94,8 @@ const ConnectForm = () => {
                                                 value={formData.name}
                                                 onChange={handleChange}
                                                 className={`w-full text-md p-2 border rounded mb-1 ${errors.name ? 'border-red-500' : ''}`}
+                                                aria-label="Full name"
+                                                aria-required="true"
                                             />
                                             {errors.name && <p className="text-red-500 text-sm mb-2">{errors.name}</p>}
                                             <p className='text-black font-semibold text-left text-md mb-1'>Email</p>
@@ -103,6 +106,8 @@ const ConnectForm = () => {
                                                 value={formData.email}
                                                 onChange={handleChange}
                                                 className={`w-full text-md p-2 border rounded mb-1 ${errors.email ? 'border-red-500' : ''}`}
+                                                aria-label="Email address"
+                                                aria-required="true"
                                             />
                                             {errors.email && <p className="text-red-500 text-sm mb-2">{errors.email}</p>}
                                             <p className='text-black font-semibold text-left text-md mb-1'>Reason for Contact*</p>
@@ -112,6 +117,8 @@ const ConnectForm = () => {
                                                 value={formData.reason}
                                                 onChange={handleChange}
                                                 className={`w-full text-md p-2 border rounded mb-1 bg-white ${errors.reason ? 'border-red-500' : ''}`}
+                                                aria-label="Reason for contact"
+                                                aria-required="true"
                                             >
                                                 <option value="">Choose from Options</option>
                                                 <option value="buyingInquiry">Buying Inquiry</option>
@@ -123,21 +130,23 @@ const ConnectForm = () => {
                                             {errors.reason && <p className="text-red-500 text-sm mb-2">{errors.reason}</p>}
                                             <p className='text-black font-semibold text-left text-md mb-1'>Message*</p>
                                             <textarea
-                                                type="text"
                                                 name="message"
                                                 placeholder="How can we help you?"
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 className={`w-full text-md p-2 border rounded mb-1 ${errors.message ? 'border-red-500' : ''}`}
+                                                aria-label="Message"
+                                                aria-required="true"
+                                                rows="4"
                                             />
                                             {errors.message && <p className="text-red-500 text-sm mb-2">{errors.message}</p>}
-                                            <button onClick={handleSubmit} className="bg-red-800 text-white px-4 py-2 w-full rounded">
+                                            <AccessibleButton onClick={handleSubmit} className="bg-red-800 text-white px-4 py-2 w-full rounded" ariaLabel="Submit enquiry form">
                                                 Submit Enquiry
-                                            </button>
+                                            </AccessibleButton>
                                             <p className='text-center font-bold p-2'>OR</p>
-                                            <button onClick={handleScheduleCall} className="bg-black text-white px-4 py-2 w-full rounded">
+                                            <AccessibleButton onClick={handleScheduleCall} className="bg-black text-white px-4 py-2 w-full rounded" ariaLabel="Schedule a call with our team">
                                                 Schedule a Call
-                                            </button>
+                                            </AccessibleButton>
                                         </div>        
                                 </div>
                             </div>

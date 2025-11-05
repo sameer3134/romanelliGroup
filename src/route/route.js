@@ -17,6 +17,7 @@ import DetailPage from "../component/page/properties/detailPropertyPage/detailPa
 import ScrollToTopButton from "../component/scrollTop/fixedScroller";
 import SingleBlog from "../component/page/resources/singleBlog";
 import SEOHead from "../components/SEOHead";
+import KeyboardNavigation from "../components/KeyboardNavigation";
 
 
 const AccessComponent = () => {
@@ -25,8 +26,10 @@ const AccessComponent = () => {
     <>
       <HelmetProvider>
         <Router>
+        <KeyboardNavigation />
         <Navbar />
         <ScrollToTop />
+        <main id="main-content" tabIndex="-1">
         <Routes>
           {/* Public Route */}
           <Route path="/" element={<PublicRoute />}>
@@ -45,6 +48,7 @@ const AccessComponent = () => {
 
           </Route>
         </Routes>
+        </main>
           <SEOHead />
           <ScrollToTopButton/>
         </Router>
