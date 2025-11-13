@@ -22,7 +22,7 @@ const MainPageContact = () => {
          <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"><Families/></motion.div>
          <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"> <ClientSay/></motion.div>
          <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0"><Connected/></motion.div>
-         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">   <QuestionAnswer/></motion.div>
+         <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">   <QuestionAnswer onSet={"agent"}/></motion.div>
          <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0">  <Footer/></motion.div></div>
   )
 }

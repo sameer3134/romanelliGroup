@@ -7,23 +7,41 @@ import FirstPageProperties from "../component/page/properties/firstPagePropertie
 import FirstPageResource from "../component/page/resources/firstPageResource";
 
 const Pages = ({page}) => {
+  const renderPage = () => {
+    switch(page) {
+      case "Home":
+        return <Pag2 />;
+      case "Buy":
+        return <FirstPageBuy/>;
+      case "Sell":
+        return <FirstPageSell/>;
+      case "Contact Us":
+        return <FirstPageContact/>;
+      case "Properties":
+        return <FirstPageProperties/>;
+      case "Resources":
+        return <FirstPageResource/>;
+      default:
+        return <Pag2 />;
+    }
+  };
+
   return (
     <div>
-         {page === "Home" &&
-            <Pag2 />
-          }
-          {page === "Buy" &&
-          <FirstPageBuy/>}
-            {page === "Sell" &&
-          <FirstPageSell/>}
-           {page === "Contact Us" &&
-          <FirstPageContact/>}
-          {page === "Properties" &&
-          <FirstPageProperties/>}
-           {page === "Resources" &&
-          <FirstPageResource/>}
+      {renderPage()}
     </div>
   )
+};
+
+export const getVideoUrl = (page) => {
+  switch(page) {
+    case "Home":
+      return "url1"; // Replace with actual Home video URL
+    case "Buy":
+      return "url2"; // Replace with actual Buy video URL
+    default:
+      return "url1"; // Default to Home video URL
+  }
 }
 
 export default Pages

@@ -37,14 +37,7 @@ const ConnectForm = () => {
             return;
         }
 
-        console.log('📋 Form Data Being Submitted:', formData);
-        console.log('📤 API Payload:', {
-            firstName: formData.name.split(' ')[0],
-            lastName: formData.name.split(' ').slice(1).join(' ') || '',
-            emails: [{ value: formData.email }],
-            tags: [`Reason: ${formData.reason}`, `Message: ${formData.message}`],
-            source: source
-        });
+
 
         try {
             const response = await fetch('https://api.followupboss.com/v1/people', {
@@ -63,7 +56,6 @@ const ConnectForm = () => {
             });
 
             if (response.ok) {
-                console.log('✅ SUCCESS: Lead submitted to FollowUpBoss');
                 alert('Thank you! We will contact you soon.');
                 setFormData({ name: "", email: "", reason: "", message: "" });
             } else {

@@ -13,7 +13,7 @@ const QuestionAnswer = ({onSet}) => {
           <p className="lg:w-2/3 mx-auto leading-relaxed text-xl">Got questions? We’ve got answers to help you navigate your real estate journey.</p>
         </div>
       </div>
-      <div className="flex flex-wrap justify-center xl:justify-start lg:w-2/3 mx-auto leading-relaxed text-base">
+      <div className="flex flex-wrap justify-center  lg:w-2/3 mx-auto leading-relaxed text-base">
         <button onClick={() => { setSelectedArea("buyer") }} className={`inline-flex border border-white py-2 px-4 sm:px-6 hover:bg-white hover:text-backgroundColor ${selectedArea === "buyer" ?"text-backgroundColor bg-white":"text-white bg-backgroundColor" } text-base sm:text-lg mb-2 sm:mb-0`}>
           For Buyers
         </button>

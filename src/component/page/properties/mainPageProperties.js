@@ -13,7 +13,7 @@ const MainPageProperties = () => {
         <NumberSpeak/>
         <Families/>
         <ClientSay/>
-        <QuestionAnswer/>
+        <QuestionAnswer onSet={"buyer"}/>
         <Footer/>
     </div>
   )

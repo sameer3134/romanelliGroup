@@ -1,4 +1,5 @@
 import { mainPageBuy_img_url } from '../../../assets/allImg';
+import SideModal from '../home/sideModal';
 
 const FirstPageBuy = () => {
     return (
@@ -23,6 +24,7 @@ const FirstPageBuy = () => {
                     <img src={mainPageBuy_img_url} alt="Floating Icon" className="w-full h-auto object-contain" />
                 </div>
             </div>
+            <SideModal/>
         </div>
     );
 };

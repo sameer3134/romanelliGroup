@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SideModal from '../home/sideModal';
 
 const FirstPageSell = () => {
     const [step, setStep] = useState(1);
@@ -50,16 +51,7 @@ const FirstPageSell = () => {
             return;
         }
         
-        console.log('📋 Form Data Being Submitted:', formData);
-        console.log('📤 API Payload:', {
-            firstName: formData.name.split(' ')[0],
-            lastName: formData.name.split(' ').slice(1).join(' ') || '',
-            emails: [{ value: formData.email }],
-            phones: [{ value: formData.phone }],
-            addresses: [{ street: formData.address }],
-            tags: [`Property Type: ${formData.propertyType}`, `Timeline: ${formData.timeline}`],
-            source: 'Sell Website Form'
-        });
+
         
         try {
             const response = await fetch('https://api.followupboss.com/v1/people', {
@@ -80,8 +72,7 @@ const FirstPageSell = () => {
             });
             
             if (response.ok) {
-                console.log('✅ SUCCESS: Lead submitted to FollowUpBoss');
-                console.log('Response Status:', response.status);
+                alert('Thank you! We will contact you soon.');
                 setStep(step + 1);
             } else {
                 console.error('❌ FAILED: Lead submission failed');
@@ -96,10 +87,8 @@ const FirstPageSell = () => {
         const stepErrors = validateStep1();
         if (Object.keys(stepErrors).length > 0) {
             setErrors(stepErrors);
-            console.log('⚠️ Step 1 validation failed:', stepErrors);
             return;
         }
-        console.log('✅ Step 1 validation passed');
         setStep(step + 1);
     };
     
@@ -271,6 +260,7 @@ const FirstPageSell = () => {
                     </section>
                 </div>
             </div>
+             <SideModal/>
         </div>
     );
 };

@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const VideoPopUp = ({ video_pop_url, close }) => {
   const videoRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
-
+  const navigate=useNavigate()
   const toggleMute = () => {
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted;
@@ -83,6 +84,7 @@ const VideoPopUp = ({ video_pop_url, close }) => {
         <button
           type="button"
           className="absolute right-2 bottom-2 w-[93%] bg-red-800 text-[10px] text-white px-2 py-2 rounded-lg shadow-lg"
+          onClick={()=>{navigate("/contactUs")}}
         >
           Book Your Free Consultation
         </button>

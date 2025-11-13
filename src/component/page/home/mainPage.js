@@ -54,7 +54,7 @@ const MainPage = () => {
       {/* </motion.div> */}
 
       <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">
-        <QuestionAnswer />
+        <QuestionAnswer onSet={"agent"}/>
       </motion.div>
 
       <motion.div variants={fadeInUp}  whileInView="visible" viewport={{ once: false, amount: 0.2 }} className="opacity-0 -my-1">

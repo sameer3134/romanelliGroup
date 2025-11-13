@@ -113,8 +113,8 @@ const NumberSpeak = () => {
        <section
        key={index}
        className="text-gray-900 body-font transition-all duration-300"
-       onMouseMove={(e) => handleMouseMove(e, index)}
-       onMouseLeave={() => handleMouseLeave(index)}
+      //  onMouseMove={(e) => handleMouseMove(e, index)}
+      //  onMouseLeave={() => handleMouseLeave(index)}
      >
        <div className="px-0 md:px-5 pb-6 mx-auto">
          <div className="flex flex-wrap w-full bg-white mx-3 py-2">
@@ -133,7 +133,7 @@ const NumberSpeak = () => {
        </div>
        
        {/* Floating Images - Only for larger screens */}
-       {window.innerWidth > 768 && stat.images.map((imgSrc, imgIndex) => (
+       {/* {window.innerWidth > 768 && stat.images.map((imgSrc, imgIndex) => (
          <img
            key={imgIndex}
            ref={(el) => {
@@ -148,7 +148,7 @@ const NumberSpeak = () => {
              left: "0px",
            }}
          />
-       ))}
+       ))} */}
      </section>
           ))}
         </div>

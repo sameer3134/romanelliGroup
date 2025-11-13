@@ -1,3 +1,4 @@
+import SideModal from '../home/sideModal';
 import ConnectForm from './connectForm';
 
 const FirstPageSell = () => {
@@ -22,6 +23,7 @@ const FirstPageSell = () => {
                     </section>
                 </div>
             </div>
+             <SideModal/>
         </div>
     );
 };

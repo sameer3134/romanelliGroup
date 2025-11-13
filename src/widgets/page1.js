@@ -1,69 +1,62 @@
 import React, { useState, useEffect, useRef } from "react";
 import LoadingScreen from "../loading/loadingScreen";
-import { video_url } from "../assets/allImg";
+import { video_url1,video_url2,video_url3,video_url4,video_url5,video_url6 } from "../assets/allImg";
 import Pages from "./pages";
 
 const Page1 = ({ page }) => {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
-  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   let interval;
-// Unified interaction handler
-const handleUserInteraction = () => {
-  if (videoRef.current && isMuted) {
-    videoRef.current.muted = false;
-    setIsMuted(false);
-    
-    // Attempt playback with sound
-    videoRef.current.play()
-      .then(() => {
-        removeAllListeners();
-      })
-      .catch(err => {
-        // Fallback to muted if unmuted play fails
-        videoRef.current.muted = true;
-        setIsMuted(true);
-      });
-  }
-};
+let video_url;
 
-const removeAllListeners = () => {
-  const events = ['click', 'scroll', 'mousemove', 'keydown', 'touchstart'];
-  events.forEach(event => {
-    document.removeEventListener(event, handleUserInteraction);
-  });
-};
+switch (page) {
+  case "Home":
+    video_url = video_url1;
+    break;
+  case "Buy":
+    video_url = video_url2;
+    break;
+  case "Sell":
+    video_url = video_url3;
+    break;
+  case "Contact Us":
+    video_url = video_url4;
+    break;
+  case "Properties":
+    video_url = video_url5;
+    break;
+  case "Resources":
+    video_url = video_url6;
+    break;
+  default:
+    video_url = null; // optional: handle unknown pages
+}
 
 useEffect(() => {
   const video = videoRef.current;
   if (!video) return;
 
-  // Start with muted autoplay
+  // Always keep video muted
   video.muted = true;
   
   const playPromise = video.play();
   
   if (playPromise !== undefined) {
     playPromise
-      .then(() => {
-        // console.log('Muted autoplay started');
-      })
       .catch(err => {
         console.warn('Muted autoplay blocked:', err);
       });
   }
-
-  // Add interaction listeners
-  const events = ['click', 'scroll', 'keydown', 'touchstart'];
-  events.forEach(event => {
-    document.addEventListener(event, handleUserInteraction, { once: true });
-  });
-
-  return () => {
-    removeAllListeners();
-  };
 }, []);
+
+useEffect(() => {
+  const video = videoRef.current;
+  if (!video || !video_url) return;
+  
+  video.src = video_url;
+  video.load();
+}, [page, video_url]);
     
 
   useEffect(() => {
@@ -121,7 +114,7 @@ useEffect(() => {
               onProgress={handleVideoProgress} // Track buffering progress
               onCanPlayThrough={handleVideoReady} // Once video is ready to play
             >
-              <source src={video_url} type="video/mp4" />
+              <source src={video_url} type="video/webm" />
             </video>
           </div>
           {/* Content */}

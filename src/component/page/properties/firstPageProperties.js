@@ -3,6 +3,7 @@ import FilterPage from './filter';
 import { useNavigate } from 'react-router-dom';
 import { usePropertySearch } from './api/getCheckProperty';
 import LoadingScreen from '../../../loading/loadingScreen';
+import SideModal from '../home/sideModal';
 
 const FirstPageProperties = () => {
   const [loading, setLoading] = useState(false);
@@ -130,7 +131,7 @@ const FirstPageProperties = () => {
           </div>
         </div>
       </div>
-
+ <SideModal/>
 
       {filterOpen && < FilterPage close={() => { setFilterOpen(false) }} onSave={handleFilterSave} />}
     </div>

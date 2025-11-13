@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import FilterResource from './filterResource'
+import SideModal from '../home/sideModal';
 
 const FirstPageResource = () => {
   const [filterOpen, setFilterOpen] = useState(false)
@@ -61,7 +62,7 @@ const FirstPageResource = () => {
           </div>
         </div>
       </div>
-
+ <SideModal/>
 
       {filterOpen && < FilterResource close={() => { setFilterOpen(false) }} />}
     </div>
