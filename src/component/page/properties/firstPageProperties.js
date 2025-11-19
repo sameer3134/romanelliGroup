@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import FilterPage from './filter';
 import { useNavigate } from 'react-router-dom';
 import { usePropertySearch } from './api/getCheckProperty';
@@ -10,6 +10,10 @@ const FirstPageProperties = () => {
   const [progress, setProgress] = useState(0)
   const [filterOpen, setFilterOpen] = useState(false)
   const [placeholder, setPlaceholder] = useState("Enter city");
+  const [suggestions, setSuggestions] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const autocompleteService = useRef(null);
+  const inputRef = useRef(null);
   const [filters, setFilters] = useState({
     min: 0,
     max: 50000,
@@ -20,6 +24,7 @@ const FirstPageProperties = () => {
     selectedOption: "Buy"
   });
   const navigate = useNavigate()
+
   useEffect(() => {
     const updatePlaceholder = () => {
       if (window.innerWidth >= 640) {
@@ -29,10 +34,25 @@ const FirstPageProperties = () => {
       }
     };
 
-    updatePlaceholder(); // Set initial placeholder
-    window.addEventListener("resize", updatePlaceholder); // Update on resize
+    updatePlaceholder();
+    window.addEventListener("resize", updatePlaceholder);
 
-    return () => window.removeEventListener("resize", updatePlaceholder); // Cleanup
+    // Load Google Maps JavaScript API
+    if (!window.google) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
+      script.async = true;
+      script.onload = () => {
+        if (window.google && window.google.maps && window.google.maps.places) {
+          autocompleteService.current = new window.google.maps.places.AutocompleteService();
+        }
+      };
+      document.head.appendChild(script);
+    } else if (window.google && window.google.maps && window.google.maps.places) {
+      autocompleteService.current = new window.google.maps.places.AutocompleteService();
+    }
+
+    return () => window.removeEventListener("resize", updatePlaceholder);
   }, []);
   const { checkProperty, error } = usePropertySearch(); // ✅ hook
   const handleFilterSave = async (values) => {
@@ -64,7 +84,7 @@ const FirstPageProperties = () => {
       {loading && <LoadingScreen progress={progress} />}
       <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
         {/* Heading */}
-        <div className="flex flex-col text-center w-full mb-6">
+        <div className="flex flex-col text-left w-full mb-6">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-4xl px-4">
             Your{" "}
             <span className="italic font-playfair">Dream Property</span> is Just a Click Away
@@ -99,12 +119,80 @@ const FirstPageProperties = () => {
         {/* Search Box */}
         <div className="relative w-full max-w-2xl mx-auto">
           <input
-            className="w-full bg-white p-3 pl-4 text-black  focus:outline-none"
+            ref={inputRef}
+            className="w-full bg-white p-3 pl-4 text-black focus:outline-none"
             placeholder={placeholder}
             value={filters.searchCity}
-            onChange={(e) => setFilters({ ...filters, searchCity: e.target.value })}
+            onChange={(e) => {
+              const value = e.target.value;
+              setFilters({ ...filters, searchCity: value });
+              
+              if (value.length > 2 && autocompleteService.current) {
+                autocompleteService.current.getPlacePredictions(
+                  {
+                    input: value,
+                    types: ['(cities)'],
+                    componentRestrictions: { country: 'us' }
+                  },
+                  (predictions, status) => {
+                    if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
+                      setSuggestions(predictions);
+                      setShowDropdown(true);
+                    } else {
+                      setSuggestions([]);
+                      setShowDropdown(false);
+                    }
+                  }
+                );
+              } else {
+                setSuggestions([]);
+                setShowDropdown(false);
+              }
+            }}
+            onBlur={() => {
+              setTimeout(() => setShowDropdown(false), 100);
+            }}
+            onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
           />
-          <div className='absolute right-1 top-2 md:top-1 bottom-1'>
+          
+          {/* Dropdown */}
+          {showDropdown && suggestions.length > 0 && (
+            <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-60 overflow-y-auto">
+              {suggestions.map((suggestion, index) => (
+                <div
+                  key={suggestion.place_id || index}
+                  className="p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
+                  onMouseDown={async (e) => {
+                    e.preventDefault();
+                    console.log('Dropdown clicked:', suggestion.description);
+                    const updatedFilters = { ...filters, searchCity: suggestion.description };
+                    console.log('Updated filters:', updatedFilters);
+                    setFilters(updatedFilters);
+                    setSuggestions([]);
+                    setShowDropdown(false);
+                    setLoading(true);
+                    console.log('Calling checkProperty...');
+                    try {
+                      const data = await checkProperty(updatedFilters);
+                      console.log('API response:', data);
+                      setLoading(false);
+                      if (data) {
+                        navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+                      } else {
+                        console.log('No data returned from API');
+                      }
+                    } catch (error) {
+                      console.error('API call failed:', error);
+                      setLoading(false);
+                    }
+                  }}
+                >
+                  <div className="text-sm text-gray-800">{suggestion.description}</div>
+                </div>
+              ))}
+            </div>
+          )}
+          <div className='absolute right-1 top-2 md:top-1 bottom-1 z-10'>
             <button className="bg-gray-100 mr-2 text-black text-xs sm:text-sm px-3 sm:px-4 py-2 border border-gray-200">
               <div className='flex' onClick={() => { setFilterOpen(true) }}>  Filter  <span className="ml-2 flex items-center">
                 <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">

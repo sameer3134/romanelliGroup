@@ -16,7 +16,7 @@ const Category = () => {
   // ✅ Fetch Blogs from Strapi
   const fetchBlog = async () => {
     try {
-      const response = await axios.get("https://talented-virtue-526c01e261.strapiapp.com/api/blogs?populate=*");
+      const response = await axios.get("https://secure-pleasure-8cb8bfce78.strapiapp.com/api/blogs?populate=*");
       const data = response.data.data;
       const mappedBlogs = data.map((item) => ({
         id: item.id,

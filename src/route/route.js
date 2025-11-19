@@ -18,16 +18,32 @@ import ScrollToTopButton from "../component/scrollTop/fixedScroller";
 import SingleBlog from "../component/page/resources/singleBlog";
 import SEOHead from "../components/SEOHead";
 import KeyboardNavigation from "../components/KeyboardNavigation";
+import CookiePolicy from "../component/page/policies/cookiePolicy";
+import TermsOfUse from "../component/page/policies/termsOfUse";
+import PrivacyPolicy from "../component/page/policies/privacyPolicy";
+import DmcaNotice from "../component/page/policies/dmcaNotice";
+import FairHousing from "../component/page/policies/fairHousing";
+import AccessibilityPolicy from "../component/page/policies/accessibilityPolicy";
+import CookieConsent from "../component/page/Default Pages/cookieConsent";
 
 
 const AccessComponent = () => {
+  const [location, setLocation] = React.useState(window.location.pathname);
+
+  React.useEffect(() => {
+    const handleLocationChange = () => setLocation(window.location.pathname);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
+
+  const isPolicyPage = ['/cookie-policy', '/terms-of-use', '/privacy-policy', '/dmca-notice', '/fair-housing', '/accessibility-policy'].includes(location);
 
   return (
     <>
       <HelmetProvider>
         <Router>
         <KeyboardNavigation />
-        <Navbar />
+        {!isPolicyPage && <Navbar />}
         <ScrollToTop />
         <main id="main-content" tabIndex="-1">
         <Routes>
@@ -42,6 +58,12 @@ const AccessComponent = () => {
              <Route path="/resources/blogs/:id" element={<SingleBlog />} />
             <Route path="/properties/:id" element={<DetailSingleItem />} />
             <Route path="/details/properties" element={<DetailPage />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/terms-of-use" element={<TermsOfUse />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/dmca-notice" element={<DmcaNotice />} />
+            <Route path="/fair-housing" element={<FairHousing />} />
+            <Route path="/accessibility-policy" element={<AccessibilityPolicy />} />
           </Route>
           {/* Private Route */}
           <Route path="/" element={<PrivateRoute />}>
@@ -51,6 +73,7 @@ const AccessComponent = () => {
         </main>
           <SEOHead />
           <ScrollToTopButton/>
+          <CookieConsent />
         </Router>
       </HelmetProvider>
     </>

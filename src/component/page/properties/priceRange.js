@@ -1,13 +1,13 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import "./styles.css"
 
-const DoubleRangeSlider = ({ min, max, onChange }) => {
+const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
   const [minVal, setMinVal] = useState(min);
   const [maxVal, setMaxVal] = useState(max);
   const minValRef = useRef(min);
   const maxValRef = useRef(max);
   const range = useRef(null);
-
+ console.log("E",max)
   // Convert to percentage
   const getPercent = useCallback((value) => ((value - min) / (max - min)) * 100, [min, max]);
 
@@ -60,13 +60,21 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
             const value = e.target.value;
             setInputMin(value);
 
-            // Only update if valid number
-            if (value !== '' && !isNaN(value)) {
+            // Update if valid number or empty
+            if (value === '') {
+              setMinVal(1);
+              minValRef.current = 1;
+            } else if (!isNaN(value)) {
               const numValue = parseFloat(value);
-              if (numValue >= min && numValue <= maxVal - 0.01) {
+              if (numValue >= 1 && numValue < maxVal) {
                 setMinVal(numValue);
                 minValRef.current = numValue;
               }
+            }
+          }}
+          onBlur={() => {
+            if (onChangeComplete) {
+              onChangeComplete({ min: minVal, max: maxVal });
             }
           }}
         />
@@ -80,13 +88,21 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
             const value = e.target.value;
             setInputMax(value);
 
-            // Only update if valid number
-            if (value !== '' && !isNaN(value)) {
+            // Update if valid number or empty
+            if (value === '') {
+              setMaxVal(max);
+              maxValRef.current = max;
+            } else if (!isNaN(value)) {
               const numValue = parseFloat(value);
-              if (numValue <= max && numValue >= minVal + 0.01) {
+              if (numValue > minVal) {
                 setMaxVal(numValue);
                 maxValRef.current = numValue;
               }
+            }
+          }}
+          onBlur={() => {
+            if (onChangeComplete) {
+              onChangeComplete({ min: minVal, max: maxVal });
             }
           }}
         />
@@ -105,6 +121,16 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
               setMinVal(value);
               setInputMin(value);
               minValRef.current = value;
+            }}
+            onMouseUp={() => {
+              if (onChangeComplete) {
+                onChangeComplete({ min: minVal, max: maxVal });
+              }
+            }}
+            onTouchEnd={() => {
+              if (onChangeComplete) {
+                onChangeComplete({ min: minVal, max: maxVal });
+              }
             }}
             className={`absolute w-full h-0 pointer-events-none outline-none appearance-none z-30 ${minVal > max - (max - min) * 0.1 ? 'z-50' : ''
               }`}
@@ -125,6 +151,16 @@ const DoubleRangeSlider = ({ min, max, onChange }) => {
               setMaxVal(value);
               setInputMax(value);
               maxValRef.current = value;
+            }}
+            onMouseUp={() => {
+              if (onChangeComplete) {
+                onChangeComplete({ min: minVal, max: maxVal });
+              }
+            }}
+            onTouchEnd={() => {
+              if (onChangeComplete) {
+                onChangeComplete({ min: minVal, max: maxVal });
+              }
             }}
             className="absolute w-full h-0 pointer-events-none outline-none appearance-none z-40"
             style={{

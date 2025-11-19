@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -7,6 +8,7 @@ const Form = () => {
         reason: "",
         message: ""
     });
+    const [privacyAccepted, setPrivacyAccepted] = useState(false);
     const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
@@ -130,9 +132,21 @@ const Form = () => {
                                             <button onClick={handleScheduleCall} className="bg-black text-white px-4 py-2 w-full rounded">
                                                 Schedule a Call
                                             </button>
+                                            <div className="flex items-start gap-2 mt-4 text-xs text-gray-600">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="privacyPolicy" 
+                                                    checked={privacyAccepted}
+                                                    onChange={(e) => setPrivacyAccepted(e.target.checked)}
+                                                    className="mt-1 flex-shrink-0"
+                                                />
+                                                <label htmlFor="privacyPolicy" className="text-left">
+                                                    By providing your information, you agree to be contacted by The Romanelli Group LLC via phone call, email, and text for real estate services. To opt out, you can reply "STOP" to any text at any time or click the unsubscribe link in emails. For help, reply "HELP." Message and data rates may apply. Message frequency varies. <Link to="/privacy-policy" target='_blank' className="text-blue-600 hover:text-blue-800 underline">View our Privacy Policy</Link>.
+                                                </label>
+                                            </div>
                                         </div>        
                                 </div>
-                            </div>
+                                            </div>
     </>
   )
 }

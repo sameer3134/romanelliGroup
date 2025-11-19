@@ -49,6 +49,7 @@ const FilterPage = ({ close , onSave }) => {
         setPriceRange({ min, max }); // ✅ store in state
     };
     const [priceRange, setPriceRange] = useState({ min: 0, max: 50000 });
+    console.log(priceRange.max,"r")
     const [selectedBedroom, setSelectedBedroom] = useState(null);
     const [selectedBathroom, setSelectedBathroom] = useState(null);
     const [selectedProperty, setSelectedProperty] = useState(null);

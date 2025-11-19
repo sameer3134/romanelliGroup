@@ -18,7 +18,7 @@ const useFilteredProperties = (data, filters) => {
     );
 
     // Step 2: Map to simplified objects (limit 6)
-    const mapped = filtered.slice(0, 6).map(item => ({
+    const mapped = filtered.filter(i => i.ListPrice !== 1).map(item => ({
       id: item.ListingKey,
       amount: item.ListPrice,
       heading: item.StreetNumber

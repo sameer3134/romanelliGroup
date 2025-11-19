@@ -17,7 +17,7 @@ const SingleBlog = () => {
   useEffect(() => {
     axios
       .get(
-        `https://talented-virtue-526c01e261.strapiapp.com/api/blogs?filters[id][$eq]=${id}&populate=*`
+        `https://secure-pleasure-8cb8bfce78.strapiapp.com/api/blogs?filters[id][$eq]=${id}&populate=*`
       )
       .then((res) => setBlog(res.data.data[0]))
       .catch((err) => console.error(err));

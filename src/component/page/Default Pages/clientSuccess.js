@@ -7,7 +7,7 @@ const ClientSuccess = () => {
     const [allItemsReduce, setAllItemsReduce] = useState([])
     const fetchData = async () => {
         try {
-            const response = await axios.get("https://talented-virtue-526c01e261.strapiapp.com/api/client-successes?populate=*")
+            const response = await axios.get("https://secure-pleasure-8cb8bfce78.strapiapp.com/api/client-successes?populate=*")
             const data = response.data.data
             const mappedData = data.reduce((acc, item) => {
                 acc[item.Item_no] = {

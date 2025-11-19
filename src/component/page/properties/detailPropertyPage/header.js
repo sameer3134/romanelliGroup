@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import DoubleRangeSlider from '../priceRange'
 import { ChevronDown, Filter } from 'lucide-react';
 import { usePropertySearch } from '../api/getCheckProperty';
@@ -22,6 +22,9 @@ const Header = ({ filter, onResults }) => {
   const [progress, setProgress] = useState(0)
   const [filterOpen, setFilterOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showDropdown, setShowDropdown] = useState(false);
+  const autocompleteService = useRef(null);
   const [localFilters, setLocalFilters] = useState({
     searchCity: filter?.searchCity || '',
     selectedOption: filter?.selectedOption || 'Buy',
@@ -47,16 +50,32 @@ const Header = ({ filter, onResults }) => {
     });
   }, [filter]);
 
-    let interval;
+  // Load Google Maps API
+  useEffect(() => {
+    if (!window.google) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
+      script.async = true;
+      script.onload = () => {
+        if (window.google && window.google.maps && window.google.maps.places) {
+          autocompleteService.current = new window.google.maps.places.AutocompleteService();
+        }
+      };
+      document.head.appendChild(script);
+    } else if (window.google && window.google.maps && window.google.maps.places) {
+      autocompleteService.current = new window.google.maps.places.AutocompleteService();
+    }
+  }, []);
+
+  let interval;
   useEffect(() => {
     interval = setInterval(() => {
       setProgress((oldProgress) => {
-        if (oldProgress >= 90) return oldProgress; // Stop at 90%
+        if (oldProgress >= 90) return oldProgress;
         return oldProgress + 5;
       });
     }, 700);
 
-    // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
@@ -72,21 +91,42 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handlePriceChange = ({ min, max }) => {
-    setLocalFilters(prev => ({
-      ...prev,
-      min,
-      max
-    }));
+    setLocalFilters(prev => ({ ...prev, min, max }));
   };
 
-  const handleBuyRentChange = (option) => {
-    updateFilter('selectedOption', option);
+  const handlePriceChangeComplete = async ({ min, max }) => {
+    const updatedFilters = { ...localFilters, min, max };
     setDropdownOpen('');
+    setLoading(true);
+    const data = await checkProperty(updatedFilters);
+    setLoading(false);
+    if (data) {
+      navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+    }
   };
 
-  const handlePropertyTypeChange = (propertyType) => {
-    updateFilter('property', propertyType);
+  const handleBuyRentChange = async (option) => {
+    const updatedFilters = { ...localFilters, selectedOption: option };
+    setLocalFilters(updatedFilters);
     setDropdownOpen('');
+    setLoading(true);
+    const data = await checkProperty(updatedFilters);
+    setLoading(false);
+    if (data) {
+      navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+    }
+  };
+
+  const handlePropertyTypeChange = async (propertyType) => {
+    const updatedFilters = { ...localFilters, property: propertyType };
+    setLocalFilters(updatedFilters);
+    setDropdownOpen('');
+    setLoading(true);
+    const data = await checkProperty(updatedFilters);
+    setLoading(false);
+    if (data) {
+      navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+    }
   };
 
   const directSearch = async () => {
@@ -98,8 +138,6 @@ const Header = ({ filter, onResults }) => {
 
   const filteredSearch = async () => {
     setDropdownOpen('');
-
-    // Call the property search with updated filters
     if (onResults) {
       onResults(localFilters);
     }
@@ -110,34 +148,91 @@ const Header = ({ filter, onResults }) => {
     const f = { ...values, searchCity: filter.searchCity, selectedOption: filter.selectedOption }
     setLocalFilters(f)
     setLoading(true)
-    const data = await checkProperty(f); // ✅ reuse
+    const data = await checkProperty(f);
     setLoading(false)
     if (data) {
       navigate(`/details/properties`, { state: { data, filters: f } });
     }
   };
 
-
   return (
     <div className="bg-white border-b border-gray-200">
       {loading && <LoadingScreen progress={progress} />}
-      {/* Search Header */}
       <div className="flex items-center py-4">
-        {/* Search Section */}
         <div className="flex-1 flex space-x-2 w-full">
-          {/* Location Search */}
           <div className="relative w-full max-w-xl">
             <div className="flex">
               <input
                 type="text"
                 className="flex-1 relative bg-white border border-gray-300 p-3 pl-4 text-black focus:outline-none focus:border-red-500"
                 value={localFilters.searchCity}
-                onChange={(e) => updateFilter('searchCity', e.target.value)}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  updateFilter('searchCity', value);
+                  
+                  if (value.length > 2 && autocompleteService.current) {
+                    autocompleteService.current.getPlacePredictions(
+                      {
+                        input: value,
+                        types: ['(cities)'],
+                        componentRestrictions: { country: 'us' }
+                      },
+                      (predictions, status) => {
+                        if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
+                          setSuggestions(predictions);
+                          setShowDropdown(true);
+                        } else {
+                          setSuggestions([]);
+                          setShowDropdown(false);
+                        }
+                      }
+                    );
+                  } else {
+                    setSuggestions([]);
+                    setShowDropdown(false);
+                  }
+                }}
+                onBlur={() => {
+                  setTimeout(() => setShowDropdown(false), 100);
+                }}
+                onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
                 placeholder="Enter location..."
               />
+              
+              {showDropdown && suggestions.length > 0 && (
+                <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-60 overflow-y-auto">
+                  {suggestions.map((suggestion, index) => (
+                    <div
+                      key={suggestion.place_id || index}
+                      className="p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
+                      onMouseDown={async (e) => {
+                        e.preventDefault();
+                        const updatedFilters = { ...localFilters, searchCity: suggestion.description };
+                        setLocalFilters(updatedFilters);
+                        setSuggestions([]);
+                        setShowDropdown(false);
+                        setLoading(true);
+                        try {
+                          const data = await checkProperty(updatedFilters);
+                          setLoading(false);
+                          if (data) {
+                            navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+                          }
+                        } catch (error) {
+                          console.error('API call failed:', error);
+                          setLoading(false);
+                        }
+                      }}
+                    >
+                      <div className="text-sm text-gray-800">{suggestion.description}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              
               <button
                 onClick={directSearch}
-                className="bg-red-600 absolute right-1 top-1  bottom-1  hover:bg-red-700 text-white px-6 py-3 font-medium flex items-center"
+                className="bg-red-600 absolute right-1 top-1 bottom-1 hover:bg-red-700 text-white px-6 py-3 font-medium flex items-center"
                 disabled={loading}
               >
                 {loading ? 'Searching...' : 'Search'}
@@ -145,9 +240,7 @@ const Header = ({ filter, onResults }) => {
             </div>
           </div>
 
-          {/* Filters Row */}
-          <div className="flex items-center ml-4 space-x-2 ">
-            {/* Buy/Rent Dropdown */}
+          <div className="flex items-center ml-4 space-x-2">
             <div className="relative hidden xl:flex">
               <button
                 onClick={() => toggleDropdown('sale')}
@@ -176,8 +269,7 @@ const Header = ({ filter, onResults }) => {
               )}
             </div>
 
-            {/* Price Dropdown */}
-            <div className="relative hidden xl:flex ">
+            <div className="relative hidden xl:flex">
               <button
                 onClick={() => toggleDropdown('price')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -191,13 +283,13 @@ const Header = ({ filter, onResults }) => {
                     min={localFilters.min}
                     max={localFilters.max}
                     onChange={handlePriceChange}
+                    onChangeComplete={handlePriceChangeComplete}
                   />
                 </div>
               )}
             </div>
 
-            {/* Property Type Dropdown */}
-            <div className="relative hidden xl:flex ">
+            <div className="relative hidden xl:flex">
               <button
                 onClick={() => toggleDropdown('type')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -224,20 +316,17 @@ const Header = ({ filter, onResults }) => {
               )}
             </div>
 
-            {/* Filter Button */}
             <button
               onClick={() => { setFilterOpen(true) }}
-              className="border border-gray-300  px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
+              className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
             >
-
               <span className="text-sm">Filter</span>
               <Filter size={16} />
             </button>
           </div>
         </div>
 
-        {/* Save Search Button */}
-        <div className="ml-6 hidden xl:flex ">
+        <div className="ml-6 hidden xl:flex">
           <button
             className="bg-black hover:bg-gray-800 text-white px-6 py-3 text-sm font-medium"
             onClick={filteredSearch}
@@ -248,27 +337,6 @@ const Header = ({ filter, onResults }) => {
         </div>
       </div>
 
-      <style jsx>{`
-        .slider-thumb::-webkit-slider-thumb {
-          appearance: none;
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          background: #dc2626;
-          cursor: pointer;
-          border: 2px solid white;
-          box-shadow: 0 0 0 1px #ccc;
-        }
-        .slider-thumb::-moz-range-thumb {
-          height: 16px;
-          width: 16px;
-          border-radius: 50%;
-          background: #dc2626;
-          cursor: pointer;
-          border: 2px solid white;
-          box-shadow: 0 0 0 1px #ccc;
-        }
-      `}</style>
       {filterOpen && <DetailFilter close={() => { setFilterOpen(false) }} onSave={handleFilterSave} filterVal={localFilters} />}
     </div>
   );

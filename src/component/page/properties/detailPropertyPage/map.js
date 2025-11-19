@@ -6,34 +6,16 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
   const markersRef = useRef([]);
   const [mapLoaded, setMapLoaded] = useState(false);
 
-  // Load Leaflet CSS and JS dynamically
+  // Load Google Maps API
   useEffect(() => {
-    const loadLeaflet = async () => {
-      // Load CSS
-      if (!document.querySelector('link[href*="leaflet"]')) {
-        const cssLink = document.createElement('link');
-        cssLink.rel = 'stylesheet';
-        cssLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css';
-        document.head.appendChild(cssLink);
-      }
-
-      // Load JS
-      if (!window.L) {
-        return new Promise((resolve) => {
-          const script = document.createElement('script');
-          script.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
-          script.onload = () => {
-            setMapLoaded(true);
-            resolve();
-          };
-          document.head.appendChild(script);
-        });
-      } else {
-        setMapLoaded(true);
-      }
-    };
-
-    loadLeaflet();
+    if (!window.google) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
+      script.onload = () => setMapLoaded(true);
+      document.head.appendChild(script);
+    } else {
+      setMapLoaded(true);
+    }
   }, []);
 
   // Initialize map and add all markers
@@ -43,13 +25,12 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
       const centerLat = alldata.reduce((sum, property) => sum + property.lat, 0) / alldata.length;
       const centerLng = alldata.reduce((sum, property) => sum + property.lng, 0) / alldata.length;
 
-      // Initialize the map
-      const map = window.L.map(mapRef.current).setView([centerLat, centerLng], 12);
-
-      // Add tile layer
-      window.L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenStreetMap contributors'
-      }).addTo(map);
+      // Initialize Google Map
+      const map = new window.google.maps.Map(mapRef.current, {
+        center: { lat: centerLat, lng: centerLng },
+        zoom: 12,
+        mapTypeId: 'roadmap'
+      });
 
       mapInstanceRef.current = map;
 
@@ -62,58 +43,21 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
   const addAllMarkers = (map) => {
     // Clear existing markers
     markersRef.current.forEach(marker => {
-      map.removeLayer(marker);
+      marker.setMap(null);
     });
     markersRef.current = [];
 
     if (!alldata || alldata.length === 0) return;
 
+    const bounds = new window.google.maps.LatLngBounds();
+    const infoWindow = new window.google.maps.InfoWindow();
+
     // Add marker for each property
     alldata.forEach((property, index) => {
       if (!property.lat || !property.lng) return;
 
-      // Create different colored markers based on price range
-      const getMarkerColor = (price) => {
-        if (price < 500000) return '#10b981'; // green for lower prices
-        if (price < 700000) return '#f59e0b'; // amber for mid-range
-        return '#dc2626'; // red for higher prices
-      };
-
       const isSelected = selectedProperty && selectedProperty.id === property.id;
       
-      // Custom property marker icon
-      const propertyIcon = window.L.divIcon({
-        className: 'custom-property-marker',
-        html: `
-          <div style="
-            background: ${isSelected ? '#3b82f6' : getMarkerColor(property.amount)};
-            color: white;
-            border-radius: 50% 50% 50% 0;
-            transform: rotate(-45deg);
-            width: ${isSelected ? '36px' : '30px'};
-            height: ${isSelected ? '36px' : '30px'};
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-            box-shadow: 0 ${isSelected ? '4px 8px' : '2px 4px'} rgba(0,0,0,${isSelected ? '0.3' : '0.2'});
-            z-index: ${isSelected ? '1000' : '999'};
-            transition: all 0.2s ease;
-          ">
-            <div style="
-              transform: rotate(45deg); 
-              font-size: ${isSelected ? '16px' : '14px'};
-              font-weight: bold;
-            ">
-              ${isSelected ? '🏠' : '🏡'}
-            </div>
-          </div>
-        `,
-        iconSize: [isSelected ? 36 : 30, isSelected ? 36 : 30],
-        iconAnchor: [isSelected ? 18 : 15, isSelected ? 36 : 30],
-        popupAnchor: [0, isSelected ? -36 : -30]
-      });
-
       // Format price for display
       const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US', {
@@ -123,10 +67,31 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
         }).format(price);
       };
 
+      // Create different colored markers based on price range
+      const getMarkerColor = (price) => {
+        if (price < 500000) return '#10b981'; // green for lower prices
+        if (price < 700000) return '#f59e0b'; // amber for mid-range
+        return '#dc2626'; // red for higher prices
+      };
+
       // Create marker
-      const marker = window.L.marker([property.lat, property.lng], { icon: propertyIcon })
-        .addTo(map)
-        .bindPopup(`
+      const marker = new window.google.maps.Marker({
+        position: { lat: property.lat, lng: property.lng },
+        map: map,
+        title: property.heading,
+        icon: {
+          url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+            <svg width="${isSelected ? '36' : '30'}" height="${isSelected ? '36' : '30'}" viewBox="0 0 ${isSelected ? '36' : '30'} ${isSelected ? '36' : '30'}" xmlns="http://www.w3.org/2000/svg">
+              <path d="M${isSelected ? '18' : '15'} ${isSelected ? '36' : '30'} C${isSelected ? '8' : '6'} ${isSelected ? '36' : '30'} 0 ${isSelected ? '28' : '22'} 0 ${isSelected ? '18' : '15'} C0 ${isSelected ? '8' : '6'} ${isSelected ? '8' : '6'} 0 ${isSelected ? '18' : '15'} 0 C${isSelected ? '28' : '24'} 0 ${isSelected ? '36' : '30'} ${isSelected ? '8' : '6'} ${isSelected ? '36' : '30'} ${isSelected ? '18' : '15'} C${isSelected ? '36' : '30'} ${isSelected ? '28' : '22'} ${isSelected ? '28' : '24'} ${isSelected ? '36' : '30'} ${isSelected ? '18' : '15'} ${isSelected ? '36' : '30'} Z" fill="${isSelected ? '#3b82f6' : getMarkerColor(property.amount)}" stroke="white" stroke-width="2" filter="drop-shadow(0 ${isSelected ? '4px 8px' : '2px 4px'} rgba(0,0,0,${isSelected ? '0.3' : '0.2'}))"/>
+              <text x="${isSelected ? '18' : '15'}" y="${isSelected ? '20' : '17'}" text-anchor="middle" fill="white" font-size="${isSelected ? '16' : '14'}" font-weight="bold">${isSelected ? '🏠' : '🏡'}</text>
+            </svg>
+          `)}`
+        }
+      });
+
+      // Add click event to marker
+      marker.addListener('click', () => {
+        const content = `
           <div style="min-width: 250px; font-family: system-ui, -apple-system, sans-serif;">
             <h3 style="margin: 0 0 4px 0; font-weight: bold; color: #1f2937; font-size: 16px;">
               ${property.heading}
@@ -143,22 +108,23 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
               <span>📐 ${property.area?.toLocaleString() || 0} sqft</span>
             </div>
           </div>
-        `);
-
-      // Add click event to marker
-      marker.on('click', () => {
+        `;
+        
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+        
         if (onPropertySelect) {
           onPropertySelect(property);
         }
       });
 
       markersRef.current.push(marker);
+      bounds.extend(marker.getPosition());
     });
 
     // Fit map to show all markers
     if (markersRef.current.length > 0) {
-      const group = new window.L.featureGroup(markersRef.current);
-      map.fitBounds(group.getBounds().pad(0.1));
+      map.fitBounds(bounds, { padding: 50 });
     }
   };
 
@@ -172,10 +138,8 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
   // Center map on selected property
   useEffect(() => {
     if (mapInstanceRef.current && selectedProperty) {
-      mapInstanceRef.current.setView([selectedProperty.lat, selectedProperty.lng], 15, {
-        animate: true,
-        duration: 1
-      });
+      mapInstanceRef.current.setCenter({ lat: selectedProperty.lat, lng: selectedProperty.lng });
+      mapInstanceRef.current.setZoom(15);
     }
   }, [selectedProperty]);
 
@@ -218,7 +182,7 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
       <div className="bg-white h-screen overflow-hidden border border-gray-200">
         <div 
           ref={mapRef} 
-          className="h-96 w-full"
+          className="h-full w-full"
           style={{ minHeight: '400px' }}
         />
       </div>
