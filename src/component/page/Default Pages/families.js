@@ -9,11 +9,14 @@ const Families = () => {
   useEffect(() => {
     const fetchFamilies = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_FEATURE_LISTINGS}/families-we-serveds`);
+        const response = await axios.get(`${process.env.REACT_APP_FEATURE_LISTINGS}/served-families?populate=Image`);
         const apiData = response.data.data;
         
         const mappedFamilies = apiData.map(family => ({
-          url: family.Image_url,
+          url: family.Image?.formats?.medium?.url ||
+          family.Image?.url
+            ? family.Image.url
+            : "",
           title: family.Title,
           name: family.Name
         }));
