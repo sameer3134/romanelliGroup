@@ -2,80 +2,83 @@ import React, { useState } from "react";
 import DoubleRangeSlider from "./priceRange";
 import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../assets/allImg";
 
-    const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
-    const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
-//  "Residential",
-//   "Residential Lease",
-//   "Residential Income",
-//   "Land",
-//   "Commercial Sale",
-//   "Commercial Lease",
-//   "Farm"
-    const PropertyTypes=[{
-        type:"Residential",
-        Link:typeFilter1
-    },{
-        type:"Residential Lease",
-        Link:typeFilter2
-    },
-    {
-        type:"Residential Income",
-        Link:typeFilter3
-    },
-    {
-        type:"Farm",
-        Link:typeFilter4
-    },
-    {
-        type:"Commercial Sale",
-        Link:typeFilter5
-    },
-    {
-        type:"Commercial Lease",
-        Link:typeFilter6
-    },
-    {
-        type:"Land",
-        Link:typeFilter7
-    },
-    // {
-    //     type:"Other",
-    //     Link:typeFilter8
-    // },
-]
+const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
+const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
 
-const FilterPage = ({ close , onSave }) => {
+const PropertyTypes = [{
+    type: "Residential",
+    Link: typeFilter1
+}, {
+    type: "Residential Lease",
+    Link: typeFilter2
+}, {
+    type: "Residential Income",
+    Link: typeFilter3
+}, {
+    type: "Farm",
+    Link: typeFilter4
+}, {
+    type: "Commercial Sale",
+    Link: typeFilter5
+}, {
+    type: "Commercial Lease",
+    Link: typeFilter6
+}, {
+    type: "Land",
+    Link: typeFilter7
+}]
+
+const FilterPage = ({ close, onSave, filterVal }) => {
+    const [priceRange, setPriceRange] = useState({ min: filterVal?.min || 0, max: filterVal?.max || 5000001 });
+    const [selectedBedroom, setSelectedBedroom] = useState(filterVal?.bedrooms || null);
+    const [selectedBathroom, setSelectedBathroom] = useState(filterVal?.bathrooms || null);
+    const [selectedProperty, setSelectedProperty] = useState(filterVal?.property || null);
+    const [resetKey, setResetKey] = useState(0);
+
     const handlePriceChange = ({ min, max }) => {
-        setPriceRange({ min, max }); // ✅ store in state
+        setPriceRange({ min, max });
     };
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 50000 });
-    console.log(priceRange.max,"r")
-    const [selectedBedroom, setSelectedBedroom] = useState(null);
-    const [selectedBathroom, setSelectedBathroom] = useState(null);
-    const [selectedProperty, setSelectedProperty] = useState(null);
-
 
     const resetFilters = () => {
+        const resetValues = {
+            min: 0,
+            max: 5000001,
+            bedrooms: null,
+            bathrooms: null,
+            property: null
+        };
+        
         setSelectedBedroom(null);
         setSelectedBathroom(null);
         setSelectedProperty(null);
-        setPriceRange({ min: 0, max: 50000 });
-        close()
-    };
-    const saveSearch = () => {
-    const filters = {
-      min: priceRange.min,
-      max: priceRange.max,
-      bedrooms: selectedBedroom,
-      bathrooms: selectedBathroom,
-      property: selectedProperty,
+        setPriceRange({ min: 0, max: 5000001 });
+        setResetKey(prev => prev + 1);
+        
+        if (onSave) {
+            onSave(resetValues);
+        }
+        close();
     };
 
-    // send to parent
-    if (onSave) {
-      onSave(filters);
-    }
-  };
+    const saveSearch = () => {
+        const filters = {
+            min: priceRange.min,
+            max: priceRange.max,
+            bedrooms: selectedBedroom,
+            bathrooms: selectedBathroom,
+            property: selectedProperty,
+        };
+
+        // Only include price values if user changed them from defaults
+        const apiFilters = { ...filters };
+        if (filters.min === 0) delete apiFilters.min;
+        if (filters.max === 5000001) delete apiFilters.max;
+
+        // send to parent
+        if (onSave) {
+            onSave(apiFilters);
+        }
+    };
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -99,11 +102,16 @@ const FilterPage = ({ close , onSave }) => {
                     {/* Price Range */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Price Range</h2>
-                        <DoubleRangeSlider min={0} max={50000} onChange={handlePriceChange} />
+                        <DoubleRangeSlider 
+                            key={resetKey}
+                            min={priceRange.min}
+                            max={priceRange.max}
+                            onChange={handlePriceChange} 
+                        />
                     </div>
-                    
+
                     <hr className="my-4 border-gray-200" />
-                    
+
                     {/* Bedrooms */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Bedrooms</h2>
@@ -112,20 +120,19 @@ const FilterPage = ({ close , onSave }) => {
                                 <button
                                     key={index}
                                     onClick={() => setSelectedBedroom(room)}
-                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${
-                                        selectedBedroom === room
-                                            ? "bg-gray-800 text-white"
-                                            : "border-gray-300 text-gray-700"
-                                    }`}
+                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${selectedBedroom === room
+                                        ? "bg-gray-800 text-white"
+                                        : "border-gray-300 text-gray-700"
+                                        }`}
                                 >
                                     {room}
                                 </button>
                             ))}
                         </div>
                     </div>
-                    
+
                     <hr className="my-4 border-gray-200" />
-                    
+
                     {/* Bathrooms */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Bathrooms</h2>
@@ -134,20 +141,19 @@ const FilterPage = ({ close , onSave }) => {
                                 <button
                                     key={index}
                                     onClick={() => setSelectedBathroom(numbers)}
-                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${
-                                        selectedBathroom === numbers
-                                            ? "bg-gray-800 text-white"
-                                            : "border-gray-300 text-gray-700"
-                                    }`}
+                                    className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${selectedBathroom === numbers
+                                        ? "bg-gray-800 text-white"
+                                        : "border-gray-300 text-gray-700"
+                                        }`}
                                 >
                                     {numbers}
                                 </button>
                             ))}
                         </div>
                     </div>
-                    
+
                     <hr className="my-4 border-gray-200" />
-                    
+
                     {/* Property Types */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Property types</h2>
@@ -156,11 +162,10 @@ const FilterPage = ({ close , onSave }) => {
                                 <button
                                     key={index}
                                     onClick={() => setSelectedProperty(property.type)}
-                                    className={`rounded border flex flex-col items-center justify-center p-2 ${
-                                        selectedProperty === property.type
-                                            ? "bg-gray-800 text-white"
-                                            : "border-gray-300 text-gray-700"
-                                    }`}
+                                    className={`rounded border flex flex-col items-center justify-center p-2 ${selectedProperty === property.type
+                                        ? "bg-gray-800 text-white"
+                                        : "border-gray-300 text-gray-700"
+                                        }`}
                                 >
                                     <img
                                         src={property.Link}
@@ -173,18 +178,18 @@ const FilterPage = ({ close , onSave }) => {
                         </div>
                     </div>
                 </div>
-                
+
                 {/* Footer Buttons */}
                 <div className="p-4 flex justify-between border-t">
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         className="py-2 px-4 bg-gray-200 text-black rounded"
                         onClick={resetFilters}
                     >
                         Reset Filter
                     </button>
-                    <button 
-                        type="button" 
+                    <button
+                        type="button"
                         onClick={saveSearch}
                         className="py-2 px-4 bg-black text-white rounded"
                     >

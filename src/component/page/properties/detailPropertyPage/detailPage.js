@@ -147,6 +147,7 @@ const DetailPage = () => {
         <hr className='my-2' />
 
       </div>
+      <div className='mt-[25%]'></div>
       <div className='relative z-[2]'>
         <Footer />
       </div>

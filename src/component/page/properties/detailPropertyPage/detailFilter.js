@@ -2,72 +2,66 @@ import React, { useState } from "react";
 import DoubleRangeSlider from "../priceRange";
 import { typeFilter1, typeFilter2, typeFilter3, typeFilter4, typeFilter5, typeFilter6, typeFilter7, typeFilter8 } from "../../../../assets/allImg";
 
-    const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
-    const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
+const bedrooms = ["Any", "1", "2", "3", "4", "5+"]
+const bathrooms = ["Any", "1", "2", "3", "4", "5+"]
 
-      const PropertyTypes=[{
-        type:"Residential",
-        Link:typeFilter1
-    },{
-        type:"Residential Lease",
-        Link:typeFilter2
-    },
-    {
-        type:"Residential Income",
-        Link:typeFilter3
-    },
-    {
-        type:"Farm",
-        Link:typeFilter4
-    },
-    {
-        type:"Commercial Sale",
-        Link:typeFilter5
-    },
-    {
-        type:"Commercial Lease",
-        Link:typeFilter6
-    },
-    {
-        type:"Land",
-        Link:typeFilter7
-    },
-    // {
-    //     type:"Other",
-    //     Link:typeFilter8
-    // },
-]
+const PropertyTypes = [{
+    type: "Residential",
+    Link: typeFilter1
+}, {
+    type: "Residential Lease",
+    Link: typeFilter2
+}, {
+    type: "Residential Income",
+    Link: typeFilter3
+}, {
+    type: "Farm",
+    Link: typeFilter4
+}, {
+    type: "Commercial Sale",
+    Link: typeFilter5
+}, {
+    type: "Commercial Lease",
+    Link: typeFilter6
+}, {
+    type: "Land",
+    Link: typeFilter7
+}]
 
 const DetailFilter = ({ close, onSave, filterVal }) => {
-
-    const [priceRange, setPriceRange] = useState({ min: filterVal.min || 0, max: filterVal.max || 50000 });
+    const [priceRange, setPriceRange] = useState({ min: filterVal.min || 0, max: filterVal.max || 5000001 });
     const [selectedBedroom, setSelectedBedroom] = useState(filterVal.bedrooms || null);
     const [selectedBathroom, setSelectedBathroom] = useState(filterVal.bathrooms || null);
     const [selectedProperty, setSelectedProperty] = useState(filterVal.property || null);
 
     const handlePriceChange = ({ min, max }) => {
-        setPriceRange({ min, max }); // ✅ store in state
+        setPriceRange({ min, max });
     };
 
     const resetFilters = () => {
         setSelectedBedroom(null);
         setSelectedBathroom(null);
         setSelectedProperty(null);
-        setPriceRange({ min: 0, max: 50000 });
+        setPriceRange({ min: 0, max: 5000001 });
         const filters = {
             min: 0,
-            max: 50000,
+            max: 5000001,
             bedrooms: null,
             bathrooms: null,
             property: null,
         };
 
-        // send to parent
+        // Filter out default values before sending to parent
+        const apiFilters = { ...filters };
+        if (filters.min === 0) delete apiFilters.min;
+        if (filters.max === 5000001) delete apiFilters.max;
+
         if (onSave) {
-            onSave(filters);
+            onSave(apiFilters);
         }
         close()
     };
+
     const saveSearch = () => {
         const filters = {
             min: priceRange.min,
@@ -77,12 +71,15 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
             property: selectedProperty,
         };
 
-        // send to parent
+        // Filter out default No min/No max values only
+        const apiFilters = { ...filters };
+        if (filters.min === 0) delete apiFilters.min;
+        if (filters.max === 5000001) delete apiFilters.max;
+
         if (onSave) {
-            onSave(filters);
+            onSave(apiFilters);
         }
     };
-
 
     return (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -106,7 +103,7 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
                     {/* Price Range */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Price Range</h2>
-                        <DoubleRangeSlider min={filterVal.min || 0} max={filterVal.max || 50000} onChange={handlePriceChange} />
+                        <DoubleRangeSlider min={filterVal.min} max={filterVal.max} onChange={handlePriceChange} />
                     </div>
 
                     <hr className="my-4 border-gray-200" />
@@ -120,8 +117,8 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
                                     key={index}
                                     onClick={() => setSelectedBedroom(room)}
                                     className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${selectedBedroom === room
-                                            ? "bg-gray-800 text-white"
-                                            : "border-gray-300 text-gray-700"
+                                        ? "bg-gray-800 text-white"
+                                        : "border-gray-300 text-gray-700"
                                         }`}
                                 >
                                     {room}
@@ -141,8 +138,8 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
                                     key={index}
                                     onClick={() => setSelectedBathroom(numbers)}
                                     className={`rounded border py-1 px-3 text-sm md:px-4 md:text-base ${selectedBathroom === numbers
-                                            ? "bg-gray-800 text-white"
-                                            : "border-gray-300 text-gray-700"
+                                        ? "bg-gray-800 text-white"
+                                        : "border-gray-300 text-gray-700"
                                         }`}
                                 >
                                     {numbers}
@@ -162,8 +159,8 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
                                     key={index}
                                     onClick={() => setSelectedProperty(property.type)}
                                     className={`rounded border flex flex-col items-center justify-center p-2 ${selectedProperty === property.type
-                                            ? "bg-gray-800 text-white"
-                                            : "border-gray-300 text-gray-700"
+                                        ? "bg-gray-800 text-white"
+                                        : "border-gray-300 text-gray-700"
                                         }`}
                                 >
                                     <img

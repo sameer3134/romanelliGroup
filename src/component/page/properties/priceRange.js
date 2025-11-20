@@ -2,14 +2,18 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import "./styles.css"
 
 const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef(min);
-  const maxValRef = useRef(max);
+  const [minVal, setMinVal] = useState(min || 0);
+  const [maxVal, setMaxVal] = useState(max || 5000001);
+  const minValRef = useRef(min || 0);
+  const maxValRef = useRef(max || 5000001);
   const range = useRef(null);
- console.log("E",max)
-  // Convert to percentage
-  const getPercent = useCallback((value) => ((value - min) / (max - min)) * 100, [min, max]);
+
+  // Convert value to percentage (0-100)
+  const getPercent = useCallback((value) => {
+    if (value === 0) return 0;
+    if (value >= 5000000) return 100;
+    return (value / 5000000) * 95;
+  }, []);
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
@@ -32,15 +36,15 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
     }
   }, [maxVal, getPercent]);
 
-  // Get min and max values when their state changes - FIXED: use callback for onChange
+  // Get min and max values when their state changes
   useEffect(() => {
     if (onChange) {
       onChange({ min: minVal, max: maxVal });
     }
-  }, [minVal, maxVal]); // Removed onChange from dependencies
+  }, [minVal, maxVal]);
 
-  const [inputMin, setInputMin] = useState(min);
-  const [inputMax, setInputMax] = useState(max);
+  const [inputMin, setInputMin] = useState(min || 0);
+  const [inputMax, setInputMax] = useState(max || 5000001);
 
   // Update input values when min/max props change
   useEffect(() => {
@@ -55,18 +59,17 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
           type="number"
           className="w-1/2 p-2 border border-gray-300 rounded"
           placeholder="No min"
-          value={inputMin}
+          value={minVal === 0 ? '' : Math.round(inputMin)}
           onChange={(e) => {
             const value = e.target.value;
             setInputMin(value);
 
-            // Update if valid number or empty
             if (value === '') {
-              setMinVal(1);
-              minValRef.current = 1;
+              setMinVal(0);
+              minValRef.current = 0;
             } else if (!isNaN(value)) {
-              const numValue = parseFloat(value);
-              if (numValue >= 1 && numValue < maxVal) {
+              const numValue = Math.round(parseFloat(value));
+              if (numValue >= 0) {
                 setMinVal(numValue);
                 minValRef.current = numValue;
               }
@@ -83,18 +86,17 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
           type="number"
           className="w-1/2 p-2 border border-gray-300 rounded"
           placeholder="No max"
-          value={inputMax}
+          value={maxVal > 5000000 ? '' : Math.round(inputMax)}
           onChange={(e) => {
             const value = e.target.value;
             setInputMax(value);
 
-            // Update if valid number or empty
             if (value === '') {
-              setMaxVal(max);
-              maxValRef.current = max;
+              setMaxVal(5000001);
+              maxValRef.current = 5000001;
             } else if (!isNaN(value)) {
-              const numValue = parseFloat(value);
-              if (numValue > minVal) {
+              const numValue = Math.round(parseFloat(value));
+              if (numValue >= 0) {
                 setMaxVal(numValue);
                 maxValRef.current = numValue;
               }
@@ -108,16 +110,25 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
         />
       </div>
       <div className="flex justify-center pt-4">
-
         <div className="w-full relative">
           {/* Min input */}
           <input
             type="range"
-            min={min}
-            max={max}
-            value={minVal}
+            min={0}
+            max={100}
+            step={1}
+            value={minVal === 0 ? 0 : minVal >= 5000000 ? 100 : (minVal / 5000000) * 95}
             onChange={(event) => {
-              const value = Math.min(Number(event.target.value), maxVal - 0.01);
+              const percent = Number(event.target.value);
+              let value;
+              if (percent === 0) {
+                value = 0;
+              } else if (percent >= 95) {
+                value = 5000000;
+              } else {
+                const rawValue = (percent / 95) * 5000000;
+                value = Math.round(rawValue / 50000) * 50000;
+              }
               setMinVal(value);
               setInputMin(value);
               minValRef.current = value;
@@ -132,8 +143,7 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
                 onChangeComplete({ min: minVal, max: maxVal });
               }
             }}
-            className={`absolute w-full h-0 pointer-events-none outline-none appearance-none z-30 ${minVal > max - (max - min) * 0.1 ? 'z-50' : ''
-              }`}
+            className="absolute w-full h-0 pointer-events-none outline-none appearance-none z-30"
             style={{
               left: '0',
               right: '0',
@@ -143,11 +153,23 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
           {/* Max input */}
           <input
             type="range"
-            min={min}
-            max={max}
-            value={maxVal}
+            min={0}
+            max={100}
+            step={1}
+            value={maxVal === 0 ? 0 : maxVal > 5000000 ? 100 : maxVal === 5000000 ? 97 : (maxVal / 5000000) * 95}
             onChange={(event) => {
-              const value = Math.max(Number(event.target.value), minVal + 0.01);
+              const percent = Number(event.target.value);
+              let value;
+              if (percent === 0) {
+                value = 0;
+              } else if (percent >= 98) {
+                value = 5000001; // No max
+              } else if (percent >= 95) {
+                value = 5000000; // Exactly 5M
+              } else {
+                const rawValue = (percent / 95) * 5000000;
+                value = Math.round(rawValue / 50000) * 50000;
+              }
               setMaxVal(value);
               setInputMax(value);
               maxValRef.current = value;
@@ -188,4 +210,3 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
 };
 
 export default DoubleRangeSlider;
-

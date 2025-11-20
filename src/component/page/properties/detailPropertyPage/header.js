@@ -18,22 +18,35 @@ const allowedPropertyTypes = [
 
 const Header = ({ filter, onResults }) => {
   const navigate = useNavigate()
+  const priceDropdownRef = useRef(null);
+  const autocompleteService = useRef(null);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0)
   const [filterOpen, setFilterOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
-  const autocompleteService = useRef(null);
   const [localFilters, setLocalFilters] = useState({
     searchCity: filter?.searchCity || '',
     selectedOption: filter?.selectedOption || 'Buy',
     property: filter?.property || null,
     min: filter?.min || 0,
-    max: filter?.max || 50000,
+    max: filter?.max || 5000001,
     bedrooms: filter?.bedrooms || null,
-    bathrooms: filter?.bathrooms || null
+    bathrooms: filter?.bathrooms || null,
+    city: filter?.city || '',
+    state: filter?.state || '',
+    country: filter?.country || 'US'
   });
+
+  const parseLocation = (desc) => {
+    const parts = desc.split(",").map((p) => p.trim());
+    return {
+      city: parts[0] || "",
+      state: parts[1] || "",
+      country: parts[2] || "US"
+    };
+  };
 
   const { checkProperty, error } = usePropertySearch();
 
@@ -44,14 +57,14 @@ const Header = ({ filter, onResults }) => {
       selectedOption: filter?.selectedOption || 'Buy',
       property: filter?.property || null,
       min: filter?.min || 0,
-      max: filter?.max || 50000,
+      max: filter?.max || 5000001,
       bedrooms: filter?.bedrooms || null,
       bathrooms: filter?.bathrooms || null
     });
   }, [filter]);
 
-  // Load Google Maps API
   useEffect(() => {
+    // Load Google Maps JavaScript API
     if (!window.google) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
@@ -66,6 +79,19 @@ const Header = ({ filter, onResults }) => {
       autocompleteService.current = new window.google.maps.places.AutocompleteService();
     }
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (priceDropdownRef.current && !priceDropdownRef.current.contains(event.target)) {
+        if (dropdownOpen === 'price') {
+          setDropdownOpen('');
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [dropdownOpen]);
 
   let interval;
   useEffect(() => {
@@ -94,11 +120,18 @@ const Header = ({ filter, onResults }) => {
     setLocalFilters(prev => ({ ...prev, min, max }));
   };
 
-  const handlePriceChangeComplete = async ({ min, max }) => {
-    const updatedFilters = { ...localFilters, min, max };
+  const handlePriceApply = async () => {
+    const loc = parseLocation(localFilters.searchCity);
+    const updatedFilters = { ...localFilters, ...loc, listingType: localFilters.selectedOption };
     setDropdownOpen('');
     setLoading(true);
-    const data = await checkProperty(updatedFilters);
+    
+    // Filter out default No min/No max values for API
+    const apiFilters = { ...updatedFilters };
+    if (updatedFilters.min === 0) delete apiFilters.min;
+    if (updatedFilters.max === 5000001) delete apiFilters.max;
+    
+    const data = await checkProperty(apiFilters);
     setLoading(false);
     if (data) {
       navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
@@ -106,7 +139,8 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handleBuyRentChange = async (option) => {
-    const updatedFilters = { ...localFilters, selectedOption: option };
+    const loc = parseLocation(localFilters.searchCity);
+    const updatedFilters = { ...localFilters, selectedOption: option, ...loc, listingType: option };
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
     setLoading(true);
@@ -118,7 +152,8 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handlePropertyTypeChange = async (propertyType) => {
-    const updatedFilters = { ...localFilters, property: propertyType };
+    const loc = parseLocation(localFilters.searchCity);
+    const updatedFilters = { ...localFilters, property: propertyType, ...loc, listingType: localFilters.selectedOption };
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
     setLoading(true);
@@ -130,9 +165,11 @@ const Header = ({ filter, onResults }) => {
   };
 
   const directSearch = async () => {
+    const loc = parseLocation(localFilters.searchCity);
+    const finalFilters = { ...localFilters, ...loc, listingType: localFilters.selectedOption };
     setDropdownOpen('');
     if (onResults) {
-      onResults(localFilters);
+      onResults(finalFilters);
     }
   };
 
@@ -144,11 +181,21 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handleFilterSave = async (values) => {
-    setFilterOpen(false);
-    const f = { ...values, searchCity: filter.searchCity, selectedOption: filter.selectedOption }
+    const loc = parseLocation(localFilters.searchCity);
+    const f = { ...values, searchCity: localFilters.searchCity, selectedOption: localFilters.selectedOption, ...loc, listingType: localFilters.selectedOption }
     setLocalFilters(f)
+    setFilterOpen(false);
+    
+    if (!loc.city) return;
+    
     setLoading(true)
-    const data = await checkProperty(f);
+    
+    // Filter out default No min/No max values for API
+    const apiFilters = { ...f };
+    if (f.min === 0) delete apiFilters.min;
+    if (f.max === 5000001) delete apiFilters.max;
+    
+    const data = await checkProperty(apiFilters);
     setLoading(false)
     if (data) {
       navigate(`/details/properties`, { state: { data, filters: f } });
@@ -174,11 +221,11 @@ const Header = ({ filter, onResults }) => {
                     autocompleteService.current.getPlacePredictions(
                       {
                         input: value,
-                        types: ['(cities)'],
                         componentRestrictions: { country: 'us' }
                       },
                       (predictions, status) => {
                         if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
+                          console.log('Google predictions:', predictions);
                           setSuggestions(predictions);
                           setShowDropdown(true);
                         } else {
@@ -200,33 +247,54 @@ const Header = ({ filter, onResults }) => {
               />
               
               {showDropdown && suggestions.length > 0 && (
-                <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-60 overflow-y-auto">
-                  {suggestions.map((suggestion, index) => (
-                    <div
-                      key={suggestion.place_id || index}
-                      className="p-3 hover:bg-gray-100 cursor-pointer border-b border-gray-100 last:border-b-0"
-                      onMouseDown={async (e) => {
-                        e.preventDefault();
-                        const updatedFilters = { ...localFilters, searchCity: suggestion.description };
-                        setLocalFilters(updatedFilters);
-                        setSuggestions([]);
-                        setShowDropdown(false);
-                        setLoading(true);
-                        try {
-                          const data = await checkProperty(updatedFilters);
-                          setLoading(false);
-                          if (data) {
-                            navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
-                          }
-                        } catch (error) {
-                          console.error('API call failed:', error);
-                          setLoading(false);
-                        }
-                      }}
-                    >
-                      <div className="text-sm text-gray-800">{suggestion.description}</div>
-                    </div>
-                  ))}
+                <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-60 overflow-y-auto rounded-b-lg">
+                  {suggestions.map((suggestion, index) => {
+                    const getLocationType = (types) => {
+                      console.log('Types for', suggestion.description, ':', types);
+                      if (types?.includes('locality')) return 'City';
+                      if (types?.includes('administrative_area_level_2')) return 'County';
+                      if (types?.includes('administrative_area_level_1')) return 'State';
+                      if (types?.includes('neighborhood')) return 'Neighborhood';
+                      if (types?.includes('sublocality')) return 'Area';
+                      if (types?.includes('postal_code')) return 'ZIP Code';
+                      if (types?.includes('route')) return 'Street';
+                      return types?.[0] || 'Location';
+                    };
+
+                    return (
+                      <div
+                        key={suggestion.place_id || index}
+                        className="flex items-center p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
+                        onMouseDown={(e) => {
+                          e.preventDefault();
+                          setLocalFilters({ ...localFilters, searchCity: suggestion.description });
+                          setSuggestions([]);
+                          setShowDropdown(false);
+                        }}
+                      >
+                        {/* Map Icon */}
+                        <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                          <svg 
+                            className="w-4 h-4 text-gray-600" 
+                            fill="currentColor" 
+                            viewBox="0 0 20 20"
+                          >
+                            <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        
+                        {/* Location Details */}
+                        <div className="flex-1 min-w-0">
+                          <div className="text-sm font-medium text-gray-900 truncate">
+                            {suggestion.description}
+                          </div>
+                          <div className="text-xs text-gray-500">
+                            {getLocationType(suggestion.types || [])}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               )}
               
@@ -269,7 +337,7 @@ const Header = ({ filter, onResults }) => {
               )}
             </div>
 
-            <div className="relative hidden xl:flex">
+            <div className="relative hidden xl:flex" ref={priceDropdownRef}>
               <button
                 onClick={() => toggleDropdown('price')}
                 className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
@@ -278,13 +346,18 @@ const Header = ({ filter, onResults }) => {
                 <ChevronDown size={16} />
               </button>
               {dropdownOpen === 'price' && (
-                <div className="absolute w-[300px] my-2 px-2 bg-white border text-gray-900 border-gray-300 shadow-lg z-10">
+                <div className="absolute w-[300px] mx-2 my-2 px-2 bg-white border text-gray-900 border-gray-300 shadow-lg z-10">
                   <DoubleRangeSlider
                     min={localFilters.min}
                     max={localFilters.max}
                     onChange={handlePriceChange}
-                    onChangeComplete={handlePriceChangeComplete}
                   />
+                  <button 
+                    onClick={handlePriceApply}
+                    className='bg-red-600 text-white rounded-3xl px-2 py-2 w-full mb-2'
+                  >
+                    Apply
+                  </button>
                 </div>
               )}
             </div>
