@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import LoadingScreen from "../loading/loadingScreen";
-import { video_url1,video_url2,video_url3,video_url4,video_url5,video_url6 } from "../assets/allImg";
+import { video_url1,video_url2,video_url3,video_url4,video_url5 } from "../assets/allImg";
 import Pages from "./pages";
 
 const Page1 = ({ page }) => {
@@ -27,12 +27,12 @@ switch (page) {
     video_url = video_url5;
     break;
   case "Resources":
-    video_url = video_url6;
+    video_url = video_url1;
     break;
   default:
     video_url = null; // optional: handle unknown pages
 }
-
+console.log(page,video_url)
 useEffect(() => {
   const video = videoRef.current;
   if (!video) return;

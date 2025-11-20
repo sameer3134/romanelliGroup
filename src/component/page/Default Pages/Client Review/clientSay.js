@@ -22,7 +22,6 @@ const ClientSay = () => {
           image: review.Image_url,
           url: review.GoogleReviewsUrl
         }));
-        
         setReviews(mappedReviews);
       } catch (error) {
         console.error('Error fetching reviews:', error);

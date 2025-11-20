@@ -84,7 +84,7 @@ const FirstPageProperties = () => {
       {loading && <LoadingScreen progress={progress} />}
       <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
         {/* Heading */}
-        <div className="flex flex-col text-left w-full mb-6">
+        <div className="flex flex-col text-center w-full mb-6">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-4xl px-4">
             Your{" "}
             <span className="italic font-playfair">Dream Property</span> is Just a Click Away
@@ -157,7 +157,7 @@ const FirstPageProperties = () => {
           
           {/* Dropdown */}
           {showDropdown && suggestions.length > 0 && (
-            <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-60 overflow-y-auto">
+            <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-40 overflow-y-auto">
               {suggestions.map((suggestion, index) => (
                 <div
                   key={suggestion.place_id || index}

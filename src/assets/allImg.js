@@ -95,11 +95,10 @@ import image2_url from "../../src/assets/images/image2_url.avif"
 
 // Videos
 import video_url1 from "../../src/assets/images/hero.webm"
-import video_url2 from "../../src/assets/images/hero.webm"
-import video_url3 from "../../src/assets/images/hero.webm"
-import video_url4 from "../../src/assets/images/hero.webm"
-import video_url5 from "../../src/assets/images/hero.webm"
-import video_url6 from "../../src/assets/images/hero.webm"
+import video_url2 from "../../src/assets/images/video_url2.webm"
+import video_url3 from "../../src/assets/images/video_url3.webm"
+import video_url4 from "../../src/assets/images/video_url4.mp4"
+import video_url5 from "../../src/assets/images/video_url5.webm"
 import sellsmarter_step1 from "../../src/assets/images/q1.webm"
 
 // Export all as grouped objects for convenience
@@ -175,5 +174,4 @@ export {
   video_url3,
   video_url4,
   video_url5,
-  video_url6,
 }
