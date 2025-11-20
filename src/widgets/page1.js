@@ -51,6 +51,10 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
+  // Reset loading state when page changes
+  setLoading(true);
+  setProgress(0);
+  
   const video = videoRef.current;
   if (!video || !video_url) return;
   
@@ -91,7 +95,7 @@ useEffect(() => {
 
   const handleVideoReady = () => {
     setProgress(100);
-    setTimeout(() => setLoading(false), 500); // Hide loading screen after 500ms
+    setTimeout(() => setLoading(false), 500);
   };
 
   return (
