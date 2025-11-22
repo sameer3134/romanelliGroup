@@ -32,7 +32,6 @@ switch (page) {
   default:
     video_url = null; // optional: handle unknown pages
 }
-console.log(page,video_url)
 useEffect(() => {
   const video = videoRef.current;
   if (!video) return;

@@ -23,7 +23,6 @@ const ClientSuccess = () => {
                 };
                 return acc;
             }, {});
-            console.log("r", mappedData)
             setAllData(mappedData)
         } catch (error) {
             console.log(error)

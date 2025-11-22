@@ -43,14 +43,6 @@ const Header = ({ filter, onResults }) => {
     postalCode: filter?.postalCode || ''
   });
 
-  const parseLocation = (desc) => {
-    const parts = desc.split(",").map((p) => p.trim());
-    return {
-      city: parts[0] || "",
-      state: parts[1] || "",
-      country: parts[2] || "US"
-    };
-  };
   const extractAddressComponents = (address) => {
   const getLong = (type) =>
     address.address_components?.find(c => c.types.includes(type))?.long_name || "";
@@ -149,9 +141,7 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handlePriceApply = async () => {
-    const loc = localFilters.city ? 
-                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
-                  parseLocation(localFilters.searchCity);
+    const loc =   { city: localFilters.city, state: localFilters.state, country: localFilters.country } 
     const updatedFilters = { ...localFilters, ...loc, listingType: localFilters.selectedOption };
     setDropdownOpen('');
     setLoading(true);
@@ -169,9 +159,7 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handleBuyRentChange = async (option) => {
-    const loc = localFilters.city ? 
-                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
-                  parseLocation(localFilters.searchCity);
+    const loc = { city: localFilters.city, state: localFilters.state, country: localFilters.country } 
     const updatedFilters = { ...localFilters, selectedOption: option, ...loc, listingType: option };
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
@@ -184,9 +172,7 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handlePropertyTypeChange = async (propertyType) => {
-    const loc = localFilters.city ? 
-                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
-                  parseLocation(localFilters.searchCity);
+    const loc = { city: localFilters.city, state: localFilters.state, country: localFilters.country }
     const updatedFilters = { ...localFilters, property: propertyType, ...loc, listingType: localFilters.selectedOption };
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
@@ -199,9 +185,7 @@ const Header = ({ filter, onResults }) => {
   };
 
   const directSearch = async () => {
-    const loc = localFilters.city ? 
-                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
-                  parseLocation(localFilters.searchCity);
+    const loc =  { city: localFilters.city, state: localFilters.state, country: localFilters.country } 
     const finalFilters = { ...localFilters, ...loc, listingType: localFilters.selectedOption };
     setDropdownOpen('');
     if (onResults) {
@@ -217,9 +201,7 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handleFilterSave = async (values) => {
-    const loc = localFilters.city ? 
-                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
-                  parseLocation(localFilters.searchCity);
+    const loc =  { city: localFilters.city, state: localFilters.state, country: localFilters.country } 
     // const loc = parseLocation(localFilters.searchCity);
     const f = { ...values, searchCity: localFilters.searchCity, selectedOption: localFilters.selectedOption, ...loc, listingType: localFilters.selectedOption }
     setLocalFilters(f)

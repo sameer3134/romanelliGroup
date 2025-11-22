@@ -88,25 +88,10 @@ const FirstPageProperties = () => {
   }, []);
 
   // --------------------------------------
-  // PARSE CITY, STATE, COUNTRY
-  // --------------------------------------
-  const parseLocation = (desc) => {
-    const parts = desc.split(",").map((p) => p.trim());
-    return {
-      city: parts[0] || "",
-      state: parts[1] || "",
-      country: parts[2] || "US"
-    };
-  };
-
-  // --------------------------------------
   // FILTER SAVE HANDLER
   // --------------------------------------
   const handleFilterSave = async (values) => {
-    const loc = filters.city ? 
-                  { city: filters.city, state: filters.state, country: filters.country } : 
-                  parseLocation(filters.searchCity);
-    // const loc = parseLocation(filters.searchCity);
+    const loc = {city: filters.city, state: filters.state, country: filters.country } 
     const finalFilters = {
       ...filters,
       ...values,
@@ -321,9 +306,7 @@ const FirstPageProperties = () => {
                 }
                 
                 // Parse location if not already parsed
-                const loc = filters.city ? 
-                  { city: filters.city, state: filters.state, country: filters.country } : 
-                  parseLocation(filters.searchCity);
+                const loc =  { city: filters.city, state: filters.state, country: filters.country } 
                 
                 const finalFilters = {
                   ...filters,
