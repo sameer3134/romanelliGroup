@@ -22,7 +22,7 @@ const useFilteredProperties = (data, filters) => {
       id: item.ListingKey,
       amount: item.ListPrice,
       heading: item.StreetNumber
-        ? `Street - ${item.StreetNumber}, ${item.StreetName}`
+        ? `${item.StreetNumber}, ${item.StreetName}`
         : item.UnparsedAddress || "No Address",
       description: item.PublicRemarks
         ? item.PublicRemarks.split(" ").slice(0, 30).join(" ") + "..."

@@ -37,7 +37,10 @@ const Header = ({ filter, onResults }) => {
     bathrooms: filter?.bathrooms || null,
     city: filter?.city || '',
     state: filter?.state || '',
-    country: filter?.country || 'US'
+    country: filter?.country || 'US',
+    street: filter?.street || '',
+    streetNumber: filter?.streetNumber || '',
+    postalCode: filter?.postalCode || ''
   });
 
   const parseLocation = (desc) => {
@@ -76,7 +79,13 @@ const Header = ({ filter, onResults }) => {
       min: filter?.min || 0,
       max: filter?.max || 5000001,
       bedrooms: filter?.bedrooms || null,
-      bathrooms: filter?.bathrooms || null
+      bathrooms: filter?.bathrooms || null,
+      city: filter?.city || '',
+      state: filter?.state || '',
+      country: filter?.country || 'US',
+      street: filter?.street || '',
+      streetNumber: filter?.streetNumber || '',
+      postalCode: filter?.postalCode || ''
     });
   }, [filter]);
 
@@ -234,7 +243,7 @@ const Header = ({ filter, onResults }) => {
       navigate(`/details/properties`, { state: { data, filters: f } });
     }
   };
-
+ console.log("S",localFilters)
   return (
     <div className="bg-white border-b border-gray-200">
       {loading && <LoadingScreen progress={progress} />}
@@ -370,32 +379,49 @@ const Header = ({ filter, onResults }) => {
 
           <div className="flex items-center ml-4 space-x-2">
             <div className="relative hidden xl:flex">
-              <button
-                onClick={() => toggleDropdown('sale')}
-                className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
-              >
-                <span className="text-sm">For {localFilters?.selectedOption}</span>
-                <ChevronDown size={16} />
-              </button>
-              {dropdownOpen === 'sale' && (
-                <div className="absolute top-full left-0 bg-white border text-gray-900 border-gray-300 shadow-lg z-10 w-40">
-                  <div className="py-1">
-                    <button
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      onClick={() => handleBuyRentChange('Buy')}
-                    >
-                      For Buy
-                    </button>
-                    <button
-                      className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                      onClick={() => handleBuyRentChange('Rent')}
-                    >
-                      For Rent
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+  <button
+    onClick={() => toggleDropdown('sale')}
+    className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
+  >
+    <span className="text-sm">For {localFilters?.selectedOption}</span>
+    <ChevronDown size={16} />
+  </button>
+
+  {dropdownOpen === 'sale' && (
+    <div className="absolute top-full left-0 bg-white border text-gray-900 border-gray-300 shadow-lg z-10 w-40">
+
+      <div className="py-1">
+
+    <label className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+  <input
+    type="radio"
+    name="buyRent"
+    value="Buy"
+    className="h-4 w-4"
+    checked={localFilters?.selectedOption === "Buy"}
+    onChange={() => handleBuyRentChange("Buy")}
+  />
+  <span>For Buy</span>
+</label>
+
+<label className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+  <input
+    type="radio"
+    name="buyRent"
+    value="Rent"
+    className="h-4 w-4"
+    checked={localFilters?.selectedOption === "Rent"}
+    onChange={() => handleBuyRentChange("Rent")}
+  />
+  <span>For Rent</span>
+</label>
+
+
+      </div>
+    </div>
+  )}
+</div>
+
 
             <div className="relative hidden xl:flex" ref={priceDropdownRef}>
               <button
@@ -436,13 +462,19 @@ const Header = ({ filter, onResults }) => {
                 <div className="absolute top-full left-0 bg-white border border-gray-300 shadow-lg z-10 w-44">
                   <div className="py-1 text-gray-900">
                     {allowedPropertyTypes.map((item, index) => (
-                      <button
-                        key={index}
-                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100"
-                        onClick={() => handlePropertyTypeChange(item)}
-                      >
-                        {item}
-                      </button>
+                     <label
+      key={index}
+      className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+    >
+      <input
+        type="radio"
+        name="propertyType"
+        value={item}
+        className="h-4 w-4"
+        checked={localFilters?.property === item}
+        onChange={() => handlePropertyTypeChange(item)}
+      />
+      <span>{item}</span></label>
                     ))}
                   </div>
                 </div>
