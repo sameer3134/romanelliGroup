@@ -19,12 +19,21 @@ export const usePropertySearch = () => {
     try {
       // Build query params safely
       const params = new URLSearchParams();
-
+      
       if (filters.city) params.append("city", filters.city);
       if (filters.state) params.append("state", filters.state);
       if (filters.country) params.append("country", filters.country);
-      if (filters.min) params.append("min", filters.min);
-      if (filters.max) params.append("max", filters.max);
+      
+      if (filters.street){
+          const cleanStreet = filters.street.split(" ")[0].trim().split(" ")[0];
+          params.append("street", cleanStreet);
+      } 
+      if (filters.streetNumber) params.append("streetNumber", filters.streetNumber);
+      if (filters.postalCode) params.append("postalCode", filters.postalCode);
+       if (filters.zip) params.append("postalCode", filters.zip);
+      if (filters.address) params.append("address", filters.address);
+      if (filters.min && filters.min>-1) params.append("min", filters.min);    
+      if (filters.max && filters.max!== 5000001) params.append("max", filters.max);
       if (filters.bedrooms && filters.bedrooms !== "Any")
         params.append("bedrooms", filters.bedrooms);
       if (filters.bathrooms && filters.bathrooms !== "Any")

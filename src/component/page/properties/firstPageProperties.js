@@ -9,7 +9,7 @@ const FirstPageProperties = () => {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [filterOpen, setFilterOpen] = useState(false);
-
+  const placesService = useRef(null);
   const [placeholder, setPlaceholder] = useState("Enter city");
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -32,6 +32,22 @@ const FirstPageProperties = () => {
 
   const navigate = useNavigate();
   const { checkProperty } = usePropertySearch();
+  const extractAddressComponents = (address) => {
+  const getLong = (type) =>
+    address.address_components?.find(c => c.types.includes(type))?.long_name || "";
+
+  const getShort = (type) =>
+    address.address_components?.find(c => c.types.includes(type))?.short_name || "";
+
+  return {
+    streetNumber: getLong("street_number"),
+    street: getLong("route"),
+    city: getLong("locality") || getLong("sublocality") || "",
+    state: getShort("administrative_area_level_1"),   // <-- OH
+    country: getShort("country"),                     // <-- US
+    postalCode: getLong("postal_code"),
+  };
+};
 
   // --------------------------------------
   // GOOGLE AUTOCOMPLETE SETUP
@@ -61,6 +77,11 @@ const FirstPageProperties = () => {
       autocompleteService.current =
         new window.google.maps.places.AutocompleteService();
     }
+    if (window.google) {
+  placesService.current = new window.google.maps.places.PlacesService(
+    document.createElement("div")
+  );
+}
 
     return () => window.removeEventListener("resize", updatePlaceholder);
   }, []);
@@ -81,7 +102,11 @@ const FirstPageProperties = () => {
   // FILTER SAVE HANDLER
   // --------------------------------------
   const handleFilterSave = async (values) => {
-    const loc = parseLocation(filters.searchCity);
+    console.log("r",filters.city)
+    const loc = filters.city ? 
+                  { city: filters.city, state: filters.state, country: filters.country } : 
+                  parseLocation(filters.searchCity);
+    // const loc = parseLocation(filters.searchCity);
     const finalFilters = {
       ...filters,
       ...values,
@@ -224,19 +249,32 @@ const FirstPageProperties = () => {
                   <div
                     key={s.place_id}
                     className="flex items-center p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                    onMouseDown={() => {
-                      const loc = parseLocation(s.description);
-                     
-                      setFilters({ 
-                        ...filters, 
-                        searchCity: s.description,
-                        city: loc.city,
-                        state: loc.state,
-                        country: loc.country
-                      });
-                      setSuggestions([]);
-                      setShowDropdown(false);
-                    }}
+                   onMouseDown={() => {
+                    if(!placesService.current) return;
+  placesService.current.getDetails(
+    { placeId: s.place_id },
+    (place) => {
+      if (!place) return;
+
+      const parsed = extractAddressComponents(place);
+
+      setFilters({
+        ...filters,
+        searchCity: s.description,
+        city: parsed.city,
+        state: parsed.state,
+        country: parsed.country,
+        street: parsed.street,
+        streetNumber: parsed.streetNumber,
+        postalCode: parsed.postalCode
+      });
+
+      setSuggestions([]);
+      setShowDropdown(false);
+    }
+  );
+}}
+
                   >
                     {/* Map Icon */}
                     <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">

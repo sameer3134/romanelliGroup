@@ -26,6 +26,7 @@ const Header = ({ filter, onResults }) => {
   const [dropdownOpen, setDropdownOpen] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showDropdown, setShowDropdown] = useState(false);
+  const placesService = useRef(null);
   const [localFilters, setLocalFilters] = useState({
     searchCity: filter?.searchCity || '',
     selectedOption: filter?.selectedOption || 'Buy',
@@ -47,6 +48,22 @@ const Header = ({ filter, onResults }) => {
       country: parts[2] || "US"
     };
   };
+  const extractAddressComponents = (address) => {
+  const getLong = (type) =>
+    address.address_components?.find(c => c.types.includes(type))?.long_name || "";
+
+  const getShort = (type) =>
+    address.address_components?.find(c => c.types.includes(type))?.short_name || "";
+
+  return {
+    streetNumber: getLong("street_number"),
+    street: getLong("route"),
+    city: getLong("locality") || getLong("sublocality") || "",
+    state: getShort("administrative_area_level_1"),   // <-- OH
+    country: getShort("country"),                     // <-- US
+    postalCode: getLong("postal_code"),
+  };
+};
 
   const { checkProperty, error } = usePropertySearch();
 
@@ -78,6 +95,11 @@ const Header = ({ filter, onResults }) => {
     } else if (window.google && window.google.maps && window.google.maps.places) {
       autocompleteService.current = new window.google.maps.places.AutocompleteService();
     }
+    if (window.google) {
+  placesService.current = new window.google.maps.places.PlacesService(
+    document.createElement("div")
+  );
+}
   }, []);
 
   useEffect(() => {
@@ -121,7 +143,9 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handlePriceApply = async () => {
-    const loc = parseLocation(localFilters.searchCity);
+    const loc = localFilters.city ? 
+                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
+                  parseLocation(localFilters.searchCity);
     const updatedFilters = { ...localFilters, ...loc, listingType: localFilters.selectedOption };
     setDropdownOpen('');
     setLoading(true);
@@ -139,7 +163,9 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handleBuyRentChange = async (option) => {
-    const loc = parseLocation(localFilters.searchCity);
+    const loc = localFilters.city ? 
+                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
+                  parseLocation(localFilters.searchCity);
     const updatedFilters = { ...localFilters, selectedOption: option, ...loc, listingType: option };
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
@@ -152,7 +178,9 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handlePropertyTypeChange = async (propertyType) => {
-    const loc = parseLocation(localFilters.searchCity);
+    const loc = localFilters.city ? 
+                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
+                  parseLocation(localFilters.searchCity);
     const updatedFilters = { ...localFilters, property: propertyType, ...loc, listingType: localFilters.selectedOption };
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
@@ -165,7 +193,9 @@ const Header = ({ filter, onResults }) => {
   };
 
   const directSearch = async () => {
-    const loc = parseLocation(localFilters.searchCity);
+    const loc = localFilters.city ? 
+                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
+                  parseLocation(localFilters.searchCity);
     const finalFilters = { ...localFilters, ...loc, listingType: localFilters.selectedOption };
     setDropdownOpen('');
     if (onResults) {
@@ -181,7 +211,10 @@ const Header = ({ filter, onResults }) => {
   };
 
   const handleFilterSave = async (values) => {
-    const loc = parseLocation(localFilters.searchCity);
+    const loc = localFilters.city ? 
+                  { city: localFilters.city, state: localFilters.state, country: localFilters.country } : 
+                  parseLocation(localFilters.searchCity);
+    // const loc = parseLocation(localFilters.searchCity);
     const f = { ...values, searchCity: localFilters.searchCity, selectedOption: localFilters.selectedOption, ...loc, listingType: localFilters.selectedOption }
     setLocalFilters(f)
     setFilterOpen(false);
@@ -265,12 +298,39 @@ const Header = ({ filter, onResults }) => {
                       <div
                         key={suggestion.place_id || index}
                         className="flex items-center p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                        onMouseDown={(e) => {
-                          e.preventDefault();
-                          setLocalFilters({ ...localFilters, searchCity: suggestion.description });
-                          setSuggestions([]);
-                          setShowDropdown(false);
-                        }}
+                        // onMouseDown={(e) => {
+                        //   e.preventDefault();
+                        //   setLocalFilters({ ...localFilters, searchCity: suggestion.description });
+                        //   setSuggestions([]);
+                        //   setShowDropdown(false);
+                        // }}         
+                                 onMouseDown={(e) => {
+                           e.preventDefault();
+                    if(!placesService.current) return;
+  placesService.current.getDetails(
+    { placeId: suggestion.place_id },
+    (place) => {
+      if (!place) return;
+
+      const parsed = extractAddressComponents(place);
+      console.log('Parsed address components: headers', parsed);
+      setLocalFilters({
+        ...localFilters,
+        searchCity: suggestion.description,
+        city: parsed.city,
+        state: parsed.state,
+        country: parsed.country,
+        street: parsed.street,
+        streetNumber: parsed.streetNumber,
+        postalCode: parsed.postalCode
+      });
+
+      setSuggestions([]);
+      setShowDropdown(false);
+    }
+  );
+}}
+
                       >
                         {/* Map Icon */}
                         <div className="flex-shrink-0 w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
