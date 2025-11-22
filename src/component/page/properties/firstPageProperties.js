@@ -67,24 +67,22 @@ const FirstPageProperties = () => {
     updatePlaceholder();
     window.addEventListener("resize", updatePlaceholder);
 
+    const initializeGoogleServices = () => {
+      if (window.google) {
+        autocompleteService.current = new window.google.maps.places.AutocompleteService();
+        placesService.current = new window.google.maps.places.PlacesService(document.createElement("div"));
+      }
+    };
+
     if (!window.google) {
       const script = document.createElement("script");
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
       script.async = true;
-      script.onload = () => {
-        autocompleteService.current =
-          new window.google.maps.places.AutocompleteService();
-      };
+      script.onload = initializeGoogleServices;
       document.head.appendChild(script);
     } else {
-      autocompleteService.current =
-        new window.google.maps.places.AutocompleteService();
+      initializeGoogleServices();
     }
-    if (window.google) {
-  placesService.current = new window.google.maps.places.PlacesService(
-    document.createElement("div")
-  );
-}
 
     return () => window.removeEventListener("resize", updatePlaceholder);
   }, []);
@@ -105,7 +103,6 @@ const FirstPageProperties = () => {
   // FILTER SAVE HANDLER
   // --------------------------------------
   const handleFilterSave = async (values) => {
-    console.log("r",filters.city)
     const loc = filters.city ? 
                   { city: filters.city, state: filters.state, country: filters.country } : 
                   parseLocation(filters.searchCity);
@@ -250,33 +247,34 @@ const FirstPageProperties = () => {
                 
                 return (
                   <div
+             
                     key={s.place_id}
                     className="flex items-center text-left px-3 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
                    onMouseDown={() => {
                     if(!placesService.current) return;
-  placesService.current.getDetails(
-    { placeId: s.place_id },
-    (place) => {
-      if (!place) return;
+                    placesService.current.getDetails(
+                      { placeId: s.place_id },
+                      (place) => {
+                        if (!place) return;
 
-      const parsed = extractAddressComponents(place);
+                        const parsed = extractAddressComponents(place);
 
-      setFilters({
-        ...filters,
-        searchCity: s.description,
-        city: parsed.city,
-        state: parsed.state,
-        country: parsed.country,
-        street: parsed.street,
-        streetNumber: parsed.streetNumber,
-        postalCode: parsed.postalCode
-      });
+                        setFilters(prev => ({
+                          ...prev,
+                          searchCity: s.description,
+                          city: parsed.city,
+                          state: parsed.state,
+                          country: parsed.country,
+                          street: parsed.street,
+                          streetNumber: parsed.streetNumber,
+                          postalCode: parsed.postalCode
+                        }));
 
-      setSuggestions([]);
-      setShowDropdown(false);
-    }
-  );
-}}
+                        setSuggestions([]);
+                        setShowDropdown(false);
+                      }
+                    );
+                  }}
 
                   >
                     {/* Map Icon */}

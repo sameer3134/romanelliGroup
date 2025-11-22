@@ -90,25 +90,22 @@ const Header = ({ filter, onResults }) => {
   }, [filter]);
 
   useEffect(() => {
-    // Load Google Maps JavaScript API
+    const initializeGoogleServices = () => {
+      if (window.google && window.google.maps && window.google.maps.places) {
+        autocompleteService.current = new window.google.maps.places.AutocompleteService();
+        placesService.current = new window.google.maps.places.PlacesService(document.createElement("div"));
+      }
+    };
+
     if (!window.google) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}&libraries=places`;
       script.async = true;
-      script.onload = () => {
-        if (window.google && window.google.maps && window.google.maps.places) {
-          autocompleteService.current = new window.google.maps.places.AutocompleteService();
-        }
-      };
+      script.onload = initializeGoogleServices;
       document.head.appendChild(script);
-    } else if (window.google && window.google.maps && window.google.maps.places) {
-      autocompleteService.current = new window.google.maps.places.AutocompleteService();
+    } else {
+      initializeGoogleServices();
     }
-    if (window.google) {
-  placesService.current = new window.google.maps.places.PlacesService(
-    document.createElement("div")
-  );
-}
   }, []);
 
   useEffect(() => {
@@ -266,7 +263,6 @@ const Header = ({ filter, onResults }) => {
                       },
                       (predictions, status) => {
                         if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
-                          console.log('Google predictions:', predictions);
                           setSuggestions(predictions);
                           setShowDropdown(true);
                         } else {
@@ -291,7 +287,6 @@ const Header = ({ filter, onResults }) => {
                 <div className="dropdown-container absolute top-full left-0 right-0 bg-white border border-gray-200 shadow-lg z-50 max-h-60 overflow-y-auto rounded-b-lg">
                   {suggestions.map((suggestion, index) => {
                     const getLocationType = (types) => {
-                      console.log('Types for', suggestion.description, ':', types);
                       if (types?.includes('locality')) return 'City';
                       if (types?.includes('administrative_area_level_2')) return 'County';
                       if (types?.includes('administrative_area_level_1')) return 'State';
@@ -315,7 +310,6 @@ const Header = ({ filter, onResults }) => {
       if (!place) return;
 
       const parsed = extractAddressComponents(place);
-      console.log('Parsed address components: headers', parsed);
       setLocalFilters({
         ...localFilters,
         searchCity: suggestion.description,
