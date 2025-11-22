@@ -243,7 +243,6 @@ const Header = ({ filter, onResults }) => {
       navigate(`/details/properties`, { state: { data, filters: f } });
     }
   };
- console.log("S",localFilters)
   return (
     <div className="bg-white border-b border-gray-200">
       {loading && <LoadingScreen progress={progress} />}
@@ -306,13 +305,7 @@ const Header = ({ filter, onResults }) => {
                     return (
                       <div
                         key={suggestion.place_id || index}
-                        className="flex items-center p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"
-                        // onMouseDown={(e) => {
-                        //   e.preventDefault();
-                        //   setLocalFilters({ ...localFilters, searchCity: suggestion.description });
-                        //   setSuggestions([]);
-                        //   setShowDropdown(false);
-                        // }}         
+                        className="flex items-center  text-left px-3 py-2 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors duration-150"        
                                  onMouseDown={(e) => {
                            e.preventDefault();
                     if(!placesService.current) return;
@@ -353,11 +346,11 @@ const Header = ({ filter, onResults }) => {
                         </div>
                         
                         {/* Location Details */}
-                        <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-gray-900 truncate">
+                        <div className="flex-1 min-w-0 font-dmsans">
+                          <div className="text-xs font-medium text-gray-900 truncate">
                             {suggestion.description}
                           </div>
-                          <div className="text-xs text-gray-500">
+                          <div className="text-[10px] text-gray-500 font-light font-playfair">
                             {getLocationType(suggestion.types || [])}
                           </div>
                         </div>

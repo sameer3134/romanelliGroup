@@ -291,11 +291,11 @@ const FirstPageProperties = () => {
                     </div>
                     
                     {/* Location Details */}
-                    <div className="flex-1 min-w-0">
+                    <div className="flex-1 min-w-0 font-dmsans">
                       <div className="text-xs font-medium text-gray-900 truncate">
                         {s.description}
                       </div>
-                      <div className="text-[10px] text-gray-500">
+                      <div className="text-[10px] text-gray-500 font-light font-playfair">
                         {getLocationType(s.types || [])}
                       </div>
                     </div>
