@@ -43,25 +43,29 @@ const Footer = () => {
                 <hr className="bg-white h-[2px] w-full opacity-80 px-5 xl:px-24 mt-3" />
             
             </div>
-             <div className="container mx-auto flex flex-wrap pt-0 flex-col md:flex-row items-center px-0 lg:px-24">
-                <div className="lg:w-1/5 flex items-center">
-                 <p className='text-lg pb-2 pt-3 text-white'>© 2024 - The Romanelli Group</p>
+             <div class="container mx-auto px-4 lg:px-24 footer-container">
+            <div class="flex flex-col lg:flex-row items-center pt-0">
+               
+                <div class="lg:w-1/4 flex items-center justify-center lg:justify-start mb-2 lg:mb-0">
+                    <p class='text-sm lg:text-lg pb-2 pt-3 text-white text-center lg:text-left'>© 2024 - The Romanelli Group</p>
                 </div>
 
-                <div className="flex text-white lg:w-3/5 title-font font-medium items-center justify-center mb-4 md:mb-0 space-x-1">
-                  <Link target='_blank' to="/cookie-policy" className="hover:text-gray-300">Cookie Policy</Link>
-                  <span>|</span>
-                  <Link target='_blank' to="/terms-of-use" className="hover:text-gray-300">Terms Of Use</Link>
-                  <span>|</span>
-                  <Link target='_blank' to="/privacy-policy" className="hover:text-gray-300">Privacy Policy</Link>
-                  <span>|</span>
-                  <Link target='_blank' to="/dmca-notice" className="hover:text-gray-300">DMCA</Link>
-                  <span>|</span>
-                  <Link target='_blank' to="/fair-housing" className="hover:text-gray-300">Fair Housing</Link>
-                  <span>|</span>
-                  <Link target='_blank' to="/accessibility-policy" className="hover:text-gray-300">Accessibility</Link>
+            
+                <div class="flex flex-wrap text-white w-full lg:w-3/4 title-font font-medium items-center justify-center lg:justify-start lg:pl-20 sm:pl-10 mb-4 md:mb-0 space-x-1 text-xs lg:text-base footer-links">
+                    <a href="/cookie-policy" target='_blank' class="hover:text-gray-300">Cookie Policy</a>
+                    <span class="separator">|</span>
+                    <a href="/terms-of-use" target='_blank' class="hover:text-gray-300">Terms Of Use</a>
+                    <span class="separator">|</span>
+                    <a href="/privacy-policy" target='_blank' class="hover:text-gray-300">Privacy Policy</a>
+                    <span class="separator">|</span>
+                    <a href="/dmca-notice" target='_blank' class="hover:text-gray-300">DMCA</a>
+                    <span class="separator">|</span>
+                    <a href="/fair-housing" target='_blank' class="hover:text-gray-300">Fair Housing</a>
+                    <span class="separator">|</span>
+                    <a href="/accessibility-policy" target='_blank' class="hover:text-gray-300">Accessibility</a>
                 </div>
             </div>
+        </div>
           
         </header>
         </>
