@@ -1,10 +1,14 @@
 import React from 'react';
+import { logoUrl } from '../../../assets/allImg';
 
 const FairHousing = () => {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen w-full  text-left">
+        <a className="flex w-full py-5  bg-black items-center justify-start text-gray-900 lg:items-start lg:justify-start px-12 mb-4 md:mb-0">
+                    <img className='w-24 h-auto' src={logoUrl} alt='logo' />
+                </a>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
-        <div className="bg-white shadow-lg rounded-lg p-8">
+        <div className="bg-white p-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-6">Fair Housing Policy</h1>
           
           <p className="text-sm text-gray-600 mb-8">LAST UPDATED: December 1, 2025</p>

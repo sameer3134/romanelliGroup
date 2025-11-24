@@ -15,7 +15,7 @@ const DetailPage = () => {
   const { data, filters: initialFilters } = location.state || {}; // ✅ default safe
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0)
-  const [sortOption, setSortOption] = useState("Newest"); // ✅ sorting state
+  const [sortOption, setSortOption] = useState("Recently Updated"); // ✅ sorting state
   const [filters, setFilters] = useState(initialFilters || {});
 
   // ✅ Call hook at top-level (safe)
@@ -57,7 +57,7 @@ const DetailPage = () => {
     if (sortOption === "Price: High to Low") {
       return b.amount - a.amount;
     }
-    // Default "Newest" → assuming higher `id` means newer
+    // Default "Recently Updated" → assuming higher `id` means newer
     return b.id - a.id;
   });
 
@@ -80,17 +80,22 @@ const DetailPage = () => {
 
             <div className='flex flex-col sm:flex-row justify-between text-md text-gray-900 font-dmsans text-left my-2'>
               <div className='mb-2 sm:mb-0'>{alldata.length} results</div>
-              <div className="px-3 py-1 text-sm">
-                <select
-                  className="bg-transparent border-none focus:outline-none focus:ring-0 appearance-none cursor-pointer min-w-[160px] text-right"
-                  value={sortOption}
-                  onChange={(e) => setSortOption(e.target.value)}
-                >
-                  <option className="bg-white px-2 py-1 text-right">Newest</option>
-                  <option className="bg-white px-2 py-1 text-right">Price: Low to High</option>
-                  <option className="bg-white px-2 py-1 text-right">Price: High to Low</option>
-                </select>
-              </div>
+         <div className="px-3 py-1 text-sm flex items-center">
+  <span className="mr-2 text-gray-700">Sort by</span>
+
+  <select
+    className="cursor-pointer rounded-xl bg-gray-100 border border-gray-300 px-3 py-2 text-sm text-gray-800 
+               focus:outline-none appearance-none"
+    value={sortOption}
+    onChange={(e) => setSortOption(e.target.value)}
+  >
+    <option className="text-gray-700 bg-gray-100 hover:bg-gray-100">Recently Updated</option>
+    <option className="text-gray-700 bg-gray-100">Price: Low to High</option>
+    <option className="text-gray-700 bg-gray-100">Price: High to Low</option>
+  </select>
+</div>
+
+
 
 
 

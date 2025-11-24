@@ -352,7 +352,7 @@ const Header = ({ filter, onResults }) => {
     onClick={() => toggleDropdown('sale')}
     className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
   >
-    <span className="text-sm">For {localFilters?.selectedOption}</span>
+    <span className="text-sm">Properties For {localFilters?.selectedOption}</span>
     <ChevronDown size={16} />
   </button>
 
@@ -361,7 +361,7 @@ const Header = ({ filter, onResults }) => {
 
       <div className="py-1">
 
-    <label className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+    <label className="flex items-center gap-2 px-2 py-2 text-sm hover:bg-gray-100 cursor-pointer">
   <input
     type="radio"
     name="buyRent"
@@ -370,10 +370,10 @@ const Header = ({ filter, onResults }) => {
     checked={localFilters?.selectedOption === "Buy"}
     onChange={() => handleBuyRentChange("Buy")}
   />
-  <span>For Buy</span>
+  <span>Properties For Buy</span>
 </label>
 
-<label className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer">
+<label className="flex items-center gap-2 px-2 py-2 text-sm hover:bg-gray-100 cursor-pointer">
   <input
     type="radio"
     name="buyRent"
@@ -382,7 +382,7 @@ const Header = ({ filter, onResults }) => {
     checked={localFilters?.selectedOption === "Rent"}
     onChange={() => handleBuyRentChange("Rent")}
   />
-  <span>For Rent</span>
+  <span>Properties For Rent</span>
 </label>
 
 

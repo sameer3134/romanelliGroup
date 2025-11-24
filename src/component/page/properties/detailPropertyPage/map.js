@@ -68,11 +68,11 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
       };
 
       // Create different colored markers based on price range
-      const getMarkerColor = (price) => {
-        if (price < 500000) return '#10b981'; // green for lower prices
-        if (price < 700000) return '#f59e0b'; // amber for mid-range
-        return '#dc2626'; // red for higher prices
-      };
+      // const getMarkerColor = (price) => {
+      //   if (price < 500000) return '#10b981'; // green for lower prices
+      //   if (price < 700000) return '#f59e0b'; // amber for mid-range
+      //   return '#dc2626'; // red for higher prices
+      // };
 
       // Create marker
       const marker = new window.google.maps.Marker({
@@ -82,7 +82,7 @@ const Map = ({ alldata, selectedProperty, onPropertySelect }) => {
         icon: {
           url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
             <svg width="${isSelected ? '36' : '30'}" height="${isSelected ? '36' : '30'}" viewBox="0 0 ${isSelected ? '36' : '30'} ${isSelected ? '36' : '30'}" xmlns="http://www.w3.org/2000/svg">
-              <path d="M${isSelected ? '18' : '15'} ${isSelected ? '36' : '30'} C${isSelected ? '8' : '6'} ${isSelected ? '36' : '30'} 0 ${isSelected ? '28' : '22'} 0 ${isSelected ? '18' : '15'} C0 ${isSelected ? '8' : '6'} ${isSelected ? '8' : '6'} 0 ${isSelected ? '18' : '15'} 0 C${isSelected ? '28' : '24'} 0 ${isSelected ? '36' : '30'} ${isSelected ? '8' : '6'} ${isSelected ? '36' : '30'} ${isSelected ? '18' : '15'} C${isSelected ? '36' : '30'} ${isSelected ? '28' : '22'} ${isSelected ? '28' : '24'} ${isSelected ? '36' : '30'} ${isSelected ? '18' : '15'} ${isSelected ? '36' : '30'} Z" fill="${isSelected ? '#3b82f6' : getMarkerColor(property.amount)}" stroke="white" stroke-width="2" filter="drop-shadow(0 ${isSelected ? '4px 8px' : '2px 4px'} rgba(0,0,0,${isSelected ? '0.3' : '0.2'}))"/>
+              <path d="M${isSelected ? '18' : '15'} ${isSelected ? '36' : '30'} C${isSelected ? '8' : '6'} ${isSelected ? '36' : '30'} 0 ${isSelected ? '28' : '22'} 0 ${isSelected ? '18' : '15'} C0 ${isSelected ? '8' : '6'} ${isSelected ? '8' : '6'} 0 ${isSelected ? '18' : '15'} 0 C${isSelected ? '28' : '24'} 0 ${isSelected ? '36' : '30'} ${isSelected ? '8' : '6'} ${isSelected ? '36' : '30'} ${isSelected ? '18' : '15'} C${isSelected ? '36' : '30'} ${isSelected ? '28' : '22'} ${isSelected ? '28' : '24'} ${isSelected ? '36' : '30'} ${isSelected ? '18' : '15'} ${isSelected ? '36' : '30'} Z" fill="${isSelected ? '#3b82f6' : '#10b981'}" stroke="white" stroke-width="2" filter="drop-shadow(0 ${isSelected ? '4px 8px' : '2px 4px'} rgba(0,0,0,${isSelected ? '0.3' : '0.2'}))"/>
               <text x="${isSelected ? '18' : '15'}" y="${isSelected ? '20' : '17'}" text-anchor="middle" fill="white" font-size="${isSelected ? '16' : '14'}" font-weight="bold">${isSelected ? '🏠' : '🏡'}</text>
             </svg>
           `)}`
