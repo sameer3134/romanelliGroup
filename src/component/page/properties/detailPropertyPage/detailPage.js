@@ -8,6 +8,7 @@ import useFilteredProperties from './hook/useFilterProperties';
 import { usePropertySearch } from '../api/getCheckProperty';
 import LoadingScreen from '../../../../loading/loadingScreen';
 import { locationIcon } from '../../../../assets/allImg';
+import { ChevronDown } from 'lucide-react';
 
 const DetailPage = () => {
   const location = useLocation();
@@ -17,14 +18,29 @@ const DetailPage = () => {
   const [progress, setProgress] = useState(0)
   const [sortOption, setSortOption] = useState("Recently Updated"); // ✅ sorting state
   const [filters, setFilters] = useState(initialFilters || {});
+    const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("Recently Updated");
 
+  const options = [
+    "Recently Updated",
+    "Price: Low to High",
+    "Price: High to Low",
+  ];
   // ✅ Call hook at top-level (safe)
   const alldata = useFilteredProperties(data, filters);
   const { checkProperty, error } = usePropertySearch(); // ✅ hook
   const handleGetitem = (id) => {
     const listings = alldata;
     const allData = data?.value;
-    navigate(`/properties/${id}`, { state: { id, listings, allData } });
+    // Store data in sessionStorage to share with new tab (limit to 40 items)
+    let limitedAllData = allData?.slice(0, 40) || [];
+    // Ensure the clicked property is included
+    const clickedProperty = allData?.find(item => item.ListingKey === id);
+    if (clickedProperty && !limitedAllData.find(item => item.ListingKey === id)) {
+      limitedAllData = [clickedProperty, ...limitedAllData.slice(0, 39)];
+    }
+    sessionStorage.setItem('propertyData', JSON.stringify({ id, listings, allData: limitedAllData }));
+    window.open(`/properties/${id}`, '_blank');
   };
 
   // ✅ Callback passed to Header
@@ -76,23 +92,41 @@ const DetailPage = () => {
         <div className='flex flex-col lg:flex-row'>
           {/* Property List Section */}
           <div className="bg-white mb-4 w-full lg:w-2/3 px-0 order-1 lg:order-1">
-            <h1 className='text-2xl text-gray-900 font-dmsans text-left my-2'>Property for sale</h1>
+            <h1 className='text-2xl text-gray-900 font-dmsans text-left my-2'>Property for {filters.listingType==='Buy'?'sale': 'rent'}</h1>
 
             <div className='flex flex-col sm:flex-row justify-between text-md text-gray-900 font-dmsans text-left my-2'>
               <div className='mb-2 sm:mb-0'>{alldata.length} results</div>
-         <div className="px-3 py-1 text-sm flex items-center">
+         <div className=" py-1 text-sm flex items-center">
   <span className="mr-2 text-gray-700">Sort by</span>
 
-  <select
-    className="cursor-pointer rounded-xl bg-gray-100 border border-gray-300 px-3 py-2 text-sm text-gray-800 
-               focus:outline-none appearance-none"
-    value={sortOption}
-    onChange={(e) => setSortOption(e.target.value)}
+<div className="relative">
+  <button
+    onClick={() => setOpen(!open)}
+    className="flex items-center gap-2 px-4 py-2 rounded-full border bg-white hover:bg-gray-50 shadow-sm text-sm"
   >
-    <option className="text-gray-700 bg-gray-100 hover:bg-gray-100">Recently Updated</option>
-    <option className="text-gray-700 bg-gray-100">Price: Low to High</option>
-    <option className="text-gray-700 bg-gray-100">Price: High to Low</option>
-  </select>
+     <span className="font-medium">{value}</span>
+    <ChevronDown className="h-4 w-4" />
+  </button>
+
+  {open && (
+    <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border z-1">
+      {options.map((option, index) => (
+        <div
+          key={index}
+          onClick={() => {
+            setValue(option);
+            setSortOption(option);
+            setOpen(false);
+          }}
+          className="px-4 py-2 cursor-pointer hover:bg-gray-100 text-sm"
+        >
+          {option}
+        </div>
+      ))}
+    </div>
+  )}
+</div>
+
 </div>
 
 
@@ -152,7 +186,7 @@ const DetailPage = () => {
         <hr className='my-2' />
 
       </div>
-      <div className='mt-[25%]'></div>
+      <div className='sm:mt-[25%] mt-[100%]'></div>
       <div className='relative z-[2]'>
         <Footer />
       </div>

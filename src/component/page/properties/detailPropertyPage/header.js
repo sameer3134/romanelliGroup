@@ -30,6 +30,7 @@ const Header = ({ filter, onResults }) => {
   const [localFilters, setLocalFilters] = useState({
     searchCity: filter?.searchCity || '',
     selectedOption: filter?.selectedOption || 'Buy',
+    listingType: filter?.listingType || filter?.selectedOption || 'Buy',
     property: filter?.property || null,
     min: filter?.min || 0,
     max: filter?.max || 5000001,
@@ -67,6 +68,7 @@ const Header = ({ filter, onResults }) => {
     setLocalFilters({
       searchCity: filter?.searchCity || '',
       selectedOption: filter?.selectedOption || 'Buy',
+      listingType: filter?.listingType || filter?.selectedOption || 'Buy',
       property: filter?.property || null,
       min: filter?.min || 0,
       max: filter?.max || 5000001,
@@ -158,16 +160,12 @@ const Header = ({ filter, onResults }) => {
     }
   };
 
-  const handleBuyRentChange = async (option) => {
-    const loc = { city: localFilters.city, state: localFilters.state, country: localFilters.country } 
-    const updatedFilters = { ...localFilters, selectedOption: option, ...loc, listingType: option };
+  const handleBuyRentChange = (option) => {
+    const updatedFilters = { ...localFilters, selectedOption: option, listingType: option };
     setLocalFilters(updatedFilters);
     setDropdownOpen('');
-    setLoading(true);
-    const data = await checkProperty(updatedFilters);
-    setLoading(false);
-    if (data) {
-      navigate(`/details/properties`, { state: { data, filters: updatedFilters } });
+    if (onResults) {
+      onResults(updatedFilters);
     }
   };
 
@@ -352,7 +350,7 @@ const Header = ({ filter, onResults }) => {
     onClick={() => toggleDropdown('sale')}
     className="border border-gray-300 px-4 py-3 bg-white text-gray-900 font-medium flex items-center space-x-2 hover:bg-gray-50"
   >
-    <span className="text-sm">Properties For {localFilters?.selectedOption}</span>
+    <span className="text-sm">For {localFilters?.selectedOption==='Buy'? 'Sale':'Rent'}</span>
     <ChevronDown size={16} />
   </button>
 
@@ -370,7 +368,7 @@ const Header = ({ filter, onResults }) => {
     checked={localFilters?.selectedOption === "Buy"}
     onChange={() => handleBuyRentChange("Buy")}
   />
-  <span>Properties For Buy</span>
+  <span>For Sale</span>
 </label>
 
 <label className="flex items-center gap-2 px-2 py-2 text-sm hover:bg-gray-100 cursor-pointer">
@@ -382,7 +380,7 @@ const Header = ({ filter, onResults }) => {
     checked={localFilters?.selectedOption === "Rent"}
     onChange={() => handleBuyRentChange("Rent")}
   />
-  <span>Properties For Rent</span>
+  <span>For Rent</span>
 </label>
 
 

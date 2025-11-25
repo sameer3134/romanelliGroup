@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { bathroom, bed, locationIcon, square } from '../../../../assets/allImg';
 import { useNavigate } from 'react-router-dom';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const RelatedItem = ({ listings, allData, id }) => {
   const navigate = useNavigate()
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 5;
+  
+  const filteredListings = listings.filter(single => single.id !== id);
+  const totalPages = Math.ceil(Math.min(40,filteredListings.length) / itemsPerPage);
+  const currentItems = filteredListings.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage);
+  
   const handleGetitem = (id) => {
-    navigate(`/properties/${id}`, { state: { id, listings, allData } }); // ✅ Pass unique data
+    // Store data in sessionStorage to share with new tab (limit to 40 items)
+    const limitedAllData = allData.slice(0, 40);
+    sessionStorage.setItem('propertyData', JSON.stringify({ id, listings, allData: limitedAllData }));
+    window.open(`/properties/${id}`, '_blank');
+  }
+  
+  const handlePrevious = () => {
+    setCurrentPage(prev => Math.max(0, prev - 1));
+  }
+  
+  const handleNext = () => {
+    setCurrentPage(prev => Math.min(totalPages - 1, prev + 1));
   }
   return (
     <div>
@@ -21,7 +40,7 @@ const RelatedItem = ({ listings, allData, id }) => {
 
       </div>
       <div className="bg-white mb-4 w-full max-w-3xl">
-        {listings.filter(single => single.id !== id)?.map((item) => (
+        {currentItems?.map((item) => (
           <div key={item.id} onClick={() => handleGetitem(item.id)} className='flex flex-col cursor-pointer sm:flex-row justify-between p-2 bg-gray-200 mb-4'>
             {/* Image */}
             <div className="w-48 h-48 sm:w-32 sm:h-32 m-2 overflow-hidden flex-shrink-0">
@@ -60,6 +79,33 @@ const RelatedItem = ({ listings, allData, id }) => {
             </div>
           </div>
         ))}
+        
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-between items-center mt-4 px-2">
+            <button
+              onClick={handlePrevious}
+              disabled={currentPage === 0}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <ChevronLeft size={16} />
+              Previous
+            </button>
+            
+            <span className="text-sm text-gray-600">
+              Page {currentPage + 1} of {totalPages}
+            </span>
+            
+            <button
+              onClick={handleNext}
+              disabled={currentPage === totalPages - 1}
+              className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Next
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )

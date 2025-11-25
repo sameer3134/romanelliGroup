@@ -9,8 +9,20 @@ import PropertyMap from './single/propertymap';
 
 const DetailSingleItem = () => {
   const location = useLocation();
-  const {id, listings, allData} = location.state; // ✅ Get passed data
-  const unique = allData.find(item => item.ListingKey === id);
+  
+  // Get data from location.state or sessionStorage
+  let id, listings, allData;
+  if (location.state) {
+    ({id, listings, allData} = location.state);
+  } else {
+    // Fallback to sessionStorage for new tab
+    const storedData = sessionStorage.getItem('propertyData');
+    if (storedData) {
+      ({id, listings, allData} = JSON.parse(storedData));
+    }
+  }
+  
+  const unique = allData?.find(item => item.ListingKey === id);
   
   if (!unique) {
     return <p>No property found</p>; // Handles page refresh without state

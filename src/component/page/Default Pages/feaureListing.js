@@ -65,7 +65,10 @@ const FeaureListing = () => {
     apiResult();
   }, []);
   const handleGetItem = (id) => {
-    navigate(`/properties/${id}`, { state: { id, listings, allData } }); // ✅ Pass unique data
+    // Store data in sessionStorage to share with new tab (limit to 40 items)
+    const limitedAllData = allData.slice(0, 40);
+    sessionStorage.setItem('propertyData', JSON.stringify({ id, listings, allData: limitedAllData }));
+    window.open(`/properties/${id}`, '_blank');
   }
   return (
     <section className="text-white body-font bg-backgroundColor">
