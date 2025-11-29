@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Carousel from './single/carousel';
 import Form from './single/form';
 import RelatedItem from './single/relatedItem';
-import { bathroom, bed, globe, hoa, hvac, park, propType, size, square, year } from '../../../assets/allImg';
+import { aeroplane, bathroom, bed, bus, city, globe, hoa, hospital, hvac, medical, park, parkIcon, propType, size, square, train, year } from '../../../assets/allImg';
 import Footer from '../Default Pages/footer';
 import PropertyMap from './single/propertymap';
 
@@ -141,32 +141,32 @@ const DetailSingleItem = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-3 md:mt-4">
                     <div className="space-y-2 md:space-y-3">
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 md:w-8 md:h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                          <span className="text-blue-600 text-xs md:text-sm">🏢</span>
+                        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center">
+                          <span className="text-blue-600 text-xs md:text-sm"><img src={city} alt='city'/></span>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm md:text-base">Downtown: 15 mins by car</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 md:w-8 md:h-8 bg-green-100 rounded-full flex items-center justify-center">
-                          <span className="text-green-600 text-xs md:text-sm">🌳</span>
+                        <div className="w-6 h-6 md:w-8 md:h-8  rounded-full flex items-center justify-center">
+                          <span className="text-green-600 text-xs md:text-sm"><img src={parkIcon} alt='park'/></span>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm md:text-base">Park: 10 mins by car</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 md:w-8 md:h-8 bg-red-100 rounded-full flex items-center justify-center">
-                          <span className="text-red-600 text-xs md:text-sm">🏥</span>
+                        <div className="w-6 h-6 md:w-8 md:h-8  rounded-full flex items-center justify-center">
+                          <span className="text-red-600 text-xs md:text-sm"><img src={hospital} alt='hospital'/></span>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm md:text-base">Hospital: 8 mins by car</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 md:w-8 md:h-8 bg-purple-100 rounded-full flex items-center justify-center">
-                          <span className="text-purple-600 text-xs md:text-sm">💊</span>
+                        <div className="w-6 h-6 md:w-8 md:h-8  rounded-full flex items-center justify-center">
+                          <span className="text-purple-600 text-xs md:text-sm"><img src={medical} alt='medical'/></span>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm md:text-base">Pharmacy: 5 mins by car</p>
@@ -176,24 +176,24 @@ const DetailSingleItem = () => {
                     
                     <div className="space-y-2 md:space-y-3">
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 md:w-8 md:h-8 bg-yellow-100 rounded-full flex items-center justify-center">
-                          <span className="text-yellow-600 text-xs md:text-sm">🚌</span>
+                        <div className="w-6 h-6 md:w-8 md:h-8  rounded-full flex items-center justify-center">
+                          <span className="text-yellow-600 text-xs md:text-sm"><img src={bus} alt='bus'/></span>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm md:text-base">Bus Station: 25 mins by car</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 md:w-8 md:h-8 bg-indigo-100 rounded-full flex items-center justify-center">
-                          <span className="text-indigo-600 text-xs md:text-sm">🚊</span>
+                        <div className="w-6 h-6 md:w-8 md:h-8  rounded-full flex items-center justify-center">
+                          <span className="text-indigo-600 text-xs md:text-sm"><img src={train} alt='train'/></span>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm md:text-base">Train Station: 35 mins by car</p>
                         </div>
                       </div>
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
-                        <div className="w-6 h-6 md:w-8 md:h-8 bg-teal-100 rounded-full flex items-center justify-center">
-                          <span className="text-teal-600 text-xs md:text-sm">✈️</span>
+                        <div className="w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center">
+                          <span className="text-teal-600 text-xs md:text-sm"><img src={aeroplane} alt='aeroplane'/></span>
                         </div>
                         <div>
                           <p className="font-medium text-gray-900 text-sm md:text-base">Airport: 45 mins by car</p>

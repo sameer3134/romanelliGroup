@@ -1,19 +1,19 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import "./styles.css"
 
-const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
+const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete , maxRange}) => {
   const [minVal, setMinVal] = useState(min || 0);
-  const [maxVal, setMaxVal] = useState(max || 5000001);
+  const [maxVal, setMaxVal] = useState(max || maxRange);
   const minValRef = useRef(min || 0);
-  const maxValRef = useRef(max || 5000001);
+  const maxValRef = useRef(max || maxRange);
   const range = useRef(null);
 
   // Convert value to percentage (0-100)
   const getPercent = useCallback((value) => {
     if (value === 0) return 0;
-    if (value >= 5000000) return 100;
-    return (value / 5000000) * 95;
-  }, []);
+    if (value >= (maxRange-1)) return 100;
+    return (value / (maxRange-1)) * 95;
+  }, [maxRange]);
 
   // Set width of the range to decrease from the left side
   useEffect(() => {
@@ -44,7 +44,7 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
   }, [minVal, maxVal]);
 
   const [inputMin, setInputMin] = useState(min || 0);
-  const [inputMax, setInputMax] = useState(max || 5000001);
+  const [inputMax, setInputMax] = useState(max || maxRange);
 
   // Update input values when min/max props change
   useEffect(() => {
@@ -86,14 +86,14 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
           type="number"
           className="w-1/2 p-2 border border-gray-300 rounded"
           placeholder="No max"
-          value={maxVal > 5000000 ? '' : Math.round(inputMax)}
+          value={maxVal > (maxRange-1) ? '' : Math.round(inputMax)}
           onChange={(e) => {
             const value = e.target.value;
             setInputMax(value);
 
             if (value === '') {
-              setMaxVal(5000001);
-              maxValRef.current = 5000001;
+              setMaxVal(maxRange);
+              maxValRef.current = maxRange;
             } else if (!isNaN(value)) {
               const numValue = Math.round(parseFloat(value));
               if (numValue >= 0) {
@@ -117,17 +117,18 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
             min={0}
             max={100}
             step={1}
-            value={minVal === 0 ? 0 : minVal >= 5000000 ? 100 : (minVal / 5000000) * 95}
+            value={minVal === 0 ? 0 : minVal >= (maxRange-1) ? 100 : (minVal / (maxRange-1)) * 95}
             onChange={(event) => {
               const percent = Number(event.target.value);
               let value;
               if (percent === 0) {
                 value = 0;
               } else if (percent >= 95) {
-                value = 5000000;
+                value = (maxRange-1);
               } else {
-                const rawValue = (percent / 95) * 5000000;
-                value = Math.round(rawValue / 50000) * 50000;
+                const rawValue = (percent / 95) * (maxRange-1);
+                const stepSize = maxRange === 5000001 ? 50000 : 100;
+                value = Math.round(rawValue / stepSize) * stepSize;
               }
               setMinVal(value);
               setInputMin(value);
@@ -156,19 +157,20 @@ const DoubleRangeSlider = ({ min, max, onChange, onChangeComplete }) => {
             min={0}
             max={100}
             step={1}
-            value={maxVal === 0 ? 0 : maxVal > 5000000 ? 100 : maxVal === 5000000 ? 97 : (maxVal / 5000000) * 95}
+            value={maxVal === 0 ? 0 : maxVal > (maxRange-1) ? 100 : maxVal === (maxRange-1) ? 97 : (maxVal / (maxRange-1)) * 95}
             onChange={(event) => {
               const percent = Number(event.target.value);
               let value;
               if (percent === 0) {
                 value = 0;
               } else if (percent >= 98) {
-                value = 5000001; // No max
+                value = maxRange; // No max
               } else if (percent >= 95) {
-                value = 5000000; // Exactly 5M
+                value = (maxRange-1); // Exactly 5M
               } else {
-                const rawValue = (percent / 95) * 5000000;
-                value = Math.round(rawValue / 50000) * 50000;
+                const rawValue = (percent / 95) * (maxRange-1);
+                const stepSize = maxRange === 5000001 ? 50000 : 100;
+                value = Math.round(rawValue / stepSize) * stepSize;
               }
               setMaxVal(value);
               setInputMax(value);

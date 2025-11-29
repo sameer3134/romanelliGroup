@@ -30,6 +30,7 @@ const PropertyTypes = [{
 
 const FilterPage = ({ close, onSave, filterVal }) => {
     const [priceRange, setPriceRange] = useState({ min: filterVal?.min || 0, max: filterVal?.max || 5000001 });
+    const [areaRange, setAreaRange] = useState({ sqftMin: filterVal?.sqftMin || 0, sqftMax: filterVal?.sqftMax || 15001 });
     const [selectedBedroom, setSelectedBedroom] = useState(filterVal?.bedrooms || null);
     const [selectedBathroom, setSelectedBathroom] = useState(filterVal?.bathrooms || null);
     const [selectedProperty, setSelectedProperty] = useState(filterVal?.property || null);
@@ -38,11 +39,15 @@ const FilterPage = ({ close, onSave, filterVal }) => {
     const handlePriceChange = ({ min, max }) => {
         setPriceRange({ min, max });
     };
-
+    const handleAreaChange = ({ min, max }) => {
+        setAreaRange({ sqftMin:min, sqftMax:max });
+    };
     const resetFilters = () => {
         const resetValues = {
             min: 0,
             max: 5000001,
+            sqftMin: 0,
+            sqftMax: 15001,
             bedrooms: null,
             bathrooms: null,
             property: null
@@ -52,6 +57,7 @@ const FilterPage = ({ close, onSave, filterVal }) => {
         setSelectedBathroom(null);
         setSelectedProperty(null);
         setPriceRange({ min: 0, max: 5000001 });
+        setAreaRange({ sqftMin: 0, sqftMax: 15001 });
         setResetKey(prev => prev + 1);
         
         if (onSave) {
@@ -64,6 +70,8 @@ const FilterPage = ({ close, onSave, filterVal }) => {
         const filters = {
             min: priceRange.min,
             max: priceRange.max,
+            sqftMin: areaRange.sqftMin,
+            sqftMax: areaRange.sqftMax,    
             bedrooms: selectedBedroom,
             bathrooms: selectedBathroom,
             property: selectedProperty,
@@ -107,6 +115,7 @@ const FilterPage = ({ close, onSave, filterVal }) => {
                             min={priceRange.min}
                             max={priceRange.max}
                             onChange={handlePriceChange} 
+                            maxRange={5000001}
                         />
                     </div>
 
@@ -151,6 +160,16 @@ const FilterPage = ({ close, onSave, filterVal }) => {
                             ))}
                         </div>
                     </div>
+                      <div>
+                        <h2 className="text-lg font-semibold text-left mb-2 text-black">Area Range</h2>
+                        <DoubleRangeSlider 
+                            key={resetKey}
+                            min={areaRange.sqftMin}
+                            max={areaRange.sqftMax}
+                            onChange={handleAreaChange}
+                            maxRange={15001}
+                        />
+                    </div>
 
                     <hr className="my-4 border-gray-200" />
 
@@ -177,6 +196,7 @@ const FilterPage = ({ close, onSave, filterVal }) => {
                             ))}
                         </div>
                     </div>
+                    
                 </div>
 
                 {/* Footer Buttons */}

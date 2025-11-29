@@ -30,6 +30,7 @@ const PropertyTypes = [{
 
 const DetailFilter = ({ close, onSave, filterVal }) => {
     const [priceRange, setPriceRange] = useState({ min: filterVal.min || 0, max: filterVal.max || 5000001 });
+    const [areaRange, setAreaRange] = useState({ sqftMin: filterVal?.sqftMin || 0, sqftMax: filterVal?.sqftMax || 15001 });
     const [selectedBedroom, setSelectedBedroom] = useState(filterVal.bedrooms || null);
     const [selectedBathroom, setSelectedBathroom] = useState(filterVal.bathrooms || null);
     const [selectedProperty, setSelectedProperty] = useState(filterVal.property || null);
@@ -37,15 +38,22 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
     const handlePriceChange = ({ min, max }) => {
         setPriceRange({ min, max });
     };
+    
+    const handleAreaChange = ({ min, max }) => {
+        setAreaRange({ sqftMin: min, sqftMax: max });
+    };
 
     const resetFilters = () => {
         setSelectedBedroom(null);
         setSelectedBathroom(null);
         setSelectedProperty(null);
         setPriceRange({ min: 0, max: 5000001 });
+        setAreaRange({ sqftMin: 0, sqftMax: 15001 });
         const filters = {
             min: 0,
             max: 5000001,
+            sqftMin: 0,
+            sqftMax: 15001,
             bedrooms: null,
             bathrooms: null,
             property: null,
@@ -66,6 +74,8 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
         const filters = {
             min: priceRange.min,
             max: priceRange.max,
+            sqftMin: areaRange.sqftMin,
+            sqftMax: areaRange.sqftMax,
             bedrooms: selectedBedroom,
             bathrooms: selectedBathroom,
             property: selectedProperty,
@@ -103,7 +113,7 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
                     {/* Price Range */}
                     <div>
                         <h2 className="text-lg font-semibold text-left mb-2 text-black">Price Range</h2>
-                        <DoubleRangeSlider min={filterVal.min} max={filterVal.max} onChange={handlePriceChange} />
+                        <DoubleRangeSlider min={filterVal.min} max={filterVal.max} onChange={handlePriceChange} maxRange={5000001} />
                     </div>
 
                     <hr className="my-4 border-gray-200" />
@@ -146,6 +156,18 @@ const DetailFilter = ({ close, onSave, filterVal }) => {
                                 </button>
                             ))}
                         </div>
+                    </div>
+
+
+                    {/* Area Range */}
+                    <div>
+                        <h2 className="text-lg font-semibold text-left mb-2 text-black">Area Range</h2>
+                        <DoubleRangeSlider 
+                            min={areaRange.sqftMin}
+                            max={areaRange.sqftMax}
+                            onChange={handleAreaChange}
+                            maxRange={15001}
+                        />
                     </div>
 
                     <hr className="my-4 border-gray-200" />

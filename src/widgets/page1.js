@@ -88,7 +88,7 @@ useEffect(() => {
       const buffered = Math.round(e.target.buffered.end(0));
       const duration = e.target.duration;
       const realProgress = 50 + (buffered / duration) * 45; // Continue from 50% to 95%
-      setProgress(Math.min(realProgress, 95)); // Increment progress from 50%
+      setProgress(Math.round(Math.min(realProgress, 95))); // Round to remove decimals
     }
   };
 
@@ -119,6 +119,7 @@ useEffect(() => {
             >
               <source src={video_url} type="video/webm" />
             </video>
+            <div className="absolute inset-0 bg-black bg-opacity-60"></div>
           </div>
           {/* Content */}
          <Pages page={page}/>

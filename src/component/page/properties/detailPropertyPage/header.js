@@ -34,6 +34,8 @@ const Header = ({ filter, onResults }) => {
     property: filter?.property || null,
     min: filter?.min || 0,
     max: filter?.max || 5000001,
+    sqftMin: filter?.sqftMin || 0,
+    sqftMax: filter?.sqftMax || 15001,
     bedrooms: filter?.bedrooms || null,
     bathrooms: filter?.bathrooms || null,
     city: filter?.city || '',
@@ -72,6 +74,8 @@ const Header = ({ filter, onResults }) => {
       property: filter?.property || null,
       min: filter?.min || 0,
       max: filter?.max || 5000001,
+      sqftMin: filter?.sqftMin || 0,
+      sqftMax: filter?.sqftMax || 15001,
       bedrooms: filter?.bedrooms || null,
       bathrooms: filter?.bathrooms || null,
       city: filter?.city || '',
@@ -152,6 +156,8 @@ const Header = ({ filter, onResults }) => {
     const apiFilters = { ...updatedFilters };
     if (updatedFilters.min === 0) delete apiFilters.min;
     if (updatedFilters.max === 5000001) delete apiFilters.max;
+    if (updatedFilters.sqftMin === 0) delete apiFilters.sqftMin;
+    if (updatedFilters.sqftMax === 15001) delete apiFilters.sqftMax;
     
     const data = await checkProperty(apiFilters);
     setLoading(false);
@@ -213,6 +219,8 @@ const Header = ({ filter, onResults }) => {
     const apiFilters = { ...f };
     if (f.min === 0) delete apiFilters.min;
     if (f.max === 5000001) delete apiFilters.max;
+    if (f.sqftMin === 0) delete apiFilters.sqftMin;
+    if (f.sqftMax === 15001) delete apiFilters.sqftMax;
     
     const data = await checkProperty(apiFilters);
     setLoading(false)

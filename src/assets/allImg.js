@@ -92,7 +92,13 @@ import trend from "../../src/assets/images/trend.avif"
 // Additional
 import image1_url from "../../src/assets/images/image1_url.avif"
 import image2_url from "../../src/assets/images/image2_url.avif"
-
+import aeroplane from "../../src/assets/images/airplane.avif"
+import bus from "../../src/assets/images/bus.avif"
+import city from "../../src/assets/images/city.avif"
+import hospital from "../../src/assets/images/hospital.avif"
+import medical from "../../src/assets/images/medical.avif"
+import parkIcon from "../../src/assets/images/parkIcon.avif"
+import train from "../../src/assets/images/train.avif"
 // Videos
 import video_url1 from "../../src/assets/images/hero.webm"
 import video_url2 from "../../src/assets/images/video_url2.webm"
@@ -174,4 +180,5 @@ export {
   video_url3,
   video_url4,
   video_url5,
+  bus,city,hospital,medical,parkIcon,train,aeroplane,
 }

@@ -34,6 +34,8 @@ export const usePropertySearch = () => {
       if (filters.address) params.append("address", filters.address);
       if (filters.min && filters.min>-1) params.append("min", filters.min);    
       if (filters.max && filters.max!== 5000001) params.append("max", filters.max);
+      if (filters.sqftMin && filters.sqftMin>-1) params.append("sqftMin", filters.sqftMin);    
+      if (filters.sqftMax && filters.sqftMax!== 150001) params.append("sqftMax", filters.sqftMax);
       if (filters.bedrooms && filters.bedrooms !== "Any")
         params.append("bedrooms", filters.bedrooms);
       if (filters.bathrooms && filters.bathrooms !== "Any")

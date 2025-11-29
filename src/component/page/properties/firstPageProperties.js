@@ -20,6 +20,8 @@ const FirstPageProperties = () => {
   const [filters, setFilters] = useState({
     min: 0,
     max: 5000001,
+    sqftMin: 0,
+    sqftMax: 15001,
     bedrooms: null,
     bathrooms: null,
     property: null,
