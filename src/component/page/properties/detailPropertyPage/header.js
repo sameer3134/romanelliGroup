@@ -412,6 +412,7 @@ const Header = ({ filter, onResults }) => {
                     min={localFilters.min}
                     max={localFilters.max}
                     onChange={handlePriceChange}
+                    maxRange={5000001}
                   />
                   <button 
                     onClick={handlePriceApply}
