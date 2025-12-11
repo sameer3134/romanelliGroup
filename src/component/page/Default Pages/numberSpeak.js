@@ -25,8 +25,8 @@ const stats = [
     ],
   },
   {
-    number: "80+",
-    title: "Clients Served in 2023",
+    number: "106+",
+    title: "Clients Served in 2025",
     description: "Dedicated to making dreams come true, one client at a time.",
     images: [
       "https://ivang-design.com/svg-load/slider/9.jpg",
@@ -37,7 +37,7 @@ const stats = [
   },
   {
     number: "20+",
-    title: "Years in Business between AR/CR/SB/AB & ",
+    title: "Yearsof Experience",
     description: "Delivering results backed by nearly a decade of experience.",
     images: [
       "https://ivang-design.com/svg-load/slider/13.jpg",

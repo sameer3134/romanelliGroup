@@ -70,7 +70,7 @@ const DetailSingleItem = () => {
                   ${unique.ListPrice?.toLocaleString() || 'N/A'}
                 </div>
                 <div className="text-base sm:text-lg text-gray-900 mb-2">
-                  {unique.UnparsedAddress || `${unique.StreetNumber} ${unique.StreetName}, ${unique.City}, ${unique.StateOrProvince} ${unique.PostalCode}`}
+                  {unique.UnparsedAddress || `${unique.StreetNumber} ${unique.StreetName} ${unique.City} ${unique.StateOrProvince} ${unique.PostalCode}`}
                 </div>
                 <div className="text-sm text-gray-900 mb-4">
                   Estimation payment provided by {unique.ListOfficeName || 'Keller Williams Realty Inc.'} is ${Math.round((unique.ListPrice || 0) * 0.005)}/mo
@@ -84,7 +84,7 @@ const DetailSingleItem = () => {
                 </div>
                 
                 {/* Property Details */}
-                <div className="py-4 md:py-6">
+                {/* <div className="py-4 md:py-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-3 md:mb-4">Property Details</h2>
                   <div className="grid grid-cols-1 gap-3 md:gap-4 bg-gray-100 md:bg-gray-200 px-3 md:px-4 py-3 md:py-4 ">
                     {propertyDetails?.map((detail, index) => (
@@ -97,12 +97,12 @@ const DetailSingleItem = () => {
                       </div>
                     ))}
                   </div>
-                </div>
+                </div> */}
                 
-                <hr className="my-4"/>
+                {/* <hr className="my-4"/> */}
                 
                 {/* Price History */}
-                <div className="">
+                {/* <div className="">
                   <h2 className="text-xl font-semibold text-gray-900 my-3 md:my-4">Price History</h2>
                   <div className="overflow-x-auto">
                     <table className="w-full bg-gray-100 md:bg-gray-200">
@@ -126,18 +126,17 @@ const DetailSingleItem = () => {
                       </tbody>
                     </table>
                   </div>
-                </div>
+                </div> */}
                 
                 <hr className="my-4"/>
                 
                 {/* Explore Neighbourhood */}
-                <div className="bg-white rounded-lg pt-4 md:pt-6">
+                {/* <div className="bg-white rounded-lg pt-4 md:pt-6">
                   <h2 className="text-xl font-semibold text-gray-900 mb-3 md:mb-4">Explore Neighbourhood</h2>
                   <div style={{ position: 'relative', zIndex: 1, height: '300px' }}>
                     <PropertyMap property={unique} />
                   </div>
-                  
-                  {/* Nearby Amenities */}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-3 md:mt-4">
                     <div className="space-y-2 md:space-y-3">
                       <div className="flex items-center gap-2 md:gap-3 p-2 bg-gray-50 rounded">
@@ -201,12 +200,12 @@ const DetailSingleItem = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 
-                <hr className="my-4"/>
+                {/* <hr className="my-4"/> */}
                 
                 {/* Market Update */}
-                <div className="bg-white">
+                {/* <div className="bg-white">
                   <h2 className="text-xl font-semibold text-gray-900 mb-3 md:mb-4">Market Update</h2>
                   <div className="flex flex-col sm:flex-row justify-between gap-3 bg-gray-100 md:bg-gray-200 p-3 md:p-4 ">
                     <div className="text-center p-2 md:p-4 rounded-lg bg-white md:bg-transparent shadow-sm md:shadow-none">
@@ -222,7 +221,7 @@ const DetailSingleItem = () => {
                       <div className="text-xs md:text-sm text-gray-800 font-semibold">Average Active Days on Market</div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 
                 {/* Explore Similar Properties */}
                 <div className="mt-6 md:mt-8">
