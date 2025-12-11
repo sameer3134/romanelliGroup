@@ -30,9 +30,9 @@ const FeaureListing = () => {
       const mapped = filtered.filter(i => i.ListPrice !== 1).map(item => ({
         id: item.ListingKey,
         amount: item.ListPrice,
-        heading: item.StreetNumber
-          ? `${item.StreetNumber} ${item.StreetName}, ${item.City}, ${item.StateOrProvince} ${item.PostalCode}`
-          : item.UnparsedAddress || "No Address",
+        heading: item.UnparsedAddress
+          ? item.UnparsedAddress
+          : `${item.StreetNumber} ${item.StreetName} ${item.City} ${item.StateOrProvince} ${item.PostalCode}`,
         description: item.PublicRemarks
           ? item.PublicRemarks.split(" ").slice(0, 12).join(" ") + "..."
           : "No description available",
@@ -48,7 +48,9 @@ const FeaureListing = () => {
         ]
           .filter(Boolean)
           .join(" | "),
-        location: `${item.StreetNumber} ${item.StreetName}, ${item.City}, ${item.StateOrProvince} ${item.PostalCode}`,
+        location: item.UnparsedAddress
+          ? item.UnparsedAddress
+          : `${item.StreetNumber} ${item.StreetName} ${item.City} ${item.StateOrProvince} ${item.PostalCode}`,
         image:
           item.Media && item.Media.length > 0
             ? item.Media[0].MediaURL

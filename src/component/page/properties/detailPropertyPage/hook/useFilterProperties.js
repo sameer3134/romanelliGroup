@@ -21,9 +21,9 @@ const useFilteredProperties = (data, filters) => {
     const mapped = filtered.filter(i => i.ListPrice !== 1).map(item => ({
       id: item.ListingKey,
       amount: item.ListPrice,
-      heading: item.StreetNumber
-        ? `${item.StreetNumber}, ${item.StreetName}`
-        : item.UnparsedAddress || "No Address",
+      heading: item.UnparsedAddress
+        ? item.UnparsedAddress.split(',')[0]
+        : `${item.StreetNumber} ${item.StreetName}`,
       description: item.PublicRemarks
         ? item.PublicRemarks.split(" ").slice(0, 30).join(" ") + "..."
         : "No description available",
@@ -39,7 +39,9 @@ const useFilteredProperties = (data, filters) => {
       ]
         .filter(Boolean)
         .join(" | "),
-      location: `${item.StreetNumber} ${item.StreetName}, ${item.City}, ${item.StateOrProvince} ${item.PostalCode}`,
+      location:  item.UnparsedAddress
+        ? item.UnparsedAddress
+        : `${item.StreetNumber} ${item.StreetName} ${item.City} ${item.StateOrProvince} ${item.PostalCode}`,
       image:
         item.Media && item.Media.length > 0
           ? item.Media[0].MediaURL

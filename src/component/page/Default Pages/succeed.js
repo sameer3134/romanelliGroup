@@ -54,7 +54,7 @@ const Succeed = () => {
                     </div>
                     <div className="flex-grow pl-6 mb-0">
                       <h2 className="text-gray-900 text-xl title-font font-semibold mb-2">Grow Your Career</h2>
-                      <p className="leading-relaxed text-base text-black">After almost 10 years of selling real estate, I’ve figured out how to create extraordinary experiences for agents without running yourself ragged, having to sacrifice your family or struggle to grow your business.</p>
+                      <p className="leading-relaxed text-base text-black">After more than 10 years of selling real estate, we’ve learned how to create extraordinary experiences for agents—without requiring them to run themselves ragged, sacrifice family time, or struggle to grow their business.</p>
                       <button className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Join Our Team</button>
                     </div>
                   </div>
