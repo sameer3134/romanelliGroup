@@ -48,10 +48,46 @@ const FirstPageProperties = () => {
     streetNumber: getLong("street_number"),
     street: getLong("route"),
     city: getLong("locality") || getLong("sublocality") || "",
-    state: getShort("administrative_area_level_1"),   // <-- OH
-    country: getShort("country"),                     // <-- US
+    state: getShort("administrative_area_level_1"),
+    country: getShort("country"),
     postalCode: getLong("postal_code"),
   };
+};
+
+const parseWithGoogle = (searchText) => {
+  return new Promise((resolve) => {
+    if (!placesService.current) {
+      resolve({ unparsedAddress: searchText });
+      return;
+    }
+    
+    // Use Places Text Search instead of Geocoding
+    const request = {
+      query: searchText,
+      fields: ['place_id']
+    };
+    
+    placesService.current.textSearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && results[0]) {
+        // Get place details to extract address components
+        placesService.current.getDetails(
+          { placeId: results[0].place_id },
+          (place, detailStatus) => {
+            if (detailStatus === window.google.maps.places.PlacesServiceStatus.OK && place) {
+              const parsed = extractAddressComponents(place);
+              console.log('Google parsed:', parsed);
+              resolve(parsed);
+            } else {
+              resolve({ unparsedAddress: searchText });
+            }
+          }
+        );
+      } else {
+        console.log('Places search failed:', status);
+        resolve({ unparsedAddress: searchText });
+      }
+    });
+  });
 };
 
   // --------------------------------------
@@ -307,16 +343,23 @@ const FirstPageProperties = () => {
                   return;
                 }
                 
-                // Parse location if not already parsed
-                const loc =  { city: filters.city, state: filters.state, country: filters.country } 
+                let finalFilters;
                 
-                const finalFilters = {
-                  ...filters,
-                  city: loc.city,
-                  state: loc.state,
-                  country: loc.country,
-                  listingType: filters.selectedOption
-                };
+                if(!filters.city) {
+                  // Use Google geocoding to parse the search text
+                  const parsed = await parseWithGoogle(filters.searchCity);
+                  finalFilters = {
+                    ...filters,
+                    ...parsed,
+                    listingType: filters.selectedOption
+                  };
+                } else {
+                  // Use already parsed Google data
+                  finalFilters = {
+                    ...filters,
+                    listingType: filters.selectedOption
+                  };
+                }
 
                 setLoading(true);
                 const data = await checkProperty(finalFilters);

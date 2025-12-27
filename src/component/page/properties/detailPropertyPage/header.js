@@ -57,10 +57,42 @@ const Header = ({ filter, onResults }) => {
     streetNumber: getLong("street_number"),
     street: getLong("route"),
     city: getLong("locality") || getLong("sublocality") || "",
-    state: getShort("administrative_area_level_1"),   // <-- OH
-    country: getShort("country"),                     // <-- US
+    state: getShort("administrative_area_level_1"),
+    country: getShort("country"),
     postalCode: getLong("postal_code"),
   };
+};
+
+const parseWithGoogle = (searchText) => {
+  return new Promise((resolve) => {
+    if (!placesService.current) {
+      resolve({ unparsedAddress: searchText });
+      return;
+    }
+    
+    const request = {
+      query: searchText,
+      fields: ['place_id']
+    };
+    
+    placesService.current.textSearch(request, (results, status) => {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK && results[0]) {
+        placesService.current.getDetails(
+          { placeId: results[0].place_id },
+          (place, detailStatus) => {
+            if (detailStatus === window.google.maps.places.PlacesServiceStatus.OK && place) {
+              const parsed = extractAddressComponents(place);
+              resolve(parsed);
+            } else {
+              resolve({ unparsedAddress: searchText });
+            }
+          }
+        );
+      } else {
+        resolve({ unparsedAddress: searchText });
+      }
+    });
+  });
 };
 
   const { checkProperty, error } = usePropertySearch();
@@ -189,11 +221,36 @@ const Header = ({ filter, onResults }) => {
   };
 
   const directSearch = async () => {
-    const loc =  { city: localFilters.city, state: localFilters.state, country: localFilters.country } 
-    const finalFilters = { ...localFilters, ...loc, listingType: localFilters.selectedOption };
+    if (!localFilters.searchCity) {
+      alert("Please enter a location");
+      return;
+    }
+
+    let finalFilters;
+    
+    if (!localFilters.city) {
+      // Use Google Places to parse the search text
+      const parsed = await parseWithGoogle(localFilters.searchCity);
+      finalFilters = {
+        ...localFilters,
+        ...parsed,
+        listingType: localFilters.selectedOption
+      };
+    } else {
+      // Use already parsed data
+      finalFilters = {
+        ...localFilters,
+        listingType: localFilters.selectedOption
+      };
+    }
+
     setDropdownOpen('');
-    if (onResults) {
-      onResults(finalFilters);
+    setLoading(true);
+    const data = await checkProperty(finalFilters);
+    setLoading(false);
+    
+    if (data) {
+      navigate(`/details/properties`, { state: { data, filters: finalFilters } });
     }
   };
 
@@ -242,6 +299,20 @@ const Header = ({ filter, onResults }) => {
                 onChange={(e) => {
                   const value = e.target.value;
                   updateFilter('searchCity', value);
+                  
+                  // Clear location data when search text changes
+                  if (value !== localFilters.searchCity) {
+                    setLocalFilters(prev => ({
+                      ...prev,
+                      searchCity: value,
+                      city: '',
+                      state: '',
+                      country: '',
+                      street: '',
+                      streetNumber: '',
+                      postalCode: ''
+                    }));
+                  }
                   
                   if (value.length > 2 && autocompleteService.current) {
                     autocompleteService.current.getPlacePredictions(

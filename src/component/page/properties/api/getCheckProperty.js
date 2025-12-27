@@ -23,7 +23,7 @@ export const usePropertySearch = () => {
       if (filters.city) params.append("city", filters.city);
       if (filters.state) params.append("state", filters.state);
       if (filters.country) params.append("country", filters.country);
-      
+      if (filters.unparsedAddress) params.append("unparsedAddress", filters.unparsedAddress);
       if (filters.street){
           const cleanStreet = filters.street.split(" ")[0].trim().split(" ")[0];
           params.append("street", cleanStreet);
