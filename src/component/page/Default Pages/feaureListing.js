@@ -6,6 +6,8 @@ const FeaureListing = () => {
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   const [allData, setAllData] = useState([]);
+  const [scrollDuration, setScrollDuration] = useState(60);
+  const [isPaused, setIsPaused] = useState(false);
 
   const apiResult = async () => {
     try {
@@ -58,6 +60,11 @@ const FeaureListing = () => {
       }));
 
       setListings(mapped);
+      
+      // Calculate dynamic scroll duration based on number of items
+      const baseDuration = 3; // seconds per item
+      const calculatedDuration = Math.max(30, mapped.length * baseDuration);
+      setScrollDuration(calculatedDuration);
     } catch (error) {
       console.error(error);
     }
@@ -86,11 +93,19 @@ const FeaureListing = () => {
         </div>
       </div>
 
-      <div className="relative flex overflow-hidden space-x-4 sm:space-x-6 group w-full">
+      <div 
+        className="relative flex overflow-hidden space-x-4 sm:space-x-6 w-full"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         {[...Array(2)].map((_, setIndex) => (
           <div
             key={setIndex}
-            className="flex space-x-4 sm:space-x-6 animate-loop-scroll group-hover:[animation-play-state:paused]"
+            className="flex space-x-4 sm:space-x-6"
+            style={{
+              animation: `scrolling ${scrollDuration}s ease-in-out infinite`,
+              animationPlayState: isPaused ? 'paused' : 'running'
+            }}
             aria-hidden={setIndex === 1 ? "true" : undefined}
           >
             {listings.map((item, index) => (

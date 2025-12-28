@@ -34,7 +34,7 @@ const Succeed = () => {
                     </div>
                     <div className="flex-grow pl-6 ">
                       <h2 className="text-gray-900 text-xl title-font font-semibold mb-2">Buy Your New Home</h2>
-                      <p className="leading-relaxed text-base text-black">On the hunt for your dream family home or the perfect investment property in Central Ohio? We've got the keys to your next big win!</p>
+                      <p className="leading-relaxed text-base text-black">On the hunt for your dream home or the perfect investment property in Central Ohio? We've got the keys to your next big win!</p>
                       <button onClick={() => window.location.href = "/buy"} className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Buy a Property</button>
                     </div>
                   </div>
@@ -54,7 +54,7 @@ const Succeed = () => {
                     </div>
                     <div className="flex-grow pl-6 mb-0">
                       <h2 className="text-gray-900 text-xl title-font font-semibold mb-2">Grow Your Career</h2>
-                      <p className="leading-relaxed text-base text-black">After more than 10 years of selling real estate, we’ve learned how to create extraordinary experiences for agents—without requiring them to run themselves ragged, sacrifice family time, or struggle to grow their business.</p>
+                      <p className="leading-relaxed text-base text-black">After more than   10 years of selling real estate, we’ve learned how to create extraordinary experiences for agents—without requiring them to run themselves ragged, sacrifice family time, or struggle to grow their business.</p>
                       <button className='bg-black text-white text-xs md:text-sm px-5 py-2 my-1 rounded-md'>Join Our Team</button>
                     </div>
                   </div>

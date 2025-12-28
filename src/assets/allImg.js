@@ -106,6 +106,7 @@ import video_url3 from "../../src/assets/images/video_url3.webm"
 import video_url4 from "../../src/assets/images/video_url4.mp4"
 import video_url5 from "../../src/assets/images/video_url5.webm"
 import sellsmarter_step1 from "../../src/assets/images/q1.webm"
+import pop_video from "../../src/assets/images/pop_video.webm"
 
 // Export all as grouped objects for convenience
 export {
@@ -175,6 +176,7 @@ export {
   icon1_url,
   icon2_url,
   icon3_url,
+  pop_video,
   video_url1,
   video_url2,
   video_url3,

@@ -52,7 +52,7 @@ const AccessComponent = () => {
             <Route path="/" element={<MainPage />} />
             <Route path="/buy" element={<MainPageBuy />} />
             <Route path="/sell" element={<Mainsell />} />
-            <Route path="/contactUs" element={<MainPageContact />} />
+            <Route path="/contact-us" element={<MainPageContact />} />
             <Route path="/properties" element={<MainPageProperties />} />
             <Route path="/resources" element={<MainPageResource />} />
              <Route path="/resources/blogs/:id" element={<SingleBlog />} />

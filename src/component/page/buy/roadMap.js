@@ -1,3 +1,4 @@
+import { link } from "framer-motion/client";
 import {roadMapstep1, roadMapstep2, roadMapstep3, roadMapstep4} from "../../../assets/allImg"
 
 const steps = [
@@ -8,22 +9,28 @@ const steps = [
       "Prequalify to show you're serious about buying. This step ensures you're ready to act fast when you find 'the one'.",
     button: "Start Prequalification",
     imgSrc: roadMapstep1,
+    link:"https://apply.nfmlending.com/app/mcua",
+    target:"_Blank"
   },
   {
     step: "Step 02",
     title: "Start Your Journey",
     description:
       "Complete a quick form to share your goals, then book a consultation to plan your next steps—simple & stress-free.",
-    button: "Get Started",
+    button: "Browse Properties",
     imgSrc: roadMapstep2,
+    link:"/properties",
+    target:"_Self"
   },
   {
     step: "Step 03",
     title: "Find the One",
     description:
       "Start exploring properties that match your goals and lifestyle. Whether resale or new construction, the choice is yours.",
-    button: "Start Searching",
+    button: "Find properties",
     imgSrc: roadMapstep3,
+    link  :"/properties",
+    target:"_Self"
   },
   {
     step: "Step 04",
@@ -32,6 +39,7 @@ const steps = [
       "Discover our winning strategy—proven methods, expert insights, and a track record of success.",
     button: "How We Win",
     imgSrc: roadMapstep4,
+    target:"_Self"
   },
 ];
 
@@ -42,7 +50,7 @@ const RoadMap = () => {
       <div className="text-center">
         <h1 className="md:text-5xl text-2xl   font-bold mb-4 text-gray-900">
           Your RoadMap to{" "}
-          <span className="italic font-playfair">Perfect Property</span>
+          <span className="italic font-playfair">The Perfect Property</span>
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           We’ve simplified the homebuying process into four easy steps. Let’s get you closer to your dream home with confidence!
@@ -90,7 +98,9 @@ const RoadMap = () => {
                 {step.title}
               </h2>
               <p className="text-gray-600 mt-2">{step.description}</p>
-              <button className="text-sm bg-black px-4 py-2 font-semibold text-white mt-2">
+              <button className="text-sm bg-black px-4 py-2 font-semibold text-white mt-2" onClick={() => {
+                if(step.link){ window.open(step.link, step.target)} else {window.location.href="#"}
+              }}>
                 {step.button}
               </button>
             </div>

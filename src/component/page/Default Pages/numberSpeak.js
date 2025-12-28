@@ -14,7 +14,7 @@ const stats = [
     ],
   },
   {
-    number: "485+",
+    number: "185+",
     title: "Deals Closed",
     description: "Every transaction reflects trust, precision, and client-first focus.",
     images: [
@@ -37,7 +37,7 @@ const stats = [
   },
   {
     number: "20+",
-    title: "Yearsof Experience",
+    title: "Years of Experience",
     description: "Delivering results backed by nearly a decade of experience.",
     images: [
       "https://ivang-design.com/svg-load/slider/13.jpg",

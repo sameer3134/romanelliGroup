@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import VideoPopUp from './videoPopUp';
-import { video_url1 } from '../../../assets/allImg';
+import { pop_video } from '../../../assets/allImg';
 
 const SideModal = () => {
     const navigate=useNavigate()
@@ -24,7 +24,7 @@ const SideModal = () => {
                             className="w-full h-full object-cover rounded-lg"
                             onClick={handleVideoPopUp}
                         >
-                            <source src={video_url1} type="video/mp4" />
+                            <source src={pop_video} type="video/mp4" />
                         </video>
                     </div>
                     {/* Square Button */}
@@ -43,12 +43,12 @@ const SideModal = () => {
                     </button>
 
                     {/* "Let Connect Now" Button */}
-                    <button type="button" onClick={()=>{navigate("/contactUs")}} className="absolute right-2 top-1/4 transform -translate-x-3/4 -translate-y-1/2 bg-red-800 text-[7px]  md:text-[10px]  text-white px-1 py-1 md:px-1 md:py-2 border border-black rounded-l-lg rounded-tr-lg shadow-lg">
+                    <button type="button" onClick={()=>{navigate("/contact-us")}} className="absolute right-2 top-1/4 transform -translate-x-3/4 -translate-y-1/2 bg-red-800 text-[7px]  md:text-[10px]  text-white px-1 py-1 md:px-1 md:py-2 border border-black rounded-l-lg rounded-tr-lg shadow-lg">
                         Let's Connect Now
                     </button>
 
                 </div>
-                  {videoPopUp && <VideoPopUp video_pop_url={video_url1} close={() => { setVideoPopUp(false) }} />}
+                  {videoPopUp && <VideoPopUp video_pop_url={pop_video} close={() => { setVideoPopUp(false) }} />}
     </div>
   )
 }

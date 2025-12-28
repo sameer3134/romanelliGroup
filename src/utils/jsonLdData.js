@@ -57,11 +57,11 @@ export const jsonLdData = {
       "name": "The Romanelli Group"
     }
   },
-  "/contactUs": {
+  "/contact-us": {
     "@context": "https://schema.org",
     "@type": "ContactPage",
     "name": "Contact The Romanelli Group",
     "description": "Get in touch for all your real estate needs.",
-    "url": "https://www.theromanelligroup.com/contactUs"
+    "url": "https://www.theromanelligroup.com/contact-us"
   }
 };

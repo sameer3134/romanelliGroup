@@ -7,7 +7,7 @@ const faqs = [
   },
   {
     question: "How will my home be marketed?",
-    answer: "We use professional photography, targeted online ads, and social media campaigns to showcase your home to the right buyers. You can check our 'Homes We’ve Sold' section to see how we market listings.",
+    answer: "Every home is marketed with a clear, intentional strategy—not a one-size-fits-all plan. We focus on positioning your home to stand out, attract the right buyers, and create demand through high-quality presentation and modern marketing channels. The exact approach is tailored to your home, the market, and what will drive the strongest result.",
   },
   {
     question: "What happens after I list my home?",
@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     question: "How do I track the progress of my home sale?",
-    answer: "You’ll have access to real-time updates, showing feedback, and market insights through our client portal. We’ll also be in regular contact to guide you through the process.",
+    answer: "We’ll be in regular contact to provide real-time updates, share showing feedback, and keep you informed with relevant market insights, so you always know where things stand.",
   },
   {
     question: "Can I request a consultation before deciding to sell?",

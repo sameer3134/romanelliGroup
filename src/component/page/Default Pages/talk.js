@@ -5,7 +5,7 @@ const Talk = () => {
   const navigate = useNavigate();
 
   const handleScheduleCall = () => {
-    navigate('/contact');
+    navigate('/contact-us');
   };
   return (
     <>

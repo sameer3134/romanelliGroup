@@ -39,6 +39,11 @@ const ConnectForm = () => {
             return;
         }
 
+        if (!privacyAccepted) {
+            setErrors({ privacy: "You must accept the privacy policy to continue" });
+            return;
+        }
+
 
 
         try {
@@ -135,23 +140,31 @@ const ConnectForm = () => {
                                             />
                                             {errors.message && <p className="text-red-500 text-sm mb-2">{errors.message}</p>}
                                             <AccessibleButton onClick={handleSubmit} className="bg-red-800 text-white px-4 py-2 w-full rounded" ariaLabel="Submit enquiry form">
-                                                Submit Enquiry
+                                                Submit Inquiry
                                             </AccessibleButton>
                                             <p className='text-center font-bold p-2'>OR</p>
                                             <AccessibleButton onClick={handleScheduleCall} className="bg-black text-white px-4 py-2 w-full rounded" ariaLabel="Schedule a call with our team">
                                                 Schedule a Call
                                             </AccessibleButton>
-                                            <div className="flex items-start gap-2 mt-4 text-xs text-gray-600">
+                                            <div className='mt-4'>
+                                             {errors.privacy && <p className="text-red-500 text-left text-[10px]">{errors.privacy}</p>}
+                                            <div className="flex items-start gap-2 text-xs text-gray-600">
                                                 <input 
                                                     type="checkbox" 
                                                     id="privacyPolicy" 
                                                     checked={privacyAccepted}
-                                                    onChange={(e) => setPrivacyAccepted(e.target.checked)}
-                                                    className="mt-1 flex-shrink-0"
+                                                    onChange={(e) => {
+                                                        setPrivacyAccepted(e.target.checked);
+                                                        if (errors.privacy) {
+                                                            setErrors({ ...errors, privacy: "" });
+                                                        }
+                                                    }}
+                                                    className={`mt-1 flex-shrink-0 ${errors.privacy ? 'border-red-500' : ''}`}
                                                 />
                                                 <label htmlFor="privacyPolicy" className="text-left">
                                                     By providing your information, you agree to be contacted by The Romanelli Group LLC via phone call, email, and text for real estate services. To opt out, you can reply "STOP" to any text at any time or click the unsubscribe link in emails. For help, reply "HELP." Message and data rates may apply. Message frequency varies. <Link to="/privacy-policy" target='_blank' className="text-blue-600 hover:text-blue-800 underline">View our Privacy Policy</Link>.
                                                 </label>
+                                            </div>   
                                             </div>
                                         </div>        
                                 </div>

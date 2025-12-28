@@ -18,7 +18,8 @@ const Connected = () => {
       title: "Visit Our Office",
       description: "Find us right in the heart of Central Ohio.",
       action: "View on Google Maps",
-      actionLink: "#", // Add the actual link here
+      actionLink: "https://share.google/13Gj3qs24RJ3dtIub", // Add the actual link here
+      target:"_Blank"
     },
     {
       icon: connect_url2,
@@ -32,7 +33,6 @@ const Connected = () => {
       title: "You Can Reach Us",
       description: "Monday - Friday: 9:00 AM - 5:00 PM | Saturday: 10:00 AM - 2:00 PM",
       action: "Closed on Sundays, but feel free to drop an email!",
-      actionLink: "#", // Add the actual link here
     },
     {
       icon: connect_url4,
@@ -73,9 +73,9 @@ const Connected = () => {
                     {detail.title}
                   </p>
                   <p>{detail.description}</p>
-                  <p className="text-lg flex gap-2 font-semibold text-gray-900 mt-3 underline">
+                  <p className="text-md flex gap-2 text-gray-900 mt-3 ">
                     {detail.actionLink ? (
-                      <a href={detail.actionLink}>{detail.action}</a>
+                      <button className='font-semibold underline' onClick={() => {if(detail.actionLink){ window.open(detail.actionLink, detail.target)} else {window.location.href="#"}}}>{detail.action}</button>
                     ) : (
                       detail.action
                     )}

@@ -1,5 +1,6 @@
 import React from "react";
 import { simplified_step1, simplified_step2, simplified_step3, simplified_step4, simplified_step5, simplified_step6 } from "../../../assets/allImg";
+import { link } from "framer-motion/client";
 
 const steps = [
   {
@@ -8,6 +9,8 @@ const steps = [
     description:
       "Start by understanding your home’s worth in today’s market. We’ll provide a detailed valuation tailored to your property.",
     button: "Get Your Valuation",
+    link:"/",
+    target:"_Self",
     imgSrc: simplified_step1,
   },
   {
@@ -25,6 +28,8 @@ const steps = [
       "From staging tips to minor repairs, explore our expert resources to maximize your home’s appeal.",
     button: "Visit Resource Hub",
     imgSrc: simplified_step3,
+    link:"/resources",
+    target:"_Self",
   },
   {
     step: "Step 04",
@@ -33,6 +38,8 @@ const steps = [
       "Your property will be showcased to the right audience with stunning visuals, targeted ads, and expert strategies.",
     button: "List My Home",
     imgSrc: simplified_step4,
+    link:"/contact-us",
+    target:"_Self"
   },
   {
     step: "Step 05",
@@ -41,6 +48,8 @@ const steps = [
       "We’ll handle negotiations and paperwork, ensuring you get the best deal while staying stress-free.",
     button: "Start Searching",
     imgSrc: simplified_step5,
+    link:"/properties",
+    target:"_Self"
   },
   {
     step: "Step 06",
@@ -49,6 +58,8 @@ const steps = [
       "Congratulations! With your sale complete, it’s time to move forward with confidence.",
     button: "Share Your Success",
     imgSrc: simplified_step6,
+    link:"https://share.google/13Gj3qs24RJ3dtIub",
+    target:"_Blank"
   },
 ];
 
@@ -101,14 +112,16 @@ const Simplified = () => {
                 index % 2 === 0 ? "md:text-right" : "md:text-left"
               }`}
             >
-              <button className="text-lg bg-red-800 px-2 py-1 font-semibold text-white">
+              <button className="text-lg bg-red-800 px-2 py-1 font-semibold text-white" >
                 {step.step}
               </button>
               <h2 className="text-2xl lg:text-4xl font-semibold text-white mt-2">
                 {step.title}
               </h2>
               <p className="text-white mt-2">{step.description}</p>
-              <button className="text-sm bg-white px-4 py-2 font-semibold text-black mt-2">
+              <button className="text-sm bg-white px-4 py-2 font-semibold text-black mt-2 cursor-pointer" onClick={() => {
+                if(step.link){ window.open(step.link, step.target)} else {window.location.href="#"}
+              }}>
                 {step.button}
               </button>
             </div>

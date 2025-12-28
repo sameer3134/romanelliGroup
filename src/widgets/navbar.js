@@ -8,7 +8,7 @@ const navLinksLeft = [
     { title: "Home", href: "/" },
     { title: "Buy", href: "/buy" },
     { title: "Sell", href: "/sell" },
-    { title: "Contact Us", href: "/contactUs" },
+    { title: "Contact Us", href: "/contact-us" },
   ];
 
   const navLinksRight = [
@@ -69,7 +69,7 @@ useEffect(() => {
                 {link.title}
               </Link>
             ))}
-            <Link to='/contactUs'>
+            <Link to='/contact-us'>
             <button className="text-black bg-white hover:bg-gray-300 font-medium  text-sm px-4 py-2 rounded-md">
               Talk to our Team!
             </button>
@@ -79,7 +79,7 @@ useEffect(() => {
           {/* Mobile CTA + Hamburger Menu */}
           <div className="flex items-center md:hidden space-x-2">
             {/* Talk to our Team! - Left of Hamburger */}
-            <Link to='/contactUs'>
+            <Link to='/contact-us'>
             <button className="text-black bg-white hover:bg-gray-300 font-medium rounded-md text-sm px-4 py-2">
               Talk to our Team!
             </button>

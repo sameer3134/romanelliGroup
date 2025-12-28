@@ -34,17 +34,27 @@ const Faces = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/4 to-transparent"></div>
                   <div className="absolute bottom-2 left-0 w-full text-white text-left px-2 pl-4">
-                    <h3 className="text-2xl font-semibold">Cristina Romanelli</h3>
-                    <p className="text-lg">CEO & Founder</p>
+                    <h3 className="text-2xl font-semibold">CRISTINA ROMANELLI</h3>
+                    <p className="text-lg">CEO & PARTNER</p>
                   </div>
                 </div>
               </div>
 
 
               <p className="leading-relaxed text-base text-black mt-4 max-w-xl ">
-                In 2021, I was honored to be named among the Top 500 (out of 10,000) in Central Ohio by Real Producers Magazine. That same year, I joined the elite ranks of the $10 Million Dollar Club at the Columbus Board of Realtors. As a proud Ohio University alumnus, I bring the dedication and teamwork I learned as a Bobcat to every deal we close. My mission? To help you achieve your dreams with unmatched expertise and personalized service
+                I’m a Partner of The Romanelli Group at Keller Williams Greater Columbus, proudly serving families throughout Central Ohio. 
+              </p>
+               <p className="leading-relaxed text-base text-black max-w-xl ">
+                With over 10 years of experience and more than 600 homes sold, I’ve built a reputation for delivering exceptional results with integrity, care, and expertise.
+              </p>
+               <p className="leading-relaxed text-base text-black max-w-xl ">
+                As a lifelong advocate for my clients, I specialize in helping families buy and sell homes that fit their next chapter. My leadership and success have earned me recognition among the Top 1% of Realtors in Central Ohio, as well as the Columbus Realtors $25 Million Dollar Award.
+              </p>
+               <p className="leading-relaxed text-base text-black max-w-xl ">
+                As a past president of the Women’s Council of Realtors Columbus, I’m passionate about elevating others in the industry and giving back to my community. I live in Westerville, Ohio, and love spending time with my husband, Chris, and our daughter, Marcella, exploring everything Central Ohio has to offer.
               </p>
             </div>
+
 
             {/* Second Profile */}
             <div className="sm:w-1/2 mb-10 px-4 flex flex-col items-center">
@@ -56,18 +66,18 @@ const Faces = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/4 to-transparent"></div>
                 <div className="absolute bottom-2 left-0 w-full text-white text-left px-2 pl-4">
-                  <h3 className="text-2xl font-semibold">Antonio Romanelli</h3>
-                  <p className="text-lg">Agent & Brother</p>
+                  <h3 className="text-2xl font-semibold">ANTONIO ROMANELLI</h3>
+                  <p className="text-lg">CFO & PARTNER</p>
                 </div>
               </div>
               <p className="leading-relaxed text-base text-black mt-4 max-w-xl">
-                Growing up with a dad who was a custom home builder in Columbus, I didn’t realize how much I loved real estate until I graduated from Ohio Wesleyan University. I majored in Finance, Economics, and Accounting, and took a job in Commercial Real Estate at Huntington Bank. I enjoyed my time there and built a strong understanding of real estate financing.
+                I’m a Partner of The Romanelli Group at Keller Williams Greater Columbus, proudly serving families across Central Ohio alongside my sister (not my wife!). With over five years of experience in residential real estate and more than two years in commercial real estate, I bring a strong understanding of how to achieve exceptional results for clients.
               </p>
               <p className="leading-relaxed text-base text-black max-w-xl">
-                Once I realized the 9-to-5 life wasn’t for me, I teamed up with my sister Cristina, and together we’ve built a strong real estate business that we take a lot of pride in. Homes have been a part of our lives since we were kids!
+                Helping families through their next stage of life is what I enjoy most—whether that’s a first home, a family home, or a low-maintenance option. We work to remove as much stress as possible from the buying and selling process, which has led to over 600 closed transactions and recognition in the top 1% in Central Ohio.
               </p>
               <p className="leading-relaxed text-base text-black max-w-xl">
-                As we say, Romanelli is Real Estate.
+               I grew up in North Columbus, where I now live with my wife Gabrielle and our son Francesco. When I’m not showing homes, you’ll often find us at a local coffee shop enjoying a cappuccino.
               </p>
             </div>
 

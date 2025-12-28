@@ -23,7 +23,7 @@ export const seoMetadata = {
     ogDescription: "Maximize your property's value with our professional selling services.",
     ogImage: "/logoUrl.avif"
   },
-  "/contactUs": {
+  "/contact-us": {
     title: "Contact Us - The Romanelli Group",
     description: "Get in touch with The Romanelli Group for all your real estate needs. Expert consultation and personalized service.",
     keywords: "contact real estate agent, property consultation, real estate services",

@@ -15,7 +15,7 @@ const FirstPageBuy = () => {
                 </div>
 
                 {/* Input & Button Section */}
-                <button className="flex mx-auto mt-8 text-black bg-white hover:bg-gray-300 border-0 py-2 px-8 focus:outline-none rounded text-lg">
+                <button onClick={()=>{window.open("/properties","_self")}} className="flex mx-auto mt-8 text-black bg-white hover:bg-gray-300 border-0 py-2 px-8 focus:outline-none rounded text-lg">
                     Get Started
                 </button>
 
