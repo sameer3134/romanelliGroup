@@ -103,7 +103,10 @@ const FeaureListing = () => {
             key={setIndex}
             className="flex space-x-4 sm:space-x-6"
             style={{
-              animation: `scrolling ${scrollDuration}s ease-in-out infinite`,
+              animationName: 'scrolling',
+              animationDuration: `${scrollDuration}s`,
+              animationTimingFunction: 'ease-in-out',
+              animationIterationCount: 'infinite',
               animationPlayState: isPaused ? 'paused' : 'running'
             }}
             aria-hidden={setIndex === 1 ? "true" : undefined}

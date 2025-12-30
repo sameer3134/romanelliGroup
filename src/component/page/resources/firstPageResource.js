@@ -25,11 +25,11 @@ const FirstPageResource = () => {
       <div className="relative z-10 container px-4 sm:px-5 py-12 md:py-24 mx-auto font-dmsans">
         {/* Heading */}
         <div className="flex flex-col text-center w-full mb-6">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white mx-auto max-w-4xl px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 text-white mx-auto max-w-4xl px-4">
             Insights, Tips, and Stories to Empower Your
             <span className="italic font-playfair">{" "}Real Estate Journey</span>
           </h1>
-          <p className="mx-auto leading-relaxed font-medium text-base sm:text-xl max-w-2xl mt-4">
+          <p className="mx-auto leading-relaxed font-medium text-base sm:text-xl max-w-2xl">
             Explore our collection of articles, videos, and expert advice curated just for you.
           </p>
         </div>

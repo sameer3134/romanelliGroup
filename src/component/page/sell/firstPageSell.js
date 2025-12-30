@@ -109,7 +109,7 @@ const FirstPageSell = () => {
                         <div className="container mt-[-50px] flex flex-wrap px-5 py-12 md:py-24 mx-auto items-center">
                             {/* Left Section (Text) */}
                             <div className="w-full md:w-1/2 md:pr-12 md:py-8 mb-10 md:mb-0 pb-10 border-gray-200">
-                                <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold mb-4 text-white">
+                                <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl  font-bold mb-2 text-white">
                                     Sell Smart. Move Forward with Confidence
                                 </h1>
                                 <p className="leading-relaxed font-bold text-xl">

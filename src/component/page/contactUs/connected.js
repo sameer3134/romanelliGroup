@@ -61,30 +61,79 @@ const Connected = () => {
             Whether you’re ready to buy, sell, or simply have questions, we’re here to help every step of the way.
           </p>
         </div>
-        <div className="container px-5 py-6 mx-auto">
-          <div className="flex flex-wrap -m-4">
-            {contactDetails.map((detail, index) => (
-              <div key={index} className="p-4 xl:w-1/4 md:w-1/2 w-full">
-                <div className="h-[440px] w-auto p-6 text-left border-2 bg-white flex flex-col relative overflow-hidden">
-                  <span className="bg-red-800 text-white px-3 py-3 tracking-widest text-xs absolute left-5 top-5 ">
-                    <img src={detail.icon} alt={detail.title} />
-                  </span>
-                  <p className="flex mt-auto text-gray-900 font-bold text-xl border-0 py-2 w-full focus:outline-none ">
-                    {detail.title}
-                  </p>
-                  <p>{detail.description}</p>
-                  <p className="text-md flex gap-2 text-gray-900 mt-3 ">
-                    {detail.actionLink ? (
-                      <button className='font-semibold underline' onClick={() => {if(detail.actionLink){ window.open(detail.actionLink, detail.target)} else {window.location.href="#"}}}>{detail.action}</button>
-                    ) : (
-                      detail.action
-                    )}
-                  </p>
-                </div>
-              </div>
-            ))}
+<div className="container px-4 sm:px-6 lg:px-8 mx-auto py-6">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+    {contactDetails.map((detail, index) => (
+      <div key={index} className="w-full">
+        <div className="min-h-[250px] sm:min-h-[280px] lg:min-h-[300px] xl:min-h-[300px] w-full p-5 sm:p-6 text-left border-2 bg-white flex flex-col relative overflow-hidden group hover:shadow-xl transition-all duration-300 hover:border-red-800/20">
+          
+          {/* Icon */}
+          <div className="bg-red-800 text-white p-3 absolute left-4 top-4 w-12 h-12 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <img 
+              src={detail.icon} 
+              alt={detail.title}
+              className="w-6 h-6 sm:w-7 sm:h-7"
+            />
           </div>
+          
+          {/* Title */}
+          <h3 className="mt-16 text-lg sm:text-xl font-bold text-gray-900  transition-colors duration-300">
+            {detail.title}
+          </h3>
+          
+          {/* Description */}
+          <p className="mt-2 text-sm text-gray-600 leading-relaxed flex-grow">
+            {detail.description}
+          </p>
+          
+          {/* Action / Social Links */}
+          <div className="mt-4 pt-4 border-t border-gray-100">
+            {detail.actionLink ? (
+              <a
+                href={detail.actionLink}
+                target={detail.target || '_self'}
+                className="inline-flex items-center text-black underline font-semibold text-sm sm:text-base  transition-colors duration-200"
+                rel={detail.target === '_blank' ? 'noopener noreferrer' : undefined}
+              >
+                {detail.action}
+                {detail.target === '_blank' && (
+                  <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                )}
+              </a>
+            ) : detail.socialLinks ? (
+              // Social links section
+              <div className="flex items-center space-x-4">
+                {detail.socialLinks.map((link, linkIndex) => (
+                  <a
+                    key={linkIndex}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-80 transition-opacity duration-200"
+                  >
+                    <img
+                      className="w-7 h-7 sm:w-8 sm:h-8"
+                      src={link.src}
+                      alt={link.alt}
+                    />
+                  </a>
+                ))}
+              </div>
+            ) : (
+              // Regular text action (no link)
+              <span className="text-sm flex gap-2 text-gray-900">
+                {detail.action}
+              </span>
+            )}
+          </div>
+          
         </div>
+      </div>
+    ))}
+  </div>
+</div>
       </section>
     </div>
   );

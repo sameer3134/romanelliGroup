@@ -18,8 +18,10 @@ const steps = [
     title: "Schedule a Call with us!",
     description:
       "Talk to our experts to discuss your property goals and get a tailored selling strategy.",
-    button: "Schedule a Prep Call",
+    button: "Contact Us",
     imgSrc: simplified_step2,
+    link:"/contact-us",
+    target:"_Self",
   },
   {
     step: "Step 03",

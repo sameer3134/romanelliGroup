@@ -1,3 +1,4 @@
+import PdfViewer from "../component/pdfViewer";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
@@ -36,7 +37,7 @@ const AccessComponent = () => {
     return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
-  const isPolicyPage = ['/cookie-policy', '/terms-of-use', '/privacy-policy', '/dmca-notice', '/fair-housing', '/accessibility-policy'].includes(location);
+  const isPolicyPage = ['/cookie-policy', '/terms-of-use', '/privacy-policy', '/dmca-notice', '/fair-housing', '/accessibility-policy','/pdf-viewer'].includes(location);
 
   return (
     <>
@@ -64,6 +65,7 @@ const AccessComponent = () => {
             <Route path="/dmca-notice" element={<DmcaNotice />} />
             <Route path="/fair-housing" element={<FairHousing />} />
             <Route path="/accessibility-policy" element={<AccessibilityPolicy />} />
+            <Route path="/pdf-viewer" element={<PdfViewer />} />
           </Route>
           {/* Private Route */}
           <Route path="/" element={<PrivateRoute />}>

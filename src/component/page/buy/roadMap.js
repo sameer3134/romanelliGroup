@@ -39,7 +39,8 @@ const steps = [
       "Discover our winning strategy—proven methods, expert insights, and a track record of success.",
     button: "How We Win",
     imgSrc: roadMapstep4,
-    target:"_Self"
+    link: "/pdf-viewer",
+    target:"_blank"
   },
 ];
 
@@ -98,9 +99,12 @@ const RoadMap = () => {
                 {step.title}
               </h2>
               <p className="text-gray-600 mt-2">{step.description}</p>
-              <button className="text-sm bg-black px-4 py-2 font-semibold text-white mt-2" onClick={() => {
-                if(step.link){ window.open(step.link, step.target)} else {window.location.href="#"}
-              }}>
+              <button 
+                className="text-sm bg-black px-4 py-2 font-semibold text-white mt-2"
+                onClick={() => {
+                  window.open(step.link, step.target);
+                }}
+              >
                 {step.button}
               </button>
             </div>

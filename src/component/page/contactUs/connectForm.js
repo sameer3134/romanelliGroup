@@ -144,7 +144,7 @@ const ConnectForm = () => {
                                             </AccessibleButton>
                                             <p className='text-center font-bold p-2'>OR</p>
                                             <AccessibleButton onClick={handleScheduleCall} className="bg-black text-white px-4 py-2 w-full rounded" ariaLabel="Schedule a call with our team">
-                                                Schedule a Call
+                                                Contact Us
                                             </AccessibleButton>
                                             <div className='mt-4'>
                                              {errors.privacy && <p className="text-red-500 text-left text-[10px]">{errors.privacy}</p>}

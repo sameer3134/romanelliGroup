@@ -128,11 +128,11 @@ const Form = () => {
                     />
                     {errors.message && <p className="text-red-500 text-sm mb-2">{errors.message}</p>}
                     <button onClick={handleSubmit} className="bg-red-800 text-white px-4 py-2 w-full rounded">
-                        Submit Enquiry
+                        Submit Inquiry
                     </button>
                     <p className='text-center font-bold p-2'>OR</p>
                     <button onClick={handleScheduleCall} className="bg-white text-black px-4 py-2 w-full rounded">
-                        Schedule a Call
+                        Contact Us
                     </button>
                     <div className='mt-4'>
                      {errors.privacy && <p className="text-red-500 text-left text-[10px]">{errors.privacy}</p>}
