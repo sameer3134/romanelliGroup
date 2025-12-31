@@ -6,7 +6,7 @@ const FeaureListing = () => {
   const navigate = useNavigate();
   const [listings, setListings] = useState([]);
   const [allData, setAllData] = useState([]);
-  const [scrollDuration, setScrollDuration] = useState(60);
+  const [translateX, setTranslateX] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
   const apiResult = async () => {
@@ -60,11 +60,6 @@ const FeaureListing = () => {
       }));
 
       setListings(mapped);
-      
-      // Calculate dynamic scroll duration based on number of items
-      const baseDuration = 3; // seconds per item
-      const calculatedDuration = Math.max(30, mapped.length * baseDuration);
-      setScrollDuration(calculatedDuration);
     } catch (error) {
       console.error(error);
     }
@@ -73,6 +68,33 @@ const FeaureListing = () => {
   useEffect(() => {
     apiResult();
   }, []);
+  
+  useEffect(() => {
+    if (listings.length === 0) return;
+    
+    const speed = 50; // pixels per second
+    const itemWidth = 464; // 440px + 24px spacing
+    const totalWidth = listings.length * itemWidth;
+    
+    let animationId;
+    let startTime = Date.now();
+    let pausedTime = 0;
+    
+    const animate = () => {
+      if (!isPaused) {
+        const elapsed = (Date.now() - startTime - pausedTime) / 1000;
+        const distance = (elapsed * speed) % totalWidth;
+        setTranslateX(-distance);
+      } else {
+        pausedTime += 16; // Add frame time when paused
+      }
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animationId = requestAnimationFrame(animate);
+    
+    return () => cancelAnimationFrame(animationId);
+  }, [listings, isPaused]);
   const handleGetItem = (id) => {
     // Store data in sessionStorage to share with new tab (limit to 40 items)
     const limitedAllData = allData.slice(0, 40);
@@ -103,11 +125,8 @@ const FeaureListing = () => {
             key={setIndex}
             className="flex space-x-4 sm:space-x-6"
             style={{
-              animationName: 'scrolling',
-              animationDuration: `${scrollDuration}s`,
-              animationTimingFunction: 'ease-in-out',
-              animationIterationCount: 'infinite',
-              animationPlayState: isPaused ? 'paused' : 'running'
+              transform: `translateX(${translateX}px)`,
+              transition: 'none'
             }}
             aria-hidden={setIndex === 1 ? "true" : undefined}
           >

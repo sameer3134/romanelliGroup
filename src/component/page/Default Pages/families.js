@@ -142,7 +142,7 @@ const Families = () => {
 
       </div>
       <div className="flex justify-center mb-16">
-        <button className="inline-flex text-white bg-backgroundColor border-0 py-2 md:py-4 px-6 focus:outline-none   text-lg">Join Our Happy Families!</button>
+        <button className="inline-flex text-white bg-backgroundColor border-0 py-2 md:py-4 px-6 focus:outline-none   text-lg" onClick={()=> window.location.href = "/contact-us"}>Join Our Happy Families!</button>
       </div>
     </>
   );
