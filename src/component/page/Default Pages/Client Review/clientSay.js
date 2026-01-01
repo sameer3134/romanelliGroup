@@ -33,9 +33,9 @@ const ClientSay = () => {
 
   useEffect(() => {
     const updateVisibleImages = () => {
-      if (window.innerWidth < 640) setVisibleImages(1.2);
-      else if (window.innerWidth < 1024) setVisibleImages(2);
-      else setVisibleImages(4);
+      if (window.innerWidth < 640) setVisibleImages(3);
+      else if (window.innerWidth < 1024) setVisibleImages(3.7);
+      else setVisibleImages(5.2);
     };
 
     updateVisibleImages();
@@ -49,13 +49,11 @@ const ClientSay = () => {
   }, [reviews, visibleImages]);
 
   const nextSlide = () => {
-    setIndex((prevIndex) =>
-      prevIndex < reviews.length - visibleImages ? prevIndex + 1 : prevIndex
-    );
+    setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
   };
 
   const prevSlide = () => {
-    setIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+    setIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
   };
 
   return (
@@ -77,13 +75,13 @@ const ClientSay = () => {
             <div
               className="flex transition-transform duration-700 ease-in-out"
               style={{
-                transform: `translateX(-${(index / reviews.length) * 100}%)`,
-                width: `${reviews.length * (100 / visibleImages)}%`,
+                transform: `translateX(-${index * (100 / visibleImages)}%)`,
+                width: `${reviews.length  * (100 / visibleImages)}%`,
               }}
             >
               {reviews.length > 0 ? (
-                reviews.map((testimonial) => (
-                  <div key={testimonial.id} className="xl:w-1/4 md:w-1/2 p-1">
+                reviews.concat(reviews).map((testimonial, i) => (
+                  <div key={i} className="xl:w-1/4 md:w-1/2 p-1" style={{ flex: `0 0 ${100 / visibleImages}%` }}>
                     <TestimonialCard testimonial={testimonial} />
                   </div>
                 ))

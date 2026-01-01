@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import apiServices from '../../../Service/apiService';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ const FeaureListing = () => {
   const [listings, setListings] = useState([]);
   const [allData, setAllData] = useState([]);
   const [translateX, setTranslateX] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
+  const isPausedRef = useRef(false);
 
   const apiResult = async () => {
     try {
@@ -81,7 +81,7 @@ const FeaureListing = () => {
     let pausedTime = 0;
     
     const animate = () => {
-      if (!isPaused) {
+      if (!isPausedRef.current) {
         const elapsed = (Date.now() - startTime - pausedTime) / 1000;
         const distance = (elapsed * speed) % totalWidth;
         setTranslateX(-distance);
@@ -94,7 +94,7 @@ const FeaureListing = () => {
     animationId = requestAnimationFrame(animate);
     
     return () => cancelAnimationFrame(animationId);
-  }, [listings, isPaused]);
+  }, [listings]);
   const handleGetItem = (id) => {
     // Store data in sessionStorage to share with new tab (limit to 40 items)
     const limitedAllData = allData.slice(0, 40);
@@ -117,8 +117,8 @@ const FeaureListing = () => {
 
       <div 
         className="relative flex overflow-hidden space-x-4 sm:space-x-6 w-full"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
+        onMouseEnter={() => isPausedRef.current = true}
+        onMouseLeave={() => isPausedRef.current = false}
       >
         {[...Array(2)].map((_, setIndex) => (
           <div

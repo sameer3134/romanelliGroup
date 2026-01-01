@@ -56,18 +56,20 @@ const Category = () => {
       // Instead of API call, we’ll use your local JSON later
       // Example placeholder:
 
-      const response = await axios.get(`${process.env.REACT_APP_FEATURE_LISTINGS}/instagram-datas`);
+      const response = await axios.get(`${process.env.REACT_APP_FEATURE_LISTINGS}/instagram-datas?populate=*`);
       const apiData = response.data.data;
-      
       const mappedInstagram = apiData.map(item => ({
         id: item.id,
         media: "image",
         type: "image",
         title: "Instagram Reel",
-        description: item.Description,
-        timing: item.Timing,
-        src: item.ImageUrl,
-        url: item.InstagramLinkUrl,
+        description: item.description,
+        timing: item.views,
+        src: item.thumbnail?.formats?.medium?.url ||
+          item.thumbnail?.url
+            ? item.thumbnail.url
+            : "",
+        url: item.reel_link,
         button: "Watch on Instagram"
       }));
       
@@ -169,8 +171,9 @@ const Category = () => {
                     {item.timing}
                   </div>
 
-                  <p className="text-xl sm:text-3xl font-semibold mb-3 text-left">
-                    {item.description}
+                  <p className="text-xl sm:text-3xl font-normal mb-3 text-left">
+                    {item.description.split(" ").slice(0, 10).join(" ")}
+{item.description.split(" ").length > 10 && " ..."}
                   </p>
 
                   <div className="flex gap-2">

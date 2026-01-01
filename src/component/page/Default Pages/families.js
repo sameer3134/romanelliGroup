@@ -102,7 +102,9 @@ const Families = () => {
                 <div className="absolute inset-0  bg-black bg-opacity-50 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {/* Title at bottom-left */}
 
-                  <p className="text-white text-md text-left font-semibold italic self-start mb-2">"{img.title}"</p>
+                  <p className="text-white text-md text-left font-regular italic self-start mb-2">"{img.title.split(" ").slice(0, 25).join(" ")}
+{img.title.split(" ").length > 25 && " ..."}
+"</p>
 
                   {/* Name at bottom-right */}
                   <p className="text-white text-sm font-medium self-end pr-4">- {img.name}</p>
