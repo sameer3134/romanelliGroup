@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import TestimonialCard from "./testionialCard";
 import axios from "axios";
 
@@ -14,13 +14,13 @@ const ClientSay = () => {
         const apiData = response.data.data;
         
         // Map API data to match expected format
-        const mappedReviews = apiData.map(review => ({
-          id: review.id,
-          name: review.Name,
-          rating: review.Rating,
-          comment: review.Comment,
-          image: review.Image_url,
-          url: review.GoogleReviewsUrl
+        const mappedReviews = apiData.map((review, index) => ({
+          id: review.id || index,
+          name: review.Name || 'Anonymous',
+          rating: review.Rating || 5,
+          comment: review.Comment || '',
+          image: review.Image_url || '',
+          url: review.GoogleReviewsUrl || ''
         }));
         setReviews(mappedReviews);
       } catch (error) {
@@ -43,18 +43,28 @@ const ClientSay = () => {
     return () => window.removeEventListener("resize", updateVisibleImages);
   }, []);
 
+  const nextSlide = useCallback(() => {
+    setReviews(prevReviews => {
+      if (prevReviews.length === 0) return prevReviews;
+      return [...prevReviews.slice(1), prevReviews[0]];
+    });
+    setIndex(0);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setReviews(prevReviews => {
+      if (prevReviews.length === 0) return prevReviews;
+      return [prevReviews[prevReviews.length - 1], ...prevReviews.slice(0, -1)];
+    });
+    setIndex(0);
+  }, []);
+
   useEffect(() => {
+    if (reviews.length === 0) return;
     const interval = setInterval(nextSlide, 10000);
     return () => clearInterval(interval);
-  }, [reviews, visibleImages]);
+  }, [reviews.length, nextSlide]);
 
-  const nextSlide = () => {
-    setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-  };
-
-  const prevSlide = () => {
-    setIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
-  };
 
   return (
     <div>
@@ -81,7 +91,7 @@ const ClientSay = () => {
             >
               {reviews.length > 0 ? (
                 reviews.concat(reviews).map((testimonial, i) => (
-                  <div key={i} className="xl:w-1/4 md:w-1/2 p-1" style={{ flex: `0 0 ${100 / visibleImages}%` }}>
+                  <div key={`${testimonial.id}-${i}`} className="xl:w-1/4 md:w-1/2 p-1" style={{ flex: `0 0 ${100 / visibleImages}%` }}>
                     <TestimonialCard testimonial={testimonial} />
                   </div>
                 ))
