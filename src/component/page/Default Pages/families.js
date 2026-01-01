@@ -4,7 +4,9 @@ import axios from 'axios';
 const Families = () => {
   const [images, setImages] = useState([])
   const [index, setIndex] = useState(0);
+  const [fullData, setFullData] = useState(false)
   const [visibleImages, setVisibleImages] = useState(3);
+  const [expandedIndex, setExpandedIndex] = useState(null);
   
   useEffect(() => {
     const fetchFamilies = async () => {
@@ -82,37 +84,53 @@ const Families = () => {
               width: `${images.length * (100 / visibleImages)}%`,
             }}
           >
-            {images.concat(images).map((img, i) => (
-              <div
-                key={i}
-                className="relative group"
-                style={{
-                  flex: `0 0 ${100 / visibleImages}%`,
-                  padding: "0 4px",
-                }}
-              >
-                <img
-                  src={img.url}
-                  alt={`Slide ${i}`}
-                  className="w-full h-full object-cover rounded-lg"
-                  style={{ aspectRatio: "1 / 1" }}
-                />
+       {images.concat(images).map((img, i) => {
+  const isExpanded = expandedIndex === i; // Check if THIS specific item is expanded
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0  bg-black bg-opacity-50 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {/* Title at bottom-left */}
+  return (
+    <div
+      key={i}
+      className="relative group"
+      style={{
+        flex: `0 0 ${100 / visibleImages}%`,
+        padding: "0 4px",
+      }}
+    >
+      <img
+        src={img.url}
+        alt={`Slide ${i}`}
+        className="w-full h-full object-cover rounded-lg"
+        style={{ aspectRatio: "1 / 1" }}
+      />
 
-                  <p className="text-white text-md text-left font-regular italic self-start mb-2">"{img.title.split(" ").slice(0, 25).join(" ")}
-{img.title.split(" ").length > 25 && " ..."}
-"</p>
+      {/* Hover Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-end p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        
+        <div className="text-white text-md text-left font-regular italic self-start mb-2">
+          {/* Logic: If expanded, show 100 words, else 40 */}
+          "{img.title.split(" ").slice(0, isExpanded ? 150 : 40).join(" ")}
+          {img.title.split(" ").length > (isExpanded ? 150 : 40) && "..."}"
 
-                  {/* Name at bottom-right */}
-                  <p className="text-white text-sm font-medium self-end pr-4">- {img.name}</p>
-                </div>
+          {/* Toggle Button */}
+          {img.title.split(" ").length > 40 && (
+            <span 
+              className="ml-2 cursor-pointer underline not-italic text-blue-400" 
+              onClick={(e) => {
+                e.stopPropagation(); // Prevents clicking the overlay from doing other things
+                setExpandedIndex(isExpanded ? null : i);
+              }}
+            >
+              {!isExpanded && "read more"}
+            </span>
+          )}
+        </div>
 
-
-              </div>
-            ))}
+        {/* Name at bottom-right */}
+        <p className="text-white text-sm font-medium self-end pr-4">- {img.name}</p>
+      </div>
+    </div>
+  );
+})}
           </div>
         </div>
 

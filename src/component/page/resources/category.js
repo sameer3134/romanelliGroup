@@ -171,7 +171,7 @@ const Category = () => {
                     {item.timing}
                   </div>
 
-                  <p className="text-xl sm:text-3xl font-normal mb-3 text-left">
+                  <p className="text-xl sm:text-xl font-normal mb-3 text-left">
                     {item.description.split(" ").slice(0, 10).join(" ")}
 {item.description.split(" ").length > 10 && " ..."}
                   </p>
