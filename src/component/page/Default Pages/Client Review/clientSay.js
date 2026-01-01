@@ -35,7 +35,7 @@ const ClientSay = () => {
     const updateVisibleImages = () => {
       if (window.innerWidth < 640) setVisibleImages(3);
       else if (window.innerWidth < 1024) setVisibleImages(3.7);
-      else setVisibleImages(5.2);
+      else setVisibleImages(5.3);
     };
 
     updateVisibleImages();
